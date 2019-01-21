@@ -1,14 +1,15 @@
 {
-	"name": "sample",
-	"version": "1.0.0",
-	"description": "SKYNovel simple sample project",
+	"name": "uc",
+	"version": "1.0.1",
+	"description": "Novelgame(Tate-gaki) sample project",
 	"main": "app.js",
-	"appBundleId": "com.fc2.blog.famibee.sample",
-	"appCopyright": "(c)famibee",
-	"author": "famibee",
+	"appBundleId": "com.fc2.blog.ugainovel.uc",
+	"appCopyright": "(c)ugainovel",
+	"author": "ugainovel",
 	"license": "MIT",
 	"dependencies": {
-		"skynovel": "^0.1.5"
+		"skynovel": "file:../npm_core",
+		"snplg_humane": "file:../npm_snplg_humane"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
@@ -39,11 +40,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com:famibee/SKYNovel_sample.git"
+		"url": "git+ssh://git@github.com:famibee/SKYNovel_uc.git"
 	},
 	"bugs": {
-		"url": "https://github.com/famibee/SKYNovel_sample/issues",
-		"email": "famibee@gmail.com"
+		"url": "https://github.com/famibee/SKYNovel_uc/issues",
+		"email": "ugainovel@gmail.com"
 	},
-	"homepage": "https://famibee.blog.fc2.com/"
+	"homepage": "https://ugainovel.blog.fc2.com/"
 }

@@ -9,9 +9,9 @@
 ---
 ## description（説明）
 
-Hello world ほど小さくはないが、最小限のファイルによるプロジェクトです。
+[梶井基次郎「桜の樹の下には」](https://www.aozora.gr.jp/cards/000074/card427.html)をノベルゲーム化したものです。
 
-![柊さん](build/manual_th.jpg)
+![桜の樹の下には](build/manual_th.jpg0)
 
 ## usage（使用法）
 
