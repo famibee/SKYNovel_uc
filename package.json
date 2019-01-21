@@ -1,0 +1,49 @@
+{
+	"name": "sample",
+	"version": "1.0.0",
+	"description": "SKYNovel simple sample project",
+	"main": "app.js",
+	"appBundleId": "com.fc2.blog.famibee.sample",
+	"appCopyright": "(c)famibee",
+	"author": "famibee",
+	"license": "MIT",
+	"dependencies": {
+		"skynovel": "^0.1.5"
+	},
+	"devDependencies": {
+		"@types/node": "^10.12.18",
+		"css-loader": "^2.1.0",
+		"electron": "^4.0.1",
+		"electron-installer-dmg": "^2.0.0",
+		"electron-packager": "^13.0.1",
+		"electron-winstaller": "^2.7.0",
+		"imagemin-webpack-plugin": "^2.4.0",
+		"style-loader": "^0.23.1",
+		"webpack": "^4.29.0",
+		"webpack-cli": "^3.2.1",
+		"webpack-dev-server": "^3.1.14"
+	},
+	"scripts": {
+		"install": "npm run webpack:dev",
+		"start": "electron ./",
+		"web": "npm run watch:wds",
+		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
+		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
+		"watch:wds": "webpack-dev-server --mode development --config ./core/wds.config.js",
+		"npm_check_updates": "ncu",
+		"npm_check_updates -g": "ncu -g",
+		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
+		"build": "npm run webpack:pro && npm run build:package",
+		"webpack:pro": "webpack --mode production --config ./core/webpack.config.js",
+		"build:package": "node build.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com:famibee/SKYNovel_sample.git"
+	},
+	"bugs": {
+		"url": "https://github.com/famibee/SKYNovel_sample/issues",
+		"email": "famibee@gmail.com"
+	},
+	"homepage": "https://famibee.blog.fc2.com/"
+}

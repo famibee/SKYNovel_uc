@@ -1,0 +1,18 @@
+# Visual Studio Code cache/options directory
+.vscode/
+
+# アプリ版メインjs
+app/index.js
+
+# Build results
+build/skynovel*
+build/cordova
+
+# Node.js Tools
+node_modules/
+
+# ブラウザ版メインjs
+web/
+
+# SKYNovel Dev famibee's Work Folder
+Work/
