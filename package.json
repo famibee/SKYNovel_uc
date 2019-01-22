@@ -1,6 +1,6 @@
 {
 	"name": "uc",
-	"version": "1.0.1",
+	"version": "1.0.0",
 	"description": "Novelgame(Tate-gaki) sample project",
 	"main": "app.js",
 	"appBundleId": "com.fc2.blog.ugainovel.uc",
@@ -8,8 +8,8 @@
 	"author": "ugainovel",
 	"license": "MIT",
 	"dependencies": {
-		"skynovel": "file:../npm_core",
-		"snplg_humane": "file:../npm_snplg_humane"
+		"humane-js": "^3.2.2",
+		"skynovel": "^0.1.6"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",

@@ -9,8 +9,6 @@
 		; レイヤ状態がセーブ・ロードされないので注意
 
 	[call fn=ext_*]		; ext_**.snというスクリプトを全部コール
-;	[loadplugin fn=humane4sn]
-	[loadplugin fn=humane]
 
 	[toggle_full_screen key=w]
 	[event global=true call=true key=alt+enter label=*toggle_full_screen]
@@ -141,8 +139,7 @@
 
 *stats
 	[event global=true del=true key=f7]
-;;	[stats]
-	[notice text="F7 test"]
+	[stats]
 [return]
 
 *dump

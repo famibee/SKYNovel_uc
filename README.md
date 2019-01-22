@@ -11,7 +11,7 @@
 
 [梶井基次郎「桜の樹の下には」](https://www.aozora.gr.jp/cards/000074/card427.html)をノベルゲーム化したものです。
 
-![桜の樹の下には](build/manual_th.jpg0)
+![桜の樹の下には](build/manual_th.jpg)
 
 ## usage（使用法）
 
