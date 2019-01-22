@@ -2,6 +2,9 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 ![](https://img.shields.io/badge/platform-windows%20%7C%20macos-lightgrey.svg)
 
+[![dependencies](https://david-dm.org/famibee/SKYNovel/status.svg)](https://david-dm.org/famibee/SKYNovel)
+[![dependencies](https://david-dm.org/famibee/SKYNovel/dev-status.svg)](https://david-dm.org/famibee/SKYNovel?type=dev)
+
 ![logo.svg](build/icon/icon.svg)
 
 [CHANGELOG.md](CHANGELOG.md)
