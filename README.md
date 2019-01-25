@@ -20,9 +20,11 @@
 
 ### インストールと環境設定
 1. [Node.js と npm](https://nodejs.org/en/)（必ずLTSを）をインストールしておく。
+	* 一度マシンを再起動してください。npmへのパスが通ります。
 2. このページ右上の緑ボタン「Clone or download」をクリック。「Download ZIP」をクリック。
 3. ダウンロードしたzipを解凍すると、プロジェクト入りのフォルダになる。
 4. [Visual Studio Code](https://code.visualstudio.com/)でこの「フォルダを開く」。
+	* [Visual Studio Code [vsCode] 日本語化](https://qiita.com/ntkgcj/items/e77331932c7983dea830)
 5. メニューの【ターミナル】-【新しいターミナル】で下部にターミナルが開く。
 6. ターミナルで「npm i」、Enter。
 	* （webフォルダができれば成功です）
