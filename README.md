@@ -21,6 +21,7 @@
 ### インストールと環境設定
 1. [Node.js と npm](https://nodejs.org/en/)（必ずLTSを）をインストールしておく。
 	* 一度マシンを再起動してください。npmへのパスが通ります。
+	* （windowsのみ）管理者権限で PowerShell を起動し、【npm i -g windows-build-tools】を実行。「All done!」まで待つ。
 2. このページ右上の緑ボタン「Clone or download」をクリック。「Download ZIP」をクリック。
 3. ダウンロードしたzipを解凍すると、プロジェクト入りのフォルダになる。
 4. [Visual Studio Code](https://code.visualstudio.com/)でこの「フォルダを開く」。
