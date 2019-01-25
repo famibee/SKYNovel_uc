@@ -1,12 +1,13 @@
+const is_windows = process.platform==='win32'
+//const is_mac = process.platform==='darwin'
+
 const config = require('./package.json');
 const opts = {
 	dir: './',
 	name: config.name,
 	appCopyright: config.appCopyright,
  	appVersion	: config.version,
-//	platform: 'win32',
-	platform: 'darwin',
-//	platform: 'darwin,win32',
+	platform: is_windows ?'win32' :'darwin',
 //	arch: 'ia32',
 	arch: 'x64',
 		// 2018/5/1時点で
@@ -32,46 +33,45 @@ const opts = {
 	}
 };
 const packager = require('electron-packager');
-packager(opts).then(appPaths => {
-	const aPlatform = opts.platform.split();
+packager(opts).then(_appPaths => {
 	// Win
-	if (aPlatform.includes('win32')) {
-		console.log('🍦 🍩 %s.exe Done!!', opts.name);
-//		console.log('🍦 📦 %s.exe Done!!', opts.name);
+	if (is_windows) {
+		console.log(`---- ${opts.name}.exe Done!!`);
 
+		console.log(`Creating ${opts.name}.msi ...`);
 		const electronInstaller = require('electron-winstaller');
 		const fld = opts.name +'-win32-'+ opts.arch;
-console.log(`fld:${fld}`);
 		resultPromise = electronInstaller.createWindowsInstaller({
-			appDirectory: 'build/'+ fld +'/',
+			appDirectory: `build/${fld}/`,
 			outputDirectory: opts.out,
 			authors: config.authors,
-			exe: opts.name +'.exe'
-		});
-		resultPromise.then(() => console.log("It worked!"), (e) => console.log(`No dice: ${e.message}`));
 /*
-		resultPromise.then(() => {
-			console.log("It worked!")
-			e=> console.log(`No dice: ${e.message}`)
-		});
+			exe: opts.name +'.exe',
+			setupExe: opts.name +'.exe',
+			setupMsi: opts.name +'.msi',
 */
+		});
+		resultPromise.then(
+			()=> console.log(`---- ${opts.name}.msi Done!!`),
+			e=> console.log(`No dice: ${e.message}`));
 	}
 
 	// Mac
-	if (aPlatform.includes('darwin')) {
-		console.log('🍏 🍔 %s.app Done!!', opts.name);
+	if (process.platform==='darwin') {
+		console.log(`🍏 🍔 ${opts.name}.app Done!!`);
 
+		console.log(`Creating ${opts.name}.dmg ...`);
 		const fld = opts.name +'-darwin-'+ opts.arch;
 		const createDMG = require('electron-installer-dmg');
 		createDMG({
 			appPath: 'build/'+ fld +'/'+ opts.name +'.app',
-			name: fld,
+			name: opts.name,
 			icon: opts.icon +'.icns',
 			overwrite: true,
 			out: opts.out,
 		}, err=> {
 			if (err) throw Error(err);
-			console.log('🍎 📦 %s.dmg Done!!', fld);
+			console.log(`🍎 📦 ${opts.name}.dmg Done!!`);
 		});
 	}
 });
