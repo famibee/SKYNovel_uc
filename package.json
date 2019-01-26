@@ -14,8 +14,9 @@
 	"devDependencies": {
 		"@types/node": "^10.12.18",
 		"css-loader": "^2.1.0",
-		"electron": "^4.0.1",
+		"electron": "^4.0.2",
 		"electron-builder": "^20.38.5",
+		"imagemin-webpack-plugin": "^2.4.0",
 		"style-loader": "^0.23.1",
 		"webpack": "^4.29.0",
 		"webpack-cli": "^3.2.1",
