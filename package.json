@@ -9,14 +9,13 @@
 	"license": "MIT",
 	"dependencies": {
 		"humane-js": "^3.2.2",
-		"skynovel": "file:../npm_core"
+		"skynovel": "^0.1.12"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
 		"css-loader": "^2.1.0",
 		"electron": "^4.0.1",
 		"electron-builder": "^20.38.5",
-		"imagemin-webpack-plugin": "^2.4.0",
 		"style-loader": "^0.23.1",
 		"webpack": "^4.29.0",
 		"webpack-cli": "^3.2.1",
@@ -50,13 +49,24 @@
 		],
 		"dmg": {
 			"contents": [
-				{"x": 410, "y": 150, "type": "link", "path": "/Applications"},
-				{"x": 130, "y": 150, "type": "file"}
+				{
+					"x": 410,
+					"y": 150,
+					"type": "link",
+					"path": "/Applications"
+				},
+				{
+					"x": 130,
+					"y": 150,
+					"type": "file"
+				}
 			]
 		},
 		"mac": {
 			"icon": "build/icon/icon.icns",
-			"target": ["dmg"],
+			"target": [
+				"dmg"
+			],
 			"category": "public.app-category.games"
 		},
 		"win": {
@@ -65,7 +75,10 @@
 		},
 		"linux": {
 			"icon": "build/icon",
-			"target": ["deb", "rpm"],
+			"target": [
+				"deb",
+				"rpm"
+			],
 			"category": "Network"
 		}
 	},
