@@ -9,15 +9,13 @@
 	"license": "MIT",
 	"dependencies": {
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.1.7"
+		"skynovel": "file:../npm_core"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
 		"css-loader": "^2.1.0",
 		"electron": "^4.0.1",
-		"electron-installer-dmg": "^2.0.0",
-		"electron-packager": "^13.0.1",
-		"electron-winstaller": "^2.7.0",
+		"electron-builder": "^20.38.5",
 		"imagemin-webpack-plugin": "^2.4.0",
 		"style-loader": "^0.23.1",
 		"webpack": "^4.29.0",
@@ -34,9 +32,42 @@
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
-		"build": "npm run webpack:pro && npm run build:package",
 		"webpack:pro": "webpack --mode production --config ./core/webpack.config.js",
-		"build:package": "node build.js"
+		"pack:win": "npm run webpack:pro && electron-builder ./build/win32-x64 --platform=win --arch=x64",
+		"pack:mac": "npm run webpack:pro && electron-builder ./build/darwin-x64 --platform=mac --arch=x64"
+	},
+	"build": {
+		"appId": "com.fc2.blog.ugainovel.uc",
+		"productName": "桜の樹の下には",
+		"directories": {
+			"output": "build"
+		},
+		"files": [
+			"app/",
+			"app.js",
+			"prj/",
+			"build/icon/*"
+		],
+		"dmg": {
+			"contents": [
+				{"x": 410, "y": 150, "type": "link", "path": "/Applications"},
+				{"x": 130, "y": 150, "type": "file"}
+			]
+		},
+		"mac": {
+			"icon": "build/icon/icon.icns",
+			"target": ["dmg"],
+			"category": "public.app-category.games"
+		},
+		"win": {
+			"icon": "build/icon/icon.ico",
+			"target": "nsis"
+		},
+		"linux": {
+			"icon": "build/icon",
+			"target": ["deb", "rpm"],
+			"category": "Network"
+		}
 	},
 	"repository": {
 		"type": "git",

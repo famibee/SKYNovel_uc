@@ -139,7 +139,8 @@
 
 *stats
 	[event global=true del=true key=f7]
-	[stats]
+;;	[stats]
+	[notice text="F7 test"]
 [return]
 
 *dump

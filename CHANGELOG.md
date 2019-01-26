@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.5
+ - パッケージャを electron-builder に変更・統一
 ## v1.0.4
  - app版のエラー解消
 ## v1.0.3

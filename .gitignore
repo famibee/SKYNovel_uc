@@ -5,7 +5,10 @@
 app/index.js
 
 # Build results
-build/uc*
+build/*.yaml
+build/*.yml
+build/mac
+build/桜*
 build/cordova
 
 # Node.js Tools
