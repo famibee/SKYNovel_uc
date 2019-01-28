@@ -11,6 +11,9 @@ build/mac
 build/桜*
 build/cordova
 
+# Android/iOS build
+mobile/
+
 # Node.js Tools
 node_modules/
 

@@ -11,6 +11,14 @@ module.exports = [
 		},
 	},
 	{
+		entry: `./core/mob4webpack.js`,
+		target: 'web',
+		output: {
+			path: process.cwd() +'/mobile/www',
+			filename: 'index.js',
+		},
+	},
+	{
 		entry: `./core/web4webpack.js`,
 		target: 'web',
 		output: {
