@@ -9,7 +9,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.1.12"
+		"skynovel": "^0.2.0"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
@@ -28,7 +28,7 @@
 		"web": "npm run watch:wds",
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
-		"watch:wds": "webpack-dev-server --mode development --config ./core/wds.config.js",
+		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D",

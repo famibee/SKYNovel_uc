@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.6
+ - モバイル版作成中
 ## v1.0.5
  - パッケージャを electron-builder に変更・統一
 ## v1.0.4
