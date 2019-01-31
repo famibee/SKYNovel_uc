@@ -26,6 +26,7 @@
 3. ダウンロードしたzipを解凍すると、プロジェクト入りのフォルダになる。
 4. [Visual Studio Code](https://code.visualstudio.com/)でこの「フォルダを開く」。
 	* [Visual Studio Code [vsCode] 日本語化](https://qiita.com/ntkgcj/items/e77331932c7983dea830)
+	* 面倒なら、コマンドライン（Windows）やターミナル（Mac）でも良いです。
 5. メニューの【ターミナル】-【新しいターミナル】で下部にターミナルが開く。
 6. ターミナルで「npm i」、Enter。
 	* （webフォルダができれば成功です）
