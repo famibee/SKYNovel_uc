@@ -55,7 +55,7 @@
 
 ; 最新値で更新
 *val2ctrl
-	[set_frame id=album var_name=val_fnBgm text=&save:const.sn.fnBgm|'(No BGM)']
+	[set_frame id=album var_name=val_fnBgm text=&save:const.sn.sound.BGM.fn|'(No BGM)']
 	[let_frame id=album var_name=val2ctrl function=true]
 [return]
 
