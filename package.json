@@ -9,12 +9,12 @@
 	"license": "MIT",
 	"dependencies": {
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.2.0"
+		"skynovel": "^0.2.3"
 	},
 	"devDependencies": {
-		"@types/node": "^10.12.18",
+		"@types/node": "^10.12.20",
 		"css-loader": "^2.1.0",
-		"electron": "^4.0.2",
+		"electron": "^4.0.3",
 		"electron-builder": "^20.38.5",
 		"imagemin-webpack-plugin": "^2.4.0",
 		"style-loader": "^0.23.1",
