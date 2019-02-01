@@ -54,6 +54,10 @@
 - npm web ... ローカルサーバーを起動し、ブラウザ版を起動できます。
 - npm pack:win ... アプリパッケージを作成します。（Macなら pack:mac）
 
+---
+## 拡張機能 / Extension
+ - [SKYNovel - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=famibee.skynovel)
+
 ## License ... [MIT](LICENSE)
 
 ## Famibee is ?
