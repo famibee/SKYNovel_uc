@@ -61,7 +61,6 @@ app.on('ready', ()=> {
 	});
 	try {
 		guiWin.loadURL('file://'+ __dirname.replace(/\\/g, '/') +'/app/index.htm');
-guiWin.webContents.openDevTools();	// ************
 	}
 	catch (e) {
 		guiWin.webContents.openDevTools();
