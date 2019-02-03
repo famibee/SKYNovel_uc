@@ -1,3 +1,1 @@
-export default {
-	"humane": 0
-};
+export default {"humane":0};
