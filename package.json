@@ -29,6 +29,7 @@
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
 		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
+		"upd": "npx ncu -a && npm update",
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
