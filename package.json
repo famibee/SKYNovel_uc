@@ -16,10 +16,10 @@
 		"css-loader": "^2.1.0",
 		"electron": "^4.0.4",
 		"electron-builder": "^20.38.5",
-		"imagemin-webpack-plugin": "^2.4.0",
+		"imagemin-webpack-plugin": "^2.4.1",
 		"style-loader": "^0.23.1",
-		"webpack": "^4.29.0",
-		"webpack-cli": "^3.2.1",
+		"webpack": "^4.29.3",
+		"webpack-cli": "^3.2.3",
 		"webpack-dev-server": "^3.1.14"
 	},
 	"scripts": {

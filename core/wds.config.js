@@ -9,6 +9,8 @@ module.exports = {
 
 	devServer: {
 		contentBase: './',
+		openPage: 'web.htm',
+		watchContentBase: true,
 		open: true,
 		headers: {
 			// 'Access-Control-Allow-Origin': '*'	//--いまのとこ不要
