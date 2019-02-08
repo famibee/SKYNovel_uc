@@ -22,7 +22,7 @@
 	[event global=true call=true key=p label=*snapshot]
 	[event global=true call=true key=F5 label=*reload_script cond=const.sn.isDebugger]
 	[event global=true call=true key=F7 label=*stats cond=const.sn.isDebugger]
-	[event global=true call=true key=f8 label=*dump cond=const.sn.isDebugger]
+	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
 ;	[update_check url="http://ugainovel.ddo.jp/UnderCherry/ver.xml" cond=const.sn.isApp&&!const.sn.isDebugger]
 
 	[call fn="sub"]
