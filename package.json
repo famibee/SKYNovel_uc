@@ -12,9 +12,9 @@
 		"skynovel": "^0.3.0"
 	},
 	"devDependencies": {
-		"@types/node": "^11.10.4",
-		"css-loader": "^2.1.0",
-		"electron": "^4.0.6",
+		"@types/node": "^11.10.5",
+		"css-loader": "^2.1.1",
+		"electron": "^4.0.7",
 		"electron-builder": "^20.38.5",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",
