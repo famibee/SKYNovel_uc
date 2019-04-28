@@ -9,10 +9,10 @@
 	"license": "MIT",
 	"dependencies": {
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.3.9"
+		"skynovel": "^0.3.10"
 	},
 	"devDependencies": {
-		"@types/node": "^11.13.7",
+		"@types/node": "^11.13.8",
 		"css-loader": "^2.1.1",
 		"electron": "^5.0.0",
 		"electron-builder": "^20.40.2",
