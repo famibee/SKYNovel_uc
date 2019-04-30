@@ -93,6 +93,7 @@
 	[call fn="_log"]
 	[call fn="_config"]
 	[call fn="_album"]
+	[call fn=face*]		; face**.snというスクリプトを全部コール
 
 	[event global=true call=true key=a label=*toggle_auto_read]
 	[event global=true call=true key=f label=*toggle_skip]
@@ -105,7 +106,12 @@
 ;********************************************************
 ; マクロ レジューム処理
 [macro name=sys_resume_load]
-	[jump fn=_archive label=*do_load_resume cond=sys:doResume]
+	[return cond=!sys:doResume]
+
+	[ask_ync mes="前回終了ポイントから再開しますか？"]
+	[return cond="_yesno != 'y'"]
+
+	[jump fn=_archive label=*do_load_resume]
 [endmacro]
 
 ;********************************************************
@@ -116,8 +122,8 @@
 
 
 ;********************************************************
-; マクロ システムメニュー描画処理
-[macro name=sysmenu_draw]
+; マクロ システムメニュー描画処理（縦書き）
+[macro name=sysmenu_draw_v]
 	[return cond=!useSysMenu]
 	[sys_menu visible=false]
 	[clear_lay layer="mes_sysmenu" page=both]
@@ -127,7 +133,7 @@
 	[let name=w text=%w|292]
 	[let name=sysmenu_left text=&l-18]
 	[let name=sysmenu_left2 text=&sysmenu_left+w+13]
-;	&r = 0							; ボタンを横にしたいなら
+	;&r = 0							; ボタンを横にしたいなら
 	&r = -90 *const.sn.Math.PI /180	; ボタンを縦にしたいなら
 
 	[lay layer="mes_sysmenu" page=back]
@@ -161,10 +167,10 @@
 [macro name="txt_lay_v_left"]
 	[let name=l text=%l|40]
 	[let name=w text=%w|292]
-;	&pl = l +26
+	;&pl = l +26
 	&pl = 26
 	&pt = 66
-;	&pr = const.sn.config.window.width -(l +w) +26
+	;&pr = const.sn.config.window.width -(l +w) +26
 	&pr = 26
 	&pb = 66
 	[let name=fcol text=%fcol|'white']
@@ -177,8 +183,7 @@
 	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
 		style="&'color: #{fcol}; width: #{w}px; height: #{const.sn.config.window.height}px; writing-mode: vertical-rl; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-size: 24px; line-height: 1.5;'"]
 		; r_color=&fcol r_size=12 max_col=25 bura_col=2 max_row=%max_row|7 onsplit="enter"
-		; 縦書きにしたいなら writing-mode を vertical-rl に。横書きは horizontal-tb
-	[sysmenu_draw *]
+	[sysmenu_draw_v *]
 [endmacro]
 
 ;********************************************************
@@ -195,24 +200,55 @@
 ]
 [endmacro]
 
+
+;********************************************************
+; マクロ システムメニュー描画処理（横書き）
+[macro name=sysmenu_draw_h]
+	[return cond=!useSysMenu]
+	[sys_menu visible=false]
+	[clear_lay layer="mes_sysmenu" page=both]
+	[return cond="mp:no_sysmenu_draw != null"]
+
+	[let name=sysmenu_left text=200]
+	[let name=sysmenu_top text=&const.sn.lay.mes.back.y+mp:h-10]
+	&r = 0							; ボタンを横にしたいなら
+	;&r = -90 *const.sn.Math.PI /180	; ボタンを縦にしたいなら
+
+	[lay layer="mes_sysmenu" page=back]
+	[button layer="mes_sysmenu" page=back text="タイトルへ" rotation=&r left=&sysmenu_left top=&sysmenu_top global=true event_at_down=true fn="sub" label=*title_sys call=true hint="タイトルへ" enterse=&sysse_choice]
+		; どの本文スクリプトから呼ばれるか不明なので、
+		; 同一スクリプトへのコールだがfn属性を省略してはいけない
+
+	[button layer="mes_sysmenu" page=back text=" セーブ " rotation=&r left=&sysmenu_left+100 top=&sysmenu_top global=true event_at_down=true fn="_archive" label=*rclick_save call=true hint="セーブ" enterse=&sysse_choice]
+	[button layer="mes_sysmenu" page=back text=" ロード " rotation=&r left=&sysmenu_left+200 top=&sysmenu_top global=true event_at_down=true fn="_archive" label=*rclick_load call=true hint="ロード" enterse=&sysse_choice]
+	[button layer="mes_sysmenu" page=back text="字を隠す" rotation=&r left=&sysmenu_left+300 top=&sysmenu_top global=true event_at_down=true fn=_hidetext label=*main call=true hint="文字非表示" enterse=&sysse_choice]
+	[button layer="mes_sysmenu" page=back text=" 履 歴 " rotation=&r left=&sysmenu_left+400 top=&sysmenu_top global=true event_at_down=true fn=_log label=*main call=true hint="履歴を表示" enterse=&sysse_choice]
+	[button layer="mes_sysmenu" page=back text=" 設 定 " rotation=&r left=&sysmenu_left+500 top=&sysmenu_top global=true event_at_down=true fn=_config label=*keycall_config call=true hint="ゲーム設定" enterse=&sysse_choice]
+	[button layer="mes_sysmenu" page=back text="クイックセーブ" rotation=&r left=&sysmenu_left+600 top=&sysmenu_top global=true event_at_down=true fn="_archive" label=*quick_save call=true hint="クイックセーブ" enterse=&sysse_choice]
+	[button layer="mes_sysmenu" page=back text="クイックロード" rotation=&r left=&sysmenu_left+700 top=&sysmenu_top global=true event_at_down=true fn="_archive" label=*quick_load call=true hint="クイックロード" enterse=&sysse_choice]
+
+	[trans layer="mes_sysmenu" time=0]
+	[wt]	; 裏から表へコピー（save対策）
+[endmacro]
+
 ;********************************************************
 ; マクロ テキストレイヤ全画面設定
 [macro name="txt_lay_fullscreen"]
 	[let name=t text=%t|40]
 	[let name=h text=%h|'&const.sn.config.window.height -40*2']
 	&pl = 70
-	&pt = t +30
+	&pt = 30
 	&pr = 70
 	&pb = 70
-	[let name=fcol text=%fcol|0x000000]
-	[lay * layer=%layer|"mes" page=%page|back visible=%visible|true b_left=0 b_top=&t-20 left=0 top=0
-	;	b_pic=%b_pic|hakkou1
-			; 背後に画像を使う場合
-		b_width="&const.sn.config.window.width -40*2" b_height=&h b_color=%b_color|0x000000
-			; 背後に画像を使わない場合
-		b_alpha=%b_alpha|1 r_color=&fcol r_size=12 max_col=35 bura_col=2 max_row=%max_row|18 onsplit="enter" layout=#&'lineHeight="36" justificationRule="space" columnGap="0" paddingLeft="$pl" paddingTop="$pt" paddingRight="$pr" paddingBottom="$pb" verticalAlign="inherit" blockProgression="tb" lineBreak="explicit" fontLookup="embeddedCFF" renderingMode="cff" fontSize="24" locale="ja" kerning="off" trackingRight="0" color="$fcol" whiteSpaceCollapse="preserve"'#]
-
-	[sysmenu_draw *]
+	;[let name=fcol text=%fcol|'white']
+	[let name=fcol text=%fcol|'black']
+	[lay * layer=%layer|'mes' page=%page|back visible=%visible|true left=0 top=&t
+	;	b_pic=%b_pic|wafuu1	; 背後に画像を使う
+		b_color=%b_color|0xffffff	; 背後に画像を使わない
+		b_alpha=%b_alpha|1
+	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
+		style="&'color: #{fcol}; width: #{const.sn.config.window.width}px; height: #{h}px; writing-mode: horizontal-tb; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-size: 24px; line-height: 1.5;'"]
+	[sysmenu_draw_h * h=&h]
 [endmacro]
 
 ;********************************************************
@@ -275,7 +311,7 @@
 ;********************************************************
 ; マクロ 選択肢直後にすべき処理
 [macro name="after_choice"]
-;	[pop_stack]
+	;[pop_stack]
 	[record_place layer=&dsp_lays]
 		[sys_resume_save]
 [endmacro]
