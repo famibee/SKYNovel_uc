@@ -1,5 +1,4 @@
 ;#USE-FONT	ipam
-;	[loadplugin fn="ipam"]	; この行は触らないで下さい
 ;********************************************************
 ;	定数
 ;********************************************************
@@ -12,6 +11,10 @@
 
 ; メッセージウインドウにボタンを配置するか（システムメニュー）
 &useSysMenu = true
+
+; デフォルトフォント
+&def_fonts = 'ipamjm, QuiMi_mincho'
+;&sn.Button.fontFamily = 'ipamjm'
 
 ; 立ち絵配置位置定数
 ;	[lay pos=&pos.l	等として使用。
@@ -76,7 +79,7 @@
 
 	; テキストレイヤ全画面設定
 	[txt_lay_fullscreen b_alpha=0 no_sysmenu_draw=true]
-	[lay layer="mes" page=back layout='fontFamily="ipam" fontLookup="embeddedCFF"']
+	[lay layer="mes" page=back style="&'font-family: #{def_fonts};'"]
 	[grp bg="black" sys_menu=false b_alpha=0 time=0]
 
 	[record_place layer=&dsp_lays]
@@ -167,11 +170,9 @@
 [macro name="txt_lay_v_left"]
 	[let name=l text=%l|40]
 	[let name=w text=%w|292]
-	;&pl = l +26
-	&pl = 26
+	&pl = 16
 	&pt = 66
-	;&pr = const.sn.config.window.width -(l +w) +26
-	&pr = 26
+	&pr = 16
 	&pb = 66
 	[let name=fcol text=%fcol|'white']
 	; こちらの素材をお借りしました。
@@ -181,8 +182,7 @@
 	;	b_color=%b_color|'#ffffff'	; 背後に画像を使わない
 		b_alpha=%b_alpha|1
 	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
-		style="&'color: #{fcol}; width: #{w}px; height: #{const.sn.config.window.height}px; writing-mode: vertical-rl; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-size: 24px; line-height: 1.5;'"]
-		; r_color=&fcol r_size=12 max_col=25 bura_col=2 max_row=%max_row|7 onsplit="enter"
+		style="&'color: #{fcol}; width: #{w}px; height: #{const.sn.config.window.height}px; writing-mode: vertical-rl; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-family: #{def_fonts}; font-size: 24px; line-height: 1.5;'"]
 	[sysmenu_draw_v *]
 [endmacro]
 
@@ -247,7 +247,7 @@
 		b_color=%b_color|0xffffff	; 背後に画像を使わない
 		b_alpha=%b_alpha|1
 	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
-		style="&'color: #{fcol}; width: #{const.sn.config.window.width}px; height: #{h}px; writing-mode: horizontal-tb; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-size: 24px; line-height: 1.5;'"]
+		style="&'color: #{fcol}; width: #{const.sn.config.window.width}px; height: #{h}px; writing-mode: horizontal-tb; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-family: #{def_fonts}; font-size: 24px; line-height: 1.5;'"]
 	[sysmenu_draw_h * h=&h]
 [endmacro]
 
