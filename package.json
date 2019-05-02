@@ -9,7 +9,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.4.4"
+		"skynovel": "^0.4.5"
 	},
 	"devDependencies": {
 		"@types/node": "^11.13.8",

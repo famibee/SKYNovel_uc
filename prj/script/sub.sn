@@ -14,7 +14,7 @@
 
 ; デフォルトフォント
 &def_fonts = 'ipamjm, QuiMi_mincho'
-;&sn.Button.fontFamily = 'ipamjm'
+;&sn.button.fontFamily = 'ipamjm'
 
 ; 立ち絵配置位置定数
 ;	[lay pos=&pos.l	等として使用。
@@ -169,20 +169,21 @@
 ; マクロ テキストレイヤ縦書き左設定
 [macro name="txt_lay_v_left"]
 	[let name=l text=%l|40]
-	[let name=w text=%w|292]
-	&pl = 16
+	[let name=w text=%w|310]
+	&pl = 26
 	&pt = 66
-	&pr = 16
+	[let name=pr text=%pr|36]
 	&pb = 66
 	[let name=fcol text=%fcol|'white']
 	; こちらの素材をお借りしました。
 	; びたちー素材館　メッセージボックス・メッセージウィンドウ・フレーム　フリー素材 http://www.vita-chi.net/message.htm
 	[lay * layer=%layer|'mes' page=%page|back visible=%visible|true left=&l top=0
-		b_pic=%b_pic|wafuu1	; 背後に画像を使う
-	;	b_color=%b_color|'#ffffff'	; 背後に画像を使わない
+		b_pic=%b_pic|wafuu1	; 背後に画像を使う（width・heightは画像に合わされる）
+	;	b_color=%b_color|'#ffffff'	; 背後に画像を使わない・単色塗り
+		; その際はstyleにサイズ指定必須 width: #{w}px; height: #{const.sn.config.window.height}px;
 		b_alpha=%b_alpha|1
 	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
-		style="&'color: #{fcol}; width: #{w}px; height: #{const.sn.config.window.height}px; writing-mode: vertical-rl; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-family: #{def_fonts}; font-size: 24px; line-height: 1.5;'"]
+		style="&'color: #{fcol}; writing-mode: vertical-rl; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-family: #{def_fonts}; font-size: 24px; line-height: 1.5;'"]
 	[sysmenu_draw_v *]
 [endmacro]
 
@@ -195,7 +196,7 @@
 ;********************************************************
 ; マクロ テキストレイヤ縦書きWide中設定
 [macro name="txt_lay_v_center_wide"]
-	[txt_lay_v_center * l=%l|294 w=436 max_row=11
+	[txt_lay_v_center * l=%l|294 w=436 max_row=11 pr=26
 	b_pic=wafuu1w	; 背後に画像を使わない場合はコメントアウト
 ]
 [endmacro]
@@ -243,8 +244,9 @@
 	;[let name=fcol text=%fcol|'white']
 	[let name=fcol text=%fcol|'black']
 	[lay * layer=%layer|'mes' page=%page|back visible=%visible|true left=0 top=&t
-	;	b_pic=%b_pic|wafuu1	; 背後に画像を使う
-		b_color=%b_color|0xffffff	; 背後に画像を使わない
+	;	b_pic=%b_pic|wafuu1	; 背後に画像を使う（width・heightは画像に合わされる）
+		b_color=%b_color|0xffffff	; 背後に画像を使わない・単色塗り
+		; その際はstyleにサイズ指定必須
 		b_alpha=%b_alpha|1
 	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
 		style="&'color: #{fcol}; width: #{const.sn.config.window.width}px; height: #{h}px; writing-mode: horizontal-tb; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-family: #{def_fonts}; font-size: 24px; line-height: 1.5;'"]
