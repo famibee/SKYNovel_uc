@@ -19,17 +19,9 @@
 ## usage（使用法）
 
 ### インストールと環境設定
-1. [Node.js と npm](https://nodejs.org/en/)（必ずLTSを）をインストールしておく。
-	* 一度マシンを再起動してください。npmへのパスが通ります。
-	* （windowsのみ）管理者権限で PowerShell を起動し、【npm i -g windows-build-tools】を実行。「All done!」まで待つ。
-2. このページ右上の緑ボタン「Clone or download」をクリック。「Download ZIP」をクリック。
-3. ダウンロードしたzipを解凍すると、プロジェクト入りのフォルダになる。
-4. [Visual Studio Code](https://code.visualstudio.com/)でこの「フォルダを開く」。
-	* [Visual Studio Code [vsCode] 日本語化](https://qiita.com/ntkgcj/items/e77331932c7983dea830)
-	* 面倒なら、コマンドライン（Windows）やターミナル（Mac）でも良いです。
-5. メニューの【ターミナル】-【新しいターミナル】で下部にターミナルが開く。
-6. ターミナルで「npm i」、Enter。
-	* （webフォルダができれば成功です）
+1. 開発者情報[「SKYNovelのはじめかた」〜「テンプレートで始めよう」直前](https://famibee.github.io/SKYNovel/dev.htm)までの手順を終えてください。
+2. 「テンプレートで始めよう」の手順に従って、ブラウザ実行できます。
+3. そのまま開発を始められます。
 
 ### 普段の開発（PCアプリ版）
 1. メニューの【ターミナル】-【タスクの実行】で「npm: start」を選択。
