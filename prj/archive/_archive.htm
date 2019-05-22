@@ -35,11 +35,11 @@
 <script defer src="../lib/materialize.min.js"></script>
 <script>
 	let a = [	// セーブデータの内容
-		{"pic": "_archive_browser.jpg", "dt": "2018/12/18 11:44", "txt": "　ああ、桜の樹の下には屍体が埋まつてゐる！"},
-		{"pic": "../bg/yun_2384.jpg", "dt": "2018/12/18 11:43", "txt": "　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。"},
-		{"pic": "../bg/yun_2352.jpg", "dt": "2018/12/18 11:42", "txt": "  This is not justified test message. This is written many words and cut last sentence."},
-		{"pic": "../bg/yun_1317.jpg", "dt": "2018/12/18 11:41", "txt": "　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。"},
-		{"pic": "../bg/yun_1184.jpg", "dt": "2018/12/18 11:40", "txt": "　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。"},
+		{"place": "10", "pic": "_archive_browser.jpg", "dt": "2018/12/18 11:44", "txt": "　ああ、桜の樹の下には屍体が埋まつてゐる！"},
+		{"place": "11", "pic": "../bg/yun_2384.jpg", "dt": "2018/12/18 11:43", "txt": "　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。"},
+		{"place": "12", "pic": "../bg/yun_2352.jpg", "dt": "2018/12/18 11:42", "txt": "  This is not justified test message. This is written many words and cut last sentence."},
+		{"place": "13", "pic": "../bg/yun_1317.jpg", "dt": "2018/12/18 11:41", "txt": "　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。"},
+		{"place": "14", "pic": "../bg/yun_1184.jpg", "dt": "2018/12/18 11:40", "txt": "　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。"},
 	];
 	document.addEventListener('DOMContentLoaded', ()=> {
 		M.Modal.init(document.querySelectorAll('.modal'));
@@ -64,12 +64,7 @@
 
 			const card = document.querySelector(`[data-id="${val_place}"]`).parentNode.parentNode;
 			card.classList.toggle('scale-out');
-			setTimeout(()=> {
-				card.parentNode.removeChild(card);
-				// id振り直し
-				Array.from(document.getElementsByClassName('card-image'))
-				.reverse().forEach((v, i)=> v.dataset.id = i);
-			}, 500);
+			setTimeout(()=> card.parentNode.removeChild(card), 500);
 		}, false);
 	}, false);
 
@@ -81,12 +76,12 @@
 	var val_place = 0;
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) a = JSON.parse(val_dic);
-		Array.from(document.getElementsByClassName('title')).forEach(v=> v.textContent = (val_mode == 'Load') ?'ロード' :'セーブ');
+		Array.from(document.getElementsByClassName('title')).map(v=> v.textContent = (val_mode == 'Load') ?'ロード' :'セーブ');
 		if (val_mode == 'Save') a.push({"pic": "_archiveBtn_nouse.png", "dt": "", "txt": "　新規にセーブします"});
 
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = null;
-		a.forEach((v, i)=> {
+		a.map(v=> {
 			const modal = (val_mode == 'Load' && val_caller == 'Title')
 						|| (val_mode == 'Save' && v.dt == '');
 			lst.insertAdjacentHTML('afterbegin', `
@@ -94,7 +89,7 @@
 	<div class="card">
 	<div class="card-image waves-effect waves-block waves-light ${
 		modal ?'no_modal' :'modal-trigger" href="#modal_sl'
-	}" data-id="${i}">
+	}" data-id="${v.place}">
 		<img src="${v.pic}"/>
 		<span class="card-title">${v.dt}</span>${
 			(v.dt == '')
@@ -111,7 +106,7 @@
 		Array.from(document.getElementsByClassName('no_modal'))
 		.forEach(v=> v.addEventListener('click', e=> {
 			// 削除ボタンイベントも来てしまうので
-			const href = e.target.href;
+			const href = v.href;
 			if (href && href.slice(-10) == '#modal_del') return;
 
 			val_place = v.dataset.id;
@@ -120,7 +115,7 @@
 		Array.from(document.getElementsByClassName('modal-trigger'))
 		.forEach(v=> v.addEventListener('click', e=> {
 			// 削除ボタンイベントも来てしまうので
-			const href = e.target.href;
+			const href = v.href;
 			if (href && href.slice(-10) == '#modal_del') return;
 
 			val_place = v.dataset.id;
