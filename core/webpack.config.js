@@ -9,6 +9,9 @@ module.exports = [
 			path: process.cwd() +'/app',
 			filename: 'index.js',
 		},
+		optimization: {
+			minimize: true,
+		},
 	},
 	{
 		entry: `./core/mob4webpack.js`,
@@ -16,6 +19,9 @@ module.exports = [
 		output: {
 			path: process.cwd() +'/mobile/www',
 			filename: 'index.js',
+		},
+		optimization: {
+			minimize: true,
 		},
 	},
 	{
@@ -31,7 +37,8 @@ module.exports = [
 				cacheGroups: {
 					three: {test: /three/, name: 'three', chunks: 'initial'},
 				}
-			}
+			},
+			minimize: true,
 		},
 		plugins: [
 			new ImageminPlugin({
