@@ -1,6 +1,5 @@
 {
 	"save_ns": "skynovel.uc",
-	"search": ["album","archive","audio","bg","config","image","lib","log","other","rule","script"],
 	"window": {
 		"width": 1024,
 		"height": 768
@@ -12,9 +11,12 @@
 		"publisher"	: "活動漫画屋",
 		"pub_url"	: "http://ugainovel.blog112.fc2.com/",
 		"detail"	: "梶井基次郎「桜の樹の下には」をノベルゲーム化したものです。",
-		"upd_an"	: true,
-		"version"	: "1.0",
-		"inc_path"	: {}
+		"version"	: "1.0"
+	},
+	"init"	: {
+		"bg_color"			: "#000000",
+		"tagch_msecwait"	: 10,
+		"auto_msecpagewait"	: 3500
 	},
 	"debug"	: {
 		"devtool"		: false,
