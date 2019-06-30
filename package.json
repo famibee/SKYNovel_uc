@@ -10,13 +10,13 @@
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.5.7"
+		"skynovel": "^0.5.10"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.43",
 		"@types/node": "^12.0.10",
 		"css-loader": "^3.0.0",
-		"electron": "^5.0.5",
+		"electron": "^5.0.6",
 		"electron-builder": "^20.44.4",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",

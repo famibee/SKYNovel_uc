@@ -10,6 +10,7 @@ build/*.yml
 build/mac
 build/桜*
 build/cordova
+core/plugin/pass.json
 
 # Android/iOS build
 mobile/
