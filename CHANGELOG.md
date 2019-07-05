@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.21
+- chg：ファイル更新など
 ## v1.0.20
 - bug：prj/config/_config.sn に [trace]文が残っていたのを削除
 ## v1.0.19

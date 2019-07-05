@@ -3,24 +3,24 @@
 	"version": "1.0.0",
 	"description": "Novelgame(Tate-gaki) sample project",
 	"main": "app.js",
-	"appBundleId": "com.fc2.blog.ugainovel.uc",
+	"appBundleId": "com.fc2.blog.famibee.skynovel.uc",
 	"appCopyright": "(c)ugainovel",
 	"author": "ugainovel",
 	"license": "MIT",
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.5.10"
+		"skynovel": "^0.5.11"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.43",
-		"@types/node": "^12.0.10",
+		"@types/node": "^12.0.12",
 		"css-loader": "^3.0.0",
 		"electron": "^5.0.6",
 		"electron-builder": "^20.44.4",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",
-		"webpack": "^4.35.0",
+		"webpack": "^4.35.2",
 		"webpack-cli": "^3.3.5",
 		"webpack-dev-server": "^3.7.2"
 	},
@@ -40,7 +40,7 @@
 		"pack:mac": "npm run webpack:pro && electron-builder ./build/darwin-x64 --platform=mac --arch=x64"
 	},
 	"build": {
-		"appId": "com.fc2.blog.ugainovel.uc",
+		"appId": "com.fc2.blog.famibee.skynovel.uc",
 		"productName": "桜の樹の下には",
 		"directories": {
 			"output": "build"
