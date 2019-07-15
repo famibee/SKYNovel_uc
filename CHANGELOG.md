@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.23
+- chg：electron-builderの引数変更に対応
 ## v1.0.22
 - chg：about-windowをテンプレでのほうへ移動
 - add：メニューに「DevTools」「quit/close」を追加
