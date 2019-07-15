@@ -17,6 +17,7 @@ crashReporter.start({
 if (! app.requestSingleInstanceLock()) app.quit();
 
 let guiWin = null;
+const isMac = (process.platform === 'darwin');
 app.on('second-instance', ()=> {
 	if (! guiWin) return;
 
@@ -34,21 +35,26 @@ app.on('ready', ()=> {
 					openAboutWindow({
 						icon_path: 'file://'+ __dirname.replace(/\\/g, '/') +'/app/icon.png',
 						package_json_dir: __dirname,
-						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2018',
+						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2019',
 						homepage: 'http://famibee.blog38.fc2.com/',
 						license: '',
 						use_version_info: false,
 					});
 				}
 			},
+			{
+				label: 'DevTools',
+				click() {guiWin.webContents.openDevTools();},
+			},
+			isMac ?{role: 'close'} :{role: 'quit'},
 		],
 	}]);
 	Menu.setApplicationMenu(menu);
 
 	guiWin = new BrowserWindow({
 		id			: 'SKYNovel-'+ app.getName(),
-		width		: 600,
-		height		: 400,
+		width		: 1024,
+		height		: 768,
 		min_width	: 300,
 		min_height	: 300,
 		acceptFirstMouse		: true,
