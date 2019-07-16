@@ -110,8 +110,8 @@
 ;********************************************************
 *toggle_full_screen
 	[toggle_full_screen]
-	[let name="txt" text="全画面モード"]
-	[let name="txt" text="ウインドウモード" cond=const.sn.displayState]
+	[let name="txt" text="ウインドウモード"]
+	[let name="txt" text="全画面モード" cond=const.sn.displayState]
 	[notice text=&txt]
 
 	; 設定画面変更
