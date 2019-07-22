@@ -41,6 +41,7 @@
 	; 最新値で更新
 	[set_frame id=archive var_name=val_mode text=&しおりモード]
 	[set_frame id=archive var_name=val_caller text=&呼び元]
+	[set_frame id=archive var_name=val_s_place text=&sys:const.sn.save.place]
 	[set_frame id=archive var_name=val_dic text=&const.sn.bookmark.json]
 	[let_frame id=archive var_name=val2ctrl function=true]
 
