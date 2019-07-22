@@ -69,32 +69,32 @@
 	[let name=x2x text="&'=-'+ x +','+ x"]
 
 	[tsy layer=&lay time=&t x=&x2x]
-	
+
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	
+
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	
+
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	
+
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	
+
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
 	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	
+
 	[tsy chain=&lay layer=&lay time=&t x='=0']
 	[wait_tsy layer=&lay canskip=false cond='! mp:no_wait']
 [endmacro]
@@ -109,7 +109,7 @@
 	[let name=lay text=%layer|0]
 	[let name=x text=%x|25]
 	[let name=y text=%y|25]
-	
+
 	[tsy layer=&lay time=&t x='&"=-"+ x' y='&"="+ y' ease=Quintic.Out]
 	[tsy chain=&lay layer=&lay time=&t x='=0' y='=0']
 		; ちなみにこの時点で一つ目の[tsy]は動き出してないので、
@@ -129,23 +129,23 @@
 		&valFrom = 1
 		&valTo = 0.5
 	[endif]
-	
+
 	[let name=layer text=%layer|0]
 	[let name=w
 		text=%width|'&const.sn.lay[layer].fore.width']
 	[let name=h
 		text=%height|'&const.sn.lay[layer].fore.height']
-	
+
 	[lay * layer=&layer
 		scale_x=&valFrom scale_y=&valFrom
 		left='&const.sn.config.window.width/2'
 		top='&const.sn.config.window.height/2'
 		pivot_x='&w/2' pivot_y='&h/2'
 		visible=true]
-	
+
 	[tsy * layer=&layer scale_x=&valTo scale_y=&valTo]
 	[wait_tsy * layer=&layer]
-	
+
 	[lay layer=&layer pos=stay visible=&v]
 [endmacro]
 
