@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.26
+- chg：[save]のtxt属性をtext属性に変名
 ## v1.0.25
 - bug：不具合修正、作り込み
 ## v1.0.24
