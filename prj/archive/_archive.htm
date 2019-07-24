@@ -122,6 +122,9 @@
 		}, false));
 
 		const aBtnX = Array.from(document.getElementsByClassName('btn_delete'));
+		aBtnX.forEach(v=> v.addEventListener('click', e=>
+			val_place = e.target.parentNode.dataset.id
+		));
 		document.getElementById('tgl_del').addEventListener('click', ()=> {
 			aBtnX.forEach(v=> v.classList.toggle('scale-out'));
 			aCard.forEach(v=> v.classList.toggle('modal-trigger'));
