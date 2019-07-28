@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.29
+- chg：const.sn.sLogをconst.sn.log.jsonに変名
 ## v1.0.28
 - bug：セーブ(ロード)画面で削除したときの不具合
 ## v1.0.27

@@ -14,7 +14,7 @@
 	[clear_event]
 
 	; 最新値で更新
-	[set_frame id=log var_name=val_dic text=&const.sn.sLog]
+	[set_frame id=log var_name=val_dic text=&const.sn.log.json]
 	[let_frame id=log var_name=val2ctrl function=true]
 
 	; 下部からスライドイン

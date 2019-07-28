@@ -11,7 +11,7 @@
 		"about-window": "^1.13.1",
 		"crypto-js": "^3.1.9-1",
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.6.8"
+		"skynovel": "^0.6.10"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.43",
@@ -21,7 +21,7 @@
 		"electron-builder": "^21.1.5",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",
-		"webpack": "^4.37.0",
+		"webpack": "^4.38.0",
 		"webpack-cli": "^3.3.6",
 		"webpack-dev-server": "^3.7.2"
 	},
