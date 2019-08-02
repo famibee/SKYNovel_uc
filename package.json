@@ -11,7 +11,7 @@
 		"about-window": "^1.13.1",
 		"crypto-js": "^3.1.9-1",
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.6.10"
+		"skynovel": "^0.6.11"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.43",
