@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.32
+- chg：ライブラリ更新
 ## v1.0.31
 - bug：ロード直前に[sys_resume_save]が実行されてしまう件
 ## v1.0.30
