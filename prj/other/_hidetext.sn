@@ -1,6 +1,6 @@
 	[event global=true call=true key=delete label=*main]
 	[event global=true call=true key=backspace label=*main]
-	[event global=true call=true key=space label=*main]
+	[event global=true call=true key=' ' label=*main]
 [return]
 
 ;*********************************************************
@@ -24,7 +24,7 @@
 	[event key=shift label=*exit]
 	[event key=delete label=*exit]
 	[event key=backspace label=*exit]
-	[event key=space label=*exit]
+	[event key=' ' label=*exit]
 [s]
 
 ;*********************************************************
