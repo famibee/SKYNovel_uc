@@ -40,6 +40,11 @@
 <li style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a href="#${len -i}">${len -i}.${v.text}</a></li>`);
 		});
 		const instances = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'));
+
+		setTimeout(()=> {	// 一番下へスクロール
+			const de = document.documentElement;
+			de.scrollTop = de.scrollHeight;
+		}, 0);
 	}
 
 </script>
