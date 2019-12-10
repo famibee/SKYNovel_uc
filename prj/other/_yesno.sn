@@ -41,7 +41,7 @@
 	[se fn=&sysse_cancel buf=SYS]
 	[let name="_yesno" text="cancel"]
 *exit
-		[lay layer="mes_yesno" visible=false]
+	[lay layer="mes_yesno" visible=false]
 [endmacro]
 
 [return]
