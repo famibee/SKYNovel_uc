@@ -20,6 +20,9 @@
 *main
 	[return cond="! isGameState"]
 
+		&v = const.sn.lay.mes.fore.visible
+		[lay layer=mes page=fore visible=false]
+
 		[se fn=&sysse_ok1 buf=SYS]
 		[lay layer=mes_submenu page=fore visible=true]
 		[let name=sysmenu_v text=&const.sn.lay.mes_sysmenu.fore.visible cond=useSysMenu]
@@ -100,12 +103,14 @@
 		;#FONT	ゲームを終了しますか？
 	[jump label=*retry cond="_yesno != 'y'"]
 
+	[lay layer=mes page=fore visible=&v]
 	[jump fn="main" label=*close_do]
 
 ;*********************************************************
 *exit
 	[lay layer=mes_submenu page=fore visible=false]
 	[sys_menu visible=&sysmenu_v]
+	[lay layer=mes page=fore visible=&v]
 [return]
 
 ;*********************************************************
@@ -113,6 +118,7 @@
 	[se fn=&sysse_cancel buf=SYS]
 	[lay layer=mes_submenu page=fore visible=false]
 	[sys_menu visible=&sysmenu_v]
+	[lay layer=mes page=fore visible=&v]
 	[wait time=200]		; パフォーマンス改善
 
 	[enable_event enabled=true]

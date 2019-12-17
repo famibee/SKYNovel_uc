@@ -13,32 +13,30 @@
 		{text: '　しかし、昨日、一昨日、俺の心をひどく陰気にしたものもそれなのだ。俺にはその美しさがなにか信じられないもののやうな気がした。俺は反対に不安になり、憂欝になり、空虚な気持になつた。しかし、俺はいまやつとわかつた。'},
 	];
 	document.addEventListener('DOMContentLoaded', ()=> {
-		const proc_mode = (location.protocol == 'http:')
+		const proc_mode = (location.protocol.slice(0, 4) == 'http')
 			? 'server'
 			: ('val2ctrl' in window.parent) ?'local' :'electron';
-		if (proc_mode == 'local') {	// ローカルデバッグ用
-			val2ctrl();
-		}
+		if (proc_mode == 'local') val2ctrl();	// ローカルデバッグ用
 	}, false);
 
 	var val_dic = null;
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) a = JSON.parse(val_dic);
 
-		const lst = document.getElementsByClassName('collection')[0];
-		lst.textContent = null;
-		const lst2 = document.getElementsByClassName('table-of-contents')[0];
-		lst2.textContent = null;
+		let htm = '', htm2 = '';
 		const len = a.length;
-		a.forEach((v, i)=> {
-			lst.insertAdjacentHTML('beforeend', `
-<a class="collection-item section scrollspy black-text" id="${len -i}">
-	<span class="badge">${len -i}</span>
+		for (let i=len -1; i>=0; --i) {
+			const v = a[i];
+			htm += `
+<a class="collection-item section scrollspy black-text" id="${i}">
+	<span class="badge">${i+1}</span>
 	${v.text}
-</a>`);
-			lst2.insertAdjacentHTML('beforeend', `
-<li style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a href="#${len -i}">${len -i}.${v.text}</a></li>`);
-		});
+</a>`;
+			htm2 += `
+<li style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a href="#${i}">${i+1}.${v.text}</a></li>`;
+		}
+		document.getElementsByClassName('collection')[0].innerHTML = htm;
+		document.getElementsByClassName('table-of-contents')[0].innerHTML = htm2;
 		const instances = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'));
 
 		setTimeout(()=> {	// 一番下へスクロール

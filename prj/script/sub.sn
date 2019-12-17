@@ -20,7 +20,7 @@
 ;	[lay pos=&pos.l	等として使用。
 ;	組み込みで「c」という指定が出来る。例：pos=c、pos="c"
 ;	これを指定すると画面中央。（pos、leftを省略するとpos=c扱い）
-&pos = 140
+&pos.l = 140
 &pos.c = const.sn.config.window.width /2
 &pos.r = const.sn.config.window.width -pos.l
 &pos.lc = (pos.c + pos.l) /2
@@ -44,7 +44,7 @@
 ;	各種初期値
 ;********************************************************
 [if exp=const.sn.isFirstBoot]	; ゲームがインストールされ、初めての起動
-	&sys:TextLayer.Back.Alpha = 0.5
+	&sys:TextLayer.Back.Alpha = 0.7
 		; バック不透明度。テキストウインドウの背景の濃度
 [endif]
 
@@ -171,9 +171,9 @@
 	[let name=l text=%l|40]
 	[let name=w text=%w|310]
 	&pl = 26
-	&pt = 66
+	&pt = 42
 	[let name=pr text=%pr|36]
-	&pb = 66
+	&pb = 42
 	[let name=fcol text=%fcol|'white']
 	; こちらの素材をお借りしました。
 	; びたちー素材館　メッセージボックス・メッセージウィンドウ・フレーム　フリー素材 http://www.vita-chi.net/message.htm
