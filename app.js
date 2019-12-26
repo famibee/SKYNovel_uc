@@ -9,7 +9,7 @@
 const {crashReporter, app, Menu, BrowserWindow} = require('electron');
 
 crashReporter.start({
-	productName	: app.getName(),
+	productName	: app.name,
 	companyName	: 'famibee',
 	submitURL	: 'http://famibee.blog38.fc2.com/',
 	autoSubmit	: false,
@@ -26,7 +26,7 @@ app.on('second-instance', ()=> {
 });
 app.on('ready', ()=> {
 	const menu = Menu.buildFromTemplate([{
-		label: app.getName(),
+		label: app.name,
 		submenu: [
 			{
 				label: 'About This App',
@@ -52,7 +52,7 @@ app.on('ready', ()=> {
 	Menu.setApplicationMenu(menu);
 
 	guiWin = new BrowserWindow({
-		id			: 'SKYNovel-'+ app.getName(),
+		id			: 'SKYNovel-'+ app.name,
 		width		: 1024,
 		height		: 768,
 		min_width	: 300,
