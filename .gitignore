@@ -8,6 +8,7 @@ app/index.js
 build/*.yaml
 build/*.yml
 build/mac
+build/win*
 build/桜*
 build/cordova
 core/plugin/pass.json

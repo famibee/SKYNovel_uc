@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.0.44
+- upd：ライブラリ更新など
 ## v1.0.43
 - upd：ライブラリ更新
 - upd：Deprecatedになった「app.getName()」を「app.name」に変更（app.js）

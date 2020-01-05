@@ -23,7 +23,7 @@
 	[event global=true call=true key=F5 label=*reload_script cond=const.sn.isDebugger]
 	[event global=true call=true key=F7 label=*stats cond=const.sn.isDebugger]
 	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
-;	[update_check url="http://ugainovel.ddo.jp/UnderCherry/ver.xml" cond=const.sn.isApp&&!const.sn.isDebugger]
+;	[update_check url='http://ugainovel.hiho.jp/famibee/sample/hatsune/']
 
 	[call fn="sub"]
 	[call fn="_yesno"]
