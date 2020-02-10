@@ -36,7 +36,7 @@ app.on('ready', ()=> {
 					openAboutWindow({
 						icon_path: 'file://'+ __dirname.replace(/\\/g, '/') +'/app/icon.png',
 						package_json_dir: __dirname,
-						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2019',
+						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2020',
 						homepage: 'http://famibee.blog38.fc2.com/',
 						license: '',
 						use_version_info: false,
