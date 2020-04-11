@@ -66,15 +66,7 @@
 			card.classList.toggle('scale-out');
 			setTimeout(()=> card.parentNode.removeChild(card), 500);
 		}, {passive: true});
-
-		sn_repRes();
 	}, false);
-
-	function sn_repRes(setImg) {
-		setImg = setImg ?? (i=> i.src = i.dataset.src);
-		const elms = document.getElementsByTagName('img');
-		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
-	}
 
 	var val_s_place = 0;		// 次のセーブ位置
 	var val_dic = null;
@@ -138,6 +130,15 @@
 			aCard.forEach(v=> v.classList.toggle('modal-trigger'));
 			is_delmode = ! is_delmode;
 		}, {passive: true});
+
+		sn_repRes(setImg);
+	}
+
+	let setImg = undefined;
+	function sn_repRes($setImg) {
+		setImg = $setImg ?? (i=> i.src = i.dataset.src);
+		const elms = document.getElementsByTagName('img');
+		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
 	}
 
 </script>
