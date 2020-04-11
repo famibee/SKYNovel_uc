@@ -9,15 +9,15 @@
 	"license": "MIT",
 	"dependencies": {
 		"about-window": "^1.13.2",
-		"crypto-js": "^3.3.0",
+		"crypto-js": "^4.0.0",
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.14.0"
+		"skynovel": "^0.16.2"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.44",
-		"@types/node": "^13.9.8",
-		"css-loader": "^3.4.2",
-		"electron": "^7.2.1",
+		"@types/node": "^13.11.1",
+		"css-loader": "^3.5.2",
+		"electron": "^8.2.1",
 		"electron-builder": "^22.4.1",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^1.1.3",

@@ -11,7 +11,9 @@ build/mac
 build/win*
 build/桜*
 build/cordova
+
 core/plugin/pass.json
+core/diff.json
 
 # Android/iOS build
 mobile/

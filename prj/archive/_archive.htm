@@ -50,23 +50,31 @@
 		if (proc_mode == 'local') {	// ローカルデバッグ用
 			document.getElementById('do_loadsave').addEventListener('click', ()=> {
 				console.log(`do_loadsave:${val_place}`);
-			}, false);
+			}, {passive: true});
 			document.getElementById('do_del').addEventListener('click', ()=> {
 				console.log(`do_delete:${val_place}`);
-			}, false);
+			}, {passive: true});
 			val2ctrl();
 		}
 		document.getElementById('do_loadsave').addEventListener('click', ()=> {
 			M.Modal.getInstance(document.getElementById('modal_sl')).close();
-		}, false);
+		}, {passive: true});
 		document.getElementById('do_del').addEventListener('click', ()=> {
 			M.Modal.getInstance(document.getElementById('modal_del')).close();
 
 			const card = document.querySelector(`[data-id="${val_place}"]`).parentNode.parentNode;
 			card.classList.toggle('scale-out');
 			setTimeout(()=> card.parentNode.removeChild(card), 500);
-		}, false);
+		}, {passive: true});
+
+		sn_repRes();
 	}, false);
+
+	function sn_repRes(setImg) {
+		setImg = setImg ?? (i=> i.src = i.dataset.src);
+		const elms = document.getElementsByTagName('img');
+		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
+	}
 
 	var val_s_place = 0;		// 次のセーブ位置
 	var val_dic = null;
@@ -91,7 +99,7 @@
 	<div class="card-image waves-effect waves-block waves-light ${
 		modal ?'no_modal' :'modal-trigger" href="#modal_sl'
 	}" data-id="${v.place}">
-		<img src="${v.pic}"/>
+		<img data-src="${v.pic}"/>
 		<span class="card-title">${v.dt}</span>${
 			(v.dt == '')
 			? ''
@@ -111,7 +119,7 @@
 
 			val_place = v.dataset.id;
 			doit.dispatchEvent(ev);	// モーダル確認したかのようなイベント発生
-		}, false));
+		}, {passive: true}));
 		const aCard = Array.from(document.getElementsByClassName('card-image'));
 		aCard.forEach(v=> v.addEventListener('click', e=> {
 			if (is_delmode) return;
@@ -119,7 +127,7 @@
 			val_place = v.dataset.id;
 			document.getElementById('modal_mes').textContent =
 				(val_mode == 'Save') ?'セーブデータを上書きし、元のデータは失われます' :'';
-		}, false));
+		}, {passive: true}));
 
 		const aBtnX = Array.from(document.getElementsByClassName('btn_delete'));
 		aBtnX.forEach(v=> v.addEventListener('click', e=>
@@ -129,7 +137,7 @@
 			aBtnX.forEach(v=> v.classList.toggle('scale-out'));
 			aCard.forEach(v=> v.classList.toggle('modal-trigger'));
 			is_delmode = ! is_delmode;
-		}, false);
+		}, {passive: true});
 	}
 
 </script>

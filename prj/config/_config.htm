@@ -15,20 +15,28 @@
 			bar.addEventListener('input', ()=> {
 				window[`val_${bar.id}`] = bar.value;	// 変数更新
 				target.innerHTML = bar.value;			// スライダー数値表示を更新
-			});
+			}, {passive: true});
 		}
 		const chks = document.getElementsByClassName('sn_chk');
 		for (let i=0, max=chks.length; i<max; ++i) {
 			const chk = chks[i];
 			chk.addEventListener('input', ()=> {
 				window[`val_${chk.id}`] = chk.checked;	// 変数更新
-			});
+			}, {passive: true});
 		}
 		document.getElementById('sldBackAlpha').addEventListener('input', e=> {
 			val_sldBackAlpha = e.target.value;
 			drawSampleView();
-		});
+		}, {passive: true});
+
+		sn_repRes();
 	}, false);
+
+	function sn_repRes(setImg) {
+		setImg = setImg ?? (i=> i.src = i.dataset.src);
+		const elms = document.getElementsByTagName('img');
+		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
+	}
 
 	function val2ctrl() {	// 変数→コンポーネント
 		document.getElementById('version').textContent = val_version;
@@ -91,7 +99,7 @@
 			</div>
 			<div class="col s6 m4 l3 card hoverable sld2dsp grey lighten-2">
 				<div class="card-image">
-					<img src="ThBackAlpha.jpg">
+					<img data-src="ThBackAlpha.jpg"/>
 					<span class="card-title black-text" style="width: 100%; background: rgba(255, 255, 255, 0.7);" id="sampleBackAlpha">文字表示サンプル</span>
 				</div>
 			</div>

@@ -20,9 +20,7 @@
 		{"type": "bgm", "fn": "free61", "title": "free61(BGM)", "enabled": "true"},
 		{"type": "bgm", "fn": "free0509", "title": "free0509(BGM)", "enabled": "true"},
 	];
-	document.addEventListener('DOMContentLoaded', ()=> {
-		if (location.protocol == 'file:') init();	// ローカルデバッグ用
-	}, false);
+	if (location.protocol == 'file:') document.addEventListener('DOMContentLoaded', init, false);	// ローカルデバッグ用
 
 	var val_dic = null;
 	function init() {
@@ -34,7 +32,7 @@
 			if (v.enabled == 'false') {
 				lst.insertAdjacentHTML('beforeend', `
 <div class="col s6 m4 l3 hoverable sld2dsp grey lighten-2">
-	<div class="card"><div class="card-image"><img src="_album_miken.jpg"></div>
+	<div class="card"><div class="card-image"><img src="_album_miken.jpg"/></div>
 	<span class="card-title">？？？</span>
 	</div>
 </div>`);
@@ -46,20 +44,20 @@
 				case 'bgm':	elm = `
 	<div class="card">
 	<div class="card-image waves-effect waves-block waves-light">
-		<img src="thbgm.jpg" class="bgm" data-arg="${v.fn}">
+		<img src="thbgm.jpg" class="bgm" data-arg="${v.fn}"/>
 	</div>`;
 					break;
 
 				case 'mov':	elm = `
 	<div class="card">
 	<div class="card-image waves-effect waves-block waves-light">
-		<img src="${v.fn}_th.jpg" class="mov" data-arg="${v.fn}">
+		<img src="${v.fn}_th.jpg" class="mov" data-arg="${v.fn}"/>
 	</div>`;
 					break;
 
 				default:	elm = `
 	<div class="card">
-	<div class="card-image"><img src="${v.fn}" class="materialboxed"></div>`;
+	<div class="card-image"><img src="${v.fn}" class="materialboxed"/></div>`;
 			}
 			lst.insertAdjacentHTML('beforeend', `
 <div class="col s6 m4 l3 hoverable sld2dsp grey lighten-2">${elm}
@@ -68,6 +66,15 @@
 </div>`);
 		});
 		M.Materialbox.init(document.querySelectorAll('.materialboxed'));
+
+		sn_repRes(setImg);
+	}
+
+	let setImg = undefined;
+	function sn_repRes($setImg) {
+		setImg = $setImg ?? (i=> i.src = i.dataset.src);
+		const elms = document.getElementsByTagName('img');
+		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
 	}
 
 	function val2ctrl() {	// 変数→コンポーネント
