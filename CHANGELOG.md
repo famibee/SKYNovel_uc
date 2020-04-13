@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.1.2
+- bug：prj/other/breakpage.json の文字コードが UTF-16LE になっていた件
+- upd：ライブラリ更新
 ## v1.1.1
 - add：セーブロード画面、履歴画面を暗号化HTML・画像に対応
 ## v1.1.0
