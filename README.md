@@ -2,8 +2,8 @@
 [![MIT License](https://img.shields.io/github/license/famibee/SKYNovel_uc.svg)](LICENSE)
 ![](https://img.shields.io/badge/platform-windows%20%7C%20macos-lightgrey.svg)
 
-[![dependencies](https://david-dm.org/famibee/SKYNovel/status.svg)](https://david-dm.org/famibee/SKYNovel)
-[![dependencies](https://david-dm.org/famibee/SKYNovel/dev-status.svg)](https://david-dm.org/famibee/SKYNovel?type=dev)
+[![dependencies](https://david-dm.org/famibee/SKYNovel_uc/status.svg)](https://david-dm.org/famibee/SKYNovel_uc)
+[![dependencies](https://david-dm.org/famibee/SKYNovel_uc/dev-status.svg)](https://david-dm.org/famibee/SKYNovel_uc?type=dev)
 
 ![logo.svg](https://github.com/famibee/SKYNovel/blob/master/test/icon.svg)
 

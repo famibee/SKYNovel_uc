@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.1.3
+- upd：ライブラリ更新
 ## v1.1.2
 - bug：prj/other/breakpage.json の文字コードが UTF-16LE になっていた件
 - upd：ライブラリ更新
