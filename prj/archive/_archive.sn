@@ -1,7 +1,7 @@
 ;#USE-FONT	ipam
-	[return cond="const.sn.frm.archive"]
+	[return cond=const.sn.frm.archive]
 
-	[add_frame id=archive src="archive/_archive.htm" visible=false]
+	[add_frame id=archive src=_archive visible=false]
 
 	[event key='dom=archive:#do_loadsave' label=*do_loadsave global=true]
 	[event key='dom=archive:#do_del' label=*do_del call=true global=true]

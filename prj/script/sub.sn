@@ -159,15 +159,15 @@
 ;-----------------------------
 ; マクロ システムメニュー表示切り替え
 [macro name=sys_menu]
-	[lay layer="mes_sysmenu" visible=%visible|true cond=useSysMenu]
+	[lay layer=mes_sysmenu visible=%visible|true cond=useSysMenu]
 [endmacro]
 
-[add_lay layer="mes_sysmenu" class=txt cond=useSysMenu]
+[add_lay layer=mes_sysmenu class=txt cond=useSysMenu]
 [let name=sysmenu_left text=NaN]
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書き左設定
-[macro name="txt_lay_v_left"]
+[macro name=txt_lay_v_left]
 	[let name=l text=%l|40]
 	[let name=w text=%w|310]
 	&pl = 26
@@ -189,13 +189,13 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書き中設定
-[macro name="txt_lay_v_center"]
+[macro name=txt_lay_v_center]
 	[txt_lay_v_left * l=%l|366]
 [endmacro]
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書きWide中設定
-[macro name="txt_lay_v_center_wide"]
+[macro name=txt_lay_v_center_wide]	;#NO_WARM_UNUSED_MACRO	txt_lay_v_center_wide
 	[txt_lay_v_center * l=%l|294 w=436 max_row=11 pr=26
 	b_pic=wafuu1w	; 背後に画像を使わない場合はコメントアウト
 ]
@@ -207,7 +207,7 @@
 [macro name=sysmenu_draw_h]
 	[return cond=!useSysMenu]
 	[sys_menu visible=false]
-	[clear_lay layer="mes_sysmenu" page=both]
+	[clear_lay layer=mes_sysmenu page=both]
 	[return cond="mp:no_sysmenu_draw != null"]
 
 	[let name=sysmenu_left text=200]
@@ -234,7 +234,7 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ全画面設定
-[macro name="txt_lay_fullscreen"]
+[macro name=txt_lay_fullscreen]
 	[let name=t text=%t|40]
 	[let name=h text=%h|'&const.sn.config.window.height -40*2']
 	&pl = 70
@@ -255,13 +255,13 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ横書きWide下設定
-[macro name="txt_lay_h_bottom_wide"]
+[macro name=txt_lay_h_bottom_wide]	;#NO_WARM_UNUSED_MACRO	txt_lay_h_bottom_wide
 	[txt_lay_fullscreen * t=%t|472 h=266 max_row=6]
 [endmacro]
 
 ;********************************************************
 ; マクロ ＢＧＭ切り替え
-[macro name="bgm"]
+[macro name=bgm]
 	[stopbgm cond="mp:time == null || sn.skip.enabled"]
 
 	[let name=t text=%time|500]	;省略した時の初期値
@@ -279,26 +279,14 @@
 
 ;********************************************************
 ; マクロ 効果音
-[macro name="se"]
+[macro name=se]
 	[stopse * cond="mp:fn == null"]
 	[playse * cond="mp:fn != null" join=false]
 [endmacro]
 
 ;********************************************************
-; マクロ 音声履歴開始
-[macro name="h_voice"]
-	[rec_ch text=#&'｜　《link｜{"fn":"sub","label":"*h_voice","call":"true","global":"true","arg":"$lastVoice"}》'# r=false]
-[endmacro]
-
-;********************************************************
-; マクロ 音声履歴終了
-[macro name="end_h_voice"]
-	[rec_ch text="｜　《endlink｜》" r=false]
-[endmacro]
-
-;********************************************************
 ; マクロ 改ページ
-[macro name="plc"]
+[macro name=plc]
 	[ws buf="音声" canskip=true cond="sn.auto.enabled && !sn.skip.enabled"]
 	[p visible=%visible|true]
 	[er]
@@ -312,37 +300,16 @@
 
 ;********************************************************
 ; マクロ 選択肢直後にすべき処理
-[macro name="after_choice"]
+[macro name=after_choice]	;#NO_WARM_UNUSED_MACRO	after_choice
 	;[pop_stack]
 	[record_place layer=&dsp_lays]
 		[sys_resume_save]
 [endmacro]
 
 ;********************************************************
-; マクロ 履歴画面で選択位置から再開する
-&const.h_save.max_count = 50
-[macro name="h_save"]
-	[未作成]
-
-	[let name="h_save_idx" text="0" cond="h_save_idx == null"]
-
-	[let name="_sl.place" text="&'h_'+ h_save_idx"]
-	[call fn=_archive label=*do_save_noss]
-
-	[rec_ch text=#&'｜　《grp｜｜{"pic":"app-storage:/bookmark/'+ _sl.place +'.jpg","width":"198","height":"149"}》'# r=false]
-	[rec_ch text=#&'｜　《link｜{"fn":"sub","label":"*h_jmp","call":"true","global":"true","arg":"$_sl.place"}》'# r=false]
-	[rec_ch text="【このページから再開】"]
-	[rec_r][rec_r]
-
-	[rec_ch text="｜　《endlink｜》" r=false]
-	[let name="h_ss_idx" text="&h_save_idx %const.h_save.max_count"]
-	[let name="h_save_idx" text="&(h_save_idx +1) %const.h_save.max_count"]
-[endmacro]
-
-;********************************************************
 ; マクロ 場面転換
 ;********************************************************
-[macro name="grp"]
+[macro name=grp]
 	[let name=t text=%t_time|300]	;省略した時の初期値
 	[let name=t text=0 cond="sn.skip.enabled"]
 	[let name=tt text=%time|1000]	;省略した時の初期値
@@ -379,7 +346,7 @@
 
 ;********************************************************
 ; マクロ 文字数分のウェイトを入れる
-[macro name="wc"]
+[macro name=wc]	;#NO_WARM_UNUSED_MACRO	wc
 	[wait cond="mp:time != null && sys:sn.tagCh.doWait && !sn.skip.enabled" time="&mp:time * sys:sn.tagCh.msecWait"]
 [endmacro]
 
@@ -400,27 +367,6 @@
 	[set_cancel_skip]
 	[notice text='強制スキップ On']
 	[return]
-
-*h_voice
-	[voice fn=&const.sn.eventArg]
-	[return]
-
-*h_jmp
-	&_sl.place = const.sn.eventArg
-
-	[log_let_page name=h_page]
-	[log_let_page_count name=h_page_count]
-	[notice text='容量制限により、これ以前で再開できません' cond="h_page_count -h_page > const.h_save.max_count"]
-	[return cond="h_page_count -h_page > const.h_save.max_count"]
-
-		[ask_ync_cleartext]
-		[button enabled=false layer="mes_yesno" page=fore pic="& 'app-storage:/bookmark/'+ _sl.place +'.jpg'" left=570 top=220]
-		[ask_ync mes="ここから再開しますか？" no_cleartext=true]
-			;#FONT	ここから再開しますか？
-	[return cond="_yesno != 'y'"]
-
-	[call fn=_log label=*cancel]
-	[jump fn=_archive label=*end_load]
 
 ;********************************************************
 *title_sys

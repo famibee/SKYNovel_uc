@@ -32,7 +32,7 @@
 			if (v.enabled == 'false') {
 				lst.insertAdjacentHTML('beforeend', `
 <div class="col s6 m4 l3 hoverable sld2dsp grey lighten-2">
-	<div class="card"><div class="card-image"><img src="_album_miken.jpg"/></div>
+	<div class="card"><div class="card-image"><img data-src="_album_miken.jpg"/></div>
 	<span class="card-title">？？？</span>
 	</div>
 </div>`);
@@ -44,20 +44,20 @@
 				case 'bgm':	elm = `
 	<div class="card">
 	<div class="card-image waves-effect waves-block waves-light">
-		<img src="thbgm.jpg" class="bgm" data-arg="${v.fn}"/>
+		<img data-src="thbgm.jpg" class="bgm" data-arg="${v.fn}"/>
 	</div>`;
 					break;
 
 				case 'mov':	elm = `
 	<div class="card">
 	<div class="card-image waves-effect waves-block waves-light">
-		<img src="${v.fn}_th.jpg" class="mov" data-arg="${v.fn}"/>
+		<img data-src="${v.fn}_th.jpg" class="mov" data-arg="${v.fn}"/>
 	</div>`;
 					break;
 
 				default:	elm = `
 	<div class="card">
-	<div class="card-image"><img src="${v.fn}" class="materialboxed"/></div>`;
+	<div class="card-image"><img data-src="${v.fn}" class="materialboxed"/></div>`;
 			}
 			lst.insertAdjacentHTML('beforeend', `
 <div class="col s6 m4 l3 hoverable sld2dsp grey lighten-2">${elm}

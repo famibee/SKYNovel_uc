@@ -4,7 +4,7 @@
 ;********************************************************
 
 ;********************************************************
-[macro name="fg"]
+[macro name=fg]
 	[img * layer=%layer|0]
 	[let name=t text=%time|500]
 	[let name=t text=0 cond=sn.skip.enabled]	; skip時は瞬時処理
@@ -13,7 +13,7 @@
 [endmacro]
 
 ;********************************************************
-[macro name="img"]
+[macro name=img]
 	[lay * page=back visible=true rotation=%rotation|0 scale_x=%scale_x|1 cond='mp:fn != null']
 	[clear_lay layer=%layer page=back cond='mp:fn == null']
 	[lay * page=back visible=false cond='mp:fn == null']
@@ -21,7 +21,7 @@
 
 ;********************************************************
 ; フェードイン
-[macro name="fg_fi"]
+[macro name=fg_fi]	;#NO_WARM_UNUSED_MACRO	fg_fi
 	[stop_tsy layer=%layer|0]
 	[lay * visible=true alpha=%alpha|0]
 		; left,topなど[lay]属性は主に初期位置。
@@ -33,7 +33,7 @@
 
 ;********************************************************
 ; フェードアウト
-[macro name="fg_fo"]
+[macro name=fg_fo]	;#NO_WARM_UNUSED_MACRO	fg_fo
 	[stop_tsy layer=%layer|0]
 	[tsy * layer=%layer|0 time=%time|500 alpha=%alpha|0]
 		; x,yなどは移動先指定。つまり終端。
@@ -43,7 +43,7 @@
 
 ;********************************************************
 ; 立ち絵を屈伸させる
-[macro name="fg_squat"]
+[macro name=fg_squat]	;#NO_WARM_UNUSED_MACRO	fg_squat
 	[break_macro cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=t text=%time|250]
 	[break_macro cond=t==0]		; 処理なし
@@ -59,7 +59,7 @@
 
 ;********************************************************
 ; 立ち絵を震わせる
-[macro name="fg_shake"]
+[macro name=fg_shake]	;#NO_WARM_UNUSED_MACRO	fg_shake
 	[break_macro cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=t text=%time|20]
 	[break_macro cond=t==0]		; 処理なし
@@ -101,7 +101,7 @@
 
 ;********************************************************
 ; 立ち絵を反復横跳びさせる（楽しそう）
-[macro name="fg_sidestep"]
+[macro name=fg_sidestep]	;#NO_WARM_UNUSED_MACRO	fg_sidestep
 	[break_macro cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=t text=%time|250]
 	[break_macro cond=t==0]		; 処理なし
@@ -120,7 +120,7 @@
 [endmacro]
 
 ;********************************************************
-[macro name="zoom_tsy"]
+[macro name=zoom_tsy]	;#NO_WARM_UNUSED_MACRO	zoom_tsy
 	[let name=v text=%visible|false]
 	[if exp=v]
 		&valFrom = 0.5

@@ -1,7 +1,7 @@
 ;#USE-FONT	ipam
-	[return cond="const.sn.frm.config"]
+	[return cond=const.sn.frm.config]
 
-	[add_frame id=config src="config/_config.htm" visible=false]
+	[add_frame id=config src=_config visible=false]
 	[event key='dom=config:#close' label=*exit global=true]
 
 	[event global=true call=true key=c label=*keycall_config]
@@ -33,6 +33,13 @@
 
 	; 画面モード
 	[event key='dom=config:#chkScrMode' label=*chkScrMode global=true call=true]
+
+	; エクスポート・インポート
+	[event key='dom=config:#export' label=*export global=true call=true]
+	[event key='dom=config:#import' label=*import global=true call=true]
+	; 完了イベントを検知
+	[event key='sn:exported' label=*exported global=true call=true]
+	[event key='sn:imported' label=*imported global=true call=true]
 [return]
 
 
@@ -113,16 +120,16 @@
 
 ;*********************************************************
 *text_back_alpha_sub
-	[return cond="! isGameState"]
+	[return cond=!isGameState]
 	&alpha = sys:TextLayer.Back.Alpha *100 -5 = int
-	[let name="alpha" text=0 cond="alpha < 0"]
+	[let name=alpha text=0 cond="alpha < 0"]
 	&sys:TextLayer.Back.Alpha = alpha /100
 [jump label=*text_back_alpha]
 
 *text_back_alpha_add
-	[return cond="! isGameState"]
+	[return cond=!isGameState]
 	&alpha = sys:TextLayer.Back.Alpha *100 +5 = int
-	[let name="alpha" text=100 cond="alpha > 100"]
+	[let name=alpha text=100 cond="alpha > 100"]
 	&sys:TextLayer.Back.Alpha = alpha /100
 
 *text_back_alpha
@@ -131,15 +138,15 @@
 
 ;*********************************************************
 *text_auto_msecwait_sub
-	[return cond="! isGameState"]
+	[return cond=!isGameState]
 	&wait = sys:sn.auto.msecLineWait -100 = uint
-	[let name="wait" text=0 cond="wait < 0"]
+	[let name=wait text=0 cond="wait < 0"]
 [jump label=*text_auto_msecwait]
 
 *text_auto_msecwait_add
-	[return cond="! isGameState"]
+	[return cond=!isGameState]
 	&wait = sys:sn.auto.msecLineWait +100 = uint
-	[let name="wait" text=3500 cond="wait > 3500"]
+	[let name=wait text=3500 cond="wait > 3500"]
 *text_auto_msecwait
 	&sys:sn.auto.msecLineWait = wait
 	[notice text="&'自動読み進み速度 ' + wait + ' msec'"]
@@ -154,7 +161,7 @@
 
 ;*********************************************************
 *rclick_config
-	[return cond="! isGameState"]
+	[return cond=!isGameState]
 
 *keycall_config
 	[return cond=const.sn.frm.config.visible]
@@ -226,37 +233,22 @@
 
 	[enable_event enabled=true]
 	[set_focus to=null]
-	[let name="isGameState" text=true cond="呼び元=='Text'"]
+	[let name=isGameState text=true cond="呼び元=='Text'"]
 [return]
 
 ;*********************************************************
-*update_check
-	[return cond=isUserUpdateCheck]
-	&isUserUpdateCheck = true
-	[se fn=&sysse_ok1 buf=SYS]
+*export		[se fn=&sysse_ok1 buf=SYS][export][return]
 
-	[update_check url="https://raw.githubusercontent.com/famibee/AIRNovel/master/UnderCherry/uc_ver.xml"]
-[return]
+*exported	[notice text='プレイデータをエクスポートしました'][return]
 
 ;*********************************************************
-*export
-	[se fn=&sysse_ok1 buf=SYS]
-	[export path="app-storage:/bookmark/*"]
-[return]
+*import		[se fn=&sysse_ok1 buf=SYS][import][return]
 
-;*********************************************************
-*import
-	[se fn=&sysse_ok1 buf=SYS]
-	[import]
-	[return cond="! const.sn.dlgUserOK"]
-
-	[enable_event enabled=false]
-		[clear_text layer="mes_yesno"]
-		[ask_ync mes="ゲームを再起動する必要があります。終了しますか？　（起動は手動で）"]
-			;#FONT	ゲームを再起動する必要があります。終了しますか？　（起動は手動で）
-	[enable_event enabled=true]
-	[return cond="_yesno != 'y'"]
-
+*imported
 	[call label=*exit]
-	[wait_tsy layer=htm_config]
-[close]
+	[enable_event enabled=false]
+
+	&t = 'ゲームを再起動する必要があります。ブラウザリロードしてください'
+	[let name=t text='ゲームを再起動する必要があります。（起動は手動で）' cond=const.sn.isApp]
+	[notice text=&t timeout=0]
+[return]

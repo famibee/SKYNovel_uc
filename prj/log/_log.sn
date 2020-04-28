@@ -1,7 +1,7 @@
 ;#USE-FONT	ipam
-	[return cond="const.sn.frm.log"]
+	[return cond=const.sn.frm.log]
 
-	[add_frame id=log src="log/_log.htm" visible=false]
+	[add_frame id=log src=_log visible=false]
 	[event key='dom=log:#close' label=*exit global=true]
 
 	[event global=true call=true key=r label=*main]

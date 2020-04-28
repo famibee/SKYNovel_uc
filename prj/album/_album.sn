@@ -1,12 +1,12 @@
 ;#USE-FONT	ipam
-	[return cond="const.sn.frm.album"]
+	[return cond=const.sn.frm.album]
 
-	[add_frame id=album src="album/_album.htm" visible=false]
+	[add_frame id=album src=_album visible=false]
 	[event key='dom=album:#close' label=*exit global=true]
 	[add_lay layer=album class=grp]
 
 
-[macro name="アルバム解放"]
+[macro name=アルバム解放]
 	[let name="&'sys:album.'+ mp:name" text=true]
 [endmacro]
 [return]

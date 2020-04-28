@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.1.4
+- add：プレイデータのエクスポート・インポート対応
+- add：[notice]プラグイン、text以外の属性も使えるように（参考： https://wavded.github.io/humane-js/ ）
 ## v1.1.3
 - upd：ライブラリ更新
 ## v1.1.2
