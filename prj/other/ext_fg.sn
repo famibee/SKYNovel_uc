@@ -44,9 +44,9 @@
 ;********************************************************
 ; 立ち絵を屈伸させる
 [macro name=fg_squat]	;#NO_WARM_UNUSED_MACRO	fg_squat
-	[break_macro cond=sn.skip.enabled]	; skip時は処理なし
+	[return cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=t text=%time|250]
-	[break_macro cond=t==0]		; 処理なし
+	[return cond=t==0]		; 処理なし
 
 	[let name=lay text=%layer|0]
 	[let name=y text=%y|50]
@@ -60,9 +60,9 @@
 ;********************************************************
 ; 立ち絵を震わせる
 [macro name=fg_shake]	;#NO_WARM_UNUSED_MACRO	fg_shake
-	[break_macro cond=sn.skip.enabled]	; skip時は処理なし
+	[return cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=t text=%time|20]
-	[break_macro cond=t==0]		; 処理なし
+	[return cond=t==0]		; 処理なし
 
 	[let name=lay text=%layer|0]
 	[let name=x text=%x|5]
@@ -102,9 +102,9 @@
 ;********************************************************
 ; 立ち絵を反復横跳びさせる（楽しそう）
 [macro name=fg_sidestep]	;#NO_WARM_UNUSED_MACRO	fg_sidestep
-	[break_macro cond=sn.skip.enabled]	; skip時は処理なし
+	[return cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=t text=%time|250]
-	[break_macro cond=t==0]		; 処理なし
+	[return cond=t==0]		; 処理なし
 
 	[let name=lay text=%layer|0]
 	[let name=x text=%x|25]

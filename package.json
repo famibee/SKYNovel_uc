@@ -11,14 +11,14 @@
 		"about-window": "^1.13.2",
 		"crypto-js": "^4.0.0",
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.19.2"
+		"skynovel": "^0.19.5"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.45",
-		"@types/node": "^13.13.4",
+		"@types/node": "^13.13.5",
 		"css-loader": "^3.5.3",
-		"electron": "^8.2.4",
-		"electron-builder": "^22.5.1",
+		"electron": "^8.2.5",
+		"electron-builder": "^22.6.0",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^1.2.1",
 		"webpack": "^4.43.0",
