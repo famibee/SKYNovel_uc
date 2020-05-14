@@ -6,29 +6,17 @@ module.exports = [
 		entry: `./core/app4webpack.js`,
 		target: 'electron-renderer',
 		output: {
-			path: process.cwd() +'/app',
+			path: process.cwd() +'/doc/app',
 			filename: 'index.js',
 		},
-		optimization: {
-			minimize: true,
-		},
-	},
-	{
-		entry: `./core/mob4webpack.js`,
-		target: 'web',
-		output: {
-			path: process.cwd() +'/mobile/www',
-			filename: 'index.js',
-		},
-		optimization: {
-			minimize: true,
-		},
+		optimization: {minimize: true,},
+		devtool: 'inline-source-map',
 	},
 	{
 		entry: `./core/web4webpack.js`,
 		target: 'web',
 		output: {
-			path: process.cwd() +'/web',
+			path: process.cwd() +'/doc',
 			filename: 'web.js',
 			chunkFilename: 'web.[name].js'
 		},

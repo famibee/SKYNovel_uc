@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.2.0
+- breaking change：新テンプレ「doc」：フォルダ構成変更（prj→doc/prj）リロード機能有効化（後方互換性なし）
 ## v1.1.5
 - chg：[break_macro]廃止に対応
 - upd：ライブラリ更新

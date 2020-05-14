@@ -2,7 +2,7 @@
 	"name": "uc",
 	"version": "1.0.0",
 	"description": "Novelgame(Tate-gaki) sample project",
-	"main": "app.js",
+	"main": "doc/app.js",
 	"appBundleId": "com.fc2.blog.famibee.skynovel.uc",
 	"appCopyright": "(c)ugainovel",
 	"author": "ugainovel",
@@ -11,11 +11,11 @@
 		"about-window": "^1.13.2",
 		"crypto-js": "^4.0.0",
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.19.5"
+		"skynovel": "^0.19.7"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.45",
-		"@types/node": "^13.13.5",
+		"@types/node": "^14.0.1",
 		"css-loader": "^3.5.3",
 		"electron": "^8.2.5",
 		"electron-builder": "^22.6.0",
@@ -23,22 +23,24 @@
 		"style-loader": "^1.2.1",
 		"webpack": "^4.43.0",
 		"webpack-cli": "^3.3.11",
-		"webpack-dev-server": "^3.10.3"
+		"webpack-dev-server": "^3.11.0"
 	},
 	"scripts": {
 		"install": "npm run webpack:dev",
-		"start": "electron ./",
+		"start": "electron doc/app.js",
 		"web": "npm run watch:wds",
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
 		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
+		"server4debugger": "webpack-dev-server --config ./core/wds.dbg.config.js",
 		"upd": "npx ncu -a && npm update",
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
 		"webpack:pro": "webpack --mode production --config ./core/webpack.config.js",
 		"pack:win": "npm run webpack:pro && electron-builder ./build/win32-x64 --win --x64",
-		"pack:mac": "npm run webpack:pro && electron-builder ./build/darwin-x64 --mac --x64"
+		"pack:mac": "npm run webpack:pro && electron-builder ./build/darwin-x64 --mac --x64",
+		"rebuild": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm run webpack:dev"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.skynovel.uc",
@@ -47,10 +49,10 @@
 			"output": "build"
 		},
 		"files": [
-			"app/",
-			"app.js",
-			"prj/",
-			"build/icon/*"
+			"build/icon/*",
+			"doc/app/*",
+			"doc/prj/",
+			"doc/app.js"
 		],
 		"dmg": {
 			"contents": [

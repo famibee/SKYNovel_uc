@@ -5,9 +5,9 @@ const Humane = require('humane-js');
 require("!style-loader!css-loader!humane-js/themes/bigbox.css");
 
 exports.init = hSN=> {
+	Humane.baseCls = 'humane-bigbox';
 	hSN.addTag('notice', hArg=> {
-		hArg.baseCls = 'humane-bigbox';
-		Humane.create(hArg).log(hArg.text);
+		Humane.log(hArg.text);
 		return false;
 	});
 };

@@ -1,0 +1,101 @@
+;#USE-FONT	ipam
+	[return cond=const.sn.frm.album]
+
+	[add_frame id=album src=_album visible=false]
+	[event key='dom=album:#close' label=*exit global=true]
+	[add_lay layer=album class=grp]
+
+
+[macro name=アルバム解放]
+	[let name="&'sys:album.'+ mp:name" text=true]
+[endmacro]
+[return]
+
+; 最新値で更新
+*val2ctrl
+	; アルバム表示内容（ここをカスタマイズ。json形式で記述）
+	; 「{},{}, ...」の最後にコンマ「,」があるとエラーになるので注意
+	; 「enabled: 'true'」指定すると最初から閲覧できる
+[let_ml name=dic]
+	[
+		{"type": "pic", "fn": "../bg/yun_1184.jpg", "title": "川辺", "enabled": "#{!!sys:album.yun_1184}"},
+		{"type": "pic", "fn": "../bg/yun_1317.jpg", "title": "水中", "enabled": "#{!!sys:album.yun_1317}"},
+		{"type": "pic", "fn": "../bg/yun_2352.jpg", "title": "桜1", "enabled": "#{!!sys:album.yun_2352}"},
+		{"type": "pic", "fn": "../bg/yun_2384.jpg", "title": "桜2", "enabled": "#{!!sys:album.yun_2384}"},
+		{"type": "pic", "fn": "../image/F_kuchimoto.jpg", "title": "語り手", "enabled": "#{!!sys:album.F_kuchimoto}"},
+		{"type": "pic", "fn": "_album_miken.jpg", "title": "？？？", "enabled": "false", "enabled": "#{!!sys:album._album_miken}"},
+		{"type": "mov", "fn": "nc10889", "title": "桜", "enabled": "#{!!sys:album.nc10889}"},
+		{"type": "bgm", "fn": "free32", "title": "free32(BGM)", "enabled": "#{!!sys:album.free32}"},
+		{"type": "bgm", "fn": "free49", "title": "free49(BGM)", "enabled": "#{!!sys:album.free49}"},
+		{"type": "bgm", "fn": "free61", "title": "free61(BGM)", "enabled": "#{!!sys:album.free61}"},
+		{"type": "bgm", "fn": "free0509", "title": "free0509(BGM)", "enabled": "true"}
+	]
+[endlet_ml]
+	[set_frame id=album var_name=val_dic text=&dic]
+	[let_frame id=album var_name=init function=true]
+	[event key='dom=album:.bgm' label=*bgm global=true call=true need_err=false]
+	[event key='dom=album:.mov' label=*mov global=true need_err=false]
+
+	[set_frame id=album var_name=val_fnBgm text=&save:const.sn.sound.BGM.fn|'(No BGM)']
+	[let_frame id=album var_name=val2ctrl function=true]
+[return]
+
+
+;*********************************************************
+*title_album
+	[enable_event enabled=false]
+	[clear_event]
+
+	; 最新値で更新
+	[call label=*val2ctrl]
+	; 下部からスライドイン
+	[frame id=album visible=true y=&const.sn.frm.album.height]
+	[tsy_frame id=album time=500 y=0]
+	[wait_tsy id=album]
+*wait
+	[event key=rightclick label=*exit]
+	[event key=command label=*exit]
+	[event key=control label=*exit]
+	[event key=end label=*exit]
+	[event key=shift label=*exit]
+;	[gesture_event f2tap=*exit f3tap=*exit]
+	[set_focus to=null]
+[s]
+
+; BGM切り替え
+*bgm
+	[playbgm fn=&sn.event.domdata.arg]
+	[call label=*val2ctrl]
+[return]
+
+; 動画再生
+*mov
+	&vol = sys:const.sn.sound.BGM.volume
+	&fn = save:const.sn.sound.BGM.fn
+	[fadeoutbgm time=400]
+	[wait time=400]
+	[wf buf=BGM]
+
+	[lay layer=album fn=black face=&sn.event.domdata.arg visible=true float=true left=0 top=0]
+	[frame id=album visible=false]
+	[wv fn=&sn.event.domdata.arg]
+
+	[frame id=album visible=true]
+	[lay layer=album fn=black visible=false]
+
+	[volume buf=BGM volume=&vol]
+	[playbgm fn=&fn cond='fn!=""']
+[jump label=*wait]
+
+
+;*********************************************************
+*exit
+	[se fn=&sysse_cancel buf=SYS]
+
+	[tsy_frame id=album time=500 y=&const.sn.frm.album.height]
+	[wait_tsy id=album]
+	[frame id=album visible=false]
+
+	[enable_event enabled=true]
+	[set_focus to=null]
+[return]
