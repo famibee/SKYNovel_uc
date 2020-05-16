@@ -5,5 +5,5 @@ const hPlg = {};
 const h = require('./plugin').default;
 for (const nm in h) hPlg[nm] = require(`./plugin/${nm}`);
 
-const {web} = require('skynovel/web');
-web(hPlg);
+const {SysWeb} = require('skynovel/web');
+new SysWeb(hPlg);
