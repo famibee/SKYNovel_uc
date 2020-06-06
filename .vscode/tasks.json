@@ -1,0 +1,64 @@
+{
+// tasks.json 形式の詳細についての資料は、
+	// https://go.microsoft.com/fwlink/?LinkId=733558 をご覧ください
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "web",
+			"problemMatcher": []
+		},
+		{
+			"type": "npm",
+			"script": "webpack:dev:w",
+			"problemMatcher": []
+		},
+		{
+			"type": "npm",
+			"script": "npm_check_updates_do",
+			"problemMatcher": []
+		},
+		{
+			"label": "SKYNovel dbg start",
+			"type": "npm",
+			"script": "dbg_skynovel",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"isBackground": true,
+			"problemMatcher": {
+				"pattern": [
+					{
+						"regexp": ".",
+						"file": 1,
+						"location": 2,
+						"message": 3
+					}
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "^.*",
+					"endsPattern": "^.*Built at.*",
+				}
+			},
+			"presentation": {
+				"reveal": "never"
+			}
+		},
+		{
+			"label": "SKYNovel dbg stop",
+			"type": "shell",
+			"group": "build",
+			"command": "echo ${input:terminate}"
+		}
+	],
+	"inputs": [
+		{
+			"id": "terminate",
+			"type": "command",
+			"command": "workbench.action.tasks.terminate",
+			"args": "SKYNovel dbg start"
+		}
+	]
+}

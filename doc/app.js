@@ -15,7 +15,6 @@ crashReporter.start({
 	autoSubmit	: false,
 });
 if (! app.requestSingleInstanceLock()) app.quit();
-app.allowRendererProcessReuse = true;
 app.on('window-all-closed', ()=> app.quit());
 
 let guiWin = null;
@@ -64,7 +63,7 @@ app.on('ready', ()=> {
 		textAreasAreResizable	: false,
 		resizable		: false,
 		fullscreenable	: true,
-		webPreferences	: {nodeIntegration: true,},
+		webPreferences	: {nodeIntegration: true, enableRemoteModule: true,},
 	});
 	try {
 		guiWin.loadURL('file://'+ __dirname.replace(/\\/g, '/') +'/app/index.htm');

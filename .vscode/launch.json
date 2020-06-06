@@ -1,0 +1,30 @@
+{
+	// IntelliSense を使用して利用可能な属性を学べます。
+	// 既存の属性の説明をホバーして表示します。
+	// 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "1.アプリを起動",
+			"type": "node",
+			"request": "launch",
+		},
+		{
+			"name": "2.アプリに接続",
+			"type": "skynovel",
+			"request": "attach",
+		},
+
+		{
+			"name": "2b.デバッガ",
+			"type": "skynovel",
+			"request": "launch",
+		},
+	],
+	"compounds": [
+		{
+			"name": "App+Dbg",
+			"configurations": ["1.アプリを起動", "2b.デバッガ"]
+		}
+	]
+}

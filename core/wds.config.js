@@ -9,8 +9,8 @@ module.exports = {
 
 	devServer: {
 		contentBase: './doc',
-		openPage: 'web.htm',
 		watchContentBase: true,
 		open: true,
+		openPage: 'web.htm',
 	},
 };

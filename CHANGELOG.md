@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.2.3
+- upd：ライブラリ更新
 ## v1.2.2
 - breaking change：SKYNovel v0.20.4（プラグイン用クラス定義追加と変更）対応
 ## v1.2.1
