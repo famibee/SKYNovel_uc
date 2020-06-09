@@ -98,7 +98,7 @@
 		;#FONT	ゲームを終了しますか？
 	[enable_event enabled=true]
 *close_do
-	[return cond="_yesno != 'y'"]
+	[return cond="_yesno=='n'"]
 	[enable_event enabled=false]
 	[wait time=500]
 [close]

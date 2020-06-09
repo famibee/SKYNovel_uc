@@ -111,8 +111,8 @@
 [macro name=sys_resume_load]
 	[return cond=!sys:doResume]
 
-	[ask_ync mes="前回終了ポイントから再開しますか？"]
-	[return cond="_yesno != 'y'"]
+	[ask_ync mes='前回終了ポイントから再開しますか？' cond='! const.sn.isDbg && const.sn.isApp']
+	[return cond="_yesno=='n'"]
 
 	[jump fn=_archive label=*do_load_resume]
 [endmacro]
@@ -376,7 +376,7 @@
 		;#FONT	タイトルに戻りますか？
 	[enable_event enabled=true]
 	[enable_event layer="mes_sysmenu" enabled=true]
-	[return cond="_yesno != 'y'"]
+	[return cond="_yesno=='n'"]
 
 	[fadeoutse buf=音声 time=1000]
 	; テキストレイヤ全画面設定

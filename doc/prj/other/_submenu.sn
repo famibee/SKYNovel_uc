@@ -84,7 +84,7 @@
 	[enable_event layer=mes_submenu enabled=false]
 	[ask_ync mes="タイトルに戻りますか？"]
 		;#FONT	タイトルに戻りますか？
-	[jump label=*retry cond="_yesno != 'y'"]
+	[jump label=*retry cond="_yesno=='n'"]
 
 	[call label=*exit]
 
@@ -101,7 +101,7 @@
 	[enable_event layer=mes_submenu enabled=false]
 	[ask_ync mes="ゲームを終了しますか？"]
 		;#FONT	ゲームを終了しますか？
-	[jump label=*retry cond="_yesno != 'y'"]
+	[jump label=*retry cond="_yesno=='n'"]
 
 	[lay layer=mes page=fore visible=&v]
 	[jump fn="main" label=*close_do]

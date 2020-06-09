@@ -17,6 +17,8 @@
 
 	[clear_event]
 
+	&_yesno = n
+
 	[event key=rightclick label=*cancel]
 	[event key=y label=*y]
 	[event key=n label=*n]
@@ -28,10 +30,8 @@
 	[event key=shift label=*cancel]
 [s]
 
-
-*y	[let name=_yesno text=y][jump label=*exit]
-
-*n	[let name=_yesno text=n][jump label=*exit]
+*y	&_yesno = y
+*n	[jump label=*exit]
 
 *cancel
 	[se fn=&sysse_cancel buf=SYS]
