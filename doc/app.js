@@ -7,11 +7,16 @@
 
 // electron メインプロセス
 const {crashReporter, app, Menu, BrowserWindow} = require('electron');
+const path = require('path');
+
+const pkg = require('../package.json');
+app.name = pkg.name;	// 非パッケージだと 'Electron' になる件対応
+app.setPath('userData', app.getPath('appData') +'/'+ app.name);
 
 crashReporter.start({
 	productName	: app.name,
 	companyName	: 'famibee',
-	submitURL	: 'http://famibee.blog38.fc2.com/',
+	submitURL	: pkg.homepage,
 	autoSubmit	: false,
 });
 if (! app.requestSingleInstanceLock()) app.quit();
@@ -35,10 +40,10 @@ app.on('ready', ()=> {
 				click: ()=> {
 					const openAboutWindow = require('about-window').default;
 					openAboutWindow({
-						icon_path: 'file://'+ __dirname.replace(/\\/g, '/') +'/app/icon.png',
+						icon_path: path.join(__dirname, 'app/icon.png'),
 						package_json_dir: __dirname,
 						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2020',
-						homepage: 'http://famibee.blog38.fc2.com/',
+						homepage: pkg.homepage,
 						license: '',
 						use_version_info: false,
 					});
@@ -66,7 +71,7 @@ app.on('ready', ()=> {
 		webPreferences	: {nodeIntegration: true, enableRemoteModule: true,},
 	});
 	try {
-		guiWin.loadURL('file://'+ __dirname.replace(/\\/g, '/') +'/app/index.htm');
+		guiWin.loadFile(path.join(__dirname, 'app/index.htm'),);
 	}
 	catch (e) {
 		guiWin.webContents.openDevTools();

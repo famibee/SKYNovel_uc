@@ -1,5 +1,12 @@
 # Change Log
 
+## v2.0.1
+- chg：【doc/prj/archive/_archive.sn】サムネイル保存をフォルダ別に変更
+	（SKYNovel v1.1.0対応）
+	- 旧：[let name=pic text="& 'userdata:/storage/'+ _save.place +'.jpg'"]
+	- 新：[let name=pic text="& 'userdata:/'+ _save.place +'/pic.jpg'"]
+- bug：【更新 doc/app.js】非パッケージアプリ版のセーブデータ箇所が、別アプリと被っていた件
+- chg：なるべく package.json を参照しそちらから値を取得するように
 ## v2.0.0
 - upd：SKYNovel 1.0.0 対応・テンプレ変更
 	- npm un skynovel && npm i @famibee/skynovel

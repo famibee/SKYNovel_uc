@@ -86,7 +86,7 @@
 	[jump label=*do_save_noss]
 
 *do_save
-	[let name=pic text="& 'userdata:/storage/'+ _save.place +'.jpg'"]
+	[let name=pic text="& 'userdata:/'+ _save.place +'/pic.jpg'"]
 	[snapshot fn=&pic layer=&dsp_lays smoothing=true cond=const.sn.isApp]
 	[let name=pic text='_archive_browser.jpg' cond=!const.sn.isApp]
 
@@ -139,7 +139,7 @@
 
 	[enable_event enabled=false]
 		[ask_ync_cleartext]
-		[button enabled=false layer="mes_yesno" page=fore pic="& 'userdata:/storage/'+ _sl.place +'.jpg'" left=570 top=220]
+		[button enabled=false layer="mes_yesno" page=fore pic="& 'userdata:/'+ _sl.place +'/pic.jpg'" left=570 top=220]
 		[ask_ync mes="クイックロードしますか？" no_cleartext=true]
 			;#FONT	クイックロードしますか？
 	[enable_event enabled=true]

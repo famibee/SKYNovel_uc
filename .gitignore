@@ -1,4 +1,5 @@
 # Visual Studio Code cache/options directory
+.vscode/storage/
 .vscode/settings.json
 
 # アプリ版メインjs
