@@ -131,11 +131,11 @@
 			is_delmode = ! is_delmode;
 		}, {passive: true});
 
-		sn_repRes(setImg);
+		sn_repRes(setImg);	// 画像更新（SKYNovelが削除・独自に呼び出す）
 	}
 
 	let setImg = undefined;
-	function sn_repRes($setImg) {
+	function sn_repRes($setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
 		setImg = $setImg ?? (i=> i.src = i.dataset.src);
 		const elms = document.getElementsByTagName('img');
 		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
