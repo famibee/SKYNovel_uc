@@ -4,6 +4,7 @@
 - chg：ふりーむ対応とファイルサイズから doc/prj/other/_c2p.svg を _c2p.png に差し替え
 - upd：ライブラリ更新（スナップショット修正）
 - info：[frame]ロード用htmにコメント追記
+- info：README.md手直しと使用画像フォルダ名を「example」に変更、必須でなくただの例と示す
 ## v2.0.1
 - chg：【doc/prj/archive/_archive.sn】サムネイル保存をフォルダ別に変更
 	（SKYNovel v1.1.0対応）
