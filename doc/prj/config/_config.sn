@@ -40,6 +40,9 @@
 	; 完了イベントを検知
 	[event key='sn:exported' label=*exported global=true call=true]
 	[event key='sn:imported' label=*imported global=true call=true]
+
+
+	[let name=sys:const.sn.sound.VOICE.volume text=1 cond=sys:const.sn.sound.VOICE.volume==null]
 [return]
 
 

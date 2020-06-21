@@ -15,7 +15,7 @@ app.setPath('userData', app.getPath('appData') +'/'+ app.name);
 
 crashReporter.start({
 	productName	: app.name,
-	companyName	: 'famibee',
+	companyName	: "活動漫画屋",
 	submitURL	: pkg.homepage,
 	autoSubmit	: false,
 });

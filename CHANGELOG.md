@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.3
+- bug：初回起動時に sys:const.sn.sound.VOICE.volume が NaN、初期化するように
 ## v2.0.2
 - chg：ふりーむ対応とファイルサイズから doc/prj/other/_c2p.svg を _c2p.png に差し替え
 - upd：ライブラリ更新（スナップショット修正）
