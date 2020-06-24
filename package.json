@@ -8,7 +8,7 @@
 	"author": "夕街昇雪",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.1.22",
+		"@famibee/skynovel": "^1.1.24",
 		"about-window": "^1.13.4",
 		"crypto-js": "^4.0.0",
 		"humane-js": "^3.2.2"
@@ -16,9 +16,9 @@
 	"devDependencies": {
 		"@types/crypto-js": "^3.1.47",
 		"@types/fs-extra": "^9.0.1",
-		"@types/node": "^14.0.13",
+		"@types/node": "^14.0.14",
 		"css-loader": "^3.6.0",
-		"electron": "^9.0.4",
+		"electron": "^9.0.5",
 		"electron-builder": "^22.7.0",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^1.2.1",
@@ -38,22 +38,28 @@
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
 		"webpack:pro": "webpack -p --config ./core/webpack.config.js",
-		"pack:win": "npm run webpack:pro && electron-builder ./build/win32-x64 --win --x64",
-		"pack:mac": "npm run webpack:pro && electron-builder ./build/darwin-x64 --mac --x64",
 		"rebuild": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm run webpack:dev"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.skynovel.uc",
 		"productName": "桜の樹の下には",
 		"directories": {
-			"output": "build"
+			"output": "build/package/"
 		},
 		"files": [
 			"build/icon/*",
+			"build/include/*",
 			"doc/app/*",
 			"doc/prj/",
 			"doc/app.js"
 		],
+		"mac": {
+			"icon": "build/icon/icon.icns",
+			"target": [
+				"dmg"
+			],
+			"category": "public.app-category.games"
+		},
 		"dmg": {
 			"contents": [
 				{
@@ -75,24 +81,17 @@
 				}
 			]
 		},
-		"mac": {
-			"icon": "build/icon/icon.icns",
-			"target": [
-				"dmg"
-			],
-			"category": "public.app-category.games"
-		},
 		"win": {
 			"icon": "build/icon/icon.ico",
-			"target": "nsis"
+			"target": "nsis",
+			"asarUnpack": [
+				"build/include/"
+			]
 		},
 		"linux": {
-			"icon": "build/icon",
-			"target": [
-				"deb",
-				"rpm"
-			],
-			"category": "Network"
+			"icon": "build/icon/icon.icns",
+			"target": "AppImage",
+			"category": "Game"
 		}
 	},
 	"keywords": [

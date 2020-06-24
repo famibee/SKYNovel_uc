@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.4
+- chg：【生成】生成パスを build/ → build/package 下へ
 ## v2.0.3
 - bug：初回起動時に sys:const.sn.sound.VOICE.volume が NaN、初期化するように
 ## v2.0.2
