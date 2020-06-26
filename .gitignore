@@ -19,8 +19,5 @@ core/diff.json
 # Node.js Tools
 node_modules/
 
-# ブラウザ版メインjs
-web/
-
 # SKYNovel Dev famibee's Work Folder
 Work/
