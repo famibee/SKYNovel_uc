@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.0.5
+- chg：.gitignore更新、SKYNovel拡張機能が生成するファイルを削除
+- chg：（ucとhatsuneのみ）アイコン作成
 ## v2.0.4
 - chg：【生成】生成パスを build/ → build/package 下へ
 ## v2.0.3

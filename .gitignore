@@ -6,18 +6,15 @@
 app/index.js
 
 # Build results
+build/icon/
+build/include/
+build/package/
 build/*.yaml
 build/*.yml
-build/mac
-build/win*
-build/桜*
-build/cordova
+build/*.nsh
 
 core/plugin/pass.json
 core/diff.json
-
-# Android/iOS build
-mobile/
 
 # Node.js Tools
 node_modules/
