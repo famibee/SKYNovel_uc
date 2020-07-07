@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.0.6
+- upd：リリースビルド時に一度webpack生成物をクリアするように
+- upd：ライブラリ更新
 ## v2.0.5
 - chg：.gitignore更新、SKYNovel拡張機能が生成するファイルを削除
 - chg：（ucとhatsuneのみ）アイコン作成
