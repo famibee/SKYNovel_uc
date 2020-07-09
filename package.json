@@ -37,7 +37,7 @@
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
-		"webpack:pro": "rm -r doc/web.*.js && webpack -p --config ./core/webpack.config.js",
+		"webpack:pro": "rm -rf doc/web.*.js && webpack -p --config ./core/webpack.config.js",
 		"rebuild": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm run webpack:dev"
 	},
 	"build": {
