@@ -5,7 +5,7 @@
 	[event key='dom=log:#close' label=*exit global=true]
 
 	[event global=true call=true key=r label=*main]
-	[event global=true call=true key=up label=*main]
+	[event global=true call=true key=arrowup label=*main]
 	[event global=true call=true key=upwheel label=*main]
 	[event global=true call=true key=pagedown label=*main]
 	[event global=true call=true key=pageup label=*main]

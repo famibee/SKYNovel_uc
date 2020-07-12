@@ -111,7 +111,7 @@
 [macro name=sys_resume_load]
 	[return cond=!sys:doResume]
 
-	[ask_ync mes='前回終了ポイントから再開しますか？' cond='! const.sn.isDbg && const.sn.isApp']
+	[ask_ync mes='前回終了ポイントから再開しますか？' cond='! const.sn.isDbg']
 	[return cond="_yesno=='n'"]
 
 	[jump fn=_archive label=*do_load_resume]

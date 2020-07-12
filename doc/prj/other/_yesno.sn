@@ -17,7 +17,7 @@
 
 	[clear_event]
 
-	&_yesno = n
+	&_yesno = 'n'
 
 	[event key=rightclick label=*cancel]
 	[event key=y label=*y]
@@ -30,7 +30,7 @@
 	[event key=shift label=*cancel]
 [s]
 
-*y	&_yesno = y
+*y	&_yesno = 'y'
 *n	[jump label=*exit]
 
 *cancel

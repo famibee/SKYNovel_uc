@@ -1,5 +1,11 @@
 # Change Log
 
+## v2.0.8
+- bug：再開を聞くダイアログ、F5デバッグ時以外は出すように(doc/prj/script/sub.sn)
+- bug：再開を聞くダイアログでキャンセルできない件(doc/prj/other/_yesno.sn)
+- bug：履歴画面を呼び出す上キーショートカットが利いてない件(doc/prj/log/_log.sn)
+- del：使用していない doc/prj/album/_album.jpg 削除
+- upd：ライブラリ更新
 ## v2.0.7
 - upd：ライブラリ更新
 ## v2.0.6
