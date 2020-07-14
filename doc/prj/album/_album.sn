@@ -33,9 +33,10 @@
 [endlet_ml]
 	[set_frame id=album var_name=val_dic text=&dic]
 	[let_frame id=album var_name=init function=true]
-	[event key='dom=album:.bgm' label=*bgm global=true call=true need_err=false]
-	[event key='dom=album:.mov' label=*mov global=true need_err=false]
+	[call label=*upd_bgmdsp]
+[return]
 
+*upd_bgmdsp
 	[set_frame id=album var_name=val_fnBgm text=&save:const.sn.sound.BGM.fn|'(No BGM)']
 	[let_frame id=album var_name=val2ctrl function=true]
 [return]
@@ -52,7 +53,9 @@
 	[frame id=album visible=true y=&const.sn.frm.album.height]
 	[tsy_frame id=album time=500 y=0]
 	[wait_tsy id=album]
-*wait
+
+	[event key='dom=album:.bgm' label=*bgm call=true]
+	[event key='dom=album:.mov' label=*mov call=true]
 	[event key=rightclick label=*exit]
 	[event key=command label=*exit]
 	[event key=control label=*exit]
@@ -64,28 +67,30 @@
 
 ; BGM切り替え
 *bgm
+	[frame id=album disabled=true]
 	[playbgm fn=&sn.event.domdata.arg]
-	[call label=*val2ctrl]
+	[call label=*upd_bgmdsp]
+	[frame id=album disabled=false]
 [return]
 
 ; 動画再生
 *mov
-	&vol = sys:const.sn.sound.BGM.volume
-	&fn = save:const.sn.sound.BGM.fn
-	[fadeoutbgm time=400]
-	[wait time=400]
-	[wf buf=BGM]
+	[frame id=album disabled=true]
+		&vol = sys:const.sn.sound.BGM.volume
+		&fn = save:const.sn.sound.BGM.fn
+		[fadeoutbgm time=400]
 
 	[lay layer=album fn=black face=&sn.event.domdata.arg visible=true float=true left=0 top=0]
 	[frame id=album visible=false]
 	[wv fn=&sn.event.domdata.arg]
 
+		[stopfadese buf=BGM]
+		[volume buf=BGM volume=&vol]
+		[playbgm fn=&fn cond='fn!=""']
 	[frame id=album visible=true]
+	[frame id=album disabled=false]
 	[lay layer=album fn=black visible=false]
-
-	[volume buf=BGM volume=&vol]
-	[playbgm fn=&fn cond='fn!=""']
-[jump label=*wait]
+[return]
 
 
 ;*********************************************************

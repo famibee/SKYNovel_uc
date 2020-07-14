@@ -41,6 +41,7 @@
 		{place: '13', pic: '../bg/yun_1317.jpg', dt: '2018/12/18 11:41', text: '　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。'},
 		{place: '14', pic: '../bg/yun_1184.jpg', dt: '2018/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
 	];
+	document.ondragstart = ()=> false;
 	document.addEventListener('DOMContentLoaded', ()=> {
 		M.Modal.init(document.querySelectorAll('.modal'));
 
@@ -82,7 +83,7 @@
 
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = null;
-		a.map(v=> {
+		a.forEach(v=> {
 			const modal = (val_mode == 'Load' && val_caller == 'Title')
 						|| (val_mode == 'Save' && v.dt == '');
 			lst.insertAdjacentHTML('afterbegin', `

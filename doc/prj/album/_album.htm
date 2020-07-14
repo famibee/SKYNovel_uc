@@ -20,6 +20,7 @@
 		{"type": "bgm", "fn": "free61", "title": "free61(BGM)", "enabled": "true"},
 		{"type": "bgm", "fn": "free0509", "title": "free0509(BGM)", "enabled": "true"},
 	];
+	document.ondragstart = ()=> false;
 	if (location.protocol == 'file:') document.addEventListener('DOMContentLoaded', init, false);	// ローカルデバッグ用
 
 	var val_dic = null;
@@ -28,7 +29,7 @@
 
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = '';
-		a.map(v=> {
+		a.forEach(v=> {
 			if (v.enabled == 'false') {
 				lst.insertAdjacentHTML('beforeend', `
 <div class="col s6 m4 l3 hoverable sld2dsp grey lighten-2">
