@@ -45,7 +45,7 @@
 	document.addEventListener('DOMContentLoaded', ()=> {
 		M.Modal.init(document.querySelectorAll('.modal'));
 
-		const proc_mode = (location.protocol == 'http:')
+		const proc_mode = (location.protocol.slice(0, 4) == 'http')
 			? 'server'
 			: ('val2ctrl' in window.parent) ?'local' :'electron';
 		if (proc_mode == 'local') {	// ローカルデバッグ用

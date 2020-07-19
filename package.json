@@ -8,7 +8,7 @@
 	"author": "夕街昇雪",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.2.0",
+		"@famibee/skynovel": "^1.2.2",
 		"about-window": "^1.13.4",
 		"crypto-js": "^4.0.0",
 		"humane-js": "^3.2.2"
