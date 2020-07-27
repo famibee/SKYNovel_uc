@@ -99,9 +99,13 @@
 *quick_save
 	[return cond="! isGameState"]
 
+	[if exp='sys:archive.quick_place == null']
+		&sys:archive.quick_place = 1000
+	[else]
+		&sys:archive.quick_place = (sys:archive.quick_place -1000 +1) %10 +1000
+	[endif]
 	&_save.place = sys:archive.quick_place
 	[call label=*do_save]
-	[let name="sys:archive.quick_place" text="&(_save.place +1) % const._sl.th_一ページあたりの数 +(const._sl.ページ数 *const._sl.th_一ページあたりの数)"]
 
 	[notice text='クイックセーブしました']
 [return]
@@ -134,12 +138,13 @@
 *quick_load
 	[return cond="! isGameState"]
 	[return cond="sys:archive.quick_place == null"]
-	[let name="_sl.place" text="&(sys:archive.quick_place +const._sl.th_一ページあたりの数 -1) % const._sl.th_一ページあたりの数 +(const._sl.ページ数 *const._sl.th_一ページあたりの数)"]
-	[return cond="sys:const.sn.bookmark[_sl.place] == null"]
+	&_load.place = sys:archive.quick_place
 
 	[enable_event enabled=false]
 		[ask_ync_cleartext]
-		[button enabled=false layer="mes_yesno" page=fore pic="& 'userdata:/'+ _sl.place +'/pic.jpg'" left=570 top=220]
+		&pic = 'userdata:/'+ _load.place +'/pic.jpg'
+		[let name=pic text='_archive_browser.jpg' cond=!const.sn.isApp]
+		[graph layer=mes_yesno page=fore pic=&pic x==350 y==-100 width=&const.sn.config.window.width/6 height=&const.sn.config.window.height/6 wait=0]
 		[ask_ync mes="クイックロードしますか？" no_cleartext=true]
 			;#FONT	クイックロードしますか？
 	[enable_event enabled=true]

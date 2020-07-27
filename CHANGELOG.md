@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.0.11
+- upd：クイックセーブ・ロード関連の作り込み
+- upd：ライブラリ更新
 ## v2.0.10
 - upd：ライブラリ更新
 - upd：doc/prj/archive/_archive.htm のテストコード判定修正
