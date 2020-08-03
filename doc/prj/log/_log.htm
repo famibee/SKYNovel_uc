@@ -2,8 +2,11 @@
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../lib/materialize.min.css">
-<style type="text/css">html {user-select: none; -webkit-user-select: none;}</style>
-<script defer src="../lib/materialize.min.js"></script>
+<style type="text/css">
+html {user-select: none; -webkit-user-select: none;}
+#logMap li {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+</style>
+<script defer src="../lib/smart-table-scroll.min.js"></script>
 <script>
 	let a = [
 		{text: '　桜の樹の下には屍体が埋まつてゐる！'},
@@ -19,32 +22,61 @@
 		if (proc_mode == 'local') val2ctrl();	// ローカルデバッグ用
 	}, false);
 
-	var val_dic = null;
+	var val_dic = null;	// わざとvar
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) a = JSON.parse(val_dic);
+		const a2 = a.map((v, i)=> {return {i: i, t: v.text,};});
+		const len = a2.length;
 
-		let htm = '', htm2 = '';
-		const len = a.length;
-		for (let i=len -1; i>=0; --i) {
-			const v = a[i];
-			htm += `
-<a class="collection-item section scrollspy black-text" id="${i}">
-	<span class="badge">${i+1}</span>
-	${v.text}
-</a>`;
-			htm2 += `
-<li style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a href="#${i}">${i+1}.${v.text}</a></li>`;
-		}
-		document.getElementsByClassName('collection')[0].innerHTML = htm;
-		document.getElementsByClassName('table-of-contents')[0].innerHTML = htm2;
-		const instances = M.ScrollSpy.init(document.querySelectorAll('.scrollspy'));
+		// https://github.com/cmpolis/smart-table-scroll
+		const eLog = document.getElementById('log');
+		eLog.textContent = '';	// 必須
+		new SmartTableScroll({	// 毎回再生成
+			el: eLog,
+			data: a2,
+			availableNodes: len,
+			buildRow: d=> {
+				const n = document.createElement('div');
+				n.innerHTML = `
+<div id="r${d.i}" class="collection-item section">
+<a class="black-text"><span class="badge">${d.i+1}</span>${d.t}</a>
+</div>`
+				return n;
+			},
+			updateRow: (d, el)=> el.childNodes[0].innerHTML = `
+<a class="black-text"><span class="badge">${d.i+1}</span>${d.t}</a>`,
+		});
 
-		setTimeout(()=> {	// 一番下へスクロール
-			const de = document.documentElement;
-			de.scrollTop = de.scrollHeight;
+		const eLogMap = document.getElementById('logMap');
+		eLogMap.textContent = '';	// 必須
+		new SmartTableScroll({	// 毎回再生成
+			el: eLogMap,
+			data: a2,
+			availableNodes: len,
+			buildRow: d=> {
+				const n = document.createElement('div');
+				n.innerHTML = `<li><a>${d.i+1}.${d.t}</a></li>`
+				return n;
+			},
+			updateRow: (d, el)=> {
+				el.childNodes[0].innerHTML = `<a>${d.i+1}.${d.t}</a>`;
+			},
+		});
+
+		const de = document.documentElement;
+		const scrl = py=> de.scrollTop = py;
+		setTimeout(()=> {
+			de.scrollTop = de.scrollHeight;	// 一番下（最新）へスクロール
+
+			const yLog = eLog.getBoundingClientRect().top;
+			document.querySelectorAll('#logMap a').forEach((v, i)=> {
+				const rct = document.getElementById(`r${i}`)
+				.getBoundingClientRect();
+				const py = rct.top -yLog;
+				v.addEventListener('click', ()=> scrl(py), {passive: true});
+			});
 		}, 0);
 	}
-
 </script>
 </head>
 <body class="blue-grey lighten-4" oncontextmenu="return false;">
@@ -55,21 +87,12 @@
 		</div>
 	</nav></div>
 
-	<div class="section">
-	<div class="row">
+	<div class="section row">
 		<div class="col s12 m9 l10">
-		<div class="collection">
-			<a class="collection-item section scrollspy black-text" id="1">
-				<span class="badge">1</span>
-				　桜の樹の下には屍体が埋まつてゐる！
-			</a>
-		</div>
+			<div id="log" class="collection"></div>
 		</div>
 		<div class="col hide-on-small-only m3 l2">
-			<ul class="section table-of-contents">
-				<li style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a href="#1">1.桜の樹の下には屍体が埋まつてゐる！</a></li>
-			</ul>
+			<ul id="logMap" class="section table-of-contents"></ul>
 		</div>
-	</div>
 	</div>
 </body></html>
