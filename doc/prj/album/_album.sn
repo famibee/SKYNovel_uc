@@ -54,8 +54,8 @@
 	[tsy_frame id=album time=500 y=0]
 	[wait_tsy id=album]
 
-	[event key='dom=album:.bgm' label=*bgm call=true]
-	[event key='dom=album:.mov' label=*mov call=true]
+	[event key='dom=album:.bgm' label=*bgm call=true need_err=false]
+	[event key='dom=album:.mov' label=*mov call=true need_err=false]
 	[event key=rightclick label=*exit]
 	[event key=command label=*exit]
 	[event key=control label=*exit]
