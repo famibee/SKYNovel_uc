@@ -14,7 +14,7 @@
 	[event global=true call=true key=alt+enter label=*toggle_full_screen]
 		&w = const.flash.display.Stage.displayState=='normal'
 		&s = const.sn.config.window.height > const.sn.screenResolutionY || const.sn.config.window.width > const.sn.screenResolutionX
-		[toggle_full_screen cond="w && s"]
+		[toggle_full_screen cond='w && s']
 		; プレイ環境より画面サイズが大きい場合は全画面モードに
 	[event global=true call=true key=left label=*set_focus arg=prev]
 	[event global=true call=true key=right label=*set_focus arg=next]
@@ -45,10 +45,10 @@
 	[img layer=2]
 
 	[clear_lay layer=mes page=back]
-		[button text='最初から' left=250 top=360 width=90 label=*start hint="最初の話から始める" enterse=&sysse_choice clickse=&sysse_ok2_long]
-		[button text=' ロード ' left=350 top=360 width=90 call=true label=*load hint="セーブ箇所から続ける" enterse=&sysse_choice clickse=&sysse_ok1]
-		[button text='アルバム' left=550 top=360 width=90 call=true label=*album hint="アルバム鑑賞" enterse=&sysse_choice clickse=&sysse_ok1]
-		[button text=' 設 定 ' left=650 top=360 width=90 call=true label=*config hint="ゲーム設定" enterse=&sysse_choice clickse=&sysse_ok1]
+		[button text='最初から' left=250 top=360 width=90 label=*start hint='最初の話から始める' enterse=&sysse_choice clickse=&sysse_ok2_long]
+		[button text=' ロード ' left=350 top=360 width=90 call=true label=*load hint='セーブから続ける' enterse=&sysse_choice clickse=&sysse_ok1]
+		[button text='アルバム' left=550 top=360 width=90 call=true label=*album hint='アルバム鑑賞' enterse=&sysse_choice clickse=&sysse_ok1]
+		[button text=' 設 定 ' left=650 top=360 width=90 call=true label=*config hint='ゲーム設定' enterse=&sysse_choice clickse=&sysse_ok1]
 
 	[trans layer=&dsp_lays time=0]
 	[wt]
@@ -75,26 +75,26 @@
 ;********************************************************
 *start
 	[enable_event enabled=false]
-	[jump fn="ss_000"]
+	[jump fn=ss_000]
 
 *load
 	[enable_event enabled=false]
-	[call fn="_archive"]
-	[jump fn="_archive" label=*title_load]
+	[call fn=_archive]
+	[jump fn=_archive label=*title_load]
 
 *album
 	[enable_event enabled=false]
-	[call fn="_album"]
-	[jump fn="_album" label=*title_album]
+	[call fn=_album]
+	[jump fn=_album label=*title_album]
 
 *config
 	[enable_event enabled=false]
-	[call fn="_config"]
-	[jump fn="_config" label=*title_config]
+	[call fn=_config]
+	[jump fn=_config label=*title_config]
 
 *close
 	[enable_event enabled=false]
-	[ask_ync mes="ゲームを終了しますか？"]
+	[ask_ync mes='ゲームを終了しますか？']
 		;#FONT	ゲームを終了しますか？
 	[enable_event enabled=true]
 *close_do
@@ -106,8 +106,8 @@
 ;********************************************************
 *toggle_full_screen
 	[toggle_full_screen]
-	[let name="txt" text="ウインドウモード"]
-	[let name="txt" text="全画面モード" cond=const.sn.displayState]
+	[let name=txt text='ウインドウモード']
+	[let name=txt text='全画面モード' cond=const.sn.displayState]
 	[notice text=&txt]
 
 	; 設定画面変更
@@ -122,7 +122,7 @@
 
 *snapshot
 	[snapshot]
-	[notice text="スクリーンショットをダウンロードしました"]
+	[notice text='スクリーンショットをダウンロードしました']
 [return]
 
 *reload_script
@@ -132,7 +132,7 @@
 *stats
 	[event global=true del=true key=f7]
 ;;	[stats]
-	[notice text="F7 test"]
+	[notice text='F7 test']
 [return]
 
 *dump
