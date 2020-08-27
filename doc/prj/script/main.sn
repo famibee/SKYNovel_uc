@@ -16,8 +16,8 @@
 		&s = const.sn.config.window.height > const.sn.screenResolutionY || const.sn.config.window.width > const.sn.screenResolutionX
 		[toggle_full_screen cond='w && s']
 		; プレイ環境より画面サイズが大きい場合は全画面モードに
-	[event global=true call=true key=left label=*set_focus arg=prev]
-	[event global=true call=true key=right label=*set_focus arg=next]
+	[event global=true call=true key=ArrowLeft label=*set_focus arg=prev]
+	[event global=true call=true key=ArrowRight label=*set_focus arg=next]
 	[event global=true call=true key=p label=*snapshot]
 	[event global=true call=true key=F5 label=*reload_script cond=const.sn.isDebugger]
 	[event global=true call=true key=F7 label=*stats cond=const.sn.isDebugger]
@@ -117,7 +117,7 @@
 [return]
 
 *set_focus
-	[set_focus to=&const.sn.eventArg]
+	[set_focus to=&sn.eventArg]
 [return]
 
 *snapshot
