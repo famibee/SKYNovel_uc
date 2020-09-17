@@ -1,27 +1,48 @@
 <!doctype html><html lang="ja">
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../lib/materialize.min.css">
-<style type="text/css">html {user-select: none; -webkit-user-select: none;}</style>
-<script defer src="../lib/materialize.min.js"></script>
+<link rel="stylesheet" href="../lib/mdb.min.css">
+<style type="text/css">
+	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
+	body {padding-top: 70px;}
+	.row {--bs-gutter-x: 0.3rem;}	 /* mdbを微調整 */
+	.btn:hover, .btn:focus, .sn_chk:hover, .sn_chk:focus {
+		border: solid black;
+		background: rgba(204, 255, 204, 0.5);
+		color: black;
+		filter: drop-shadow(1px 3px 5px rgba(250, 250, 250, 0.9));
+	}
+	.sn_sld:hover, .sn_sld:focus {
+		border: solid black;
+		background: rgba(204, 255, 204, 0.5);
+		color: black;
+		filter: drop-shadow(1px 3px 5px rgba(250, 250, 250, 0.9));
+		border-radius: 20px;
+	}
+
+</style>
+<script defer src="../lib/mdb.min.js"></script>
+<!--
+	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
+-->
 <script>
+	const slds = document.getElementsByClassName('sn_sld');
+	const dsps = document.getElementsByClassName('dsp_val');
 	document.addEventListener('DOMContentLoaded', ()=> {
 		// コンポーネントにイベント処理追加
-		const elms = document.getElementsByClassName('sld2dsp');
-		for (let i=0, max=elms.length; i<max; ++i) {
-			const bar = elms[i].getElementsByTagName('input')[0];
-			if (! bar) continue;
-			const target = elms[i].getElementsByClassName('sld2val')[0];
+		for (let i=0, max=slds.length; i<max; ++i) {
+			const bar = slds[i];
+			const target = dsps[i];
 			bar.addEventListener('input', ()=> {
-				window[`val_${bar.id}`] = bar.value;	// 変数更新
-				target.innerHTML = bar.value;			// スライダー数値表示を更新
+				globalThis[`val_${bar.id}`] = bar.value;	// 変数更新
+				target.textContent = bar.value;			// スライダー数値表示を更新
 			}, {passive: true});
 		}
 		const chks = document.getElementsByClassName('sn_chk');
 		for (let i=0, max=chks.length; i<max; ++i) {
 			const chk = chks[i];
 			chk.addEventListener('input', ()=> {
-				window[`val_${chk.id}`] = chk.checked;	// 変数更新
+				globalThis[`val_${chk.id}`] = chk.checked;	// 変数更新
 			}, {passive: true});
 		}
 		document.getElementById('sldBackAlpha').addEventListener('input', e=> {
@@ -30,12 +51,11 @@
 		}, {passive: true});
 
 		sn_repRes();	// 画像更新（SKYNovelが削除・独自に呼び出す）
-	}, false);
+	});
 
 	function sn_repRes(setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
 		setImg = setImg ?? (i=> i.src = i.dataset.src);
-		const elms = document.getElementsByTagName('img');
-		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
+		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
 	}
 
 	function val2ctrl() {	// 変数→コンポーネント
@@ -45,32 +65,28 @@
 		const sld2 = document.getElementsByClassName('sn_sld');
 		for (let i=0, max=sld2.length; i<max; ++i) {
 			const e = sld2[i];
-			e.value = window[`val_${e.id}`];
+			e.value = globalThis[`val_${e.id}`];
 		}
-		const elms = document.getElementsByClassName('sld2dsp');
-		for (let i=0, max=elms.length; i<max; ++i) {
-			const bar = elms[i].getElementsByTagName('input')[0];
-			if (! bar) continue;
-			const target = elms[i].getElementsByClassName('sld2val')[0];
-			target.innerHTML = bar.value;			// スライダー数値表示を更新
+		for (let i=0, max=slds.length; i<max; ++i) {
+			dsps[i].textContent = slds[i].value;	// スライダー数値表示を更新
 		}
 
 		const chks = document.getElementsByClassName('sn_chk');
 		for (let i=0, max=chks.length; i<max; ++i) {
 			const e = chks[i];
-			e.checked = (window[`val_${e.id}`] == 'true');
+			e.checked = (globalThis[`val_${e.id}`] == 'true');
 		}
 	}
 	function ctrl2val() {	// コンポーネント→変数
 		const slds = document.getElementsByClassName('sn_sld');
 		for (let i=0, max=slds.length; i<max; ++i) {
 			const e = slds[i];
-			window[`val_${e.id}`] = e.value;
+			globalThis[`val_${e.id}`] = e.value;
 		}
 		const chks = document.getElementsByClassName('sn_chk');
 		for (let i=0, max=chks.length; i<max; ++i) {
 			const e = chks[i];
-			window[`val_${e.id}`] = e.checked;
+			globalThis[`val_${e.id}`] = e.checked;
 		}
 	}
 	function drawSampleView() {	// バック不透明度のイメージ表示
@@ -79,123 +95,206 @@
 
 </script>
 </head>
-<body class="blue-grey lighten-4" oncontextmenu="return false;">
-	<div class="navbar-fixed"><nav class="blue-grey darken-1" role="navigation">
-		<div class="nav-wrapper container">
-			<a class="waves-effect waves-light btn grey" id="close">x</a>
-			<span class="brand-logo center">設定画面</span>
-			<span class="nav-wrapper">　現在 ver <span id="version">1.00</span></span>
-		</div>
-	</nav></div>
+<body class="bg-dark bg-gradient" oncontextmenu="return false">
 
-	<div>
-		<div class="section">
-		<h4 class="center blue-grey-text">テキスト</h4>
-		<div class="row">
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp grey lighten-2">
-				<h6>バック不透明度</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldBackAlpha" min="0" max="100" step="5" value="70"/></p>
-				<span class="badge"><span class="sld2val">70</span>%</span>
-			</div>
-			<div class="col s6 m4 l3 card hoverable sld2dsp grey lighten-2">
-				<div class="card-image">
-					<img data-src="ThBackAlpha.jpg"/>
-					<span class="card-title black-text" style="width: 100%; background: rgba(255, 255, 255, 0.7);" id="sampleBackAlpha">文字表示サンプル</span>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp red lighten-3">
-				<h6>通常文字表示待ち</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldChWaitMsec" min="0" max="500" step="10" value="10"></p>
-				<div class="switch"><label class="black-text">
-					待たない
-					<input class="sn_chk" type="checkbox" id="chkChDoWait" checked="."/><span class="lever"></span>
-					待つ
-				</label></div>
-				<span class="badge black-text"><span class="sld2val">10</span> msec</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp red lighten-2">
-				<h6>自動読みクリック待ち</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldAutoLWaitMsec" min="0" max="3500" step="10" value="3500"></p>
-				<span class="badge black-text"><span class="sld2val">3500</span> msec</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp red lighten-2">
-				<h6>自動読み改ページ待ち</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldAutoPWaitMsec" min="0" max="3500" step="10" value="3500"></p>
-				<span class="badge black-text"><span class="sld2val">3500</span> msec</span>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp yellow lighten-3">
-				<h6>既読文字表示待ち</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldChWaitMsec_Kidoku" min="0" max="500" step="10" value="10"></p>
-				<div class="switch"><label class="black-text">
-					待たない
-					<input class="sn_chk" type="checkbox" id="chkChDoWait_Kidoku"/><span class="lever"></span>
-					待つ
-				</label></div>
-				<span class="badge"><span class="sld2val">10</span> msec</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp yellow lighten-2">
-				<h6>既読読みクリック待ち</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldAutoLWaitMsec_Kidoku" min="0" max="3500" step="10" value="3500"></p>
-				<span class="badge"><span class="sld2val">3500</span> msec</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp yellow lighten-2">
-				<h6>既読読み改ページ待ち</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldAutoPWaitMsec_Kidoku" min="0" max="3500" step="10" value="3500"></p>
-				<span class="badge"><span class="sld2val">3500</span> msec</span>
-			</div>
-		</div>
+<nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
+<div class="container-fluid">
 
-		<h4 class="center blue-grey-text">音量</h4>
-		<div class="row">
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp indigo lighten-4">
-				<h6>全体的</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldVolGlobal" min="0" max="100" step="5" value="80"></p>
-				<span class="badge"><span class="sld2val">80</span> %</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp indigo lighten-3">
-				<h6>ＢＧＭのみ</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldVolBgm" min="0" max="100" step="5" value="100"></p>
-				<span class="badge black-text"><span class="sld2val">100</span> %</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp indigo lighten-3">
-				<h6>ボイスのみ</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldVolVoice" min="0" max="100" step="5" value="100"></p>
-				<span class="badge black-text"><span class="sld2val">100</span> %</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp indigo lighten-3">
-				<h6>効果音のみ</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldVolSe" min="0" max="100" step="5" value="100"></p>
-				<span class="badge black-text"><span class="sld2val">100</span> %</span>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable sld2dsp indigo lighten-3">
-				<h6>システム音のみ</h6>
-				<p class="range-field"><input class="sn_sld mdl-slider mdl-js-slider" type="range" id="sldVolSys" min="0" max="100" step="5" value="100"></p>
-				<span class="badge black-text"><span class="sld2val">100</span> %</span>
-			</div>
-		</div>
+	<div class="collapse navbar-collapse mr-auto">
+		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
+		</button>
+	</div>
 
-		<div class="row">
-			<div class="col s6 m4 l3 card-panel hoverable grey lighten-2">
-				<h6>画面モード</h6>
-				<p><div class="switch"><label class="black-text">
-					ウインドウ
-					<input class="sn_chk" type="checkbox" id="chkScrMode" checked="."/><span class="lever"></span>
-					全画面
-				</label></div></p>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable grey lighten-2">
-				<h6>プレイデータのバックアップ</h6>
-				<p><a class="waves-effect waves-light btn blue lighten-2" id="export">export</a></p>
-			</div>
-			<div class="col s6 m4 l3 card-panel hoverable grey lighten-2">
-				<h6>プレイデータのリストア</h6>
-				<p><a class="waves-effect waves-light btn pink lighten-2" id="import">import</a></p>
-			</div>
-		</div>
+	<div class="collapse navbar-collapse justify-content-center">
+		<span class="navbar-brand">設定画面</span>
+	</div>
+
+	<div class="collapse navbar-collapse ml-auto">
+		<span class="navbar-text text-white ml-auto">
+			現在 ver <span id="version">1.00</span>
+		</span>
+	</div>
+
+</div>
+</nav>
+
+
+<div class="container-fluid">
+<h3 class="text-center text-light">テキスト</h3>
+<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+
+<div class="col"><div class="card text-white bg-dark border border-light p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">バック不透明度</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldBackAlpha" min="0" max="100" step="5" value="70"/>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">70</span>%
+	</div>
+</div></div>
+<div class="col"><div class="card p-1 mb-1" data-id="1">
+	<div class="bg-image hover-overlay ripple" data-ripple-color="light">
+		<img data-src="ThBackAlpha.jpg" class="img-fluid"/>
+		<div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+	</div>
+	<div class="card-img-overlay">
+		<p class="card-text" style="background: rgba(255, 255, 255, 0.7);" id="sampleBackAlpha">
+		文字表示サンプル<br/>
+		テキストウインドウの不透明度を表示します。
+	</p>
+	</div>
+</div></div>
+
+</div>
+<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+
+<div class="col"><div class="card bg-warning p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">通常文字表示待ち</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldChWaitMsec" min="0" max="500" step="10" value="10"/>
+	<div class="form-check form-switch">
+		<input class="form-check-input sn_chk" type="checkbox" id="chkChDoWait"/>
+		<label class="form-check-label" for="chkChDoWait">待つ</label>
+	</div>
+	<div class="card-text text-right">
+		<span class="dsp_val">10</span> msec
+	</div>
+</div></div>
+<div class="col"><div class="card bg-warning p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">自動読みクリック待ち</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldAutoLWaitMsec" min="0" max="3500" step="10" value="3500"/>
+	<div class="card-text text-right">
+		<span class="dsp_val">3500</span> msec
+	</div>
+</div></div>
+<div class="col"><div class="card bg-warning p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">自動読み改ページ待ち</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldAutoPWaitMsec" min="0" max="3500" step="10" value="3500"/>
+	<div class="card-text text-right">
+		<span class="dsp_val">3500</span> msec
+	</div>
+</div></div>
+
+</div>
+<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+
+<div class="col"><div class="card text-white bg-dark border border-warning p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">既読文字表示待ち</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldChWaitMsec_Kidoku" min="0" max="500" step="10" value="10"/>
+	<div class="form-check form-switch">
+		<input class="form-check-input sn_chk" type="checkbox" id="chkChDoWait_Kidoku"/>
+		<label class="form-check-label" for="chkChDoWait_Kidoku">待つ</label>
+	</div>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">10</span> msec
+	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-warning p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">既読読みクリック待ち</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldAutoLWaitMsec_Kidoku" min="0" max="3500" step="10" value="3500"/>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">3500</span> msec
+	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-warning p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">既読読み改ページ待ち</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldAutoPWaitMsec_Kidoku" min="0" max="3500" step="10" value="3500"/>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">3500</span> msec
+	</div>
+</div></div>
+
+</div>
+
+<h3 class="text-center text-light">音量</h3>
+<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+
+<div class="col"><div class="card bg-info p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">全体的</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldVolGlobal" min="0" max="100" step="5" value="80"/>
+	<div class="card-text text-right">
+		<span class="dsp_val">80</span> %
+	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">ＢＧＭのみ</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldVolBgm" min="0" max="100" step="5" value="80"/>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">80</span> %
+	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">ボイスのみ</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldVolVoice" min="0" max="100" step="5" value="80"/>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">80</span> %
+	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">効果音のみ</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldVolSe" min="0" max="100" step="5" value="80"/>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">80</span> %
+	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">システム音のみ</p>
+	</div>
+	<input type="range" class="form-range sn_sld" id="sldVolSys" min="0" max="100" step="5" value="80"/>
+	<div class="card-text text-light text-right">
+		<span class="dsp_val">80</span> %
+	</div>
+</div></div>
+
+</div>
+
+<h3 class="text-center text-light">システム</h3>
+<div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+
+<div class="col"><div class="card text-white bg-success p-1 mb-1">
+	<div class="card-body">
+		<p class="card-text">画面モード</p>
+		<div class="form-check form-switch">
+			<input class="form-check-input sn_chk" type="checkbox" id="chkScrMode"/>
+			<label class="form-check-label" for="chkScrMode">全画面か</label>
 		</div>
 	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-primary p-1 mb-1">
+	<div class="card-body text-center">
+		<p class="card-text">プレイデータの<br/>バックアップ</p>
+		<button id="export" type="button" class="btn btn-primary">export</button>
+	</div>
+</div></div>
+<div class="col"><div class="card text-white bg-dark border border-danger p-1 mb-1">
+	<div class="card-body text-center">
+		<p class="card-text">プレイデータの<br/>リストア</p>
+		<button id="import" type="button" class="btn btn-danger">import</button>
+	</div>
+</div></div>
+
+</div>
+</div>
+
 </body></html>

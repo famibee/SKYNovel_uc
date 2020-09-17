@@ -134,10 +134,10 @@
 
 	[let name=l text=%l|40]
 	[let name=w text=%w|292]
-	[let name=sysmenu_left text=&l-18]
+	[let name=sysmenu_left text=&l+12]
 	[let name=sysmenu_left2 text=&sysmenu_left+w+13]
-	;&r = 0							; ボタンを横にしたいなら
-	&r = -90 *const.sn.Math.PI /180	; ボタンを縦にしたいなら
+	;&r = 0	; ボタンを横にしたいなら
+	&r = 90	; ボタンを縦にしたいなら
 
 	[lay layer=mes_sysmenu page=back]
 	[button layer=mes_sysmenu page=back text='クイックセーブ' rotation=&r left=&sysmenu_left2 top=600 global=true event_at_down=true fn=_archive label=*quick_save call=true hint='クイックセーブ' enterse=&sysse_choice]
@@ -212,8 +212,8 @@
 
 	[let name=sysmenu_left text=200]
 	[let name=sysmenu_top text=&const.sn.lay.mes.back.y+mp:h-10]
-	&r = 0							; ボタンを横にしたいなら
-	;&r = -90 *const.sn.Math.PI /180	; ボタンを縦にしたいなら
+	&r = 0	; ボタンを横にしたいなら
+	;&r = 90	; ボタンを縦にしたいなら
 
 	[lay layer=mes_sysmenu page=back]
 	[button layer=mes_sysmenu page=back text='タイトルへ' rotation=&r left=&sysmenu_left top=&sysmenu_top global=true event_at_down=true fn=sub label=*title_sys call=true hint='タイトルへ' enterse=&sysse_choice]

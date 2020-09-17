@@ -159,7 +159,7 @@
 ;*********************************************************
 *title_config
 	[return cond=const.sn.frm.config.visible]
-	&呼び元 = "Title"
+	&呼び元 = 'Title'
 [jump label=*main]
 
 ;*********************************************************
@@ -169,11 +169,12 @@
 *keycall_config
 	[return cond=const.sn.frm.config.visible]
 	[se fn=&sysse_ok1 buf=SYS]
-	&呼び元 = "Text"
+	&呼び元 = 'Text'
 
 ;*********************************************************
 *main
 	[enable_event enabled=false]
+	[enable_event enabled=false layer=mes_sysmenu]
 	[clear_event]
 
 	; 最新値で更新
@@ -185,12 +186,14 @@
 	[wait_tsy id=config]
 
 	&isGameState = false
-	[event key=rightclick label=*exit]
-	[event key=command label=*exit]
-	[event key=control label=*exit]
-	[event key=end label=*exit]
-	[event key=shift label=*exit]
 	[event key=c label=*exit]
+	[event key=rightclick label=*exit]
+	[event key=meta label=*exit]
+	[event key=control label=*exit]
+	[event key=delete label=*exit]
+	[event key=backspace label=*exit]
+	[event key=shift label=*exit]
+	[event key=end label=*exit]
 	[set_focus to=null]
 [s]
 
@@ -235,6 +238,7 @@
 	[frame id=config visible=false]
 
 	[enable_event enabled=true]
+	[enable_event enabled=true layer=mes_sysmenu]
 	[set_focus to=null]
 	[let name=isGameState text=true cond="呼び元=='Text'"]
 [return]
@@ -250,6 +254,7 @@
 *imported
 	[call label=*exit]
 	[enable_event enabled=false]
+	[enable_event enabled=false layer=mes_sysmenu]
 
 	&t = 'ゲームを再起動する必要があります。ブラウザリロードしてください'
 	[let name=t text='ゲームを再起動する必要があります。（起動は手動で）' cond=const.sn.isApp]

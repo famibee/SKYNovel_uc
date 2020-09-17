@@ -17,11 +17,14 @@
 	[return cond="! isGameState"]
 
 	[enable_event enabled=false]
+	[enable_event enabled=false layer=mes_sysmenu]
 	[clear_event]
 
 	; 最新値で更新
 	[set_frame id=log var_name=val_dic text=&const.sn.log.json]
 	[let_frame id=log var_name=val2ctrl function=true]
+	[set_focus del='dom=log:#log button']
+	[set_focus add='dom=log:#log button']
 
 	; 下部からスライドイン
 	[frame id=log visible=true y=&const.sn.frm.log.height]
@@ -29,12 +32,14 @@
 	[wait_tsy id=log]
 
 	&isGameState = false
-	[event key=rightclick label=*exit]
 	[event key=r label=*exit]
+	[event key=rightclick label=*exit]
+	[event key=meta label=*exit]
+	[event key=control label=*exit]
 	[event key=delete label=*exit]
 	[event key=backspace label=*exit]
 	[event key=shift label=*exit]
-	[event call=true key=upwheel label=*null]
+	[event key=end label=*exit]
 [s]
 
 *null
@@ -49,6 +54,7 @@
 	[frame id=log visible=false]
 
 	[enable_event enabled=true]
+	[enable_event enabled=true layer=mes_sysmenu]
 	[set_focus to=null]
 	&isGameState = true
 [return]

@@ -1,15 +1,61 @@
 <!doctype html><html lang="ja">
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../lib/materialize.min.css">
+<link rel="stylesheet" href="../lib/mdb.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
-	.card .card-title {margin-left: 0.5em; text-shadow: 0 -1px #999,0 -2px #999, 0 8px 15px rgba(0,0,0,0.7);}		/* 微調整 */
-	.btn_delete {top: 10px; right: 5px;}	/* 微調整 */
+	body {padding-top: 70px;}
+	.row {--bs-gutter-x: 0.3rem;}	 /* mdbを微調整 */
+	.btn:hover, .btn:focus {
+		border: solid black;
+		background: rgba(204, 255, 204, 0.5);
+		color: black;
+		filter: drop-shadow(1px 3px 5px rgba(250, 250, 250, 0.9));
+	}
+
+	.card-img-overlay {
+		pointer-events: none;
+	}
+	.card-img-overlay >p {
+		background: rgba(255, 255, 255, 0.7);
+	}
+	.mask {
+		background-color: rgba(251, 251, 251, 0.15);
+	}
+	.hover-overlay:hover ~ .card-text, .hover-overlay:focus ~ .card-text {
+		background-color: black;
+		color: white;
+		margin: 0;
+		padding: 0 8px;
+	}
+	.hover-overlay[data-focus] ~ .card-text {
+		background-color: inherit;
+		color: inherit;
+	}
+
+	.modal-header .close:hover, .modal-header .close:focus {
+		border: 1px solid black;
+		border-radius: 5px;
+	}
+	.modal-footer > .btn:hover, .modal-footer > .btn:focus {
+		border: 1px solid black;
+		border-radius: 5px;
+		filter: none;
+	}
+
+	.btn_delete {	/* 削除のフローティングボタン */
+		position: absolute;
+		top: 130px;
+		right: 10px;
+	}
+	.del_anime {
+		transition: 0.5s;
+		transform: scale(0.1);
+	}
 
 	/* 複数行で「text-overflow: ellipsis;」みたいなことをする方法色々。 | blue sky IT https://www.aozora-blog.com/2018/07/22/post-151/ */
 	.multiline-text {
-		background: white;
+		background-color: white;
 		position: relative;
 		height: 6em;	/* 4行 * 1.5 */
 		overflow: hidden;
@@ -19,7 +65,7 @@
 	.multiline-text:before,
 	.multiline-text:after {
 		position: absolute;
-		background: white;
+		background-color: inherit;
 	}
 	.multiline-text:before {
 		content: "...";
@@ -32,105 +78,159 @@
 		width: 100%;
 	}
 </style>
-<script defer src="../lib/materialize.min.js"></script>
+<script defer src="../lib/mdb.min.js"></script>
+<!--
+	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
+-->
 <script>
 	let a = [	// セーブデータの内容
-		{place: '10', pic: '_archive_browser.jpg', dt: '2018/12/18 11:44', text: '　ああ、桜の樹の下には屍体が埋まつてゐる！'},
-		{place: '11', pic: '../bg/yun_2384.jpg', dt: '2018/12/18 11:43', text: '　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。'},
-		{place: '12', pic: '../bg/yun_2352.jpg', dt: '2018/12/18 11:42', text: '  This is not justified test message. This is written many words and cut last sentence.'},
-		{place: '13', pic: '../bg/yun_1317.jpg', dt: '2018/12/18 11:41', text: '　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。'},
-		{place: '14', pic: '../bg/yun_1184.jpg', dt: '2018/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
+		{place: '10', pic: '_archive_browser.jpg', dt: '2020/12/18 11:44', text: '　ああ、桜の樹の下には屍体が埋まつてゐる！'},
+		{place: '11', pic: '../bg/bath_tub.jpg', dt: '2020/12/18 11:43', text: '　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。'},
+		{place: '12', pic: '../bg/dressing_room.jpg', dt: '2020/12/18 11:42', text: '  This is not justified test message. This is written many words and cut last sentence.'},
+		{place: '13', pic: '../bg/gas_lamp.jpg', dt: '2020/12/18 11:41', text: '　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。'},
+		{place: '14', pic: '../bg/hatsunekan_corridor.jpg', dt: '2020/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
 	];
 	document.ondragstart = ()=> false;
+	const proc_mode = (location.protocol.slice(0, 4) === 'http')
+		? 'server'
+		: ('val2ctrl' in window.parent) ?'local' :'electron';
+	let tgl_del = ()=> {};
 	document.addEventListener('DOMContentLoaded', ()=> {
-		M.Modal.init(document.querySelectorAll('.modal'));
-
-		const proc_mode = (location.protocol.slice(0, 4) == 'http')
-			? 'server'
-			: ('val2ctrl' in window.parent) ?'local' :'electron';
-		if (proc_mode == 'local') {	// ローカルデバッグ用
-			document.getElementById('do_loadsave').addEventListener('click', ()=> {
-				console.log(`do_loadsave:${val_place}`);
-			}, {passive: true});
-			document.getElementById('do_del').addEventListener('click', ()=> {
-				console.log(`do_delete:${val_place}`);
-			}, {passive: true});
+		if (proc_mode === 'local') {	// ローカルデバッグ用
+			document.getElementById('do_loadsave').addEventListener('click', ()=> console.log(`do_loadsave:${val_place}`), {passive: true});
 			val2ctrl();
 		}
-		document.getElementById('do_loadsave').addEventListener('click', ()=> {
-			M.Modal.getInstance(document.getElementById('modal_sl')).close();
-		}, {passive: true});
+
+		document.getElementById('tgl_del').addEventListener('click', ()=> tgl_del(), {passive: true});
+
 		document.getElementById('do_del').addEventListener('click', ()=> {
-			M.Modal.getInstance(document.getElementById('modal_del')).close();
+			if (proc_mode === 'local') console.log(`do_delete:${val_place}`);	// ローカルデバッグ用
 
-			const card = document.querySelector(`[data-id="${val_place}"]`).parentNode.parentNode;
-			card.classList.toggle('scale-out');
-			setTimeout(()=> card.parentNode.removeChild(card), 500);
+			// サムネイル削除
+			const card = document.querySelector(`[data-id="${val_place}"]`).parentElement;	// この辺はBootstrapテンプレ毎のくせがあるかも
+			card.classList.add('del_anime');
+			setTimeout(()=> card.parentElement.removeChild(card), 500);
 		}, {passive: true});
-	}, false);
 
-	var val_s_place = 0;		// 次のセーブ位置
+		Array.from(document.getElementsByClassName('modal'))
+		.forEach(elm=> {
+			elm.addEventListener('show.bs.modal', e=> {
+				is_modal = true;
+
+				// モーダル呼び出し元から id取得
+				const btn = event.relatedTarget;
+				val_place = btn.parentNode.dataset.id;
+
+				// モーダルのフォーカス移動のために他のボタンを一時無効・有効化
+				Array.from(document.querySelectorAll('.navbar button, .row button, .hover-overlay'))
+				.forEach(v=> v.disabled = true);
+			});
+			elm.addEventListener('hidden.bs.modal', e=> {
+				is_modal = false;
+
+				// モーダルのフォーカス移動のために他のボタンを一時無効・有効化
+				Array.from(document.querySelectorAll('.navbar button, .row button, .hover-overlay'))
+				.forEach(v=> v.disabled = false);
+
+				document.querySelector(`[data-id="${val_place}"] ${
+					elm.id === 'modal_del'
+					? '.btn_delete'
+					: '.hover-overlay'
+				}`).focus();
+			});
+		});
+	});
+
+	// SKYNovelから読み書きする変数なので、触らない
+	var val_s_place = 999;		// 次のセーブ位置
 	var val_dic = null;
 //	var val_caller = 'Title';	// タイトル画面から呼ばれた
 	var val_caller = 'Text';	// 本文から呼ばれた
 //	var val_mode = 'Load';		// ロード画面
 	var val_mode = 'Save';		// セーブ画面
 	var val_place = 0;
+	var is_delmode = false;
+	var is_modal = false;
+	function modal_hide() {
+		Array.from(document.querySelectorAll('#modal_sl, #modal_del'))
+		.forEach(elm=> mdb.Modal.getInstance(elm)?.hide());
+	}
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) a = JSON.parse(val_dic);
-		Array.from(document.getElementsByClassName('title')).map(v=> v.textContent = (val_mode == 'Load') ?'ロード' :'セーブ');
-		if (val_mode == 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: '　新規にセーブします', place: val_s_place});
+		const str_val_mode = (val_mode === 'Load') ?'ロード' :'セーブ';
+		Array.from(document.getElementsByClassName('mode')).forEach(v=> v.textContent = str_val_mode);
+		const doit = document.getElementById('do_loadsave');
+		doit.title = str_val_mode +'する';
+		doit.ariaLabel = str_val_mode;
 
+		// 配列 a をもとにサムネイル群を生成
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = null;
+		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: '　新規にセーブします', place: val_s_place});
 		a.forEach(v=> {
-			const modal = (val_mode == 'Load' && val_caller == 'Title')
-						|| (val_mode == 'Save' && v.dt == '');
+			const modal = (val_mode === 'Load' && val_caller === 'Title')
+						|| (val_mode === 'Save' && v.dt === '');
 			lst.insertAdjacentHTML('afterbegin', `
-<div class="col s6 m4 l3 hoverable sld2dsp grey lighten-2 scale-transition">
-	<div class="card">
-	<div class="card-image waves-effect waves-block waves-light ${
-		modal ?'no_modal' :'modal-trigger" href="#modal_sl'
-	}" data-id="${v.place}">
-		<img data-src="${v.pic}"/>
-		<span class="card-title">${v.dt}</span>${
-			(v.dt == '')
-			? ''
-			: `<a class="btn-floating halfway-fab waves-effect waves-light red btn_delete scale-transition scale-out modal-trigger" href="#modal_del">　ｘ</a>`}
-	</div>
-	<div class="card-content"><p class="multiline-text">${v.text}</p></div>
-	</div>
-</div>`);
+<div class="col"><div class="card p-1 mb-1" data-id="${v.place}">
+	<div class="bg-image hover-overlay ripple${
+		modal ?' no_modal' :'" data-toggle="modal" data-target="#modal_sl'
+	}" data-ripple-color="light">
+		<img data-src="${v.pic}" class="img-fluid"/>
+		<div class="mask"></div>
+	</div>${(v.dt === '') ?'' :`
+	<div class="card-img-overlay"><p class="card-text">${v.dt}</p></div>
+	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="削除する" aria-label="削除する" data-toggle="modal" data-target="#modal_del">
+		<span style="font-size: 2em;">&times</span>
+	</button>`}
+	<div class="card-text multiline-text">${v.text}</div>
+</div></div>`);
 		});
-		const doit = document.getElementById('do_loadsave');
-		const ev = document.createEvent('MouseEvents');
-		ev.initEvent('click', false, true);
-		let is_delmode = false;
-		Array.from(document.getElementsByClassName('no_modal'))
-		.forEach(v=> v.addEventListener('click', e=> {
-			if (is_delmode) return;
 
-			val_place = v.dataset.id;
-			doit.dispatchEvent(ev);	// モーダル確認したかのようなイベント発生
-		}, {passive: true}));
-		const aCard = Array.from(document.getElementsByClassName('card-image'));
-		aCard.forEach(v=> v.addEventListener('click', e=> {
-			if (is_delmode) return;
+		// 画像クリック→Save / Load
+		const ev = new MouseEvent('click', {cancelable: true});
+		const aCard = Array.from(lst.getElementsByClassName('bg-image'));
+		aCard.forEach(v=> {
+			v.addEventListener('click', ()=> {
+				if (is_delmode) return;		// Delモード時はSave/Loadさせない方が
 
-			val_place = v.dataset.id;
-			document.getElementById('modal_mes').textContent =
-				(val_mode == 'Save') ?'セーブデータを上書きし、元のデータは失われます' :'';
-		}, {passive: true}));
+				if (v.classList.contains('no_modal')) {	// 【未使用】サムネイル
+					val_place = v.parentNode.dataset.id;
+					doit.dispatchEvent(ev);	// 疑似クリック
+					return;
+				}
 
-		const aBtnX = Array.from(document.getElementsByClassName('btn_delete'));
-		aBtnX.forEach(v=> v.addEventListener('click', e=>
-			val_place = e.target.parentNode.dataset.id
-		));
-		document.getElementById('tgl_del').addEventListener('click', ()=> {
-			aBtnX.forEach(v=> v.classList.toggle('scale-out'));
-			aCard.forEach(v=> v.classList.toggle('modal-trigger'));
+				document.getElementById('modal_mes').textContent =
+					(val_mode === 'Save') ?'セーブデータを上書きし、元のデータは失われます' :'';
+			}, {passive: true});
+			if (! v.hasAttribute('tabindex')) v.tabIndex = 0;// フォーカスを持つように
+			v.addEventListener('focus', ()=> v.classList.add('z-depth-4'), {passive: true});
+			v.addEventListener('blur', ()=> v.classList.remove('z-depth-4'), {passive: true});
+		});
+
+		// 編集ボタン（削除ボタンを表示する）
+		const aBtnX = Array.from(lst.getElementsByClassName('btn_delete'));
+		const aMdl = Array.from(lst.querySelectorAll('.hover-overlay'));
+		is_delmode = false;	// 閉じて開いた時用
+		tgl_del = ()=> {	// 閉じて開いた時用に関数を差し替えする形式で
 			is_delmode = ! is_delmode;
-		}, {passive: true});
+			aMdl.forEach(v=> {
+				v.disabled = is_delmode;
+				v.dataset.focus = ! is_delmode;
+				if (! v.classList.contains('no_modal')) v.dataset.toggle = is_delmode ?'' :'modal'
+			});
+			aBtnX.forEach(v=> {
+				v.classList.toggle('scale-out');
+
+				// SKYNovelがフォーカスを与えないよう、明確に非表示指定
+				v.style.display = is_delmode ?'block' :'none';
+			});
+		};
+		// サムネイルごとの削除ボタン
+		aBtnX.forEach(v=> {
+			if (! v.hasAttribute('tabindex')) v.tabIndex = 0;// フォーカスを持つように
+			// SKYNovelがフォーカスを与えないよう、明確に非表示指定
+			v.style.display = 'none';
+		});
 
 		sn_repRes(setImg);	// 画像更新（SKYNovelが削除・独自に呼び出す）
 	}
@@ -138,41 +238,104 @@
 	let setImg = undefined;
 	function sn_repRes($setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
 		setImg = $setImg ?? (i=> i.src = i.dataset.src);
-		const elms = document.getElementsByTagName('img');
-		for (let i=0, max=elms.length; i<max; ++i) setImg(elms[i]);
+		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
 	}
 
 </script>
 </head>
-<body class="blue-grey lighten-4" oncontextmenu="return false">
-	<div class="navbar-fixed"><nav class="blue-grey darken-1" role="navigation">
-		<div class="nav-wrapper container">
-			<span class="brand-logo center"><span class="title">ロード</span>画面</span>
-			<a class="waves-effect waves-light btn grey" id="close">x</a>
-			<a class="btn-floating btn-large halfway-fab waves-effect waves-light teal" id="tgl_del">編集</a>
-		</div>
-	</nav></div>
+<body class="bg-dark bg-gradient" oncontextmenu="return false">
 
-	<div class="row"></div>
+<nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
+<div class="container-fluid">
 
-	<div id="modal_sl" class="modal">
-		<div class="modal-content">
-			<h4><span class="title">ロード</span>しますか？</h4>
-			<p id="modal_mes"></p>
-		</div>
-		<div class="modal-footer">
-			<a class="modal-close waves-effect waves-green btn-flat" id="do_loadsave"><span class="title">ロード</span>する</a>
-			<a class="modal-close waves-effect waves-green btn-flat">やめる</a>
-		</div>
+	<div class="collapse navbar-collapse mr-auto">
+		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
+		</button>
 	</div>
-	<div id="modal_del" class="modal">
-		<div class="modal-content">
-			<h4>セーブデータを削除しますか？</h4>
-		</div>
-		<div class="modal-footer">
-			<a class="modal-close waves-effect waves-green btn-flat" id="do_del">削除する</a>
-			<a class="modal-close waves-effect waves-green btn-flat">やめる</a>
-		</div>
+
+	<div class="collapse navbar-collapse justify-content-center">
+		<span class="navbar-brand"><span class="mode">ロード</span>画面</span>
 	</div>
+
+	<div class="collapse navbar-collapse ml-auto">
+		<button id="tgl_del" type="button" class="btn btn-outline-light btn-rounded ml-auto" aria-label="編集する" data-toggle="tooltip" title="編集する">
+			<svg width="1.9em" height="1.9em" viewbox="0 0 16 16" class="bi bi-trash-fill" style="pointer-events: none;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+			</svg>
+		</button>
+	</div>
+
+</div>
+</nav>
+
+
+<div class="container-fluid"><div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+
+<!-- 上記 val2ctrl() でクリア・再生成されるが、元は以下の連続 -->
+<div class="col"><div class="card p-1 mb-1" data-id="1">
+	<div class="bg-image hover-overlay ripple" data-ripple-color="light">
+		<img data-src="_archive_browser.jpg" class="img-fluid"/>
+		<div class="mask"></div>
+	</div>
+	<div class="card-img-overlay"><p class="card-text">2020/12/18 11:40</p></div>
+	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="削除する" aria-label="削除する" data-toggle="modal" data-target="#modal_del">
+		<span style="font-size: 2em;">&times</span>
+	</button>
+	<div class="card-text multiline-text">
+		　壁土が剥がれ歩く度に廊下が鳴る、ぼろぼろの廊下。
+	</div>
+</div></div>
+
+</div></div>
+
+
+
+<div id="modal_sl" class="modal fade" tabindex="-1" aria-labelledby="modal_sl_lbl" aria-hidden="true">
+<div class="modal-dialog"><div class="modal-content">
+<div class="modal-header">
+	<h5 class="modal-title" id="modal_sl_lbl">
+		<svg width="1.0625em" height="1em" viewbox="0 0 17 16" class="bi bi-exclamation-triangle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			<path fill-rule="evenodd" d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+		</svg>
+		<span class="mode">ロード</span>しますか？
+	</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<p id="modal_mes"></p>
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-info" title="やめる" aria-label="Cancel">やめる</button>
+	<button type="button" data-dismiss="modal" class="btn btn-danger" id="do_loadsave" title="ロードする" aria-label="Load"><span class="mode">ロード</span>する</button>
+</div>
+</div></div>
+</div>
+
+
+<div id="modal_del" class="modal fade" tabindex="-1" aria-labelledby="modal_del_lbl" aria-hidden="true">
+<div class="modal-dialog"><div class="modal-content">
+<div class="modal-header">
+	<h5 class="modal-title" id="modal_del_lbl">
+		<svg width="1.0625em" height="1em" viewbox="0 0 17 16" class="bi bi-exclamation-triangle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+			<path fill-rule="evenodd" d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+		</svg>
+		確認
+	</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	セーブデータを削除しますか？
+</div>
+<div class="modal-footer">
+	<button type="button" data-dismiss="modal" class="btn btn-info" title="やめる" aria-label="Cancel">やめる</button>
+	<button type="button" data-dismiss="modal" class="btn btn-danger" id="do_del" title="削除する" aria-label="Delete">削除する</button>
+</div>
+</div></div>
+</div>
 
 </body></html>

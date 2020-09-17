@@ -17,14 +17,14 @@
 	&save:sn.doRecLog = false
 
 	[event key=click label=*exit]
+	[event key=' ' label=*exit]
 	[event key=rightclick label=*exit]
-	[event key=command label=*exit]
+	[event key=meta label=*exit]
 	[event key=control label=*exit]
-	[event key=end label=*exit]
-	[event key=shift label=*exit]
 	[event key=delete label=*exit]
 	[event key=backspace label=*exit]
-	[event key=' ' label=*exit]
+	[event key=shift label=*exit]
+	[event key=end label=*exit]
 [s]
 
 ;*********************************************************

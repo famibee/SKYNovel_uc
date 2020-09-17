@@ -1,11 +1,26 @@
 <!doctype html><html lang="ja">
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../lib/materialize.min.css">
+<link rel="stylesheet" href="../lib/mdb.min.css">
 <style type="text/css">
-html {user-select: none; -webkit-user-select: none;}
-#logMap li {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
+	body {padding-top: 70px;}
+	.btn:hover, .btn:focus {
+		background: rgba(204, 255, 204, 0.5);
+		color: black;
+		filter: drop-shadow(1px 3px 5px rgba(25, 25, 25, 0.9));
+	}
+	.navbar .btn:hover, .navbar .btn:focus {
+		border: solid black;
+		filter: drop-shadow(1px 3px 5px rgba(250, 250, 250, 0.9));
+	}
+	#logMap {padding-left: 0;}	/* 見た目微調整 */
+	#logMap li {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 </style>
+<script defer src="../lib/mdb.min.js"></script>
+<!--
+	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
+-->
 <script defer src="../lib/smart-table-scroll.min.js"></script>
 <script>
 	let a = [
@@ -16,10 +31,10 @@ html {user-select: none; -webkit-user-select: none;}
 		{text: '　しかし、昨日、一昨日、俺の心をひどく陰気にしたものもそれなのだ。俺にはその美しさがなにか信じられないもののやうな気がした。俺は反対に不安になり、憂欝になり、空虚な気持になつた。しかし、俺はいまやつとわかつた。'},
 	];
 	document.addEventListener('DOMContentLoaded', ()=> {
-		const proc_mode = (location.protocol.slice(0, 4) == 'http')
+		const proc_mode = (location.protocol.slice(0, 4) === 'http')
 			? 'server'
 			: ('val2ctrl' in window.parent) ?'local' :'electron';
-		if (proc_mode == 'local') val2ctrl();	// ローカルデバッグ用
+		if (proc_mode === 'local') val2ctrl();	// ローカルデバッグ用
 	}, false);
 
 	var val_dic = null;	// わざとvar
@@ -38,13 +53,14 @@ html {user-select: none; -webkit-user-select: none;}
 			buildRow: d=> {
 				const n = document.createElement('div');
 				n.innerHTML = `
-<div id="r${d.i}" class="collection-item section">
-<a class="black-text"><span class="badge">${d.i+1}</span>${d.t}</a>
-</div>`
+<p id="r${d.i}" class="note note-light">
+	<button type="button" class="btn btn-dark">${d.i+1}</button>
+	${d.t}
+</p>`
 				return n;
 			},
 			updateRow: (d, el)=> el.childNodes[0].innerHTML = `
-<a class="black-text"><span class="badge">${d.i+1}</span>${d.t}</a>`,
+<span class="badge rounded-pill bg-dark">${d.i+1}</span>${d.t}`,
 		});
 
 		const eLogMap = document.getElementById('logMap');
@@ -79,20 +95,37 @@ html {user-select: none; -webkit-user-select: none;}
 	}
 </script>
 </head>
-<body class="blue-grey lighten-4" oncontextmenu="return false;">
-	<div class="navbar-fixed"><nav class="blue-grey darken-1" role="navigation">
-		<div class="nav-wrapper container">
-			<a class="waves-effect waves-light btn grey" id="close">x</a>
-			<span class="brand-logo center">履歴画面</span>
-		</div>
-	</nav></div>
+<body class="bg-dark bg-gradient" oncontextmenu="return false">
 
-	<div class="section row">
-		<div class="col s12 m9 l10">
-			<div id="log" class="collection"></div>
+	<nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
+	<div class="container-fluid">
+	
+		<div class="collapse navbar-collapse mr-auto">
+			<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+				<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
+			</button>
 		</div>
-		<div class="col hide-on-small-only m3 l2">
-			<ul id="logMap" class="section table-of-contents"></ul>
+
+		<div class="collapse navbar-collapse justify-content-center">
+			<span class="navbar-brand">履歴画面</span>
 		</div>
+
+		<div class="collapse navbar-collapse ml-auto"/>
+	
 	</div>
+	</nav>
+
+
+	<div class="container-fluid"><div class="row">
+
+		<!-- 上記 val2ctrl() でクリア・再生成されるが、元は以下の連続 -->
+		<div class="col-10">
+			<div id="log" style="font-size: large;"></div>
+		</div>
+		<div class="col-2">
+			<ul id="logMap" class="section table-of-contents text-light" style="font-size: small;"></ul>
+		</div>
+
+	</div></div>
+
 </body></html>
