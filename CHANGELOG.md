@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.1.1
+- upd：ライブラリ更新
 ## v2.1.0
 - upd：セーブロード、アルバム、設定（HTMLフレーム系画面）を【Bootstrap 5 & Material Design 2.0】で再作成。デザインテンプレが豊富なBootstrap陣営へ移行
 - bug：縦書き・縦ボタンが回転してない・位置ズレを修正（sub.sn）
