@@ -15,9 +15,10 @@ app.setPath('userData', app.getPath('appData') +'/'+ app.name);
 
 crashReporter.start({
 	productName	: app.name,
-	companyName	: "活動漫画屋",
+	companyName	: "電子演劇部",
 	submitURL	: pkg.homepage,
 	autoSubmit	: false,
+	compress	: true,
 });
 if (! app.requestSingleInstanceLock()) app.quit();
 app.on('window-all-closed', ()=> app.quit());
