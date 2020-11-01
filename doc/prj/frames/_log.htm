@@ -1,0 +1,131 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"/><title>&nbsp;</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="lib/mdb.min.css">
+<style type="text/css">
+	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
+	body {padding-top: 70px;}
+	.btn:hover, .btn:focus {
+		background: rgba(204, 255, 204, 0.5);
+		color: black;
+		filter: drop-shadow(1px 3px 5px rgba(25, 25, 25, 0.9));
+	}
+	.navbar .btn:hover, .navbar .btn:focus {
+		border: solid black;
+		filter: drop-shadow(1px 3px 5px rgba(250, 250, 250, 0.9));
+	}
+	#logMap {padding-left: 0;}	/* 見た目微調整 */
+	#logMap li {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+</style>
+<script defer src="lib/mdb.min.js"></script>
+<!--
+	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
+-->
+<script defer src="lib/smart-table-scroll.min.js"></script>
+<script>
+	let a = [
+		{text: '　桜の樹の下には屍体が埋まつてゐる！'},
+		{text: '　これは信じていいことなんだよ。何故つて、桜の花があんなにも見事に咲くなんて信じられないことぢやないか。<br/>俺はあの美しさが信じられないので、この二三日不安だつた。しかしいま、やつとわかるときが来た。桜の樹の下には屍体が埋まつてゐる。これは信じていいことだ。'},
+		{text: '　どうして俺が毎晩家へ帰つて来る道で、俺の部屋の数ある道具のうちの、選《よ》りに選つてちつぽけな薄つぺらいもの、安全<ruby>剃刀<rt>かみそり</rt></ruby>の刃なんぞが、千里眼のやうに思ひ浮んで来るのか──お前はそれがわからないと云つたが──そして俺にもやはりそれがわからないのだが──それもこれもやつぱり同じやうなことにちがひない。'},
+		{text: '　一体どんな樹の花でも、所謂《いはゆる》真つ盛りといふ状態に達すると、あたりの空気のなかへ一種神秘な雰囲気を撒《ま》き散らすものだ。それは、よく廻つた独楽《こ ま》が完全な静止に澄むやうに、また、音楽の上手な演奏がきまつてなにかの幻覚を伴ふやうに、灼熱《しやくねつ》した生殖の幻覚させる後光のやうなものだ。それは人の心を撲《う》たずにはおかない、不思議な、生き生きとした、美しさだ。'},
+		{text: '　しかし、昨日、一昨日、俺の心をひどく陰気にしたものもそれなのだ。俺にはその美しさがなにか信じられないもののやうな気がした。俺は反対に不安になり、憂欝になり、空虚な気持になつた。しかし、俺はいまやつとわかつた。'},
+	];
+	document.addEventListener('DOMContentLoaded', ()=> {
+		const proc_mode = (location.protocol.slice(0, 4) === 'http')
+			? 'server'
+			: ('val2ctrl' in window.parent) ?'local' :'electron';
+		if (proc_mode === 'local') val2ctrl();	// ローカルデバッグ用
+	}, false);
+
+	var val_dic = null;	// わざとvar
+	function val2ctrl() {	// 変数→コンポーネント
+		if (val_dic) a = JSON.parse(val_dic);
+		const a2 = a.map((v, i)=> {return {i: i, t: v.text,};});
+		const len = a2.length;
+
+		// https://github.com/cmpolis/smart-table-scroll
+		const eLog = document.getElementById('log');
+		eLog.textContent = '';	// 必須
+		new SmartTableScroll({	// 毎回再生成
+			el: eLog,
+			data: a2,
+			availableNodes: len,
+			buildRow: d=> {
+				const n = document.createElement('div');
+				n.innerHTML = `
+<p id="r${d.i}" class="note note-light">
+	<button type="button" class="btn btn-dark">${d.i+1}</button>
+	${d.t}
+</p>`
+				return n;
+			},
+			updateRow: (d, el)=> el.childNodes[0].innerHTML = `
+<span class="badge rounded-pill bg-dark">${d.i+1}</span>${d.t}`,
+		});
+
+		const eLogMap = document.getElementById('logMap');
+		eLogMap.textContent = '';	// 必須
+		new SmartTableScroll({	// 毎回再生成
+			el: eLogMap,
+			data: a2,
+			availableNodes: len,
+			buildRow: d=> {
+				const n = document.createElement('div');
+				n.innerHTML = `<li><a>${d.i+1}.${d.t}</a></li>`
+				return n;
+			},
+			updateRow: (d, el)=> {
+				el.childNodes[0].innerHTML = `<a>${d.i+1}.${d.t}</a>`;
+			},
+		});
+
+		const de = document.documentElement;
+		const scrl = py=> de.scrollTop = py;
+		setTimeout(()=> {
+			de.scrollTop = de.scrollHeight;	// 一番下（最新）へスクロール
+
+			const yLog = eLog.getBoundingClientRect().top;
+			document.querySelectorAll('#logMap a').forEach((v, i)=> {
+				const rct = document.getElementById(`r${i}`)
+				.getBoundingClientRect();
+				const py = rct.top -yLog;
+				v.addEventListener('click', ()=> scrl(py), {passive: true});
+			});
+		}, 0);
+	}
+</script>
+</head>
+<body class="bg-dark bg-gradient" oncontextmenu="return false">
+
+	<nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
+	<div class="container-fluid">
+	
+		<div class="collapse navbar-collapse mr-auto">
+			<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+				<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse justify-content-center">
+			<span class="navbar-brand">履歴画面</span>
+		</div>
+
+		<div class="collapse navbar-collapse ml-auto"/>
+	
+	</div>
+	</nav>
+
+
+	<div class="container-fluid"><div class="row">
+
+		<!-- 上記 val2ctrl() でクリア・再生成されるが、元は以下の連続 -->
+		<div class="col-10">
+			<div id="log" style="font-size: large;"></div>
+		</div>
+		<div class="col-2">
+			<ul id="logMap" class="section table-of-contents text-light" style="font-size: small;"></ul>
+		</div>
+
+	</div></div>
+
+</body></html>

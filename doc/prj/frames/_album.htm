@@ -1,0 +1,174 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"/><title>&nbsp;</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="lib/mdb.min.css">
+<style type="text/css">
+	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
+	body {padding-top: 70px;}
+	.row {--bs-gutter-x: 0.3rem;}	 /* mdbを微調整 */
+	.btn:hover, .btn:focus {
+		border: solid black;
+		background: rgba(204, 255, 204, 0.5);
+		color: black;
+		filter: drop-shadow(1px 3px 5px rgba(250, 250, 250, 0.9));
+	}
+
+	.mask {
+		background-color: rgba(251, 251, 251, 0.15);
+	}
+	.hover-overlay:focus + div {
+		background-color: black;
+		color: white;
+	}
+</style>
+<script defer src="lib/mdb.min.js"></script>
+<!--
+	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
+-->
+<script>
+	let a = [	// アルバムの内容
+		{"type": "pic", "fn": "../bg/hatsunekan_entrance.jpg", "title": "初音館_玄関", "enabled": "true"},
+		{"type": "pic", "fn": "../bg/hatsunekan_corridor.jpg", "title": "初音館_廊下", "enabled": "false"},
+		{"type": "pic", "fn": "../bg/univ_auditorium.jpg", "title": "大学講堂", "enabled": "true"},
+		{"type": "pic", "fn": "../bg/hatsunekan_minoura_room.jpg", "title": "初音館_蓑浦部屋", "enabled": "true"},
+		{"type": "pic", "fn": "../bg/gas_lamp.jpg", "title": "ガス灯", "enabled": "true"},
+		{"type": "mov", "fn": "nc10889", "title": "桜", "enabled": "true"},
+		{"type": "bgm", "fn": "free10", "title": "free10(BGM)", "enabled": "true"},
+		{"type": "bgm", "fn": "free04", "title": "free04(BGM)", "enabled": "true"},
+		{"type": "bgm", "fn": "free25", "title": "free25(BGM)", "enabled": "true"},
+		{"type": "bgm", "fn": "free57", "title": "free57(BGM)", "enabled": "true"},
+	];
+	document.ondragstart = ()=> false;
+	const proc_mode = (location.protocol === 'file:') ?'local' :'';
+	if (proc_mode === 'local') document.addEventListener('DOMContentLoaded', ()=> init());	// ローカルデバッグ用
+
+	var val_dic = null;
+	function init() {
+		if (val_dic) a = JSON.parse(val_dic);
+
+		// 配列 a をもとにサムネイル群を生成
+		const lst = document.getElementsByClassName('row')[0];
+		lst.textContent = '';
+		a.forEach(v=> {
+			if (v.enabled === 'false') {
+				lst.insertAdjacentHTML('beforeend', `
+<div class="col"><div class="card p-1 mb-1">
+	<div class="bg-image ripple" data-ripple-color="light"
+		aria-label="まだ本編で見ていません" title="まだ本編で見ていません">
+		<img data-src="_album_miken.jpg" class="img-fluid"/>
+	</div>
+	<div class="card-text">？？？</div>
+</div></div>`);
+				return;
+			}
+
+			let elm = '';
+			switch (v.type) {
+				case 'bgm':	elm = `_album_thbgm.jpg`;	break;
+				case 'mov':	elm = `${v.fn}_th.jpg`;	break;
+				default:	elm = `${v.fn}`;
+			}
+			// ${v.type}でclass名にも追加、SKYNovel側でクリック検知するため
+			lst.insertAdjacentHTML('beforeend', `
+<div class="col"><div class="card p-1 mb-1">
+	<div class="bg-image hover-overlay ripple ${v.type}"
+		data-ripple-color="light"
+		data-type="${v.type}" data-arg="${v.fn}" tabindex="0"
+		aria-label="${v.type} ${v.title}" title="${v.type} ${v.title}">
+		<img data-src="${elm}" class="card-img-top"/>
+		<div class="mask"></div>
+	</div>
+	<div class="card-text">${v.title}</div>
+</div></div>`);
+
+		});
+
+		const mdl = new mdb.Modal(document.getElementById('mdlView'));
+			// 純正なら new bootstrap.Modal()
+		const mdl_body = document.getElementById('modal_body');
+		Array.from(document.querySelectorAll('[data-arg]'))
+		.forEach(v=> v.addEventListener('click', ()=> {
+			switch (v.dataset.type) {
+				case 'bgm':	break;
+				case 'mov':
+					if (proc_mode !== 'local') break;// SKYNovelではスクリプトで
+
+					// 以下すべてローカルデバッグ用
+					mdl_body.innerHTML = `
+<video controls>
+	<source src="${v.dataset.arg}.mp4" autoplay type="video/mp4">
+</video>`;
+					mdl_body.children[0].addEventListener('ended', ()=> mdl.hide());
+					mdl.show();
+					break;
+				default:
+					if (proc_mode !== 'local') break;// SKYNovelではスクリプトで
+
+					mdl_body.innerHTML = `
+<img src="${v.dataset.arg}" class="card-img-top"/>`;
+					mdl.show();
+			}
+		}, {passive: true}));
+
+		sn_repRes(setImg);	// 画像更新（SKYNovelが削除・独自に呼び出す）
+	}
+
+	let setImg = undefined;
+	function sn_repRes($setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
+		setImg = $setImg ?? (i=> i.src = i.dataset.src);
+		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
+	}
+
+	function val2ctrl() {	// 変数→コンポーネント
+		document.getElementById('fnBgm').textContent = val_fnBgm;
+	}
+
+</script>
+</head>
+<body class="bg-dark bg-gradient" oncontextmenu="return false">
+
+<nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
+<div class="container-fluid">
+
+	<div class="collapse navbar-collapse mr-auto">
+		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<div class="collapse navbar-collapse justify-content-center">
+		<span class="navbar-brand">アルバム画面</span>
+	</div>
+
+	<div class="collapse navbar-collapse ml-auto">
+		<span class="navbar-text text-white ml-auto">
+			now_playing : <span id="fnBgm"></span>
+		</span>
+	</div>
+
+</div>
+</nav>
+
+
+<div class="container-fluid"><div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
+
+<!-- 上記 val2ctrl() でクリア・再生成されるが、元は以下の連続 -->
+<div class="col"><div class="card p-1 mb-1">
+	<div class="bg-image hover-overlay ripple" data-ripple-color="light">
+		<img data-src="_album_miken.jpg" class="img-fluid"/>
+		<div class="mask"></div>
+	</div>
+	<div class="card-text">？？？</div>
+</div></div>
+
+</div></div>
+
+
+<div id="mdlView" class="modal fade" tabindex="-1">
+<div class="modal-dialog modal-fullscreen">
+	<div id="modal_body" data-dismiss="modal" class="modal-content"/>
+</div>
+</div>
+
+
+</body></html>

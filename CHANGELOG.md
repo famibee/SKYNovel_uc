@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.2.0
+- upd：doc/prj/other/_yesno.sn が画面サイズ変更に追従するように
+- chg：フレーム系画面のフォルダ（album,archive,config,lib,log）をframesに統合（フレームhtml上の「../lib/」という参照がロードされないため）
+- add：画像素材psdを追加
+- upd：ライブラリ更新
 ## v2.1.2
 - chg: テンプレのデフォルト著作者・出版者を夕街ではなくふぁみべぇに
 - upd：ライブラリ更新
