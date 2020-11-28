@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.2.1
+- upd：コメント追加（doc/prj/script/sub.sn）
+- upd：スクリプト内自己ファイル名修正（doc/prj/frames/_archive.sn）
+- upd：.gitignore更新
+- upd：ライブラリ更新
 ## v2.2.0
 - upd：doc/prj/other/_yesno.sn が画面サイズ変更に追従するように
 - chg：フレーム系画面のフォルダ（album,archive,config,lib,log）をframesに統合（フレームhtml上の「../lib/」という参照がロードされないため）

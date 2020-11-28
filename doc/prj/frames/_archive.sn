@@ -128,13 +128,13 @@
 	[sys_scenario_start no_resume_save=true]
 	[copybookmark from=&_load.place to=0]
 	[load place=&_load.place]
-;	[load place=&_load.place fn=archive label=*do_load_init]
+;	[load place=&_load.place fn=_archive label=*do_load_init]
 
 *do_load_resume
 	[se fn=&sysse_ok2_long buf=SYS]
 	[sys_scenario_start no_resume_save=true]
 	[load place=0]
-;	[load place=0 fn=archive label=*do_load_init]
+;	[load place=0 fn=_archive label=*do_load_init]
 
 ; ロード後最初にしたい共通処理
 *do_load_init
