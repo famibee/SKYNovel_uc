@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.2.2
+- upd：ライブラリ更新
 ## v2.2.1
 - upd：コメント追加（doc/prj/script/sub.sn）
 - upd：スクリプト内自己ファイル名修正（doc/prj/frames/_archive.sn）
