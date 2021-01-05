@@ -255,7 +255,7 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ横書きWide下設定
-[macro name=txt_lay_h_bottom_wide]	;#NO_WARM_UNUSED_MACRO	txt_lay_h_bottom_wide
+[macro name=txt_lay_h_bottom_wide nowarn_unused=true]
 	[txt_lay_fullscreen * t=%t|472 h=266 max_row=6]
 [endmacro]
 
@@ -302,7 +302,7 @@
 
 ;********************************************************
 ; マクロ 選択肢直後にすべき処理
-[macro name=after_choice]	;#NO_WARM_UNUSED_MACRO	after_choice
+[macro name=after_choice nowarn_unused=true]
 	;[pop_stack]
 	[record_place layer=&dsp_lays]
 		[sys_resume_save]
@@ -348,7 +348,7 @@
 
 ;********************************************************
 ; マクロ 文字数分のウェイトを入れる
-[macro name=wc]	;#NO_WARM_UNUSED_MACRO	wc
+[macro name=wc nowarn_unused=true]
 	[wait cond='mp:time != null && sys:sn.tagCh.doWait && !sn.skip.enabled' time='&mp:time * sys:sn.tagCh.msecWait']
 [endmacro]
 
