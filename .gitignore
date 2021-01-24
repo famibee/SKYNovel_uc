@@ -1,5 +1,5 @@
 # Visual Studio Code cache/options directory
-/.vscode/settings.json
+/.vscode/*.json
 /.vscode/storage/
 
 # Build results
