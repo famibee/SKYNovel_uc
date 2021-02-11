@@ -1,7 +1,12 @@
 # Change Log
 
+## v2.4.1
+- fix: npm i -S electron-store@7.0.2 と doc/app.js 追記（SKYNovel更新準備）
+- fix: ライブラリ更新
 ## v2.4.0
 - upd: Web版デバッグの変更に伴う更新
+- fix: package.json の scripts で不要なものを削除
+- fix: ライブラリ更新
 ## v2.3.0
 - upd: 未使用マクロ警告抑制機能の変更に伴う更新
 ## v2.2.3

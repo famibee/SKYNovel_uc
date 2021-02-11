@@ -1,5 +1,5 @@
 /* ***** BEGIN LICENSE BLOCK *****
-	Copyright (c) 2018-2020 Famibee (famibee.blog38.fc2.com)
+	Copyright (c) 2018-2021 Famibee (famibee.blog38.fc2.com)
 
 	This software is released under the MIT License.
 	http://opensource.org/licenses/mit-license.php
@@ -58,6 +58,9 @@ app.on('ready', ()=> {
 		],
 	}]);
 	Menu.setApplicationMenu(menu);
+
+	const Store = require('electron-store');
+	Store.initRenderer();
 
 	guiWin = new BrowserWindow({
 		id			: 'SKYNovel-'+ app.name,
