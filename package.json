@@ -8,7 +8,7 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.10.0",
+		"@famibee/skynovel": "^1.10.1",
 		"about-window": "^1.13.4",
 		"crypto-js": "^4.0.0",
 		"electron-store": "^7.0.2",
@@ -16,8 +16,8 @@
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^4.0.1",
-		"@types/fs-extra": "^9.0.6",
-		"@types/node": "^14.14.25",
+		"@types/fs-extra": "^9.0.7",
+		"@types/node": "^14.14.26",
 		"css-loader": "^5.0.2",
 		"electron": "^11.2.3",
 		"electron-builder": "^22.10.4",

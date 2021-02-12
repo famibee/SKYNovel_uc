@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.4.2
+- fix: ライブラリ更新（SKYNovel 1.10.1、electron-store 7.0.2）
 ## v2.4.1
 - fix: npm i -S electron-store@7.0.2 と doc/app.js 追記（SKYNovel更新準備）
 - fix: ライブラリ更新
