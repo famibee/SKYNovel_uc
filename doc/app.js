@@ -6,7 +6,7 @@
 ** ***** END LICENSE BLOCK ***** */
 
 // electron メインプロセス
-const {crashReporter, app, Menu, BrowserWindow} = require('electron');
+const {crashReporter, app, Menu} = require('electron');
 const path = require('path');
 
 const pkg = require('../package.json');
@@ -24,8 +24,6 @@ if (! app.requestSingleInstanceLock()) app.quit();
 app.on('window-all-closed', ()=> app.quit());
 
 let guiWin = null;
-function log(mes) {guiWin.webContents.send('log', mes)}
-const isMac = (process.platform === 'darwin');
 app.on('second-instance', ()=> {
 	if (! guiWin) return;
 
@@ -33,6 +31,7 @@ app.on('second-instance', ()=> {
 	guiWin.focus();
 });
 app.on('ready', ()=> {
+	const isMac = (process.platform === 'darwin');
 	const menu = Menu.buildFromTemplate([{
 		label: app.name,
 		submenu: [
@@ -59,31 +58,20 @@ app.on('ready', ()=> {
 	}]);
 	Menu.setApplicationMenu(menu);
 
-	const Store = require('electron-store');
-	Store.initRenderer();
-
-	guiWin = new BrowserWindow({
-		id			: 'SKYNovel-'+ app.name,
-		width		: 1024,
-		height		: 768,
-		min_width	: 300,
-		min_height	: 300,
-		acceptFirstMouse		: true,
-		textAreasAreResizable	: false,
-		resizable		: false,
-		fullscreenable	: true,
-		webPreferences	: {nodeIntegration: true, enableRemoteModule: true,},
-	});
-	try {
-		guiWin.loadFile(path.join(__dirname, 'app/index.htm'),);
-	}
-	catch (e) {
-		guiWin.webContents.openDevTools();
-		console.error(`ealy err:${e}`);
-	}
+	const SKYNovel = require('@famibee/skynovel/appMain');
+	guiWin = SKYNovel.initRenderer(
+		path.join(__dirname, 'app/index.htm'),
+		{
+			id			: 'SKYNovel-'+ app.name,
+			width		: 1024,
+			height		: 768,
+			min_width	: 300,
+			min_height	: 300,
+			acceptFirstMouse		: true,
+			textAreasAreResizable	: false,
+			resizable		: false,
+			fullscreenable	: true,
+		}
+	);
 	guiWin.on('closed', ()=> app.quit());
 });
-
-process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
-	// 2018/05/08
-	// disable security-warnings not working · Issue #11970 · electron/electron https://github.com/electron/electron/issues/11970

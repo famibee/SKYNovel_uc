@@ -5,17 +5,7 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "web",
-			"problemMatcher": []
-		},
-		{
-			"type": "npm",
 			"script": "webpack:dev:w",
-			"problemMatcher": []
-		},
-		{
-			"type": "npm",
-			"script": "npm_check_updates_do",
 			"problemMatcher": []
 		},
 	]

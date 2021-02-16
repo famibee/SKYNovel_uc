@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.4.3
+- fix: doc/app.js 更新（SKYNovel 1.12.1 対応）、Electronウインドウ作成などを新設 SKYNovel.initRenderer() にラップするように（Store.initRenderer();などもそこに吸収）
+- fix: npm un -S electron-store
 ## v2.4.2
 - fix: ライブラリ更新（SKYNovel 1.10.1、electron-store 7.0.2）
 ## v2.4.1
