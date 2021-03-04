@@ -8,18 +8,18 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.12.1",
+		"@famibee/skynovel": "^1.15.3",
 		"about-window": "^1.13.4",
 		"crypto-js": "^4.0.0",
 		"humane-js": "^3.2.2"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^4.0.1",
-		"@types/fs-extra": "^9.0.7",
-		"@types/node": "^14.14.28",
-		"css-loader": "^5.0.2",
-		"electron": "^11.2.3",
-		"electron-builder": "^22.10.4",
+		"@types/fs-extra": "^9.0.8",
+		"@types/node": "^14.14.31",
+		"css-loader": "^5.1.1",
+		"electron": "^12.0.0",
+		"electron-builder": "^22.10.5",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^2.0.0",
 		"webpack": "^4.46.0",
@@ -32,7 +32,7 @@
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
 		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
-		"watch:wdsdbg": "webpack-dev-server --config ./core/wds.config.js --open-page 'web.htm?dip={\"dbg\":true%2C\"port\":3776}'",
+		"watch:wdsdbg": "webpack-dev-server --config ./core/wds.config.js --open-page 'web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D'",
 		"webpack:pro": "rm -rf doc/web.*.js && webpack -p --config ./core/webpack.config.js",
 		"rebuild": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm run webpack:dev"
 	},

@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.4.4
+- fix: macOS Big Surでデバッグブラウザ版が起動しない件
+- fix: ライブラリ更新、electron更新（11.3.0→12.0.0）など
 ## v2.4.3
 - fix: doc/app.js 更新（SKYNovel 1.12.1 対応）、Electronウインドウ作成などを新設 SKYNovel.initRenderer() にラップするように（Store.initRenderer();などもそこに吸収）
 - fix: npm un -S electron-store
