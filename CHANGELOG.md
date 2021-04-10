@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.4.5
+- fix: ライブラリ更新
 ## v2.4.4
 - fix: macOS Big Surでデバッグブラウザ版が起動しない件
 - fix: ライブラリ更新、electron更新（11.3.0→12.0.0）など

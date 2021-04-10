@@ -8,17 +8,17 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.15.3",
-		"about-window": "^1.13.4",
+		"@famibee/skynovel": "^1.16.5",
+		"about-window": "^1.14.0",
 		"crypto-js": "^4.0.0",
 		"humane-js": "^3.2.2"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^4.0.1",
-		"@types/fs-extra": "^9.0.8",
-		"@types/node": "^14.14.31",
-		"css-loader": "^5.1.1",
-		"electron": "^12.0.0",
+		"@types/fs-extra": "^9.0.10",
+		"@types/node": "^14.14.37",
+		"css-loader": "^5.2.1",
+		"electron": "^12.0.2",
 		"electron-builder": "^22.10.5",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^2.0.0",

@@ -195,7 +195,7 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書きWide中設定
-[macro name=txt_lay_v_center_wide]	;#NO_WARM_UNUSED_MACRO	txt_lay_v_center_wide
+[macro name=txt_lay_v_center_wide nowarn_unused=true]
 	[txt_lay_v_center * l=%l|294 w=436 max_row=11 pr=26
 	b_pic=wafuu1w	; 背後に画像を使わない場合はコメントアウト
 ]
