@@ -8,22 +8,25 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.16.5",
+		"@famibee/skynovel": "^2.0.0",
 		"about-window": "^1.14.0",
+		"buffer": "^5.7.1",
+		"crypto-browserify": "^3.12.0",
 		"crypto-js": "^4.0.0",
-		"humane-js": "^3.2.2"
+		"humane-js": "^3.2.2",
+		"stream-browserify": "^3.0.0"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^4.0.1",
-		"@types/fs-extra": "^9.0.10",
-		"@types/node": "^14.14.37",
-		"css-loader": "^5.2.1",
-		"electron": "^12.0.2",
-		"electron-builder": "^22.10.5",
+		"@types/fs-extra": "^9.0.11",
+		"@types/node": "^15.3.0",
+		"css-loader": "^5.2.4",
+		"electron": "^12.0.7",
+		"electron-builder": "^22.11.4",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^2.0.0",
-		"webpack": "^4.46.0",
-		"webpack-cli": "^3.3.12",
+		"webpack": "^5.37.0",
+		"webpack-cli": "^4.7.0",
 		"webpack-dev-server": "^3.11.2"
 	},
 	"scripts": {
@@ -31,8 +34,8 @@
 		"web": "npm run watch:wds",
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
-		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
-		"watch:wdsdbg": "webpack-dev-server --config ./core/wds.config.js --open-page 'web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D'",
+		"watch:wds": "webpack-cli serve --config ./core/wds.config.js",
+		"watch:wdsdbg": "webpack-cli serve --config ./core/wds.config.js --open-page 'web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D'",
 		"webpack:pro": "rm -rf doc/web.*.js && webpack -p --config ./core/webpack.config.js",
 		"rebuild": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm run webpack:dev"
 	},

@@ -1,4 +1,3 @@
-;#USE-FONT	ipam
 	[return cond=const.sn.frm.config]
 
 	[add_frame id=config src=_config visible=false]

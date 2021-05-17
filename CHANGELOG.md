@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.5.0
+- chore: SKYNovel 2.0.0、 pixi.js 6、webpack 5 に更新
+	- 追記: core/webpack.config.js に resolve: {fallback: {crypto: stream: }}
+	- 追加: npm i -S buffer crypto-browserify stream-browserify@latest
+	- fix: ライブラリ更新
 ## v2.4.5
 - fix: ライブラリ更新
 ## v2.4.4

@@ -8,6 +8,12 @@ const cfg = {
 			}
 		},
 	},
+	resolve: {
+		fallback: {
+			crypto: require.resolve('crypto-browserify'),
+			stream: require.resolve('stream-browserify'),
+		}
+	},
 };
 const ip = {
 	disable: process.env.NODE_ENV !== 'production',

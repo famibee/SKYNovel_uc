@@ -1,4 +1,3 @@
-;#USE-FONT	ipam
 	[return cond=const.sn.frm.archive]
 
 	[add_frame id=archive src=_archive visible=false]

@@ -1,4 +1,3 @@
-;#USE-FONT	ipam
 [sys_scenario_start]
 	; *** テキストレイヤ縦書き中設定 ***
 	[txt_lay_v_center fcol=black]

@@ -1,4 +1,3 @@
-;#USE-FONT	ipam
 	[return cond=const.sn.frm.log]
 
 	[add_frame id=log src=_log visible=false]
