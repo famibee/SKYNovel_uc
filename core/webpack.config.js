@@ -1,5 +1,10 @@
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
+const ip = {
+	disable: process.env.NODE_ENV !== 'production',
+	test: /\.(jpe?g|png|gif|svg)$/i,
+	pngquant: {quality: '95-100',},
+};
 const cfg = {
 	optimization: {
 		splitChunks: {
@@ -14,11 +19,7 @@ const cfg = {
 			stream: require.resolve('stream-browserify'),
 		}
 	},
-};
-const ip = {
-	disable: process.env.NODE_ENV !== 'production',
-	test: /\.(jpe?g|png|gif|svg)$/i,
-	pngquant: {quality: '95-100',},
+	plugins: [new ImageminPlugin(ip),],
 };
 
 // 変更後は「npm run webpack:dev」
@@ -30,7 +31,6 @@ module.exports = [{
 		path: process.cwd() +'/doc/app',
 		filename: 'index.js',
 	},
-	plugins: [new ImageminPlugin(ip),],
 },{
 	...cfg,
 	entry: `./core/web4webpack`,
@@ -40,5 +40,4 @@ module.exports = [{
 		filename: 'web.js',
 		chunkFilename: 'web.[name].js'
 	},
-	plugins: [new ImageminPlugin(ip),],
 }];
