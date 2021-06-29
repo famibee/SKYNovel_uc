@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.5.4
+- fix: ライブラリ更新
 ## v2.5.3
 - fix: core/webpack.config.js 手直し
 - fix: ライブラリ更新
