@@ -8,9 +8,7 @@ module.exports = {
 	},
 
 	devServer: {
-		contentBase: './doc',
-		watchContentBase: true,
-		open: true,
-		openPage: 'web.htm',
+		static: {directory: './doc'},
+		open: 'web.htm',
 	},
 };
