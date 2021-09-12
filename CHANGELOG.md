@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.5.8
+- fix: ライブラリ更新
 ## v2.5.7
 - fix: ライブラリ更新（webpack-dev-server 4.0.0 対応）
 ## v2.5.6
