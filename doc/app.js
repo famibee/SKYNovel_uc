@@ -42,7 +42,7 @@ app.on('ready', ()=> {
 					openAboutWindow({
 						icon_path: path.join(__dirname, 'app/icon.png'),
 						package_json_dir: __dirname,
-						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2020',
+						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2021',
 						homepage: pkg.homepage,
 						license: '',
 						use_version_info: false,

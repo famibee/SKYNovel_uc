@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.5.9
+- fix: core/app4webpack.js 修正
 ## v2.5.8
 - fix: ライブラリ更新
 ## v2.5.7

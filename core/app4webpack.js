@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// 変更後は「npm run webpack:dev」
 
 const hPlg = {};
-const h = require('./plugin').default;
+import h from './plugin.js';
 for (const nm in h) hPlg[nm] = require(`./plugin/${nm}`);
 
-const {SysApp} = require('@famibee/skynovel/app');
-new SysApp(hPlg);
+import {SysApp} from '@famibee/skynovel/app';
+new SysApp(hPlg, {cur: process.cwd() +'/doc/prj/'});
