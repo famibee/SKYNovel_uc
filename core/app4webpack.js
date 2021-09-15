@@ -7,4 +7,4 @@ import h from './plugin.js';
 for (const nm in h) hPlg[nm] = require(`./plugin/${nm}`);
 
 import {SysApp} from '@famibee/skynovel/app';
-new SysApp(hPlg, {cur: process.cwd() +'/doc/prj/'});
+new SysApp(hPlg);

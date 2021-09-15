@@ -8,21 +8,21 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.18.1",
+		"@famibee/skynovel": "^1.18.2",
 		"about-window": "^1.14.0",
 		"buffer": "^6.0.3",
 		"crypto-js": "^4.1.1",
-		"humane-js": "^3.2.2",
-		"stream-browserify": "^3.0.0"
+		"humane-js": "^3.2.2"
 	},
 	"devDependencies": {
 		"@types/crypto-js": "^4.0.2",
 		"@types/fs-extra": "^9.0.12",
 		"@types/node": "^16.9.1",
 		"css-loader": "^6.2.0",
-		"electron": "^13.4.0",
+		"electron": "^14.0.1",
 		"electron-builder": "^22.14.2",
 		"imagemin-webpack-plugin": "^2.4.2",
+		"rimraf": "^3.0.2",
 		"style-loader": "^3.2.1",
 		"webpack": "^5.52.1",
 		"webpack-cli": "^4.8.0",
@@ -35,8 +35,8 @@
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
 		"watch:wds": "webpack-cli serve --config ./core/wds.config.js",
 		"watch:wdsdbg": "webpack-cli serve --config ./core/wds.config.js --open-page 'web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D'",
-		"webpack:pro": "rm -rf doc/web.*.js && webpack -p --config ./core/webpack.config.js",
-		"rebuild": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm run webpack:dev"
+		"webpack:pro": "rimraf doc/web.*.js && webpack -p --config ./core/webpack.config.js",
+		"rebuild": "rimraf package-lock.json && rimraf node_modules && npm cache clear --force && npm i && npm run webpack:dev"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.skynovel.uc",

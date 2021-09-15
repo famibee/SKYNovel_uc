@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.5.10
+- upd：ライブラリ更新（Electron 14 に更新）
 ## v2.5.9
 - fix: core/app4webpack.js 修正
 ## v2.5.8

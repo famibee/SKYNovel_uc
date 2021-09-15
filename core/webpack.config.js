@@ -13,11 +13,6 @@ const cfg = {
 			}
 		},
 	},
-	resolve: {
-		fallback: {
-			stream: require.resolve('stream-browserify'),
-		}
-	},
 	plugins: [new ImageminPlugin(ip),],
 };
 
@@ -25,7 +20,7 @@ const cfg = {
 module.exports = [{
 	...cfg,
 	entry: `./core/app4webpack`,
-	target: 'electron-renderer',
+	target: 'web',
 	output: {
 		path: process.cwd() +'/doc/app',
 		filename: 'index.js',
