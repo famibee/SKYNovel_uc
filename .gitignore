@@ -10,8 +10,8 @@
 /build/*.yml
 /build/*.nsh
 
-/core/plugin/pass.json
 /core/diff.json
+pass.json
 
 # アプリ版メインjs
 /doc/app/index.js

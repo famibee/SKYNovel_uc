@@ -1,22 +1,36 @@
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
-
-const ip = {
-	disable: process.env.NODE_ENV !== 'production',
-	test: /\.(jpe?g|png|gif|svg)$/i,
-	pngquant: {quality: '95-100',},
-};
-const cfg = {
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				three: {test: /three/, name: 'three', chunks: 'initial'},
-			}
-		},
-	},
-	plugins: [new ImageminPlugin(ip),],
-};
-
 // 変更後は「npm run webpack:dev」
+const WebpackObfuscator = require('webpack-obfuscator');
+
+const isPrd = process.env.NODE_ENV === 'production';
+const cfg = {};
+if (isPrd) cfg = {...cfg, module: {rules: [
+	{
+		enforce: 'post',
+		test: /\.js$/,
+		use: [{
+			loader: WebpackObfuscator.loader,
+			options: {
+				compact: true,
+				controlFlowFlattening: false,
+				deadCodeInjection: false,
+				debugProtection: false,
+				debugProtectionInterval: false,
+				disableConsoleOutput: false,
+				identifierNamesGenerator: 'hexadecimal',
+				log: false,
+				renameGlobals: false,
+				rotateStringArray: true,
+				selfDefending: false,
+				stringArray: true,
+	//			stringArrayEncoding: false,
+				stringArrayThreshold: 0.75,
+				unicodeEscapeSequence: false,
+			}
+		}],
+		exclude: /node_modules/
+	},
+]},};
+
 module.exports = [{
 	...cfg,
 	entry: `./core/app4webpack`,

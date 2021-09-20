@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.5.11
+- fix: リリース版は難読化
+- fix: SKYNovel拡張機能 v3.14.5 以上対応
+	- pass.json をルートに移動
+- fix: ライブラリ更新
 ## v2.5.10
 - upd：ライブラリ更新（Electron 14 に更新）
 ## v2.5.9
