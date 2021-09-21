@@ -8,7 +8,7 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.18.5",
+		"@famibee/skynovel": "^1.18.6",
 		"about-window": "^1.14.0",
 		"buffer": "^6.0.3",
 		"crypto-js": "^4.1.1",
@@ -33,8 +33,8 @@
 		"web": "npm run watch:wds",
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
-		"watch:wds": "webpack-cli serve --config ./core/wds.config.js",
-		"watch:wdsdbg": "webpack-cli serve --config ./core/wds.config.js --open-page 'web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D'",
+		"watch:wds": "webpack-cli serve --config ./core/wds.config.js --open 'web.htm",
+		"watch:wdsdbg": "webpack-cli serve --config ./core/wds.config.js --open 'web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D'",
 		"webpack:pro": "rimraf doc/web.*.js && webpack -p --config ./core/webpack.config.js",
 		"rebuild": "rimraf package-lock.json && rimraf node_modules && npm cache clear --force && npm i && npm run webpack:dev"
 	},

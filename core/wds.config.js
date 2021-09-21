@@ -9,6 +9,5 @@ module.exports = {
 
 	devServer: {
 		static: {directory: './doc'},
-		open: 'web.htm',
 	},
 };
