@@ -4,9 +4,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Humane = require('humane-js');
 require("!style-loader!css-loader!humane-js/themes/bigbox.css");
 
-exports.init = hSN=> {
+exports.init = pia=> {
 	Humane.baseCls = 'humane-bigbox';
-	hSN.addTag('notice', hArg=> {
+	pia.addTag('notice', hArg=> {
 		Humane.log(hArg.text);
 		return false;
 	});
