@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.6.0
+- add: 拡張機能 v3.16.0、setting.sn の変数設定をGUI編集できる機能対応
+- add: doc/prj/script/setting.sn：新規作成
+- upd: doc/prj/script/main.sn：冒頭[add_lay]をsetting.snに移動
+- upd: doc/prj/script/sub.sn：冒頭の定数・初期値などをsetting.snに移動
 ## v2.5.12
 - fix: Web版デバッグモードが起動しない件
 - fix: ライブラリ更新

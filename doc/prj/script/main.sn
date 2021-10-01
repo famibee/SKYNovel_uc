@@ -1,14 +1,7 @@
-;#USE-FONT	ipam
-	[add_lay layer=base class=grp]
-	[add_lay layer=0 class=grp]
-	[add_lay layer=1 class=grp]
-	[add_lay layer=2 class=grp]
-	[add_lay layer=mes class=txt]
-		; レイヤを追加したい場合はここで追加しておく
-		; sub.snで dsp_lays_grp にレイヤ名追記しないと、
-		; レイヤ状態がセーブ・ロードされないので注意
-
-	[call fn=ext_*]		; ext_**.snというスクリプトを全部コール
+	[call fn=setting]
+	[call fn=ext_*]
+	[call fn=sub]
+	[call fn=_yesno]
 
 	[toggle_full_screen key=w]
 	[event global=true call=true key=alt+enter label=*toggle_full_screen]
@@ -23,9 +16,6 @@
 	[event global=true call=true key=F7 label=*stats cond=const.sn.isDebugger]
 	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
 ;	[update_check url='http://ugainovel.hiho.jp/famibee/sample/hatsune/']
-
-	[call fn=sub]
-	[call fn=_yesno]
 
 [char2macro char=@ name=l]
 [char2macro char=\ name=plc]

@@ -1,20 +1,6 @@
 ;********************************************************
 ;	定数
 ;********************************************************
-; 各種効果音を指定
-&sysse_ok1 = 'BurstB_11'
-&sysse_ok2 = 'BellA_16'
-&sysse_ok2_long = 'BellB_11'
-&sysse_cancel = 'bell05'
-&sysse_choice = 'wood04'
-
-; メッセージウインドウにボタンを配置するか（システムメニュー）
-&useSysMenu = true
-
-; デフォルトフォント
-&def_fonts = 'ipamjm, QuiMi_mincho'
-;&sn.button.fontFamily = 'ipamjm'
-
 ; 立ち絵配置位置定数
 ;	[lay pos=&pos.l	等として使用。
 ;	組み込みで「c」という指定が出来る。例：pos=c、pos='c'
@@ -33,19 +19,6 @@
 
 &pos.l2l = pos.vleft_disp_x + pos.vleft_disp_w * (1/4)
 &pos.l2r = pos.vleft_disp_x + pos.vleft_disp_w * (3/4)
-
-; 表示されるレイヤ（セーブ・スナップショットなどの対象）
-&dsp_lays_grp = 'base,0,1,2'	; 画像
-&dsp_lays = dsp_lays_grp +',mes'	; 文字
-[let name=dsp_lays text="&dsp_lays_grp +',mes,mes_sysmenu'" cond=useSysMenu]
-
-;********************************************************
-;	各種初期値
-;********************************************************
-[if exp=const.sn.isFirstBoot]	; ゲームがインストールされ、初めての起動
-	&sys:TextLayer.Back.Alpha = 0.7
-		; バック不透明度。テキストウインドウの背景の濃度
-[endif]
 
 ;********************************************************
 ; マクロ タイトル開始共通処理（main.snで呼ぶ）
