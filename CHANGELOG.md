@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.6.1
+- fix: windowsで正しいURLを開けないのを修正
+	- package.json/scripts の watch:wds, watch:wdsdbg の「'」を削除
 ## v2.6.0
 - add: 拡張機能 v3.16.0、setting.sn の変数設定をGUI編集できる機能対応
 - add: doc/prj/script/setting.sn：新規作成
