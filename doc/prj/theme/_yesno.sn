@@ -1,4 +1,4 @@
-;#USE-FONT	ipam
+[return cond=const.sn.lay.mes_yesno]
 	[add_lay layer=mes_yesno class=txt]
 
 [macro name=ask_ync_cleartext]

@@ -61,13 +61,7 @@
 [jump label=*game_inited cond='const.game.inited']
 &const.game.inited = true
 
-	[call fn=extG_*]	; extG_*.snというスクリプトを全部コールする
-	[call fn=_hidetext]
-	[call fn=_submenu]
-	[call fn=_archive]
-	[call fn=_log]
-	[call fn=_config]
-	[call fn=_album]
+	[call fn=_*]		; _**.snというスクリプトを全部コール
 	[call fn=face*]		; face**.snというスクリプトを全部コール
 
 	[event global=true call=true key=a label=*toggle_auto_read]

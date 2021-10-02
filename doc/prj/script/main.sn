@@ -29,59 +29,10 @@
 	[sys_title_start]
 ;[clearsysvar]
 
-	[img fn=title layer=base]
-	[img layer=0]
-	[img layer=1]
-	[img layer=2]
-
-	[clear_lay layer=mes page=back]
-		[button text='最初から' left=250 top=360 width=90 label=*start hint='最初の話から始める' enterse=&sysse_choice clickse=&sysse_ok2_long]
-		[button text=' ロード ' left=350 top=360 width=90 call=true label=*load hint='セーブから続ける' enterse=&sysse_choice clickse=&sysse_ok1]
-		[button text='アルバム' left=550 top=360 width=90 call=true label=*album hint='アルバム鑑賞' enterse=&sysse_choice clickse=&sysse_ok1]
-		[button text=' 設 定 ' left=650 top=360 width=90 call=true label=*config hint='ゲーム設定' enterse=&sysse_choice clickse=&sysse_ok1]
-
-	[trans layer=&dsp_lays time=0]
-	[wt]
-
-	; *** BGM（ブラウザのClick to play対応の一環で、タイトル画面表示後まで遅らせる） ***
-	[call label=*c2p cond=const.sn.needClick2Play&&!const.sn.lay.mes_c2p]
-	[bgm fn=free0509 time=200]
-[s]
-
-
-*c2p
-	[enable_event enabled=false]
-	[add_lay layer=mes_c2p class=txt]
-	[lay layer=mes_c2p b_pic=_c2p b_alpha=1 b_alpha_isfixed=true b_left=0 b_top=0 visible=true]
-	[enable_event enabled=false]
-
-	[waitclick]
-
-	[lay layer=mes_c2p page=fore visible=false]
-	[enable_event enabled=true]
-[return]
+	[jump fn=title]
 
 
 ;********************************************************
-*start
-	[enable_event enabled=false]
-	[jump fn=ss_000]
-
-*load
-	[enable_event enabled=false]
-	[call fn=_archive]
-	[jump fn=_archive label=*title_load]
-
-*album
-	[enable_event enabled=false]
-	[call fn=_album]
-	[jump fn=_album label=*title_album]
-
-*config
-	[enable_event enabled=false]
-	[call fn=_config]
-	[jump fn=_config label=*title_config]
-
 *close
 	[enable_event enabled=false]
 	[ask_ync mes='ゲームを終了しますか？']
