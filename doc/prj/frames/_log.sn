@@ -6,8 +6,13 @@
 	[event global=true call=true key=r label=*main]
 	[event global=true call=true key=arrowup label=*main]
 	[event global=true call=true key=upwheel label=*main]
-	[event global=true call=true key=pagedown label=*main]
-	[event global=true call=true key=pageup label=*main]
+	[event global=true call=true key=pageup label=*page arg=prev]
+	[event global=true call=true key=pagedown label=*page arg=next]
+[return]
+
+*page
+	[return cond="! isGameState"]
+	[page to=&sn.eventArg]
 [return]
 
 

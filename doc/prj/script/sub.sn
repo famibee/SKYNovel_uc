@@ -28,6 +28,7 @@
 	&isGameState = false
 	&sys:doResume = false
 	&save:sn.doRecLog = false
+	[page clear=true]
 
 	[txt_lay_fullscreen b_alpha=0 onend=leave no_sysmenu_draw=true]
 	[er]	; ページ両面の文字消去＆改ページ
