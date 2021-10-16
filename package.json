@@ -8,7 +8,7 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.19.0",
+		"@famibee/skynovel": "^1.19.3",
 		"about-window": "^1.15.0",
 		"buffer": "^6.0.3",
 		"crypto-js": "^4.1.1",
@@ -17,13 +17,13 @@
 	"devDependencies": {
 		"@types/crypto-js": "^4.0.2",
 		"@types/fs-extra": "^9.0.13",
-		"@types/node": "^16.10.3",
+		"@types/node": "^16.11.0",
 		"css-loader": "^6.4.0",
-		"electron": "^15.1.2",
-		"electron-builder": "^22.14.4",
+		"electron": "^15.2.0",
+		"electron-builder": "^22.14.5",
 		"rimraf": "^3.0.2",
 		"style-loader": "^3.3.0",
-		"webpack": "^5.58.1",
+		"webpack": "^5.58.2",
 		"webpack-cli": "^4.9.0",
 		"webpack-dev-server": "^4.3.1",
 		"webpack-obfuscator": "^3.4.1"
@@ -35,13 +35,14 @@
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
 		"watch:wds": "webpack-cli serve --config ./core/wds.config.js --open web.htm",
 		"watch:wdsdbg": "webpack-cli serve --config ./core/wds.config.js --open web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D",
-		"webpack:pro": "rimraf doc/web.*.js && webpack -p --config ./core/webpack.config.js",
+		"webpack:pro": "rimraf doc/web.*.js && webpack --mode production --config ./core/webpack.config.js",
 		"npm_check_updates": "ncu -u --target minor && npm update && npm run webpack:dev && ncu -g",
 		"rebuild": "rimraf package-lock.json && rimraf node_modules && npm cache clear --force && npm i && npm run webpack:dev"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.skynovel.uc",
 		"productName": "桜の樹の下には",
+		"artifactName": "${productName}-${version}-${arch}.${ext}",
 		"directories": {
 			"output": "build/package/"
 		},

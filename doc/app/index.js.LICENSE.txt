@@ -1,0 +1,1002 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+ * @pixi/constants - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/constants is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/core - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/core is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/display - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/display is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/filter-alpha - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/filter-alpha is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/filter-color-matrix - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/filter-color-matrix is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/filter-fxaa - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/filter-fxaa is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/filter-noise - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/filter-noise is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/loaders - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/loaders is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/math - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/math is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/mixin-get-child-by-name - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/mixin-get-child-by-name is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/mixin-get-global-position - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/mixin-get-global-position is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/polyfill - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/polyfill is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/prepare - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/prepare is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/runner - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/runner is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/settings - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/settings is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * @pixi/ticker - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * @pixi/ticker is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*!
+ * Platform.js v1.3.6
+ * Copyright 2014-2020 Benjamin Tan
+ * Copyright 2011-2013 John-David Dalton
+ * Available under MIT license
+ */
+
+/*!
+ * pixi.js - v6.1.3
+ * Compiled Mon, 13 Sep 2021 15:29:31 UTC
+ *
+ * pixi.js is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license
+ */
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/*! ../globalThis.js */
+
+/*! ../transport.js */
+
+/*! ../util.js */
+
+/*! ./AnalyzeTagArg */
+
+/*! ./Areas */
+
+/*! ./Button */
+
+/*! ./CallStack */
+
+/*! ./CmnLib */
+
+/*! ./CmnTween */
+
+/*! ./Config */
+
+/*! ./DebugMng */
+
+/*! ./DesignCast */
+
+/*! ./EventListenerCtn */
+
+/*! ./EventMng */
+
+/*! ./FocusMng */
+
+/*! ./FrameMng */
+
+/*! ./Grammar */
+
+/*! ./GrpLayer */
+
+/*! ./Layer */
+
+/*! ./LayerMng */
+
+/*! ./Main */
+
+/*! ./Pages */
+
+/*! ./PropParser */
+
+/*! ./RubySpliter */
+
+/*! ./ScriptIterator */
+
+/*! ./SoundMng */
+
+/*! ./SysBase */
+
+/*! ./SysNode */
+
+/*! ./TxtLayer */
+
+/*! ./TxtStage */
+
+/*! ./Variable */
+
+/*! ./allSettled */
+
+/*! ./binary.js */
+
+/*! ./common */
+
+/*! ./commons.js */
+
+/*! ./decode */
+
+/*! ./decodePacket.js */
+
+/*! ./encode */
+
+/*! ./encodePacket.js */
+
+/*! ./finally */
+
+/*! ./globalThis.js */
+
+/*! ./is-binary.js */
+
+/*! ./isMobile */
+
+/*! ./manager.js */
+
+/*! ./on.js */
+
+/*! ./polling-xhr.js */
+
+/*! ./polling.js */
+
+/*! ./sn/CmnLib */
+
+/*! ./sn/Layer */
+
+/*! ./sn/SysApp */
+
+/*! ./socket.js */
+
+/*! ./transport.js */
+
+/*! ./transports/index.js */
+
+/*! ./url.js */
+
+/*! ./util */
+
+/*! ./util.js */
+
+/*! ./websocket-constructor.js */
+
+/*! ./websocket.js */
+
+/*! ./xmlhttprequest.js */
+
+/*! @daybrush/utils */
+
+/*! @egjs/agent */
+
+/*! @egjs/children-differ */
+
+/*! @egjs/list-differ */
+
+/*! @pixi/accessibility */
+
+/*! @pixi/app */
+
+/*! @pixi/compressed-textures */
+
+/*! @pixi/constants */
+
+/*! @pixi/core */
+
+/*! @pixi/display */
+
+/*! @pixi/extract */
+
+/*! @pixi/filter-alpha */
+
+/*! @pixi/filter-blur */
+
+/*! @pixi/filter-color-matrix */
+
+/*! @pixi/filter-displacement */
+
+/*! @pixi/filter-fxaa */
+
+/*! @pixi/filter-noise */
+
+/*! @pixi/graphics */
+
+/*! @pixi/interaction */
+
+/*! @pixi/loaders */
+
+/*! @pixi/math */
+
+/*! @pixi/mesh */
+
+/*! @pixi/mesh-extras */
+
+/*! @pixi/mixin-cache-as-bitmap */
+
+/*! @pixi/mixin-get-child-by-name */
+
+/*! @pixi/mixin-get-global-position */
+
+/*! @pixi/particle-container */
+
+/*! @pixi/polyfill */
+
+/*! @pixi/prepare */
+
+/*! @pixi/runner */
+
+/*! @pixi/settings */
+
+/*! @pixi/sound */
+
+/*! @pixi/sprite */
+
+/*! @pixi/sprite-animated */
+
+/*! @pixi/sprite-tiling */
+
+/*! @pixi/spritesheet */
+
+/*! @pixi/text */
+
+/*! @pixi/text-bitmap */
+
+/*! @pixi/ticker */
+
+/*! @pixi/utils */
+
+/*! @scena/dragscroll */
+
+/*! @scena/event-emitter */
+
+/*! @scena/matrix */
+
+/*! @socket.io/component-emitter */
+
+/*! @tweenjs/tween.js */
+
+/*! backo2 */
+
+/*! base64-arraybuffer */
+
+/*! crypto */
+
+/*! css-styled */
+
+/*! css-to-mat */
+
+/*! debug */
+
+/*! earcut */
+
+/*! engine.io-client */
+
+/*! engine.io-parser */
+
+/*! eventemitter3 */
+
+/*! framework-utils */
+
+/*! gamepad.js */
+
+/*! gesto */
+
+/*! has-cors */
+
+/*! https://mths.be/punycode v1.3.2 by @mathias */
+
+/*! ismobilejs */
+
+/*! moveable */
+
+/*! ms */
+
+/*! object-assign */
+
+/*! overlap-area */
+
+/*! parseqs */
+
+/*! parseuri */
+
+/*! parsimmon */
+
+/*! pixi.js */
+
+/*! platform */
+
+/*! promise-polyfill */
+
+/*! punycode */
+
+/*! querystring */
+
+/*! react-compat-css-styled */
+
+/*! react-compat-moveable */
+
+/*! react-simple-compat */
+
+/*! socket.io-client */
+
+/*! socket.io-parser */
+
+/*! stream */
+
+/*! url */
+
+/*! yeast */
+
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+
+/*!************************!*\
+  !*** stream (ignored) ***!
+  \************************/
+
+/*!*************************!*\
+  !*** ./core/src/app.ts ***!
+  \*************************/
+
+/*!*****************************!*\
+  !*** ./core/src/sn/Main.ts ***!
+  \*****************************/
+
+/*!******************************!*\
+  !*** ./core/src/sn/Areas.ts ***!
+  \******************************/
+
+/*!******************************!*\
+  !*** ./core/src/sn/Layer.ts ***!
+  \******************************/
+
+/*!******************************!*\
+  !*** ./core/src/sn/Pages.ts ***!
+  \******************************/
+
+/*!*******************************!*\
+  !*** ./core/src/sn/Button.ts ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./core/src/sn/CmnLib.ts ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./core/src/sn/Config.ts ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./core/src/sn/SysApp.ts ***!
+  \*******************************/
+
+/*!********************************!*\
+  !*** ./core/src/sn/Grammar.ts ***!
+  \********************************/
+
+/*!********************************!*\
+  !*** ./core/src/sn/SysBase.ts ***!
+  \********************************/
+
+/*!********************************!*\
+  !*** ./core/src/sn/SysNode.ts ***!
+  \********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/CmnTween.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/DebugMng.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/EventMng.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/FocusMng.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/FrameMng.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/GrpLayer.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/LayerMng.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/SoundMng.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/TxtLayer.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/TxtStage.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./core/src/sn/Variable.ts ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./node_modules/url/url.js ***!
+  \*********************************/
+
+/*!**********************************!*\
+  !*** ./core/src/sn/CallStack.ts ***!
+  \**********************************/
+
+/*!**********************************!*\
+  !*** ./node_modules/ms/index.js ***!
+  \**********************************/
+
+/*!**********************************!*\
+  !*** ./node_modules/url/util.js ***!
+  \**********************************/
+
+/*!***********************************!*\
+  !*** ./core/src/sn/DesignCast.ts ***!
+  \***********************************/
+
+/*!***********************************!*\
+  !*** ./core/src/sn/PropParser.ts ***!
+  \***********************************/
+
+/*!************************************!*\
+  !*** ./core/src/sn/RubySpliter.ts ***!
+  \************************************/
+
+/*!*************************************!*\
+  !*** ./node_modules/yeast/index.js ***!
+  \*************************************/
+
+/*!**************************************!*\
+  !*** ./core/src/sn/AnalyzeTagArg.ts ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./node_modules/backo2/index.js ***!
+  \**************************************/
+
+/*!***************************************!*\
+  !*** ./core/src/sn/ScriptIterator.ts ***!
+  \***************************************/
+
+/*!***************************************!*\
+  !*** ./node_modules/parseqs/index.js ***!
+  \***************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/has-cors/index.js ***!
+  \****************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/parseuri/index.js ***!
+  \****************************************/
+
+/*!*****************************************!*\
+  !*** ./core/src/sn/EventListenerCtn.ts ***!
+  \*****************************************/
+
+/*!******************************************!*\
+  !*** ./node_modules/debug/src/common.js ***!
+  \******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/debug/src/browser.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/earcut/src/earcut.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/platform/platform.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./node_modules/querystring/index.js ***!
+  \*******************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/gamepad.js/gamepad.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/querystring/decode.js ***!
+  \********************************************/
+
+/*!********************************************!*\
+  !*** ./node_modules/querystring/encode.js ***!
+  \********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/eventemitter3/index.js ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./node_modules/object-assign/index.js ***!
+  \*********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/gesto/dist/gesto.esm.js ***!
+  \**********************************************/
+
+/*!**********************************************!*\
+  !*** ./node_modules/ismobilejs/esm/index.js ***!
+  \**********************************************/
+
+/*!***********************************************!*\
+  !*** ./node_modules/pixi.js/dist/esm/pixi.js ***!
+  \***********************************************/
+
+/*!************************************************!*\
+  !*** ./node_modules/@pixi/app/dist/esm/app.js ***!
+  \************************************************/
+
+/*!*************************************************!*\
+  !*** ./node_modules/ismobilejs/esm/isMobile.js ***!
+  \*************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/@pixi/core/dist/esm/core.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/@pixi/math/dist/esm/math.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/@pixi/mesh/dist/esm/mesh.js ***!
+  \**************************************************/
+
+/*!**************************************************!*\
+  !*** ./node_modules/@pixi/text/dist/esm/text.js ***!
+  \**************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/@egjs/agent/dist/agent.esm.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/@pixi/utils/dist/esm/utils.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/css-styled/dist/styled.esm.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/moveable/dist/moveable.esm.js ***!
+  \****************************************************/
+
+/*!****************************************************!*\
+  !*** ./node_modules/promise-polyfill/src/index.js ***!
+  \****************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/@pixi/runner/dist/esm/runner.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/@pixi/sprite/dist/esm/sprite.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/@pixi/ticker/dist/esm/ticker.js ***!
+  \******************************************************/
+
+/*!******************************************************!*\
+  !*** ./node_modules/promise-polyfill/src/finally.js ***!
+  \******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/@scena/matrix/dist/matrix.esm.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
+  !*** ./node_modules/socket.io-client/build/cjs/on.js ***!
+  \*******************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/@daybrush/utils/dist/utils.esm.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/@pixi/display/dist/esm/display.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/@pixi/extract/dist/esm/extract.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/@pixi/loaders/dist/esm/loaders.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/@pixi/prepare/dist/esm/prepare.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/css-to-mat/dist/css-to-mat.esm.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/framework-utils/dist/utils.esm.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/socket.io-client/build/cjs/url.js ***!
+  \********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/@pixi/sound/dist/pixi-sound.esm.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/util.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/promise-polyfill/src/allSettled.js ***!
+  \*********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/@pixi/graphics/dist/esm/graphics.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/@pixi/polyfill/dist/esm/polyfill.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/@pixi/settings/dist/esm/settings.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/@tweenjs/tween.js/dist/tween.esm.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/index.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/engine.io-parser/build/cjs/index.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/socket.io-client/build/cjs/index.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/socket.io-parser/build/cjs/index.js ***!
+  \**********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/socket.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/parsimmon/build/parsimmon.umd.min.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/socket.io-client/build/cjs/socket.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
+  !*** ./node_modules/socket.io-parser/build/cjs/binary.js ***!
+  \***********************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/@pixi/constants/dist/esm/constants.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/@socket.io/component-emitter/index.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/engine.io-parser/build/cjs/commons.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/overlap-area/dist/overlap-area.esm.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/socket.io-client/build/cjs/manager.js ***!
+  \************************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/url/node_modules/punycode/punycode.js ***!
+  \************************************************************/
+
+/*!*************************************************************!*\
+  !*** ./node_modules/react-simple-compat/dist/compat.esm.js ***!
+  \*************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/transport.js ***!
+  \**************************************************************/
+
+/*!**************************************************************!*\
+  !*** ./node_modules/socket.io-parser/build/cjs/is-binary.js ***!
+  \**************************************************************/
+
+/*!***************************************************************!*\
+  !*** ./node_modules/@scena/dragscroll/dist/dragscroll.esm.js ***!
+  \***************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@egjs/list-differ/dist/list-differ.esm.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@pixi/filter-blur/dist/esm/filter-blur.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@pixi/filter-fxaa/dist/esm/filter-fxaa.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@pixi/interaction/dist/esm/interaction.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@pixi/mesh-extras/dist/esm/mesh-extras.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@pixi/spritesheet/dist/esm/spritesheet.js ***!
+  \****************************************************************/
+
+/*!****************************************************************!*\
+  !*** ./node_modules/@pixi/text-bitmap/dist/esm/text-bitmap.js ***!
+  \****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-compat-css-styled/dist/styled.esm.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-compat-moveable/dist/moveable.esm.js ***!
+  \*****************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/@pixi/filter-alpha/dist/esm/filter-alpha.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
+  !*** ./node_modules/@pixi/filter-noise/dist/esm/filter-noise.js ***!
+  \******************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@pixi/accessibility/dist/esm/accessibility.js ***!
+  \********************************************************************/
+
+/*!********************************************************************!*\
+  !*** ./node_modules/@pixi/sprite-tiling/dist/esm/sprite-tiling.js ***!
+  \********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/@scena/event-emitter/dist/event-emitter.esm.js ***!
+  \*********************************************************************/
+
+/*!*********************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/transports/index.js ***!
+  \*********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/globalThis.browser.js ***!
+  \***********************************************************************/
+
+/*!***********************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/transports/polling.js ***!
+  \***********************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@egjs/children-differ/dist/children-differ.esm.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/@pixi/sprite-animated/dist/esm/sprite-animated.js ***!
+  \************************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/base64-arraybuffer/dist/base64-arraybuffer.es5.js ***!
+  \************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/transports/websocket.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/engine.io-parser/build/cjs/decodePacket.browser.js ***!
+  \*************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/engine.io-parser/build/cjs/encodePacket.browser.js ***!
+  \*************************************************************************/
+
+/*!***************************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/transports/polling-xhr.js ***!
+  \***************************************************************************/
+
+/*!******************************************************************************!*\
+  !*** ./node_modules/@pixi/particle-container/dist/esm/particle-container.js ***!
+  \******************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@pixi/compressed-textures/dist/esm/compressed-textures.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@pixi/filter-color-matrix/dist/esm/filter-color-matrix.js ***!
+  \********************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/@pixi/filter-displacement/dist/esm/filter-displacement.js ***!
+  \********************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** ./node_modules/@pixi/mixin-cache-as-bitmap/dist/esm/mixin-cache-as-bitmap.js ***!
+  \************************************************************************************/
+
+/*!**************************************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/transports/xmlhttprequest.browser.js ***!
+  \**************************************************************************************/
+
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@pixi/mixin-get-child-by-name/dist/esm/mixin-get-child-by-name.js ***!
+  \****************************************************************************************/
+
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@pixi/mixin-get-global-position/dist/esm/mixin-get-global-position.js ***!
+  \********************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/engine.io-client/build/cjs/transports/websocket-constructor.browser.js ***!
+  \*********************************************************************************************/

@@ -1,5 +1,11 @@
 # Change Log
 
+## v2.7.1
+- fix: パッケージ版ビルドエラー修正
+	- script 内 "webpack:pro"の【-p】を【--mode production】に置換
+	- "build": {} 直下に
+		"artifactName": "${productName}-${version}-${arch}.${ext}",
+		- File Patterns - electron-builder https://www.electron.build/file-patterns#file-macros
 ## v2.7.0
 - add: ページ移動機能追加：page up/downキーで、既読ページを前後移動できるように
 ## v2.6.2
