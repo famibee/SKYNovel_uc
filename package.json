@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "梶井基次郎「桜の樹の下には」をノベルゲーム化したものです。",
 	"main": "doc/app.js",
-	"appBundleId": "com.fc2.blog.famibee.skynovel.ucv2.7.2：fix: ライブラリ更新",
+	"appBundleId": "com.fc2.blog.famibee.skynovel.uc",
 	"appCopyright": "(c)ふぁみべぇ",
 	"author": "ふぁみべぇ",
 	"license": "MIT",
@@ -40,7 +40,7 @@
 		"rebuild": "rimraf package-lock.json && rimraf node_modules && npm cache clear --force && npm i && npm run webpack:dev"
 	},
 	"build": {
-		"appId": "com.fc2.blog.famibee.skynovel.ucv2.7.2：fix: ライブラリ更新",
+		"appId": "com.fc2.blog.famibee.skynovel.uc",
 		"productName": "桜の樹の下には",
 		"artifactName": "${productName}-${version}-${arch}.${ext}",
 		"directories": {
