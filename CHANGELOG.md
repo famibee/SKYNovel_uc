@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.7.2
+- fix: ライブラリ更新
 ## v2.7.1
 - fix: パッケージ版ビルドエラー修正
 	- script 内 "webpack:pro"の【-p】を【--mode production】に置換
