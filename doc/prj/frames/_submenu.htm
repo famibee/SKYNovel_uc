@@ -1,0 +1,107 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"/><title>&nbsp;</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="lib/mdb.min.css">
+<style type="text/css">
+	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
+	body {padding-top: 70px; min-height: 100vh;}
+	.btn:hover, .btn:focus {
+		background: rgba(204, 255, 204, 0.5);
+		color: black;
+		filter: drop-shadow(1px 3px 5px rgba(25, 25, 25, 0.9));
+	}
+</style>
+<script defer src="lib/mdb.min.js"></script>
+<!--
+	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
+-->
+<script>
+	let o = {};
+	document.addEventListener('DOMContentLoaded', ()=> {
+		const proc_mode = (location.protocol.slice(0, 4) === 'http')
+			? 'server'
+			: ('val2ctrl' in window.parent) ?'local' :'electron';
+		if (proc_mode === 'local') val2ctrl();	// ローカルデバッグ用
+		if (proc_mode !== 'electron') document.getElementById('game_end').classList.add('disabled');
+	}, false);
+
+	var val_dic = null;	// わざとvar
+	function val2ctrl() {	// 変数→コンポーネント
+	}
+</script>
+</head>
+<body style="background: rgba(255,255,255,0.5); background-image: linear-gradient(0deg, rgba(255,255,255,0.5) 4%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.5) 75%, rgba(255,255,255,0.5) 100%);" oncontextmenu="return false">
+
+<nav class="navbar fixed-top navbar-expand navbar-dark bg-light">
+<div class="container-fluid">
+
+	<div class="collapse navbar-collapse">
+		<button id="close" type="button" class="btn btn-outline-dark py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<div class="collapse navbar-collapse justify-content-center">
+		<span class="navbar-brand text-dark">右クリックメニュー</span>
+	</div>
+
+	<div class="collapse navbar-collapse justify-content-end">
+		<span class="navbar-text text-dark">
+		</span>
+	</div>
+
+</div>
+</nav>
+
+
+<div class="container-fluid my-5"><div class="row">
+	<div class="col-1"></div>
+	<div class="col-4">
+		<div class="container-fluid d-flex align-items-center justify-content-center"><div class="row gap-2">
+			<button id="save" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="セーブ" data-toggle="tooltip" title="セーブ">セーブ</button>
+			<button id="load" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ロード" data-toggle="tooltip" title="ロード">ロード</button>
+			<button id="log" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="履歴" data-toggle="tooltip" title="履歴">履歴</button>
+			<button id="config" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="設定" data-toggle="tooltip" title="設定">設定</button>
+			<button id="hide_text" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="字を隠す" data-toggle="tooltip" title="字を隠す">字を隠す</button>
+			<button id="cancel" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲームに戻る" data-toggle="tooltip" title="ゲームに戻る">ゲームに戻る</button>
+			<button id="title" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="タイトルに戻る" data-toggle="tooltip" title="タイトルに戻る">タイトルに戻る</button>
+			<button id="game_end" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲーム終了" data-toggle="tooltip" title="ゲーム終了">ゲーム終了</button>
+
+		</div></div>
+	</div>
+	<div class="col-7 py-5">
+		<div class="container-fluid d-flex align-items-center justify-content-center text-white"><div class="row" style="text-shadow: 0px 3px 3px rgba(0,0,0,0.4);">
+			<div class="col-4">	Shift、ESCキー	</div>
+			<div class="col-8">	右クリックメニューを表示	</div>
+			<div class="col-4">	W、alt+enterキー	</div>
+			<div class="col-8">	全画面・ウインドウモード切り替え	</div>
+			<div class="col-4">	Aキー	</div>
+			<div class="col-8">	自動読み進み On(クリックで停止)	</div>
+			<div class="col-4">	Fキー	</div>
+			<div class="col-8">	強制スキップ On(クリックで停止)	</div>
+			<div class="col-4">	Ctrlキー	</div>
+			<div class="col-8">	押してる間だけメッセージ強制スキップ<br/>
+								（スキップはFキーと同等）	</div>
+			<div class="col-4">		</div>
+			<div class="col-8">		</div>
+			<div class="col-4">	SPACE、Delキー	</div>
+			<div class="col-8">	字を隠す(クリックで復帰)	</div>
+			<div class="col-4">	PAGE DOWNキー、PAGE UPキー、Up(↑)キー	</div>
+			<div class="col-8">	履歴(文字履歴を表示、クリックで復帰)	</div>
+			<div class="col-4">	Sキー	</div>
+			<div class="col-8">	クイックセーブ	</div>
+			<div class="col-4">	Lキー	</div>
+			<div class="col-8">	クイックロード	</div>
+			<div class="col-4">	Tキー	</div>
+			<div class="col-8">	テキスト窓を薄く	</div>
+			<div class="col-4">	Yキー	</div>
+			<div class="col-8">	テキスト窓を濃く	</div>
+			<div class="col-4">	Pキー	</div>
+			<div class="col-8">	スクリーンショット(デスクトップへ保存)	</div>
+
+		</div></div>
+
+	</div>
+</div></div>
+
+</body></html>

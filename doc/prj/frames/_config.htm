@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="lib/mdb.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
-	body {padding-top: 70px;}
+	body {padding-top: 70px; min-height: 100vh;}
 	.row {--bs-gutter-x: 0.3rem;}	 /* mdbを微調整 */
 	.btn:hover, .btn:focus, .sn_chk:hover, .sn_chk:focus {
 		border: solid black;
@@ -110,8 +110,8 @@
 		<span class="navbar-brand">設定画面</span>
 	</div>
 
-	<div class="collapse navbar-collapse ml-auto">
-		<span class="navbar-text text-white ml-auto">
+	<div class="collapse navbar-collapse justify-content-end">
+		<span class="navbar-text text-white">
 			現在 ver <span id="version">1.00</span>
 		</span>
 	</div>

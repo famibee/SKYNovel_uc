@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="lib/mdb.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
-	body {padding-top: 70px;}
+	body {padding-top: 70px; min-height: 100vh;}
 	.row {--bs-gutter-x: 0.3rem;}	 /* mdbを微調整 */
 	.btn:hover, .btn:focus {
 		border: solid black;
@@ -85,10 +85,10 @@
 <script>
 	let a = [	// セーブデータの内容
 		{place: '10', pic: '_archive_browser.jpg', dt: '2020/12/18 11:44', text: '　ああ、桜の樹の下には屍体が埋まつてゐる！'},
-		{place: '11', pic: '../bg/bath_tub.jpg', dt: '2020/12/18 11:43', text: '　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。'},
-		{place: '12', pic: '../bg/dressing_room.jpg', dt: '2020/12/18 11:42', text: '  This is not justified test message. This is written many words and cut last sentence.'},
-		{place: '13', pic: '../bg/gas_lamp.jpg', dt: '2020/12/18 11:41', text: '　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。'},
-		{place: '14', pic: '../bg/hatsunekan_corridor.jpg', dt: '2020/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
+		{place: '11', pic: '../bg/yun_1317.jpg', dt: '2020/12/18 11:43', text: '　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。'},
+		{place: '12', pic: '../bg/yun_2352.jpg', dt: '2020/12/18 11:42', text: '  This is not justified test message. This is written many words and cut last sentence.'},
+		{place: '13', pic: '../bg/yun_1184.jpg', dt: '2020/12/18 11:41', text: '　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。'},
+		{place: '14', pic: '../bg/yun_2384.jpg', dt: '2020/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
 	];
 	document.ondragstart = ()=> false;
 	const proc_mode = (location.protocol.slice(0, 4) === 'http')
@@ -258,8 +258,8 @@
 		<span class="navbar-brand"><span class="mode">ロード</span>画面</span>
 	</div>
 
-	<div class="collapse navbar-collapse ml-auto">
-		<button id="tgl_del" type="button" class="btn btn-outline-light btn-rounded ml-auto" aria-label="編集する" data-toggle="tooltip" title="編集する">
+	<div class="collapse navbar-collapse justify-content-end">
+		<button id="tgl_del" type="button" class="btn btn-outline-light btn-rounded" aria-label="編集する" data-toggle="tooltip" title="編集する">
 			<svg width="1.9em" height="1.9em" viewbox="0 0 16 16" class="bi bi-trash-fill" style="pointer-events: none;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 				<path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
 			</svg>

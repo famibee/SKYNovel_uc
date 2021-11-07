@@ -1,35 +1,36 @@
-	[add_lay layer=mes_submenu class=txt]
-	[lay layer=mes_submenu b_pic=_submenu b_alpha=1 b_alpha_isfixed=true b_left=0 b_top=0 visible=false]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=108 global=true label=*save hint='セーブ' enterse=&sysse_choice]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=178 global=true label=*load hint='ロード' enterse=&sysse_choice]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=248 global=true label=*log hint='文字履歴を表示' enterse=&sysse_choice]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=318 global=true label=*config hint='ゲーム設定' enterse=&sysse_choice]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=388 global=true label=*hide_text hint='テキスト窓非表示' enterse=&sysse_choice]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=458 global=true label=*cancel hint='ゲームに戻る' enterse=&sysse_choice]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=528 global=true label=*title hint='タイトルに戻る' enterse=&sysse_choice]
-		[button layer=mes_submenu page=fore pic=_submenuBtn left=130 top=598 global=true label=*close hint='ゲーム終了' enterse=&sysse_choice cond=const.sn.isApp]
+	[return cond=const.sn.frm.submenu]
+
+	[add_frame id=submenu src=_submenu visible=false]
+	[event key='dom=submenu:#close' label=*cancel global=true]
+
+	[event key='dom=submenu:#save' label=*save global=true]
+	[event key='dom=submenu:#load' label=*load global=true]
+	[event key='dom=submenu:#log' label=*log global=true]
+	[event key='dom=submenu:#config' label=*config global=true]
+	[event key='dom=submenu:#hide_text' label=*hide_text global=true]
+	[event key='dom=submenu:#cancel' label=*cancel global=true]
+	[event key='dom=submenu:#title' label=*title global=true]
+	[event key='dom=submenu:#game_end' label=*game_end global=true]
 
 	[event global=true call=true key=rightclick label=*main]
 	[event global=true call=true key=shift label=*main]
 	[event global=true call=true key=escape label=*main]
-;	[gesture_event global=true call=true f2tap=*main f3tap=*toggle_skip]
 [return]
 
 ;*********************************************************
 *main
-	[return cond="! isGameState"]
+	[return cond=!isGameState]
 
 		&v = const.sn.lay.mes.fore.visible
 		[lay layer=mes page=fore visible=false]
 
 		[se fn=&sysse_ok1 buf=SYS]
-		[lay layer=mes_submenu page=fore visible=true]
+		[frame id=submenu visible=true]
 		[let name=sysmenu_v text=&const.sn.lay.mes_sysmenu.fore.visible cond=useSysMenu]
 		[sys_menu visible=false]
 
 	[let name="isGameState" text=false]
 *retry
-	[enable_event layer=mes_submenu enabled=true]
 	[enable_event enabled=false]
 	[clear_event]
 
@@ -80,7 +81,6 @@
 
 ;*********************************************************
 *title
-	[enable_event layer=mes_submenu enabled=false]
 	[ask_ync mes="タイトルに戻りますか？"]
 		;#FONT	タイトルに戻りますか？
 	[jump label=*retry cond="_yesno=='n'"]
@@ -93,21 +93,20 @@
 	[grp bg="black" sys_menu=false b_alpha=0]
 
 	[pop_stack clear=true]
-	[jump fn="main" label=*title]
+	[jump fn=main label=*title]
 
 ;*********************************************************
-*close
-	[enable_event layer=mes_submenu enabled=false]
+*game_end
 	[ask_ync mes="ゲームを終了しますか？"]
 		;#FONT	ゲームを終了しますか？
 	[jump label=*retry cond="_yesno=='n'"]
 
 	[lay layer=mes page=fore visible=&v]
-	[jump fn="main" label=*close_do]
+	[jump fn=main label=*game_end_do]
 
 ;*********************************************************
 *exit
-	[lay layer=mes_submenu page=fore visible=false]
+	[frame id=submenu visible=false]
 	[sys_menu visible=&sysmenu_v]
 	[lay layer=mes page=fore visible=&v]
 [return]
@@ -115,7 +114,7 @@
 ;*********************************************************
 *cancel
 	[se fn=&sysse_cancel buf=SYS]
-	[lay layer=mes_submenu page=fore visible=false]
+	[frame id=submenu visible=false]
 	[sys_menu visible=&sysmenu_v]
 	[lay layer=mes page=fore visible=&v]
 	[wait time=200]		; パフォーマンス改善

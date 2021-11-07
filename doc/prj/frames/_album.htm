@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="lib/mdb.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
-	body {padding-top: 70px;}
+	body {padding-top: 70px; min-height: 100vh;}
 	.row {--bs-gutter-x: 0.3rem;}	 /* mdbを微調整 */
 	.btn:hover, .btn:focus {
 		border: solid black;
@@ -27,12 +27,12 @@
 -->
 <script>
 	let a = [	// アルバムの内容
-		{"type": "pic", "fn": "../bg/hatsunekan_entrance.jpg", "title": "初音館_玄関", "enabled": "true"},
-		{"type": "pic", "fn": "../bg/hatsunekan_corridor.jpg", "title": "初音館_廊下", "enabled": "false"},
-		{"type": "pic", "fn": "../bg/univ_auditorium.jpg", "title": "大学講堂", "enabled": "true"},
-		{"type": "pic", "fn": "../bg/hatsunekan_minoura_room.jpg", "title": "初音館_蓑浦部屋", "enabled": "true"},
-		{"type": "pic", "fn": "../bg/gas_lamp.jpg", "title": "ガス灯", "enabled": "true"},
-		{"type": "mov", "fn": "nc10889", "title": "桜", "enabled": "true"},
+		{"type": "pic", "fn": "../bg/yun_1184.jpg", "title": "森の小川", "enabled": "true"},
+		{"type": "pic", "fn": "../bg/yun_1317.jpg", "title": "桜０", "enabled": "false"},
+		{"type": "pic", "fn": "../bg/yun_2352.jpg", "title": "桜１", "enabled": "true"},
+		{"type": "pic", "fn": "../bg/yun_2384.jpg", "title": "桜２", "enabled": "true"},
+		{"type": "pic", "fn": "../bg/title.jpg", "title": "タイトル画像", "enabled": "true"},
+		{"type": "mov", "fn": "nc10889", "title": "桜動画", "enabled": "true"},
 		{"type": "bgm", "fn": "free10", "title": "free10(BGM)", "enabled": "true"},
 		{"type": "bgm", "fn": "free04", "title": "free04(BGM)", "enabled": "true"},
 		{"type": "bgm", "fn": "free25", "title": "free25(BGM)", "enabled": "true"},
@@ -130,7 +130,7 @@
 <nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
 <div class="container-fluid">
 
-	<div class="collapse navbar-collapse mr-auto">
+	<div class="collapse navbar-collapse">
 		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
 			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 		</button>
@@ -140,8 +140,8 @@
 		<span class="navbar-brand">アルバム画面</span>
 	</div>
 
-	<div class="collapse navbar-collapse ml-auto">
-		<span class="navbar-text text-white ml-auto">
+	<div class="collapse navbar-collapse justify-content-end">
+		<span class="navbar-text text-white">
 			now_playing : <span id="fnBgm"></span>
 		</span>
 	</div>
