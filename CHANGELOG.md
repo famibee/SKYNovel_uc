@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.8.1
+- fix: ライブラリ更新
 ## v2.8.0
 - feat: (_submenu.sn) 右クリックメニューをレスポンシブなフレームで再作成
 - feat: (_yesno.sn) Yes / No ダイアログをレスポンシブなフレームで再作成
