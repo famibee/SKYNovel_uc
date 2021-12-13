@@ -1,5 +1,21 @@
 # Change Log
 
+## v2.9.0
+- fix: ライブラリ変更（MDB 5 モーダルが無料で使えなくなったので bootstrap 5に）
+	- Bootstrap Modal - examples & tutorial https://mdbootstrap.com/docs/standard/components/modal/
+		- This component requires MDB Pro Essential package.
+	- ライブラリ変更
+		- 削除：doc/prj/frames/lib/mdb.min.css, *.js
+		- 追加：bootstrap.min.css, *.js
+	- フレーム更新（ほぼ doc/prj/frames/*.htm の文字列置換）
+		- mdb.min → bootstrap.min
+		- data-toggle → data-bs-toggle
+		- data-target → data-bs-target
+		- data-dismiss → data-bs-dismiss
+		- mdb.Modal → bootstrap.Modal
+		- doc/prj/frames/_log.htm：card を使用するよう変更
+		- doc/prj/frames/_archive.htm：ダイアログの「やめる」ボタンを .btn-outline-dark に
+- fix: ライブラリ更新
 ## v2.8.1
 - fix: ライブラリ更新
 ## v2.8.0

@@ -1,7 +1,7 @@
 <!doctype html><html lang="ja">
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="lib/mdb.min.css">
+<link rel="stylesheet" href="lib/bootstrap.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
 	body {padding-top: 70px; min-height: 100vh;}
@@ -17,10 +17,7 @@
 	#logMap {padding-left: 0;}	/* 見た目微調整 */
 	#logMap li {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 </style>
-<script defer src="lib/mdb.min.js"></script>
-<!--
-	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
--->
+<script defer src="lib/bootstrap.min.js"></script>
 <script defer src="lib/smart-table-scroll.min.js"></script>
 <script>
 	let a = [
@@ -53,10 +50,10 @@
 			buildRow: d=> {
 				const n = document.createElement('div');
 				n.innerHTML = `
-<p id="r${d.i}" class="note note-light">
+<div id="r${d.i}" class="card"><div class="card-body"><p class="card-text">
 	<button type="button" class="btn btn-dark">${d.i+1}</button>
 	${d.t}
-</p>`
+</p></div></div>`;
 				return n;
 			},
 			updateRow: (d, el)=> el.childNodes[0].innerHTML = `
@@ -101,7 +98,7 @@
 	<div class="container-fluid">
 	
 		<div class="collapse navbar-collapse mr-auto">
-			<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+			<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
 				<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 			</button>
 		</div>

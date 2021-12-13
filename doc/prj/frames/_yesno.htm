@@ -1,7 +1,7 @@
 <!doctype html><html lang="ja">
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="lib/mdb.min.css">
+<link rel="stylesheet" href="lib/bootstrap.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
 	body {padding-top: 70px; min-height: 100vh;}
@@ -11,10 +11,7 @@
 		filter: drop-shadow(1px 3px 5px rgba(25, 25, 25, 0.9));
 	}
 </style>
-<script defer src="lib/mdb.min.js"></script>
-<!--
-	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
--->
+<script defer src="lib/bootstrap.min.js"></script>
 <script>
 	let o = {mes: '本文', ok: 'ok', close: 'cancel',};
 	document.addEventListener('DOMContentLoaded', ()=> {
@@ -44,8 +41,8 @@
 		<div class="card-body">
 			<p id="mes" class="card-text fs-5" style="text-shadow: 0px 2px 2px rgba(255,255,255,0.4); ">example text.</p>
 			<div class="text-center">
-				<button id="ok" type="button" class="btn btn-dark btn-lg mx-2" aria-label="決定" data-toggle="tooltip" title="決定">決定</button>
-				<button id="close" type="button" class="btn btn-outline-light btn-lg mx-2" aria-label="キャンセル" data-toggle="tooltip" title="キャンセル">キャンセル</button>
+				<button id="ok" type="button" class="btn btn-dark btn-lg mx-2" aria-label="決定" data-bs-toggle="tooltip" title="決定">決定</button>
+				<button id="close" type="button" class="btn btn-outline-light btn-lg mx-2" aria-label="キャンセル" data-bs-toggle="tooltip" title="キャンセル">キャンセル</button>
 			</div>
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 <!doctype html><html lang="ja">
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="lib/mdb.min.css">
+<link rel="stylesheet" href="lib/bootstrap.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
 	body {padding-top: 70px; min-height: 100vh;}
@@ -11,10 +11,7 @@
 		filter: drop-shadow(1px 3px 5px rgba(25, 25, 25, 0.9));
 	}
 </style>
-<script defer src="lib/mdb.min.js"></script>
-<!--
-	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
--->
+<script defer src="lib/bootstrap.min.js"></script>
 <script>
 	let o = {};
 	document.addEventListener('DOMContentLoaded', ()=> {
@@ -36,7 +33,7 @@
 <div class="container-fluid">
 
 	<div class="collapse navbar-collapse">
-		<button id="close" type="button" class="btn btn-outline-dark py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+		<button id="close" type="button" class="btn btn-outline-dark py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
 			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 		</button>
 	</div>
@@ -58,14 +55,14 @@
 	<div class="col-1"></div>
 	<div class="col-4">
 		<div class="container-fluid d-flex align-items-center justify-content-center"><div class="row gap-2">
-			<button id="save" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="セーブ" data-toggle="tooltip" title="セーブ">セーブ</button>
-			<button id="load" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ロード" data-toggle="tooltip" title="ロード">ロード</button>
-			<button id="log" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="履歴" data-toggle="tooltip" title="履歴">履歴</button>
-			<button id="config" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="設定" data-toggle="tooltip" title="設定">設定</button>
-			<button id="hide_text" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="字を隠す" data-toggle="tooltip" title="字を隠す">字を隠す</button>
-			<button id="cancel" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲームに戻る" data-toggle="tooltip" title="ゲームに戻る">ゲームに戻る</button>
-			<button id="title" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="タイトルに戻る" data-toggle="tooltip" title="タイトルに戻る">タイトルに戻る</button>
-			<button id="game_end" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲーム終了" data-toggle="tooltip" title="ゲーム終了">ゲーム終了</button>
+			<button id="save" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="セーブ" data-bs-toggle="tooltip" title="セーブ">セーブ</button>
+			<button id="load" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ロード" data-bs-toggle="tooltip" title="ロード">ロード</button>
+			<button id="log" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="履歴" data-bs-toggle="tooltip" title="履歴">履歴</button>
+			<button id="config" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="設定" data-bs-toggle="tooltip" title="設定">設定</button>
+			<button id="hide_text" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="字を隠す" data-bs-toggle="tooltip" title="字を隠す">字を隠す</button>
+			<button id="cancel" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲームに戻る" data-bs-toggle="tooltip" title="ゲームに戻る">ゲームに戻る</button>
+			<button id="title" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="タイトルに戻る" data-bs-toggle="tooltip" title="タイトルに戻る">タイトルに戻る</button>
+			<button id="game_end" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲーム終了" data-bs-toggle="tooltip" title="ゲーム終了">ゲーム終了</button>
 
 		</div></div>
 	</div>

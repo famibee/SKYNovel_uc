@@ -1,11 +1,11 @@
 <!doctype html><html lang="ja">
 <head><meta charset="utf-8"/><title>&nbsp;</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="lib/mdb.min.css">
+<link rel="stylesheet" href="lib/bootstrap.min.css">
 <style type="text/css">
 	html {user-select: none; -webkit-user-select: none;}	/* 選択禁止 */
 	body {padding-top: 70px; min-height: 100vh;}
-	.row {--bs-gutter-x: 0.3rem;}	 /* mdbを微調整 */
+	.row {--bs-gutter-x: 0.3rem;}	 /* bootstrapを微調整 */
 	.btn:hover, .btn:focus {
 		border: solid black;
 		background: rgba(204, 255, 204, 0.5);
@@ -78,10 +78,7 @@
 		width: 100%;
 	}
 </style>
-<script defer src="lib/mdb.min.js"></script>
-<!--
-	mdbootstrap/mdb-ui-kit: Bootstrap 5 & Material Design 2.0 UI KIT https://github.com/mdbootstrap/mdb-ui-kit
--->
+<script defer src="lib/bootstrap.min.js"></script>
 <script>
 	let a = [	// セーブデータの内容
 		{place: '10', pic: '_archive_browser.jpg', dt: '2020/12/18 11:44', text: '　ああ、桜の樹の下には屍体が埋まつてゐる！'},
@@ -153,7 +150,7 @@
 	var is_modal = false;
 	function modal_hide() {
 		Array.from(document.querySelectorAll('#modal_sl, #modal_del'))
-		.forEach(elm=> mdb.Modal.getInstance(elm)?.hide());
+		.forEach(elm=> bootstrap.Modal.getInstance(elm)?.hide());
 	}
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) a = JSON.parse(val_dic);
@@ -173,13 +170,13 @@
 			lst.insertAdjacentHTML('afterbegin', `
 <div class="col"><div class="card p-1 mb-1" data-id="${v.place}">
 	<div class="bg-image hover-overlay ripple${
-		modal ?' no_modal' :'" data-toggle="modal" data-target="#modal_sl'
+		modal ?' no_modal' :'" data-bs-toggle="modal" data-bs-target="#modal_sl'
 	}" data-ripple-color="light">
 		<img data-src="${v.pic}" class="img-fluid"/>
 		<div class="mask"></div>
 	</div>${(v.dt === '') ?'' :`
 	<div class="card-img-overlay"><p class="card-text">${v.dt}</p></div>
-	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="削除する" aria-label="削除する" data-toggle="modal" data-target="#modal_del">
+	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="削除する" aria-label="削除する" data-bs-toggle="modal" data-bs-target="#modal_del">
 		<span style="font-size: 2em;">&times</span>
 	</button>`}
 	<div class="card-text multiline-text">${v.text}</div>
@@ -249,7 +246,7 @@
 <div class="container-fluid">
 
 	<div class="collapse navbar-collapse mr-auto">
-		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-toggle="tooltip" title="閉じる">
+		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
 			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 		</button>
 	</div>
@@ -259,7 +256,7 @@
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-end">
-		<button id="tgl_del" type="button" class="btn btn-outline-light btn-rounded" aria-label="編集する" data-toggle="tooltip" title="編集する">
+		<button id="tgl_del" type="button" class="btn btn-outline-light btn-rounded" aria-label="編集する" data-bs-toggle="tooltip" title="編集する">
 			<svg width="1.9em" height="1.9em" viewbox="0 0 16 16" class="bi bi-trash-fill" style="pointer-events: none;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 				<path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
 			</svg>
@@ -279,7 +276,7 @@
 		<div class="mask"></div>
 	</div>
 	<div class="card-img-overlay"><p class="card-text">2020/12/18 11:40</p></div>
-	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="削除する" aria-label="削除する" data-toggle="modal" data-target="#modal_del">
+	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="削除する" aria-label="削除する" data-bs-toggle="modal" data-bs-target="#modal_del">
 		<span style="font-size: 2em;">&times</span>
 	</button>
 	<div class="card-text multiline-text">
@@ -300,7 +297,7 @@
 		</svg>
 		<span class="mode">ロード</span>しますか？
 	</h5>
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
@@ -308,8 +305,8 @@
 	<p id="modal_mes"></p>
 </div>
 <div class="modal-footer">
-	<button type="button" data-dismiss="modal" class="btn btn-info" title="やめる" aria-label="Cancel">やめる</button>
-	<button type="button" data-dismiss="modal" class="btn btn-danger" id="do_loadsave" title="ロードする" aria-label="Load"><span class="mode">ロード</span>する</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" title="やめる" aria-label="Cancel">やめる</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="do_loadsave" title="ロードする" aria-label="Load"><span class="mode">ロード</span>する</button>
 </div>
 </div></div>
 </div>
@@ -324,7 +321,7 @@
 		</svg>
 		確認
 	</h5>
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
@@ -332,8 +329,8 @@
 	セーブデータを削除しますか？
 </div>
 <div class="modal-footer">
-	<button type="button" data-dismiss="modal" class="btn btn-info" title="やめる" aria-label="Cancel">やめる</button>
-	<button type="button" data-dismiss="modal" class="btn btn-danger" id="do_del" title="削除する" aria-label="Delete">削除する</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" title="やめる" aria-label="Cancel">やめる</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="do_del" title="削除する" aria-label="Delete">削除する</button>
 </div>
 </div></div>
 </div>

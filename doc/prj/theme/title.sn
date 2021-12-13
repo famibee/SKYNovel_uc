@@ -22,7 +22,6 @@
 	[enable_event enabled=false]
 	[add_lay layer=mes_c2p class=txt]
 	[lay layer=mes_c2p b_pic=_c2p b_alpha=1 b_alpha_isfixed=true b_left=0 b_top=0 visible=true]
-	[enable_event enabled=false]
 
 	[waitclick]
 
