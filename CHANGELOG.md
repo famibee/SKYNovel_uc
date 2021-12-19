@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.9.1
+- fix: セーブするとキャンセル音がする件（doc/prj/frames/_archive.sn）
 ## v2.9.0
 - fix: ライブラリ変更（MDB 5 モーダルが無料で使えなくなったので bootstrap 5に）
 	- Bootstrap Modal - examples & tutorial https://mdbootstrap.com/docs/standard/components/modal/

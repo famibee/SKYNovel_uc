@@ -83,7 +83,7 @@
 	[se fn=&sysse_ok1 buf=SYS]
 
 	[call label=*do_save]
-[jump label=*exit]
+[jump label=*no_cancel_exit]
 
 *do_save_resume
 	&_save.place = 0
@@ -157,13 +157,13 @@
 
 ;*********************************************************
 *exit
+	[se fn=&sysse_cancel buf=SYS]
+*no_cancel_exit
 	[let_frame id=archive var_name=is_modal]
 	[if exp=const.sn.frm.archive.is_modal]
 		[let_frame id=archive var_name=modal_hide function=true]
 		[jump label=***before cond=const.sn.frm.archive.is_modal]
 	[endif]
-
-	[se fn=&sysse_cancel buf=SYS]
 
 	[tsy_frame id=archive time=500 y=&const.sn.frm.archive.height]
 	[wait_tsy id=archive]
