@@ -1,5 +1,15 @@
 # Change Log
 
+## v2.9.2
+- fix: クイックロードでエラー【属性 layer【mes_yesno】が不正です。レイヤーがありません】
+	- doc/prj/frames/_archive.sn
+- fix: スクリーンショット保存先ミスを修正（デスクトップ→ダウンロードフォルダ）
+	- doc/prj/frames/_submenu.htm
+- fix: yesnoダイアログでサムネイル表示サポート
+	- doc/prj/frames/_yesno.htm
+	- doc/prj/frames/_yesno.sn
+- fix: （開発用ブラウザ版で）自動レジュームするかを設定画面で指定できるように
+	- doc/prj/script/setting.sn
 ## v2.9.1
 - fix: セーブするとキャンセル音がする件（doc/prj/frames/_archive.sn）
 ## v2.9.0

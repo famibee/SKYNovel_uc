@@ -31,4 +31,7 @@
 &def_fonts = 'ipamjm, QuiMi_mincho'	; デフォルトフォント
 ;&sn.button.fontFamily = 'ipamjm'
 
+&autoResume = true	; （開発用ブラウザ版で）自動レジュームするか
+[let name=autoResume text=false cond=!const.sn.isDebugger]
+
 [return]

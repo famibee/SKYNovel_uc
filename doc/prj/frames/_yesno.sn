@@ -10,8 +10,9 @@
 	[clear_event]
 
 	; 最新値で更新
-	[set_frame id=yesno var_name=val_dic text=#&'{"mes":"$mp:mes"}'#]
-	[let_frame id=yesno var_name=val2ctrl function=true cond=!mp:no_cleartext]
+	[let name=pic text=%pic|'']
+	[set_frame id=yesno var_name=val_dic text=#&'{"mes":"$mp:mes","pic":"$pic"}'#]
+	[let_frame id=yesno var_name=val2ctrl function=true]
 
 	[frame id=yesno visible=true float=true]
 

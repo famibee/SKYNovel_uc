@@ -13,7 +13,7 @@
 </style>
 <script defer src="lib/bootstrap.min.js"></script>
 <script>
-	let o = {mes: '本文', ok: 'ok', close: 'cancel',};
+	let o = {mes: '本文', ok: 'ok', close: 'cancel', pic: ''};
 	document.addEventListener('DOMContentLoaded', ()=> {
 		const proc_mode = (location.protocol.slice(0, 4) === 'http')
 			? 'server'
@@ -24,10 +24,22 @@
 	var val_dic = null;	// わざとvar
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) o = {...o, ...JSON.parse(val_dic)};
-		document.getElementById('mes').textContent = o.mes ?? '';
-		document.getElementById('ok').textContent = o.ok ?? '';
-		document.getElementById('close').textContent = o.close ?? '';
+		document.getElementById('mes').textContent = o.mes;
+		document.getElementById('ok').textContent = o.ok;
+		document.getElementById('close').textContent = o.close;
+		const img = document.getElementById('img');
+		img.hidden = !o.pic;
+		if (! img.hidden) img.dataset.src = o.pic;
+
+		sn_repRes(setImg);	// 画像更新（SKYNovelが削除・独自に呼び出す）
 	}
+
+	let setImg = undefined;
+	function sn_repRes($setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
+		setImg = $setImg ?? (i=> i.src = i.dataset.src);
+		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
+	}
+
 </script>
 </head>
 <body style="background: rgba(0, 0, 0, 0.5);" oncontextmenu="return false">
@@ -38,6 +50,7 @@
 	<div class="col-10 col-sm-6 col-lg-4">
 	<div class="card border border-dark" style="background-color: #070707; background-image: linear-gradient(340deg, #070707 19%, #f3f3f3 72%);">
 		<!-- グラデーションはこのサービスで制作 https://www.grabient.com/ -->
+		<img id="img" data-src="_archive_browser.jpg" class="card-img-top"/>
 		<div class="card-body">
 			<p id="mes" class="card-text fs-5" style="text-shadow: 0px 2px 2px rgba(255,255,255,0.4); ">example text.</p>
 			<div class="text-center">

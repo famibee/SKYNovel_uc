@@ -29,7 +29,7 @@
 		[let name=sysmenu_v text=&const.sn.lay.mes_sysmenu.fore.visible cond=useSysMenu]
 		[sys_menu visible=false]
 
-	[let name="isGameState" text=false]
+	[let name=isGameState text=false]
 *retry
 	[enable_event enabled=false]
 	[clear_event]
@@ -48,36 +48,36 @@
 *save
 	[se fn=&sysse_ok1 buf=SYS]
 	[call label=*exit]
-	[let name="isGameState" text=true]
-	[jump fn="_archive" label=*rclick_save]
+	[let name=isGameState text=true]
+	[jump fn=_archive label=*rclick_save]
 
 ;*********************************************************
 *load
 	[se fn=&sysse_ok1 buf=SYS]
 	[call label=*exit]
-	[let name="isGameState" text=true]
-	[jump fn="_archive" label=*rclick_load]
+	[let name=isGameState text=true]
+	[jump fn=_archive label=*rclick_load]
 
 ;*********************************************************
 *config
 	[se fn=&sysse_ok1 buf=SYS]
 	[call label=*exit]
-	[let name="isGameState" text=true]
-	[jump fn="_config" label=*rclick_config]
+	[let name=isGameState text=true]
+	[jump fn=_config label=*rclick_config]
 
 ;*********************************************************
 *hide_text
 	[se fn=&sysse_ok1 buf=SYS]
 	[call label=*exit]
-	[let name="isGameState" text=true]
-	[jump fn="_hidetext" label=*main]
+	[let name=isGameState text=true]
+	[jump fn=_hidetext label=*main]
 
 ;*********************************************************
 *log
 	[se fn=&sysse_ok1 buf=SYS]
 	[call label=*exit]
-	[let name="isGameState" text=true]
-	[jump fn="_log" label=*main]
+	[let name=isGameState text=true]
+	[jump fn=_log label=*main]
 
 ;*********************************************************
 *title
@@ -90,7 +90,7 @@
 	[fadeoutse buf=音声 time=1000]
 	; テキストレイヤ全画面設定
 	[txt_lay_fullscreen b_alpha=0]
-	[grp bg="black" sys_menu=false b_alpha=0]
+	[grp bg=black sys_menu=false b_alpha=0]
 
 	[pop_stack clear=true]
 	[jump fn=main label=*title]
@@ -120,5 +120,5 @@
 	[wait time=200]		; パフォーマンス改善
 
 	[enable_event enabled=true]
-	[let name="isGameState" text=true]
+	[let name=isGameState text=true]
 [return]
