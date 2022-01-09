@@ -4,7 +4,6 @@
 
 # Build results
 /build/icon/
-/build/include/
 /build/package/
 /build/*.yaml
 /build/*.yml

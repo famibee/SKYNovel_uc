@@ -61,6 +61,7 @@ app.on('ready', ()=> {
 	const SKYNovel = require('@famibee/skynovel/appMain');
 	guiWin = SKYNovel.initRenderer(
 		path.join(__dirname, 'app/index.htm'),
+		pkg.version,
 		{
 			id			: 'SKYNovel-'+ app.name,
 			width		: 1024,
