@@ -3,7 +3,7 @@
 	[add_frame id=config src=_config visible=false]
 	[event key='dom=config:#close' label=*exit global=true]
 
-	[event global=true call=true key=c label=*keycall_config]
+	[event global=true call=true key=c label=*rclick_config]
 ;	[event global=true call=true key=t label=*text_back_alpha_sub]
 ;	[event global=true call=true key=y label=*text_back_alpha_add]
 ;	[event global=true call=true key=u label=*text_auto_msecwait_sub]
@@ -164,8 +164,6 @@
 ;*********************************************************
 *rclick_config
 	[return cond=!isGameState]
-
-*keycall_config
 	[return cond=const.sn.frm.config.visible]
 	[se fn=&sysse_ok1 buf=SYS]
 	&呼び元 = 'Text'

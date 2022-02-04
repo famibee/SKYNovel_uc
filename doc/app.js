@@ -33,33 +33,31 @@ app.on('second-instance', ()=> {
 app.on('ready', ()=> {
 	const isMac = (process.platform === 'darwin');
 	const menu = Menu.buildFromTemplate([{
-		label: app.name,
+		label: 'システム',
 		submenu: [
-			{
-				label: 'About This App',
-				click: ()=> {
-					const openAboutWindow = require('about-window').default;
-					openAboutWindow({
-						icon_path: path.join(__dirname, 'app/icon.png'),
-						package_json_dir: __dirname,
-						copyright: 'Copyright '+ process.env.npm_package_appCopyright +' 2021',
-						homepage: pkg.homepage,
-						license: '',
-						use_version_info: false,
-					});
-				}
-			},
-			{
-				label: 'DevTools',
-				click() {guiWin.webContents.openDevTools();},
-			},
+			{label: 'このアプリについて', click: ()=> require('about-window').default({
+				icon_path	: path.join(__dirname, 'app/icon.png'),
+				package_json_dir	: __dirname,
+				copyright	: 'Copyright '+ pkg.appCopyright +' 2021',
+				homepage	: pkg.homepage,
+				license		: '',
+				use_version_info	: false,
+			})},
+			{type: 'separator'},
+			{label: '設定', click: ()=> guiWin.webContents.send('fire', 'c'), accelerator: "CmdOrCtrl+,"},
+			{label: '全画面/ウインドウモード切替', role:'togglefullscreen'},
+			{label: 'メッセージを消す', click: ()=> guiWin.webContents.send('fire', ' ')},
+			{label: 'メッセージ履歴の表示', click: ()=> guiWin.webContents.send('fire', 'r')},
+			{label: '次の選択肢・未読まで進む', click: ()=> guiWin.webContents.send('fire', 'f')},
+			{label: '自動的に読み進む', click: ()=> guiWin.webContents.send('fire', 'a')},
+			{type: 'separator'},
+			{label: 'DevTools', click: ()=> guiWin.webContents.openDevTools(), accelerator: 'F12'},
 			isMac ?{role: 'close'} :{role: 'quit'},
 		],
 	}]);
 	Menu.setApplicationMenu(menu);
 
-	const SKYNovel = require('@famibee/skynovel/appMain');
-	guiWin = SKYNovel.initRenderer(
+	guiWin = require('@famibee/skynovel/appMain').initRenderer(
 		path.join(__dirname, 'app/index.htm'),
 		pkg.version,
 		{

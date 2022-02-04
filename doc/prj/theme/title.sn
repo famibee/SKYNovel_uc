@@ -8,6 +8,7 @@
 		[button text=' ロード ' left=350 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*load hint='セーブから続ける' enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
 		[button text='アルバム' left=550 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*album hint='アルバム鑑賞' enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
 		[button text=' 設 定 ' left=650 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*config hint='ゲーム設定' enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
+		[event key=c call=true label=*config]	; 設定画面が開くように（メニュー用）
 
 	[trans layer=&dsp_lays time=0]
 	[wt]

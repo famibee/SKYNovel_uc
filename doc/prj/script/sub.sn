@@ -118,7 +118,7 @@
 	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left top=420 global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left top=520 global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left top=620 global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left top=720 global=true event_at_down=true fn=_config label=*keycall_config call=true hint='ゲーム設定' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left top=720 global=true event_at_down=true fn=_config label=*rclick_config call=true hint='ゲーム設定' enterse=&sysse_choice]
 	[trans layer=mes_sysmenu time=0]
 	[wt]	; 裏から表へコピー（save対策）
 [endmacro]
@@ -134,7 +134,7 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書き左設定
-[macro name=txt_lay_v_left]
+[macro name=txt_lay_v_left nowarn_unused=true]
 	[let name=l text=%l|40]
 	[let name=w text=%w|310]
 	&pl = 26
@@ -156,7 +156,7 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書き中設定
-[macro name=txt_lay_v_center]
+[macro name=txt_lay_v_center nowarn_unused=true]
 	[txt_lay_v_left * l=%l|366]
 [endmacro]
 
@@ -191,7 +191,7 @@
 	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left+200 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left+300 top=&sysmenu_top global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left+400 top=&sysmenu_top global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left+500 top=&sysmenu_top global=true event_at_down=true fn=_config label=*keycall_config call=true hint='ゲーム設定' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left+500 top=&sysmenu_top global=true event_at_down=true fn=_config label=*rclick_config call=true hint='ゲーム設定' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='クイックセーブ' rotation=&r left=&sysmenu_left+600 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_save call=true hint='クイックセーブ' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='クイックロード' rotation=&r left=&sysmenu_left+700 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_load call=true hint='クイックロード' enterse=&sysse_choice]
 
@@ -201,7 +201,7 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ全画面設定
-[macro name=txt_lay_fullscreen]
+[macro name=txt_lay_fullscreen nowarn_unused=true]
 	[let name=t text=%t|40]
 	[let name=h text=%h|'&const.sn.config.window.height -40*2']
 	&pl = 70
