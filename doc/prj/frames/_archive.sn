@@ -49,10 +49,7 @@
 	[set_focus del='dom=archive:#tgl_del']	; Enter受付、フォーカス順を最後に
 	[set_focus add='dom=archive:#tgl_del']
 
-	; 下部からスライドイン
-	[frame id=archive visible=true y=&const.sn.frm.archive.height]
-	[tsy_frame id=archive time=500 y=0]
-	[wait_tsy id=archive]
+	[frame id=archive visible=true]
 ***
 	&isGameState = false
 	[event key=rightclick label=*exit]
@@ -167,8 +164,6 @@
 		[jump label=***before cond=const.sn.frm.archive.is_modal]
 	[endif]
 
-	[tsy_frame id=archive time=500 y=&const.sn.frm.archive.height]
-	[wait_tsy id=archive]
 	[frame id=archive visible=false]
 
 	[enable_event enabled=true]

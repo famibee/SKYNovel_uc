@@ -23,7 +23,6 @@
 		{"type": "pic", "fn": "yun_2352", "title": "桜1", "enabled": "#{!!sys:album.yun_2352}"},
 		{"type": "pic", "fn": "yun_2384", "title": "桜2", "enabled": "#{!!sys:album.yun_2384}"},
 		{"type": "pic", "fn": "F_kuchimoto", "title": "語り手", "enabled": "#{!!sys:album.F_kuchimoto}"},
-		{"type": "pic", "fn": "_album_miken", "title": "？？？", "enabled": "false", "enabled": "#{!!sys:album._album_miken}"},
 		{"type": "mov", "fn": "nc10889", "title": "桜", "enabled": "#{!!sys:album.nc10889}"},
 		{"type": "bgm", "fn": "free32", "title": "free32(BGM)", "enabled": "#{!!sys:album.free32}"},
 		{"type": "bgm", "fn": "free49", "title": "free49(BGM)", "enabled": "#{!!sys:album.free49}"},
@@ -50,12 +49,9 @@
 
 	; 最新値で更新
 	[call label=*val2ctrl]
-	; 下部からスライドイン
-	[frame id=album visible=true y=&const.sn.frm.album.height]
-	[tsy_frame id=album time=500 y=0]
-	[wait_tsy id=album]
+	[frame id=album visible=true]
 
-	[set_focus add='dom=album:.hover-overlay']
+	[set_focus add='dom=album:.hover-overlay' need_err=false]
 	[event key='dom=album:.pic' label=*pic call=true need_err=false]
 	[event key='dom=album:.bgm' label=*bgm call=true need_err=false]
 	[event key='dom=album:.mov' label=*mov call=true need_err=false]
@@ -116,8 +112,6 @@
 *exit
 	[se fn=&sysse_cancel buf=SYS]
 
-	[tsy_frame id=album time=500 y=&const.sn.frm.album.height]
-	[wait_tsy id=album]
 	[frame id=album visible=false]
 
 	[enable_event enabled=true]

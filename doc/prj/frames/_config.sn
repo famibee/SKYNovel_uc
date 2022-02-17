@@ -177,10 +177,7 @@
 	; 最新値で更新
 	[call label=*val2ctrl]
 
-	; 下部からスライドイン
-	[frame id=config visible=true y=&const.sn.frm.config.height]
-	[tsy_frame id=config time=500 y=0]
-	[wait_tsy id=config]
+	[frame id=config visible=true]
 
 	&isGameState = false
 	[event key=c label=*exit]
@@ -230,8 +227,6 @@
 *exit
 	[se fn=&sysse_cancel buf=SYS]
 
-	[tsy_frame id=config time=500 y=&const.sn.frm.config.height]
-	[wait_tsy id=config]
 	[frame id=config visible=false]
 
 	[enable_event enabled=true]

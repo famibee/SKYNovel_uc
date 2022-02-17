@@ -30,10 +30,7 @@
 	[set_focus del='dom=log:#log button']
 	[set_focus add='dom=log:#log button']
 
-	; 下部からスライドイン
-	[frame id=log visible=true y=&const.sn.frm.log.height]
-	[tsy_frame id=log time=500 y=0]
-	[wait_tsy id=log]
+	[frame id=log visible=true]
 
 	&isGameState = false
 	[event key=r label=*exit]
@@ -53,8 +50,6 @@
 *exit
 	[se fn=&sysse_cancel buf=SYS]
 
-	[tsy_frame id=log time=500 y=&const.sn.frm.log.height]
-	[wait_tsy id=log]
 	[frame id=log visible=false]
 
 	[enable_event enabled=true]

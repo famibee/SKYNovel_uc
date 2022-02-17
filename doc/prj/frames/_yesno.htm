@@ -15,6 +15,11 @@
 <script>
 	let o = {mes: '本文', ok: 'ok', close: 'cancel', pic: ''};
 	document.addEventListener('DOMContentLoaded', ()=> {
+		if (false/*WEBP*/) {
+			const img = document.getElementById('img');
+			img.dataset.src = img.dataset.src.replace(/\.(jpe?g|png)$/, '.webp');	// 本番でsn_repRes()に渡してしまうので
+		}
+
 		const proc_mode = (location.protocol.slice(0, 4) === 'http')
 			? 'server'
 			: ('val2ctrl' in window.parent) ?'local' :'electron';
@@ -24,6 +29,8 @@
 	var val_dic = null;	// わざとvar
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) o = {...o, ...JSON.parse(val_dic)};
+		if (false/*WEBP*/) o.pic = o.pic.replace(/\.(jpe?g|png)$/, '.webp');
+
 		document.getElementById('mes').textContent = o.mes;
 		document.getElementById('ok').textContent = o.ok;
 		document.getElementById('close').textContent = o.close;

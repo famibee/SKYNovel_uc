@@ -97,6 +97,7 @@
 			document.getElementById('do_loadsave').addEventListener('click', ()=> console.log(`do_loadsave:${val_place}`), {passive: true});
 			val2ctrl();
 		}
+		else if (false/*WEBP*/) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
 
 		document.getElementById('tgl_del').addEventListener('click', ()=> tgl_del(), {passive: true});
 
@@ -165,6 +166,8 @@
 		lst.textContent = null;
 		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: '　新規にセーブします', place: val_s_place});
 		a.forEach(v=> {
+			if (false/*WEBP*/) v.pic = v.pic.replace(/\.(jpe?g|png)$/, '.webp');
+
 			const modal = (val_mode === 'Load' && val_caller === 'Title')
 						|| (val_mode === 'Save' && v.dt === '');
 			lst.insertAdjacentHTML('afterbegin', `

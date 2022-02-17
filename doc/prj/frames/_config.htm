@@ -47,6 +47,8 @@
 			drawSampleView();
 		}, {passive: true});
 
+		if (false/*WEBP*/) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
+
 		sn_repRes();	// 画像更新（SKYNovelが削除・独自に呼び出す）
 	});
 

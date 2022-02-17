@@ -3,9 +3,6 @@
 ![](https://img.shields.io/badge/platform-windows%20%7C%20macos-lightgrey.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/famibee/SKYNovel_uc)
 
-[![dependencies](https://david-dm.org/famibee/SKYNovel_uc/status.svg)](https://david-dm.org/famibee/SKYNovel_uc)
-[![dependencies](https://david-dm.org/famibee/SKYNovel_uc/dev-status.svg)](https://david-dm.org/famibee/SKYNovel_uc?type=dev)
-
 ![logo.svg](https://github.com/famibee/SKYNovel/blob/master/test/icon.svg)
 
 [CHANGELOG.md](CHANGELOG.md)

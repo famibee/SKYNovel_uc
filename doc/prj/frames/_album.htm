@@ -37,7 +37,10 @@
 	];
 	document.ondragstart = ()=> false;
 	const proc_mode = (location.protocol === 'file:') ?'local' :'';
-	if (proc_mode === 'local') document.addEventListener('DOMContentLoaded', ()=> init());	// ローカルデバッグ用
+	document.addEventListener('DOMContentLoaded', ()=> {
+		if (proc_mode === 'local') init();	// ローカルデバッグ用
+		else if (false/*WEBP*/) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
+	});
 
 	var val_dic = null;
 	function init() {
@@ -48,14 +51,16 @@
 		lst.textContent = '';
 		a.forEach(v=> {
 			if (v.enabled === 'false') {
-				lst.insertAdjacentHTML('beforeend', `
+				let htm = `
 <div class="col"><div class="card p-1 mb-1">
 	<div class="bg-image ripple" data-ripple-color="light"
 		aria-label="まだ本編で見ていません" title="まだ本編で見ていません">
 		<img data-src="_album_miken.jpg" class="img-fluid"/>
 	</div>
 	<div class="card-text">？？？</div>
-</div></div>`);
+</div></div>`;
+				if (false/*WEBP*/) htm = htm.replace(/\.(jpe?g|png)"/, '.webp"');
+				lst.insertAdjacentHTML('beforeend', htm);
 				return;
 			}
 
@@ -65,6 +70,7 @@
 				case 'mov':	elm = `${v.fn}_th.jpg`;	break;
 				default:	elm = `${v.fn}`;
 			}
+			if (false/*WEBP*/) elm = elm.replace(/\.(jpe?g|png)$/, '.webp');
 			// ${v.type}でclass名にも追加、SKYNovel側でクリック検知するため
 			lst.insertAdjacentHTML('beforeend', `
 <div class="col"><div class="card p-1 mb-1">
