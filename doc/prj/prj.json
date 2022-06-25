@@ -17,10 +17,10 @@
 		"max_len": 1024
 	},
 	"init": {
+		"bg_color": "#000000",
 		"tagch_msecwait": 10,
 		"auto_msecpagewait": 3500,
-		"escape": "",
-		"bg_color": "#000000"
+		"escape": ""
 	},
 	"debug": {
 		"devtool": false,

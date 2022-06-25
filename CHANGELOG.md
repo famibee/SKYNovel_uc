@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.11.5
+- fix: フォルダ名変更（audio削除 → music、sound分離）
+- fix: 横書きシステムボタンのtooltipを上向きに
+- fix: ライブラリ更新
 ## v2.11.4
 - fix: ライブラリ更新
 ## v2.11.3
