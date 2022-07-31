@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.11.7
+- fix: _submenuで【ラベル *game_end_do が見つかりません】エラー
 ## v2.11.6
 - fix: ライブラリ更新
 ## v2.11.5

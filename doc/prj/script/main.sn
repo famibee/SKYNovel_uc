@@ -40,6 +40,7 @@
 	[enable_event enabled=true]
 *close_do
 	[return cond="_yesno=='n'"]
+*game_end_do
 	[enable_event enabled=false]
 	[wait time=500]
 [close]
