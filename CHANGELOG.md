@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.11.9
+- fix: ライブラリ更新(SKYNovel v1.35.4)など
+## v2.11.8
+- fix: ライブラリ更新
 ## v2.11.7
 - fix: _submenuで【ラベル *game_end_do が見つかりません】エラー
 ## v2.11.6
