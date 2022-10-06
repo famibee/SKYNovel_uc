@@ -23,7 +23,10 @@
 ;********************************************************
 ; マクロ タイトル開始共通処理（main.snで呼ぶ）
 ;********************************************************
-[macro name=sys_title_start]
+[macro name=sys_title_start
+	sum='タイトル開始共通処理\nゲーム本編を開始する際の処理を行なう'
+	detail='タイトルから本編、あるいはしおりロードから本編を開始する際に呼ぶ。\nクリック待ち記号、フォント、セーブロード・設定画面などを準備する'
+]
 	&lastVoice = ''
 	&isGameState = false
 	&sys:doResume = false
@@ -42,7 +45,10 @@
 ;********************************************************
 ; マクロ シナリオ開始時共通処理（ロード時にもコール）
 ;********************************************************
-[macro name=sys_scenario_start]
+[macro name=sys_scenario_start
+	sum='シナリオ開始時共通処理\nタイトルからゲーム本編を開始する際の処理を行なう'
+	detail='シナリオファイル冒頭に記述するべき'
+]
 	&lastVoice = ''
 	&isGameState = true
 	&save:sn.doRecLog = true
@@ -75,7 +81,7 @@
 
 ;********************************************************
 ; マクロ レジューム処理
-[macro name=sys_resume_load]
+[macro name=sys_resume_load detail='レジューム処理']
 	[return cond=!sys:doResume]
 
 	[ask_ync mes='前回終了ポイントから再開しますか？' cond=!autoResume]
@@ -86,14 +92,19 @@
 
 ;********************************************************
 ; マクロ レジューム退避処理
-[macro name=sys_resume_save]
+[macro name=sys_resume_save detail='レジューム退避処理']
 	[call fn=_archive label=*do_save_resume]
 [endmacro]
 
 
 ;********************************************************
 ; マクロ システムメニュー描画処理（縦書き）
-[macro name=sysmenu_draw_v]
+[macro name=sysmenu_draw_v nowarn_unused=true
+	sum='システムメニュー描画処理（縦書き）\n文字レイヤ mes_sysmenu に表示するシステムメニューを設定する'
+	detail='このマクロを改造し、ボタンの画像変更・位置変更・増減を行える'
+
+	%no_sysmenu_draw?='Boolean|なにもしない|trueを指定すると、次の[grp]などでの文字レイヤ[trans]などでシステムメニューを表示しない'
+]
 	[return cond=!useSysMenu]
 	[sys_menu visible=false]
 	[clear_lay layer=mes_sysmenu page=both]
@@ -125,7 +136,10 @@
 
 ;-----------------------------
 ; マクロ システムメニュー表示切り替え
-[macro name=sys_menu]
+[macro name=sys_menu
+	sum='システムメニュー表示切り替え\n文字レイヤ mes_sysmenu に表示するシステムメニューを設定する'
+	detail='このマクロを改造し、ボタンの画像変更・位置変更・増減を行える'
+]
 	[lay layer=mes_sysmenu visible=%visible|true cond=useSysMenu]
 [endmacro]
 
@@ -134,7 +148,23 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書き左設定
-[macro name=txt_lay_v_left nowarn_unused=true]
+[macro name=txt_lay_v_left nowarn_unused=true
+	sum='テキストレイヤ縦書き左設定\n文字レイヤを設定する。サンプルゲーム「櫻の樹の下には」の縦書き設定'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%l?='整数値|40|テキストウインドウの左端横座標'
+	%w?='整数値|292|テキストウインドウの横幅'
+	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|0xffffff|テキスト色'
+	%b_color?='色指定|0x000000|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+]
 	[let name=l text=%l|40]
 	[let name=w text=%w|310]
 	&pl = 26
@@ -156,13 +186,45 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書き中設定
-[macro name=txt_lay_v_center nowarn_unused=true]
+[macro name=txt_lay_v_center nowarn_unused=true
+	sum='テキストレイヤ縦書き中設定\n[txt_lay_v_left]（テキストレイヤ縦書き左設定）を画面中央に移動したもの'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%l?='整数値|366|テキストウインドウの左端横座標'
+	%w?='整数値|292|テキストウインドウの横幅'
+	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|0xffffff|テキスト色'
+	%b_color?='色指定|0x000000|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+]
 	[txt_lay_v_left * l=%l|366]
 [endmacro]
 
 ;********************************************************
 ; マクロ テキストレイヤ縦書きWide中設定
-[macro name=txt_lay_v_center_wide nowarn_unused=true]
+[macro name=txt_lay_v_center_wide nowarn_unused=true
+	sum='テキストレイヤ縦書きWide中設定\n[txt_lay_v_center]（テキストレイヤ縦書き中設定）を画面中央に移動し、幅を広げたもの'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%l?='整数値|294|テキストウインドウの左端横座標'
+	%w?='整数値|436|【固定】テキストウインドウの横幅'
+	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|0xffffff|テキスト色'
+	%b_color?='色指定|0x000000|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+]
 	[txt_lay_v_center * l=%l|294 w=436 max_row=11 pr=26
 	b_pic=wafuu1w	; 背後に画像を使わない場合はコメントアウト
 ]
@@ -171,7 +233,12 @@
 
 ;********************************************************
 ; マクロ システムメニュー描画処理（横書き）
-[macro name=sysmenu_draw_h]
+[macro name=sysmenu_draw_h nowarn_unused=true
+	sum='システムメニュー描画処理（横書き）\n文字レイヤ mes_sysmenu に表示するシステムメニューを設定する'
+	detail='このマクロを改造し、ボタンの画像変更・位置変更・増減を行える'
+
+	%no_sysmenu_draw?='Boolean|なにもしない|trueを指定すると、次の[grp]などでの文字レイヤ[trans]などでシステムメニューを表示しない'
+]
 	[return cond=!useSysMenu]
 	[sys_menu visible=false]
 	[clear_lay layer=mes_sysmenu page=both]
@@ -201,7 +268,23 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ全画面設定
-[macro name=txt_lay_fullscreen nowarn_unused=true]
+[macro name=txt_lay_fullscreen nowarn_unused=true
+	sum='テキストレイヤ全画面設定\n文字レイヤを設定する。全画面を覆うような設定'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%l?='整数値|16|テキストウインドウの左端横座標'
+	%w?='整数値|画面横幅 -16 *2|テキストウインドウの横幅'
+	%pl?='整数値|28|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|42|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|639|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|479|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|0xffffff|テキスト色'
+	%b_color?='色指定|0x000000|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+]
 	[let name=t text=%t|40]
 	[let name=h text=%h|'&const.sn.config.window.height -40*2']
 	&pl = 70
@@ -222,13 +305,35 @@
 
 ;********************************************************
 ; マクロ テキストレイヤ横書きWide下設定
-[macro name=txt_lay_h_bottom_wide nowarn_unused=true]
+[macro name=txt_lay_h_bottom_wide nowarn_unused=true
+	sum='テキストレイヤ横書きWide下設定\n[txt_lay_fullscreen]（テキストレイヤ全画面設定）を画面下に移動し、幅を広げたもの'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%l?='整数値|366|テキストウインドウの左端横座標'
+	%w?='整数値|292|テキストウインドウの横幅'
+	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|0xffffff|テキスト色'
+	%b_color?='色指定|0x000000|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+]
 	[txt_lay_fullscreen * t=%t|472 h=266 max_row=6]
 [endmacro]
 
 ;********************************************************
 ; マクロ ＢＧＭ切り替え
-[macro name=bgm]
+[macro name=bgm nowarn_unused=true
+	sum='ＢＧＭ切り替え\nBGMをクロスフェードする'
+	detail='シナリオファイル冒頭に記述するべき'
+
+	%fn='BGM音声ファイル名||再生する音声ファイル名'
+	%time?='再生中の曲を瞬時に停止し、指定曲を即座に再生する|ミリ秒|変化にかける時間'
+]
 	[stopbgm cond='mp:time == null || sn.skip.enabled']
 
 	[let name=t text=%time|500]	;省略した時の初期値
@@ -246,14 +351,27 @@
 
 ;********************************************************
 ; マクロ 効果音
-[macro name=se]
+[macro name=se nowarn_unused=true
+	sum='効果音を再生\n[playse]に引数省略時音声停止機能を付けたもの'
+	detail='シナリオファイル冒頭に記述するべき'
+
+	%fn?='音声ファイル名|音声停止|再生する音声ファイル名'
+	%buf?='効果音を識別するトラック名|音声|トラック名を変えれば同時に複数の音を操作することが出来ます'
+]
 	[stopse * cond='mp:fn == null']
 	[playse * cond='mp:fn != null' join=false]
 [endmacro]
 
 ;********************************************************
 ; マクロ 改ページ
-[macro name=plc]
+[macro name=plc nowarn_unused=true stepin=false
+	sum='場面転換\n画面を暗転し背景を変更する'
+	detail='文字レイヤをフェードアウトし、\nクロスフェードしながら背景画像（レイヤ名baseの画像レイヤ）を変更、\n前景レイヤ（レイヤ名0〜2の画像レイヤ）をクリアor画像変更し、\n文字レイヤをフェードインする'
+
+	%no_voice_stop?='Boolean|false|trueなら改ページ後、音声（バッファ名「音声」の効果音）をフェードアウトしない'
+	%no_se_stop?='Boolean||trueなら改ページ後、効果音（バッファ名「SE」の効果音）をフェードアウトしない'
+	%visible?='Boolean|true|trueで改ページ記号を表示、falseで非表示'
+]
 	[ws buf=音声 canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
 	[p visible=%visible|true]
 	[er]
@@ -269,7 +387,10 @@
 
 ;********************************************************
 ; マクロ 選択肢直後にすべき処理
-[macro name=after_choice nowarn_unused=true]
+[macro name=after_choice nowarn_unused=true
+	sum='選択肢直後処理\n[link]など選択肢直後にコールする'
+	detail='[record_place]などを呼んでいます'
+]
 	;[pop_stack]
 	[record_place layer=&dsp_lays]
 		[sys_resume_save]
@@ -278,7 +399,38 @@
 ;********************************************************
 ; マクロ 場面転換
 ;********************************************************
-[macro name=grp]
+[macro name=grp nowarn_unused=true
+	sum='シナリオ開始時共通処理\nタイトルからゲーム本編を開始する際の処理を行なう'
+	detail='シナリオファイル冒頭に記述するべき'
+
+	%bg='画像ファイル名|何もしない|背景レイヤに対する画像ファイルを指定する'
+	%fb?='[add_face]で登録した差分名称（半角カンマ区切りで複数可能）|何もしない|背景レイヤに対する差分名称を指定する'
+	%l0?='画像ファイル名|クリアする|前景レイヤ0に対する画像ファイルを指定する'
+	%f0?='[add_face]で登録した差分名称（半角カンマ区切りで複数可能）|何もしない|前景レイヤ0に対する差分名称を指定する'
+	%pos0?='c、横座標|c|前景レイヤ0に対する横座標を指定する'
+	%left0?='画面左上を(0, 0)とする座標|0（pos指定が優先）|前景レイヤ0に対する表示座標を指定する。\n%※left使用時はtopも必須です'
+	%top0?='画面左上を(0, 0)とする座標|0（pos指定が優先）|前景レイヤ0に対する表示座標を指定する。\n%※left使用時はtopも必須です'
+	%o0?='0.0〜1.0（実数）|何もしない|前景レイヤ0に対するレイヤの透過度。\n%0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%l1?='画像ファイル名|クリアする|前景レイヤ1に対する画像ファイルを指定する'
+	%f1?='[add_face]で登録した差分名称（半角カンマ区切りで複数可能）|何もしない|前景レイヤ1に対する差分名称を指定する'
+	%pos1?='c、横座標|c|前景レイヤ1に対する横座標を指定する'
+	%left1?='画面左上を(0, 0)とする座標|0（pos指定が優先）|前景レイヤ1に対する表示座標を指'定する。\n%※left使用時はtopも必須です'
+	%top1?='画面左上を(0, 0)とする座標|0（pos指定が優先）|前景レイヤ1に対する表示座標を指'定する。\n%※left使用時はtopも必須です'
+	%o1?='0.0〜1.0（実数）|何もしない|前景レイヤ1に対するレイヤの透過度。\n%0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%l2?='画像ファイル名|クリアする|前景レイヤ2に対する画像ファイルを指定する'
+	%f2?='[add_face]で登録した差分名称（半角カンマ区切りで複数可能）|何もしない|前景レイ'ヤ2に対する差分名称を指定する
+	%pos2?='c、横座標|c|前景レイヤ2に対する横座標を指定する'
+	%left2?='画面左上を(0, 0)とする座標|0（pos指定が優先）|前景レイヤ2に対する表示座標を指'定する。\n%※left使用時はtopも必須です'
+	%top2?='画面左上を(0, 0)とする座標|0（pos指定が優先）|前景レイヤ2に対する表示座標を指'定する。\n%※left使用時はtopも必須です'
+	%o2?='0.0〜1.0（実数）|何もしない|前景レイヤ2に対するレイヤの透過度。\n%0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%rule?='画像ファイル名（swf不可）|画面全体ピクセルで同時にクロスフェードする|[trans]'と同じ
+	; その他[trans]と同じ属性
+	%time?='ミリ秒|1000|背景・前景の画像レイヤ変化にかける時間'
+	%txt_time?='ミリ秒|300|文字レイヤ変化にかける時間'
+	%nofo_txt?='Boolean|false|trueなら文字レイヤをフェードアウトしない'
+	%nofi_txt?='Boolean|false|trueなら文字レイヤをフェードインしない'
+	%se?='効果音ファイル名|何もしない|場面転換と同時に再生する効果音'
+]
 	[let name=t text=%t_time|300]	;省略した時の初期値
 	[let name=t text=0 cond="sn.skip.enabled"]
 	[let name=tt text=%time|1000]	;省略した時の初期値
@@ -315,7 +467,10 @@
 
 ;********************************************************
 ; マクロ 文字数分のウェイトを入れる
-[macro name=wc nowarn_unused=true]
+[macro name=wc nowarn_unused=true
+	sum='文字数分のウェイトを入れる'
+	%time='0.0〜|整数値|文字数を指定。\n指定した文字数 x 文字表示ウェイト 分のウェイトを行なう'
+]
 	[wait cond='mp:time != null && sys:sn.tagCh.doWait && !sn.skip.enabled' time='&mp:time * sys:sn.tagCh.msecWait']
 [endmacro]
 

@@ -4,7 +4,12 @@
 	[event key='dom=yesno:#ok' label=*y global=true]
 	[event key='dom=yesno:#close' label=*cancel global=true]
 
-[macro name=ask_ync]
+[macro name=ask_ync
+	sum='プレイヤー意志確認\nプレイヤーに「はい」「いいえ」等の二択で確認を行なう'
+	detail='プレイヤーが押下した結果をtmp:_yesnoに「y」か「n」で返す。\n\nボタン素材としてファイル名がMnu_btnOK・Mnu_btnCancelの画像ファイルと、\nダイアログ素材としてファイル名が_yesnoの画像ファイルを使用する'
+
+	%mes='String||プレイヤーに質問したい文言'
+]
 	[enable_event enabled=false]
 	[enable_event enabled=false layer=mes_sysmenu]
 	[clear_event]

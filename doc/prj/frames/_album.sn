@@ -6,7 +6,12 @@
 	[add_lay layer=album class=grp]
 
 
-[macro name=アルバム解放]
+[macro name=アルバム解放 nowarn_unused=true
+	sum='アルバム解放\n指定したアルバム要素を解放する'
+	detail='_album.sn の [let_ml name=dic] 内の定義で、【!!sys:album.yun_1184】という記述に対応するサムネイルボタンを表示し、ボタンとして押せるようにする'
+
+	%name='String||解放するアルバム要素の名前'
+]
 	[let name="&'sys:album.'+ mp:name" text=true]
 [endmacro]
 [return]
