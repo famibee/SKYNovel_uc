@@ -329,23 +329,30 @@
 ; マクロ ＢＧＭ切り替え
 [macro name=bgm nowarn_unused=true
 	sum='ＢＧＭ切り替え\nBGMをクロスフェードする'
-	detail='シナリオファイル冒頭に記述するべき'
 
 	%fn='BGM音声ファイル名||再生する音声ファイル名'
-	%time?='再生中の曲を瞬時に停止し、指定曲を即座に再生する|ミリ秒|変化にかける時間'
+	%time?='ミリ秒|再生中の曲を瞬時に停止し、指定曲を即座に再生する|変化にかける時間'
+
+	%volume?='0.0〜1.0（実数）|1.0|再生音量。ただし音量を示すシステム変数（sys:const.an.sound.BGM.volume）は変更しない'
+	%speed?='0.0〜1.0（実数）|1.0|再生速度（0:遅い、1.0:元のまま）'
+	%pan?='0.0|-1.0〜1.0（実数）|音を出す左右位置（-1.0=左端、0.0=中央(省略値)、1.0=右端）'
+	%join?='Boolean|true|trueで読み込みを待って次のタグへ進む'
+	%canskip?='Boolean|true|trueでキー押下Skip中なら再生をしない'
+	%start_ms?='ミリ秒|0|再生の開始位置を指定する。0は冒頭'
+	%end_ms?='ミリ秒|末端|再生の終了位置を指定する。省略時は末端。\n正の値は「冒頭から何ms目を終端とするか」\n負の値は「末尾から何ms手前を終端とするか」の指定'
+	%ret_ms?='ミリ秒|0|ループ戻り位置を指定する。0は冒頭。\nループ再生中にend_ms指定位置（省略時は末尾）に到達した場合、この指定位置に戻る。 ループ再生しない（loop=false）際は無視される'
 ]
 	[stopbgm cond='mp:time == null || sn.skip.enabled']
 
-	[let name=t text=%time|500]	;省略した時の初期値
 	[stopse buf=BGM_FO]
 	[xchgbuf buf=BGM buf2=BGM_FO]
 
 	[if exp='mp:time == null || sn.skip.enabled']
 		[playbgm *]
 	[else]
-		[fadeoutse buf=BGM_FO time=&t]
+		[fadeoutse buf=BGM_FO time=%time|500]
 		[playbgm * volume=0]
-		[fadebgm * volume=%volume|1 time=&t]
+		[fadebgm * volume=%volume|1 time=%time|500]
 	[endif]
 [endmacro]
 
@@ -353,10 +360,19 @@
 ; マクロ 効果音
 [macro name=se nowarn_unused=true
 	sum='効果音を再生\n[playse]に引数省略時音声停止機能を付けたもの'
-	detail='シナリオファイル冒頭に記述するべき'
 
 	%fn?='音声ファイル名|音声停止|再生する音声ファイル名'
-	%buf?='効果音を識別するトラック名|音声|トラック名を変えれば同時に複数の音を操作することが出来ます'
+	%buf?='サウンドバッファ|音声|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
+
+	%loop?='Boolean|false|trueでBGMのようにループ再生する'
+	%volume?='0.0〜1.0（実数）|1.0|再生音量。ただし音量を示すシステム変数（sys:const.an.sound.BGM.volume）は変更しない'
+	%speed?='0.0〜1.0（実数）|1.0|再生速度（0:遅い、1.0:元のまま）'
+	%pan?='0.0|-1.0〜1.0（実数）|音を出す左右位置（-1.0=左端、0.0=中央(省略値)、1.0=右端）'
+	%join?='Boolean|true|trueで読み込みを待って次のタグへ進む'
+	%canskip?='Boolean|true|trueでキー押下Skip中なら再生をしない'
+	%start_ms?='ミリ秒|0|再生の開始位置を指定する。0は冒頭'
+	%end_ms?='ミリ秒|末端|再生の終了位置を指定する。省略時は末端。\n正の値は「冒頭から何ms目を終端とするか」\n負の値は「末尾から何ms手前を終端とするか」の指定'
+	%ret_ms?='ミリ秒|0|ループ戻り位置を指定する。0は冒頭。\nループ再生中にend_ms指定位置（省略時は末尾）に到達した場合、この指定位置に戻る。 ループ再生しない（loop=false）際は無視される'
 ]
 	[stopse * cond='mp:fn == null']
 	[playse * cond='mp:fn != null' join=false]
@@ -371,6 +387,9 @@
 	%no_voice_stop?='Boolean|false|trueなら改ページ後、音声（バッファ名「音声」の効果音）をフェードアウトしない'
 	%no_se_stop?='Boolean||trueなら改ページ後、効果音（バッファ名「SE」の効果音）をフェードアウトしない'
 	%visible?='Boolean|true|trueで改ページ記号を表示、falseで非表示'
+
+	%time?='ミリ秒|500|効果音フェードアウト時間。変化にかける時間'
+	%buf?='サウンドバッファ|音声|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
 ]
 	[ws buf=音声 canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
 	[p visible=%visible|true]
