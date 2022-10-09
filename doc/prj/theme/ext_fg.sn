@@ -101,7 +101,7 @@
 	%ease?='イージング名|Circular.easeOut|揺れのイージング（値の変化の仕方）を指定する'
 	%repeats?='0〜（整数）|1|繰返し回数。0は無限ループ'
 	%no_wait?='Boolean|false|trueを指定すると、終了を待たない'
-	%ease?='イージング名|Linear.None|揺れのイージング（値の変化の仕方）を指定する。\n指定できる値は以下の通り。\nBack.In、Back.InOut、Back.Out\nBounce.In、Bounce.InOut、Bounce.Out\nCircular.In、Circular.InOut、Circular.Out\nCubic.In、Cubic.InOut、Cubic.Out\nElastic.In、Elastic.InOut、Elastic.Out\nExponential.In、Exponential.InOut、Exponential.Out\nLinear.None\nQuadratic.In、Quadratic.InOut、Quadratic.Out\nQuartic.In、Quartic.InOut、Quartic.Out\nQuintic.In、Quintic.InOut、Quintic.Out\nSinusoidal.In、Sinusoidal.InOut、Sinusoidal.Out'
+	%ease?='イージング名|Linear.None|揺れのイージング（値の変化の仕方）を指定する'
 ]
 	[return cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=t text=%time|250]
@@ -203,7 +203,7 @@
 	%fn?='画像ファイル名|レイヤをクリア|基本画像ファイルを指定する'
 	%time?='ミリ秒数|250|一動作にかける時間（実際に掛かる時間 = time * 4）'
 	%visible?='Boolean|true|true：表示、false：非表示'
-	%ease?='イージング名|Linear.None|揺れのイージング（値の変化の仕方）を指定する。\n指定できる値は以下の通り。\nBack.In、Back.InOut、Back.Out\nBounce.In、Bounce.InOut、Bounce.Out\nCircular.In、Circular.InOut、Circular.Out\nCubic.In、Cubic.InOut、Cubic.Out\nElastic.In、Elastic.InOut、Elastic.Out\nExponential.In、Exponential.InOut、Exponential.Out\nLinear.None\nQuadratic.In、Quadratic.InOut、Quadratic.Out\nQuartic.In、Quartic.InOut、Quartic.Out\nQuintic.In、Quintic.InOut、Quintic.Out\nSinusoidal.In、Sinusoidal.InOut、Sinusoidal.Out'
+	%ease?='イージング名|Linear.None|揺れのイージング（値の変化の仕方）を指定する'
 ]
 	[let name=v text=%visible|false]
 	[if exp=v]
