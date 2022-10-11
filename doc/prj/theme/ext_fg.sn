@@ -134,8 +134,8 @@
 	[let name=lay text=%layer|0]
 	[let name=x text=%x|5]
 
-	[let name=x2x text=#&'("=-'+ x +','+ x +'")'#]
-	[tsy layer=&lay time=&t path=#&"$x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x (=0)"#]
+	[let name=w text=#&'("=-'+ x +','+ x +'")'#]
+	[tsy layer=&lay time=&t path=#&"$w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w (=0)"#]
 	[wait_tsy layer=&lay canskip=false cond='! mp:no_wait']
 [endmacro]
 
