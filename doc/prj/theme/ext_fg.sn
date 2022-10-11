@@ -1,5 +1,6 @@
 ;********************************************************
 ;@EXT_DESC	レイヤのクロスフェードと画像変更と動きの拡張機能
+;@VER		2022.10.11.001	SKYNovel 1.38.0 以降の[tsy path]を積極使用
 ;@VER		2018.6.22.000
 ;********************************************************
 
@@ -111,8 +112,7 @@
 	[let name=y text=%y|50]
 	[let name=ease text=%ease|Circular.Out]
 
-	[tsy layer=&lay time=&t y='&"="+ y' ease=&ease]
-	[tsy chain=&lay layer=&lay time=&t y='=0' ease=&ease]
+	[tsy layer=&lay time=&t ease=&ease path=#&"(,=$y) (,=0)"#]
 	[wait_tsy layer=&lay cond='! mp:no_wait']
 [endmacro]
 
@@ -133,36 +133,9 @@
 
 	[let name=lay text=%layer|0]
 	[let name=x text=%x|5]
-	[let name=x2x text="&'=-'+ x +','+ x"]
 
-	[tsy layer=&lay time=&t x=&x2x]
-
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-	[tsy chain=&lay layer=&lay time=&t x=&x2x]
-
-	[tsy chain=&lay layer=&lay time=&t x='=0']
+	[let name=x2x text=#&'("=-'+ x +','+ x +'")'#]
+	[tsy layer=&lay time=&t path=#&"$x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x $x2x (=0)"#]
 	[wait_tsy layer=&lay canskip=false cond='! mp:no_wait']
 [endmacro]
 
@@ -186,12 +159,8 @@
 	[let name=x text=%x|25]
 	[let name=y text=%y|25]
 
-	[tsy layer=&lay time=&t x='&"=-"+ x' y='&"="+ y' ease=Quintic.Out]
-	[tsy chain=&lay layer=&lay time=&t x='=0' y='=0']
-		; ちなみにこの時点で一つ目の[tsy]は動き出してないので、
-		; 相対位置指定は初期位置基準。[s][l][p]などで動き出す。
-	[tsy chain=&lay layer=&lay time=&t x='&"="+ x' y='&"="+ y']
-	[tsy chain=&lay layer=&lay time=&t x='=0' y='=0' ease=Quintic.In]
+	[tsy layer=&lay time=&t ease=Back.Out
+		path=#&"(=-$x,=$y) (=0,=0) (=$x,=$y) (=0,=0)"#]
 	[wait_tsy layer=&lay canskip=false cond='! mp:no_wait']
 [endmacro]
 
@@ -225,7 +194,7 @@
 		pivot_x='&w/2' pivot_y='&h/2'
 		visible=true]
 
-	[tsy * layer=&layer scale_x=&valTo scale_y=&valTo]
+	[tsy * layer=&layer path=#&'{"scale_x":"$valTo", "scale_y":"$valTo"}'#]
 	[wait_tsy * layer=&layer]
 
 	[lay layer=&layer pos=stay visible=&v]

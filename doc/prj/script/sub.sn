@@ -164,6 +164,16 @@
 	%fcol?='色指定|0xffffff|テキスト色'
 	%b_color?='色指定|0x000000|テキストウインドウの背景色'
 	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
 ]
 	[let name=l text=%l|40]
 	[let name=w text=%w|310]
@@ -202,6 +212,16 @@
 	%fcol?='色指定|0xffffff|テキスト色'
 	%b_color?='色指定|0x000000|テキストウインドウの背景色'
 	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
 ]
 	[txt_lay_v_left * l=%l|366]
 [endmacro]
@@ -224,6 +244,16 @@
 	%fcol?='色指定|0xffffff|テキスト色'
 	%b_color?='色指定|0x000000|テキストウインドウの背景色'
 	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
 ]
 	[txt_lay_v_center * l=%l|294 w=436 max_row=11 pr=26
 	b_pic=wafuu1w	; 背後に画像を使わない場合はコメントアウト
@@ -284,6 +314,16 @@
 	%fcol?='色指定|0xffffff|テキスト色'
 	%b_color?='色指定|0x000000|テキストウインドウの背景色'
 	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
 ]
 	[let name=t text=%t|40]
 	[let name=h text=%h|'&const.sn.config.window.height -40*2']
@@ -321,6 +361,16 @@
 	%fcol?='色指定|0xffffff|テキスト色'
 	%b_color?='色指定|0x000000|テキストウインドウの背景色'
 	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
 ]
 	[txt_lay_fullscreen * t=%t|472 h=266 max_row=6]
 [endmacro]
@@ -446,6 +496,7 @@
 	; その他[trans]と同じ属性
 	%time?='ミリ秒|1000|背景・前景の画像レイヤ変化にかける時間'
 	%txt_time?='ミリ秒|300|文字レイヤ変化にかける時間'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
 	%nofo_txt?='Boolean|false|trueなら文字レイヤをフェードアウトしない'
 	%nofi_txt?='Boolean|false|trueなら文字レイヤをフェードインしない'
 	%se?='効果音ファイル名|何もしない|場面転換と同時に再生する効果音'
