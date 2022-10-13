@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.12.6
+- fix: sub.sn 内定義マクロ [grp] のミス修正
 ## v2.12.5
 - fix: BREAKING CHANGE: sub.sn 内定義マクロ [grp]の属性 nofo_txt, nofi_txt を fo_txt, fi_txt に変更
 	- 使用箇所の Boolean 値を 反転すること。テンプレも置換した

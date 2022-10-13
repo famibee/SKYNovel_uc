@@ -523,9 +523,9 @@
 
 	; レイヤ切り替え・メイン
 	[lay layer=base page=back fn=%bg scale_x=%sxb|null face=%fb|null visible=true cond='mp:bg != null']
-	[img layer=0 fn=%l0|null pos=%pos0|null left=%left0|null top=%top0|null alpha=%o0|null scale_x=%sx0|null face=%f0|null cond=mp:chg0|true]
-	[img layer=1 fn=%l1|null pos=%pos1|null left=%left1|null top=%top1|null alpha=%o1|null scale_x=%sx1|null face=%f1|null cond=mp:chg1|true]
-	[img layer=2 fn=%l2|null pos=%pos2|null left=%left2|null top=%top2|null alpha=%o2|null scale_x=%sx2|null face=%f2|null cond=mp:chg2|true]
+	[img layer=0 fn=%l0|null pos=%pos0|null left=%left0|null top=%top0|null alpha=%o0|null scale_x=%sx0|null face=%f0|null cond=mp:chg0!=false]
+	[img layer=1 fn=%l1|null pos=%pos1|null left=%left1|null top=%top1|null alpha=%o1|null scale_x=%sx1|null face=%f1|null cond=mp:chg1!=false]
+	[img layer=2 fn=%l2|null pos=%pos2|null left=%left2|null top=%top2|null alpha=%o2|null scale_x=%sx2|null face=%f2|null cond=mp:chg2!=false]
 	[trans * layer=&dsp_lays_grp time=&tt]
 	[wt]
 
