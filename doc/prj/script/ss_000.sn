@@ -97,7 +97,7 @@
 
 
 	; *** BG ***
-	[grp bg=black time=2000 sys_menu=false nofi_txt=true]
+	[grp bg=black time=2000 sys_menu=false fi_txt=false]
 
 	[wait time=1000]
 

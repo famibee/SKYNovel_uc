@@ -1,5 +1,12 @@
 # Change Log
 
+## v2.12.5
+- fix: BREAKING CHANGE: sub.sn 内定義マクロ [grp]の属性 nofo_txt, nofi_txt を fo_txt, fi_txt に変更
+	- 使用箇所の Boolean 値を 反転すること。テンプレも置換した
+		- nofo_txt=true => fo_txt=false
+		- nofi_txt=true => fi_txt=false
+- fix: sub.sn 内定義マクロ [grp]に属性 chg0, chg1,　chg2 を追加
+- docs: [grp]の sum説明を修正
 ## v2.12.4
 - fix: マクロ更新（ext_fg.sn）SKYNovel 1.38.0 以降の[tsy path]を積極使用
 ## v2.12.3

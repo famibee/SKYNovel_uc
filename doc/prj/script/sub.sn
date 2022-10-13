@@ -469,7 +469,7 @@
 ; マクロ 場面転換
 ;********************************************************
 [macro name=grp nowarn_unused=true
-	sum='シナリオ開始時共通処理\nタイトルからゲーム本編を開始する際の処理を行なう'
+	sum='場面転換\n背景と立ち絵を一括で変更する'
 	detail='シナリオファイル冒頭に記述するべき'
 
 	%bg='画像ファイル名|何もしない|背景レイヤに対する画像ファイルを指定する'
@@ -497,9 +497,12 @@
 	%time?='ミリ秒|1000|背景・前景の画像レイヤ変化にかける時間'
 	%txt_time?='ミリ秒|300|文字レイヤ変化にかける時間'
 	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
-	%nofo_txt?='Boolean|false|trueなら文字レイヤをフェードアウトしない'
-	%nofi_txt?='Boolean|false|trueなら文字レイヤをフェードインしない'
+	%fo_txt?='Boolean|true|falseなら文字レイヤをフェードアウトしない'
+	%fi_txt?='Boolean|true|falseなら文字レイヤをフェードインしない'
 	%se?='効果音ファイル名|何もしない|場面転換と同時に再生する効果音'
+	%chg0?='Boolean|true|falseならレイヤを変更しない'
+	%chg1?='Boolean|true|falseならレイヤを変更しない'
+	%chg2?='Boolean|true|falseならレイヤを変更しない'
 ]
 	[let name=t text=%t_time|300]	;省略した時の初期値
 	[let name=t text=0 cond="sn.skip.enabled"]
@@ -507,7 +510,7 @@
 	[let name=tt text=0 cond="sn.skip.enabled"]
 
 	; テキストOff
-	[if exp='mp:nofo_txt == null']
+	[if exp='mp:fo_txt != false']
 		[sys_menu visible=false]
 		[lay layer=mes page=back visible=false]
 		[trans layer=mes time=&t]
@@ -520,14 +523,14 @@
 
 	; レイヤ切り替え・メイン
 	[lay layer=base page=back fn=%bg scale_x=%sxb|null face=%fb|null visible=true cond='mp:bg != null']
-	[img layer=0 fn=%l0|null pos=%pos0|null left=%left0|null top=%top0|null alpha=%o0|null scale_x=%sx0|null face=%f0|null]
-	[img layer=1 fn=%l1|null pos=%pos1|null left=%left1|null top=%top1|null alpha=%o1|null scale_x=%sx1|null face=%f1|null]
-	[img layer=2 fn=%l2|null pos=%pos2|null left=%left2|null top=%top2|null alpha=%o2|null scale_x=%sx2|null face=%f2|null]
+	[img layer=0 fn=%l0|null pos=%pos0|null left=%left0|null top=%top0|null alpha=%o0|null scale_x=%sx0|null face=%f0|null cond=mp:chg0|true]
+	[img layer=1 fn=%l1|null pos=%pos1|null left=%left1|null top=%top1|null alpha=%o1|null scale_x=%sx1|null face=%f1|null cond=mp:chg1|true]
+	[img layer=2 fn=%l2|null pos=%pos2|null left=%left2|null top=%top2|null alpha=%o2|null scale_x=%sx2|null face=%f2|null cond=mp:chg2|true]
 	[trans * layer=&dsp_lays_grp time=&tt]
 	[wt]
 
 	; テキストOn
-	[if exp='mp:nofi_txt == null']
+	[if exp='mp:fi_txt != false']
 		[lay layer=mes page=back visible=true b_alpha=%b_alpha|1]
 		[trans layer=mes time=&t]
 		[wt]
