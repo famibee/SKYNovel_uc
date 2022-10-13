@@ -96,8 +96,8 @@
 	[enable_event enabled=true]	; この状態も保存されるので本文に戻る前に変更
 	[enable_event enabled=true layer=mes_sysmenu]
 	[save place=&_save.place pic=&pic dt=&const.Date.getDateStr text=&const.sn.last_page_text]
-	[set_frame id=archive var_name=val_dic text=&const.sn.bookmark.json]
-	[let_frame id=archive var_name=val2ctrl function=true]
+	[set_frame id=archive var_name=val_dic text=&const.sn.bookmark.json cond=const.sn.frm.archive]
+	[let_frame id=archive var_name=val2ctrl function=true cond=const.sn.frm.archive]
 [return]
 
 ;*****************************
