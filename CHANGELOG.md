@@ -1,7 +1,10 @@
 # Change Log
 
+## v2.12.11
+- fix: [fg]に snippet_ext=SP_GSM 追加
+- fix: [bgm][se]に snippet_ext=SOUND 追加
 ## v2.12.10
-- fix: [fg][fg2]説明修正
+- fix: [fg]説明修正
 ## v2.12.9
 - fix: [grp]%ruleの型を修正。【画像ファイル名（swf不可）】→【画像ファイル名】
 - fix: [bgm]%fnの型を修正。【BGM音声ファイル名】→【音声ファイル名】

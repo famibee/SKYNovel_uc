@@ -379,6 +379,7 @@
 ; マクロ ＢＧＭ切り替え
 [macro name=bgm nowarn_unused=true
 	sum='ＢＧＭ切り替え\nBGMをクロスフェードする'
+	snippet_ext=SOUND
 
 	%fn='音声ファイル名||再生する音声ファイル名'
 	%time?='ミリ秒|再生中の曲を瞬時に停止し、指定曲を即座に再生する|変化にかける時間'
@@ -410,6 +411,7 @@
 ; マクロ 効果音
 [macro name=se nowarn_unused=true
 	sum='効果音を再生\n[playse]に引数省略時音声停止機能を付けたもの'
+	snippet_ext=SOUND
 
 	%fn?='音声ファイル名|音声停止|再生する音声ファイル名'
 	%buf?='サウンドバッファ|音声|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
