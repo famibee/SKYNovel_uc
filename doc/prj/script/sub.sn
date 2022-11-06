@@ -393,6 +393,8 @@
 	%end_ms?='ミリ秒|末端|再生の終了位置を指定する。省略時は末端。\n正の値は「冒頭から何ms目を終端とするか」\n負の値は「末尾から何ms手前を終端とするか」の指定'
 	%ret_ms?='ミリ秒|0|ループ戻り位置を指定する。0は冒頭。\nループ再生中にend_ms指定位置（省略時は末尾）に到達した場合、この指定位置に戻る。 ループ再生しない（loop=false）際は無視される'
 ]
+	[return cond='save:const.sn.sound.BGM.fn == mp:fn && const.sn.sound.BGM.playing']
+
 	[stopbgm cond='mp:time == null || sn.skip.enabled']
 
 	[stopse buf=BGM_FO]

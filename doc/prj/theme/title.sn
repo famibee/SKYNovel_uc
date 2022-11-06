@@ -1,3 +1,6 @@
+	; *** タイトル開始共通処理 ***
+	[sys_title_start]
+
 	[img fn=title layer=base left=0 top=0 width=&const.sn.config.window.width height=&const.sn.config.window.height]
 	[img layer=0]
 	[img layer=1]

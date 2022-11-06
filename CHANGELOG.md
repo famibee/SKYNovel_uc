@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.12.12
+- fix: [bgm]再生中に同名BGMを再生しようとした際は処理なしとする挙動に
+- fix: [sys_title_start]を main.sn から title.sn 冒頭へ移動
 ## v2.12.11
 - fix: [fg]に snippet_ext=SP_GSM 追加
 - fix: [bgm][se]に snippet_ext=SOUND 追加
