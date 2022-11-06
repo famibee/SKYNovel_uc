@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.12.13
+- fix: v2.12.12 の影響手直し【[jump fn=main label=*title]】を【[jump fn=title]】に
 ## v2.12.12
 - fix: [bgm]再生中に同名BGMを再生しようとした際は処理なしとする挙動に
 - fix: [sys_title_start]を main.sn から title.sn 冒頭へ移動

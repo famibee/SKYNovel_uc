@@ -585,4 +585,4 @@
 	[grp bg=black sys_menu=false b_alpha=0]
 
 	[pop_stack clear=true]
-	[jump fn=main label=*title]
+	[jump fn=title]

@@ -102,4 +102,4 @@
 	[wait time=1000]
 
 
-[jump fn=main label=*title]
+[jump fn=title]
