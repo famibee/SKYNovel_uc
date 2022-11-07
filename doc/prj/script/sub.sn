@@ -111,6 +111,7 @@
 	[return cond="mp:no_sysmenu_draw != null"]
 
 	[let name=l text=%l|40]
+	[let name=t text=%t|120]
 	[let name=w text=%w|292]
 	[let name=sysmenu_left text=&l+12]
 	[let name=sysmenu_left2 text=&sysmenu_left+w+13]
@@ -118,18 +119,18 @@
 	&r = 90	; ボタンを縦にしたいなら
 
 	[lay layer=mes_sysmenu page=back]
-	[button layer=mes_sysmenu page=back text='クイックセーブ' rotation=&r left=&sysmenu_left2 top=600 global=true event_at_down=true fn=_archive label=*quick_save call=true hint='クイックセーブ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text='クイックロード' rotation=&r left=&sysmenu_left2 top=720 global=true event_at_down=true fn=_archive label=*quick_load call=true hint='クイックロード' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text='クイックセーブ' rotation=&r left=&sysmenu_left2 top=&t+380 global=true event_at_down=true fn=_archive label=*quick_save call=true hint='クイックセーブ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text='クイックロード' rotation=&r left=&sysmenu_left2 top=&t+500 global=true event_at_down=true fn=_archive label=*quick_load call=true hint='クイックロード' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 
-	[button layer=mes_sysmenu page=back text='タイトルへ' rotation=&r left=&sysmenu_left top=220 global=true event_at_down=true fn=sub label=*title_sys call=true hint='タイトルへ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text='タイトルへ' rotation=&r left=&sysmenu_left top=&t+0 global=true event_at_down=true fn=sub label=*title_sys call=true hint='タイトルへ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 		; どの本文スクリプトから呼ばれるか不明なので、
 		; 同一スクリプトへのコールだがfn属性を省略してはいけない
 
-	[button layer=mes_sysmenu page=back text=' セーブ ' rotation=&r left=&sysmenu_left top=320 global=true event_at_down=true fn=_archive label=*rclick_save call=true hint='セーブ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left top=420 global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left top=520 global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left top=620 global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left top=720 global=true event_at_down=true fn=_config label=*rclick_config call=true hint='ゲーム設定' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' セーブ ' rotation=&r left=&sysmenu_left top=&t+100 global=true event_at_down=true fn=_archive label=*rclick_save call=true hint='セーブ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left top=&t+200 global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left top=&t+300 global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left top=&t+400 global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left top=&t+500 global=true event_at_down=true fn=_config label=*rclick_config call=true hint='ゲーム設定' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 	[trans layer=mes_sysmenu time=0]
 	[wt]	; 裏から表へコピー（save対策）
 [endmacro]
@@ -146,6 +147,7 @@
 [add_lay layer=mes_sysmenu class=txt cond=useSysMenu]
 [let name=sysmenu_left text=NaN]
 
+
 ;********************************************************
 ; マクロ テキストレイヤ縦書き左設定
 [macro name=txt_lay_v_left nowarn_unused=true
@@ -156,14 +158,10 @@
 	%page?='fore、back|back|ページの裏表'
 	%visible?='Boolean|true|true：表示、false：非表示'
 	%l?='整数値|40|テキストウインドウの左端横座標'
-	%w?='整数値|292|テキストウインドウの横幅'
-	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
-	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
-	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
-	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
-	%fcol?='色指定|0xffffff|テキスト色'
-	%b_color?='色指定|0x000000|テキストウインドウの背景色'
-	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%w?='整数値|310|テキストウインドウの横幅'
+	%pr?='整数値|36|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|white|テキスト色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
 	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
 	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
 	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
@@ -178,18 +176,16 @@
 	[let name=l text=%l|40]
 	[let name=w text=%w|310]
 	&pl = 26
-	&pt = 42
+	&pt = 30
 	[let name=pr text=%pr|36]
-	&pb = 42
+	&pb = 30
 	[let name=fcol text=%fcol|'white']
-	; こちらの素材をお借りしました。
-	; びたちー素材館　メッセージボックス・メッセージウィンドウ・フレーム　フリー素材 http://www.vita-chi.net/message.htm
+	; こちらの素材をお借りしました：びたちー素材館　メッセージボックス・メッセージウィンドウ・フレーム　フリー素材 http://www.vita-chi.net/message.htm
 	[lay * layer=%layer|'mes' page=%page|back visible=%visible|true left=&l top=0
 		b_pic=%b_pic|wafuu1	; 背後に画像を使う（width・heightは画像に合わされる）
 	;	b_color=%b_color|'#ffffff'	; 背後に画像を使わない・単色塗り
 		; その際はstyleにサイズ指定必須 width: #{w}px; height: #{const.sn.config.window.height}px;
 		b_alpha=%b_alpha|1
-	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
 		style="&'color: #{fcol}; writing-mode: vertical-rl; width: #{w}px; height: #{const.sn.config.window.height}px; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-family: #{def_fonts}; font-size: 24px; line-height: 1.5;'"]
 	[sysmenu_draw_v *]
 [endmacro]
@@ -203,15 +199,11 @@
 	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
 	%page?='fore、back|back|ページの裏表'
 	%visible?='Boolean|true|true：表示、false：非表示'
-	%l?='整数値|366|テキストウインドウの左端横座標'
-	%w?='整数値|292|テキストウインドウの横幅'
-	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
-	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
-	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
-	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
-	%fcol?='色指定|0xffffff|テキスト色'
-	%b_color?='色指定|0x000000|テキストウインドウの背景色'
-	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%l?='整数値|40|テキストウインドウの左端横座標'
+	%w?='整数値|310|テキストウインドウの横幅'
+	%pr?='整数値|36|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|white|テキスト色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
 	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
 	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
 	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
@@ -235,15 +227,16 @@
 	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
 	%page?='fore、back|back|ページの裏表'
 	%visible?='Boolean|true|true：表示、false：非表示'
-	%l?='整数値|294|テキストウインドウの左端横座標'
-	%w?='整数値|436|【固定】テキストウインドウの横幅'
-	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
-	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
-	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
-	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
-	%fcol?='色指定|0xffffff|テキスト色'
-	%b_color?='色指定|0x000000|テキストウインドウの背景色'
-	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%l?='整数値|294|テキストウインドウの左端'
+	%t?='整数値|40|テキストウインドウの上端'
+	%h?='整数値|画面縦幅 -40 *2|テキストウインドウの縦幅'
+	%pl?='整数値|70|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|30|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|70|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|70|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|black|テキスト色'
+	%b_color?='色指定|0xffffff|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
 	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
 	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
 	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
@@ -276,6 +269,7 @@
 
 	[let name=sysmenu_left text=200]
 	[let name=sysmenu_top text=&const.sn.lay.mes.back.y+mp:h-10]
+	[let name=sysmenu_top text=&sysmenu_top+mp:sysmenu_top cond=mp:sysmenu_top]
 	&r = 0	; ボタンを横にしたいなら
 	;&r = 90	; ボタンを縦にしたいなら
 
@@ -296,6 +290,7 @@
 	[wt]	; 裏から表へコピー（save対策）
 [endmacro]
 
+
 ;********************************************************
 ; マクロ テキストレイヤ全画面設定
 [macro name=txt_lay_fullscreen nowarn_unused=true
@@ -305,15 +300,15 @@
 	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
 	%page?='fore、back|back|ページの裏表'
 	%visible?='Boolean|true|true：表示、false：非表示'
-	%l?='整数値|16|テキストウインドウの左端横座標'
-	%w?='整数値|画面横幅 -16 *2|テキストウインドウの横幅'
-	%pl?='整数値|28|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
-	%pt?='整数値|42|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
-	%pr?='整数値|639|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
-	%pb?='整数値|479|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
-	%fcol?='色指定|0xffffff|テキスト色'
-	%b_color?='色指定|0x000000|テキストウインドウの背景色'
-	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%t?='整数値|40|テキストウインドウの上端'
+	%h?='整数値|画面縦幅 -40 *2|テキストウインドウの縦幅'
+	%pl?='整数値|70|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|30|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|70|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|70|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|black|テキスト色'
+	%b_color?='色指定|0xffffff|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
 	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
 	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
 	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
@@ -331,17 +326,14 @@
 	&pt = 30
 	&pr = 70
 	&pb = 70
-	;[let name=fcol text=%fcol|'white']
 	[let name=fcol text=%fcol|'black']
 	[lay * layer=%layer|'mes' page=%page|back visible=%visible|true left=0 top=&t
-	;	b_pic=%b_pic|wafuu1	; 背後に画像を使う（width・heightは画像に合わされる）
-		b_color=%b_color|0xffffff	; 背後に画像を使わない・単色塗り
-		; その際はstyleにサイズ指定必須
+		b_color=%b_color|0xffffff
 		b_alpha=%b_alpha|1
-	;	b_alpha_isfixed=true	; コメント外すと透過度変更禁止
 		style="&'color: #{fcol}; width: #{const.sn.config.window.width}px; height: #{h}px; writing-mode: horizontal-tb; padding-left: #{pl}px; padding-right: #{pr}px; padding-top: #{pt}px; padding-bottom: #{pb}px; font-family: #{def_fonts}; font-size: 24px; line-height: 1.5;'"]
 	[sysmenu_draw_h * h=&h]
 [endmacro]
+
 
 ;********************************************************
 ; マクロ テキストレイヤ横書きWide下設定
@@ -352,15 +344,14 @@
 	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
 	%page?='fore、back|back|ページの裏表'
 	%visible?='Boolean|true|true：表示、false：非表示'
-	%l?='整数値|366|テキストウインドウの左端横座標'
-	%w?='整数値|292|テキストウインドウの横幅'
-	%pl?='整数値|属性l + 26|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
-	%pt?='整数値|66|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
-	%pr?='整数値|画面横幅-(属性l +属性w ) + 26|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
-	%pb?='整数値|66|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
-	%fcol?='色指定|0xffffff|テキスト色'
-	%b_color?='色指定|0x000000|テキストウインドウの背景色'
-	%b_alpha?='0.0〜1.0（実数）|sys:TextLayer.Back.Alpha|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%t?='整数値|472|テキストウインドウの上端'
+	%pl?='整数値|70|テキストウインドウの左端から内側方向への、文字表示領域との間隔'
+	%pt?='整数値|30|テキストウインドウの上端から内側方向への、文字表示領域との間隔'
+	%pr?='整数値|70|テキストウインドウの右端から内側方向への、文字表示領域との間隔'
+	%pb?='整数値|70|テキストウインドウの下端から内側方向への、文字表示領域との間隔'
+	%fcol?='色指定|black|テキスト色'
+	%b_color?='色指定|0xffffff|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
 	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
 	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
 	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
@@ -374,6 +365,88 @@
 ]
 	[txt_lay_fullscreen * t=%t|472 h=266 max_row=6]
 [endmacro]
+
+;***********************************************************
+; マクロ テキストレイヤ横書き上小窓設定
+;***********************************************************
+[macro name=txt_lay_window_top nowarn_unused=true
+	sum='テキストレイヤ横書き上小窓設定\n画面上端に寄せたテキストレイヤ'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%fcol?='色指定|black|テキスト色'
+	%b_color?='色指定|0xffffff|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
+]
+	[txt_lay_fullscreen * l=&1.28*30 t=&1.28*40 w=&1.28*740 h=&1.28*120+36 pt=20 pr=40 pl=40 sysmenu_top=-200]
+[endmacro]
+
+;***********************************************************
+; マクロ テキストレイヤ横書き下小窓設定
+;***********************************************************
+[macro name=txt_lay_window_bottom nowarn_unused=true
+	sum='テキストレイヤ横書き下小窓設定\n画面下端に寄せたテキストレイヤ'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%fcol?='色指定|black|テキスト色'
+	%b_color?='色指定|0xffffff|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
+]
+	[txt_lay_fullscreen * l=&1.28*30 t=&1.28*440-36 w=&1.28*740 h=&1.28*120+36 pt=20 pr=40 pl=40]
+[endmacro]
+
+;***********************************************************
+; マクロ テキストレイヤ中横書き央小窓設定
+;***********************************************************
+[macro name=txt_lay_window_middle nowarn_unused=true
+	sum='テキストレイヤ中横書き央小窓設定\n画面中央に寄せたテキストレイヤ'
+	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
+
+	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%visible?='Boolean|true|true：表示、false：非表示'
+	%fcol?='色指定|black|テキスト色'
+	%b_color?='色指定|0xffffff|テキストウインドウの背景色'
+	%b_alpha?='0.0〜1.0（実数）|1|テキストウインドウの背景の透過度。\n0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%b_alpha_isfixed?='Boolean|現在値|true：テキスト背後の矩形不透明度を、「b_alpha属性と sys:TextLayer.Back.Alpha の掛け算とせず」、b_alpha属性値そのものにする'
+	%b_pic?='画像ファイル名|現在値|文字レイヤ背後の枠画像を指定する。b_alphaの影響を受ける。（これを指定するとb_colorは無視される）'
+	%no_sysmenu_draw='Boolean|true|システムメニューを表示するか'
+	%back_clear?='Boolean|現在値|true：背景をクリアする'
+	%break_fixed?='Boolean|現在値|true：クリック待ちマークを固定位置に表示\nfalse：最後に表示した文字の次、改行せずぶら下げ位置に表示'
+	%break_fixed_left?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%break_fixed_top?='Integer|現在値|クリック待ちマークの表示位置を指定する'
+	%style?='CSS style|何もしない|文字の CSS Style を指定する。\n[span][ch]などで style を指定しない際のデフォルト値。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_style?='CSS style|何もしない|ルビの CSS Style を指定する。\n「color: red;」「color: blue;」と個別指定時は、過去値を上書きする。\n空白文字を指定時は全てクリアする'
+	%r_align?='left、center、right、justify、121、even、1ruby|現在値|ルビ揃えを指定する'
+]
+	[txt_lay_fullscreen * l=&1.28*40 t=&1.28*180-36/2 w=&1.28*720 h=&1.28*220+36 pt=20 pr=40 pl=40]
+[endmacro]
+
 
 ;********************************************************
 ; マクロ ＢＧＭ切り替え

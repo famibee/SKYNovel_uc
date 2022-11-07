@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.12.14
+- fix: sub.sn 縦書きテキストレイヤのマクロ修正
+- fix: sub.sn マクロ追加・テキストレイヤ横書き(上/中央/下)小窓設定
+- fix: sub.sn マクロ説明修正
 ## v2.12.13
 - fix: v2.12.12 の影響手直し【[jump fn=main label=*title]】を【[jump fn=title]】に
 ## v2.12.12
