@@ -9,5 +9,6 @@ module.exports = {
 
 	devServer: {
 		static: {directory: './doc'},
+		client: {logging: 'warn',},
 	},
 };

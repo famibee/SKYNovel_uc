@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.12.15
+- fix: webpack-dev-server のログ出力を 'info'→'warn' に
+- fix: ライブラリ更新
 ## v2.12.14
 - fix: sub.sn 縦書きテキストレイヤのマクロ修正
 - fix: sub.sn マクロ追加・テキストレイヤ横書き(上/中央/下)小窓設定
