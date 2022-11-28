@@ -5,16 +5,16 @@
 
 ;*********************************************************
 *main
-	[return cond="! isGameState"]
+	&tmpGameState = isGameState
 
 	[enable_event enabled=false]
+	&isGameState = false
+	&save:sn.doRecLog = false
+
 	[clear_event]
 		[lay layer=&save:const.sn.mesLayer page=fore visible=false]
 	[let name=sysmenu_v text=&const.sn.lay.mes_sysmenu.fore.visible cond=useSysMenu]
 	[sys_menu visible=false]
-
-	&isGameState = false
-	&save:sn.doRecLog = false
 
 	[event key=click label=*exit]
 	[event key=' ' label=*exit]
@@ -33,7 +33,8 @@
 	[sys_menu visible=&sysmenu_v]
 
 	[enable_event enabled=true]
+	&isGameState = tmpGameState
+	&save:sn.doRecLog = tmpGameState
+
 	[set_focus to=null]
-	&isGameState = true
-	&save:sn.doRecLog = true
 [return]

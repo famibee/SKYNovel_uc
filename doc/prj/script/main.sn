@@ -21,7 +21,7 @@
 [char2macro char=\ name=plc]
 
 	; *** レジューム処理 ***
-	[sys_resume_load]
+	[sys_resume_load cond=!const.sn.key.escape]
 
 	[jump fn=title]
 

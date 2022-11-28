@@ -158,7 +158,6 @@
 ;*********************************************************
 *title_config
 	[return cond=const.sn.frm.config.visible]
-	&呼び元 = 'Title'
 [jump label=*main]
 
 ;*********************************************************
@@ -166,12 +165,16 @@
 	[return cond=!isGameState]
 	[return cond=const.sn.frm.config.visible]
 	[se fn=&sysse_ok1 buf=SYS]
-	&呼び元 = 'Text'
 
 ;*********************************************************
 *main
+	&tmpGameState = isGameState
+
 	[enable_event enabled=false]
 	[enable_event enabled=false layer=mes_sysmenu]
+	&isGameState = false
+	&save:sn.doRecLog = false
+
 	[clear_event]
 
 	; 最新値で更新
@@ -179,7 +182,6 @@
 
 	[frame id=config visible=true]
 
-	&isGameState = false
 	[event key=c label=*exit]
 	[event key=rightclick label=*exit]
 	[event key=meta label=*exit]
@@ -231,8 +233,10 @@
 
 	[enable_event enabled=true]
 	[enable_event enabled=true layer=mes_sysmenu]
+	&isGameState = tmpGameState
+	&save:sn.doRecLog = tmpGameState
+
 	[set_focus to=null]
-	[let name=isGameState text=true cond="呼び元=='Text'"]
 [return]
 
 ;*********************************************************

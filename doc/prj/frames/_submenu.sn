@@ -87,7 +87,6 @@
 
 	[call label=*exit]
 
-	[fadeoutse buf=音声 time=1000]
 	; テキストレイヤ全画面設定
 	[txt_lay_fullscreen b_alpha=0]
 	[grp bg=black sys_menu=false b_alpha=0]

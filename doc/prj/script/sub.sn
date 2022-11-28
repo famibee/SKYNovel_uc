@@ -38,6 +38,8 @@
 		; （改ページしないと履歴がページからあふれる）
 	[set_focus to=null]
 	[fadeoutse buf=SE time=500]
+	[fadeoutse buf=音声 time=1000]
+
 	[sys_menu visible=false]
 	[clear_event]
 [endmacro]
@@ -130,7 +132,7 @@
 	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left top=&t+200 global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left top=&t+300 global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left top=&t+400 global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left top=&t+500 global=true event_at_down=true fn=_config label=*rclick_config call=true hint='ゲーム設定' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left top=&t+500 global=true event_at_down=true fn=_config label=*main call=true hint='ゲーム設定' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 	[trans layer=mes_sysmenu time=0]
 	[wt]	; 裏から表へコピー（save対策）
 [endmacro]
@@ -282,7 +284,7 @@
 	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left+200 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left+300 top=&sysmenu_top global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left+400 top=&sysmenu_top global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left+500 top=&sysmenu_top global=true event_at_down=true fn=_config label=*rclick_config call=true hint='ゲーム設定' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left+500 top=&sysmenu_top global=true event_at_down=true fn=_config label=*main call=true hint='ゲーム設定' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='クイックセーブ' rotation=&r left=&sysmenu_left+600 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_save call=true hint='クイックセーブ' enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text='クイックロード' rotation=&r left=&sysmenu_left+700 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_load call=true hint='クイックロード' enterse=&sysse_choice]
 
@@ -652,7 +654,6 @@
 	[enable_event layer=mes_sysmenu enabled=true]
 	[return cond="_yesno=='n'"]
 
-	[fadeoutse buf=音声 time=1000]
 	; テキストレイヤ全画面設定
 	[txt_lay_fullscreen b_alpha=0]
 	[grp bg=black sys_menu=false b_alpha=0]

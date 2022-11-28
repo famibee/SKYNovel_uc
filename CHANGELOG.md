@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.12.16
+- fix: 手直し
 ## v2.12.15
 - fix: webpack-dev-server のログ出力を 'info'→'warn' に
 - fix: ライブラリ更新
