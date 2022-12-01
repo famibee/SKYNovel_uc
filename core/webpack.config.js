@@ -2,7 +2,7 @@
 const WebpackObfuscator = require('webpack-obfuscator');
 
 const isPrd = process.env.NODE_ENV === 'production';
-const cfg = {};
+let cfg = {};
 if (isPrd) cfg = {...cfg, module: {rules: [
 	{
 		enforce: 'post',
@@ -30,6 +30,10 @@ if (isPrd) cfg = {...cfg, module: {rules: [
 		exclude: /node_modules/
 	},
 ]},};
+else cfg = {...cfg, cache: {
+	type: 'filesystem',
+	buildDependencies: { config: [__filename], },
+},};
 
 module.exports = [{
 	...cfg,

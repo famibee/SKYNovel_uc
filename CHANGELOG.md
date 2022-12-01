@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.12.17
+- fix: core/webpack.config.js に永続的ビルドキャッシュ記述追加
 ## v2.12.16
 - fix: 手直し
 ## v2.12.15
