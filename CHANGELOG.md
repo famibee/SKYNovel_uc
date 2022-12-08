@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.12.18
+- fix: BGM・SE・音声初期値設定箇所を移動（frames/_config.sn → script/setting.sn）
 ## v2.12.17
 - fix: core/webpack.config.js に永続的ビルドキャッシュ記述追加
 ## v2.12.16
