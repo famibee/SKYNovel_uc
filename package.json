@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@types/crypto-js": "^4.1.1",
 		"@types/fs-extra": "^9.0.13",
-		"@types/node": "^18.11.11",
+		"@types/node": "^18.11.12",
 		"css-loader": "^6.7.2",
 		"electron": "^22.0.0",
 		"electron-builder": "^23.6.0",

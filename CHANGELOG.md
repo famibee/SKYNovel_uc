@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.12.19
+- fix: ボイスについてのバッファ名の表記ゆれ（VOICE/音声）を VOICE に統一
+- fix: BGM・SE・VOICE初期値設定を修正
+- fix: 設定画面：ボイス音量変更部を修正(frames/_config.sn)
 ## v2.12.18
 - fix: BGM・SE・音声初期値設定箇所を移動（frames/_config.sn → script/setting.sn）
 ## v2.12.17

@@ -38,7 +38,7 @@
 		; （改ページしないと履歴がページからあふれる）
 	[set_focus to=null]
 	[fadeoutse buf=SE time=500]
-	[fadeoutse buf=音声 time=1000]
+	[fadeoutse buf=VOICE time=1000]
 
 	[sys_menu visible=false]
 	[clear_event]
@@ -520,7 +520,7 @@
 	%time?='ミリ秒|500|効果音フェードアウト時間。変化にかける時間'
 	%buf?='サウンドバッファ|音声|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
 ]
-	[ws buf=音声 canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
+	[ws buf=VOICE canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
 	[p visible=%visible|true]
 	[er]
 	[record_place layer=&dsp_lays]

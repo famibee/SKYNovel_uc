@@ -98,7 +98,7 @@
 [return]
 *sldVolVoice
 	[let_frame id=config var_name=val_sldVolVoice]
-	[volume buf=BGM volume=&const.sn.frm.config.val_sldVolVoice/100]
+	[volume buf=VOICE volume=&const.sn.frm.config.val_sldVolVoice/100]
 [return]
 *sldVolSe
 	[let_frame id=config var_name=val_sldVolSe]

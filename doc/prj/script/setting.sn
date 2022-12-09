@@ -16,9 +16,12 @@
 [if exp=const.sn.isFirstBoot]	; ゲームがインストールされ、初めての起動
 	&sys:TextLayer.Back.Alpha = 0.7	; {"lbl":"メッセージ背景不透明度","type":"rng","max":1,"min":0,"step":0.05}
 
-	&sys:const.sn.sound.BGM.volume = 1	; {"lbl":"BGM音量","type":"rng","max":1,"min":0,"step":0.05}
-	&sys:const.sn.sound.SE.volume = 1	; {"lbl":"SE音量","type":"rng","max":1,"min":0,"step":0.05}
-	&sys:const.sn.sound.音声.volume = 1	; {"lbl":"音声音量","type":"rng","max":1,"min":0,"step":0.05}
+	&v_bgm = 1	; {"lbl":"BGM音量","type":"rng","max":1,"min":0,"step":0.05}
+	[volume buf=BGM volume=&v_bgm]
+	&v_se = 1	; {"lbl":"SE音量","type":"rng","max":1,"min":0,"step":0.05}
+	[volume buf=SE volume=&v_se]
+	&v_voice = 1	; {"lbl":"音声音量","type":"rng","max":1,"min":0,"step":0.05}
+	[volume buf=VOICE volume=&v_voice]
 [endif]
 
 ; 各種効果音
