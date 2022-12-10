@@ -1,5 +1,5 @@
 /* ***** BEGIN LICENSE BLOCK *****
-	Copyright (c) 2018-2021 Famibee (famibee.blog38.fc2.com)
+	Copyright (c) 2018-2022 Famibee (famibee.blog38.fc2.com)
 
 	This software is released under the MIT License.
 	http://opensource.org/licenses/mit-license.php
@@ -45,7 +45,7 @@ app.on('ready', ()=> {
 			})},
 			{type: 'separator'},
 			{label: '設定', click: ()=> guiWin.webContents.send('fire', 'c'), accelerator: "CmdOrCtrl+,"},
-			{label: '全画面/ウインドウモード切替', role:'togglefullscreen'},
+			{label: '全画面/ウインドウモード切替', click: ()=> guiWin.webContents.send('fire', 'alt+enter'), accelerator: 'F11'},
 			{label: 'メッセージを消す', click: ()=> guiWin.webContents.send('fire', ' ')},
 			{label: 'メッセージ履歴の表示', click: ()=> guiWin.webContents.send('fire', 'r')},
 			{label: '次の選択肢・未読まで進む', click: ()=> guiWin.webContents.send('fire', 'f')},
