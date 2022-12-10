@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.12.20
+- fix: 表記ゆれ修正漏れ（buf=%buf|音声）
 ## v2.12.19
 - fix: ボイスについてのバッファ名の表記ゆれ（VOICE/音声）を VOICE に統一
 - fix: BGM・SE・VOICE初期値設定を修正

@@ -530,7 +530,7 @@
 	&lastVoice = ''
 	[fadeoutse buf=SE time=%time|500 cond='mp:no_se_stop === null && !sn.skip.enabled']
 	[stopse buf=SE cond='sn.skip.enabled']
-	[stopse buf=%buf|音声 cond='mp:no_voice_stop === null || sn.skip.enabled']
+	[stopse buf=%buf|VOICE cond='mp:no_voice_stop === null || sn.skip.enabled']
 [endmacro]
 
 ;********************************************************
