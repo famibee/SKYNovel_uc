@@ -14,22 +14,21 @@
 <script defer src="lib/bootstrap.min.js"></script>
 <script>
 	let o = {mes: '本文', ok: 'ok', close: 'cancel', pic: ''};
+	const isDev = (location.protocol === 'file:');
+	const isWebp = false/*WEBP*/;
 	document.addEventListener('DOMContentLoaded', ()=> {
-		if (false/*WEBP*/) {
+		if (isWebp) {
 			const img = document.getElementById('img');
 			img.dataset.src = img.dataset.src.replace(/\.(jpe?g|png)$/, '.webp');	// 本番でsn_repRes()に渡してしまうので
 		}
 
-		const proc_mode = (location.protocol.slice(0, 4) === 'http')
-			? 'server'
-			: ('val2ctrl' in window.parent) ?'local' :'electron';
-		if (proc_mode === 'local') val2ctrl();	// ローカルデバッグ用
+		if (isDev) val2ctrl();	// デザイン用
 	}, false);
 
 	var val_dic = null;	// わざとvar
 	function val2ctrl() {	// 変数→コンポーネント
 		if (val_dic) o = {...o, ...JSON.parse(val_dic)};
-		if (false/*WEBP*/) o.pic = o.pic.replace(/\.(jpe?g|png)$/, '.webp');
+		if (isWebp) o.pic = o.pic.replace(/\.(jpe?g|png)$/, '.webp');
 
 		document.getElementById('mes').textContent = o.mes;
 		document.getElementById('ok').textContent = o.ok;
@@ -38,14 +37,12 @@
 		img.hidden = !o.pic;
 		if (! img.hidden) img.dataset.src = o.pic;
 
-		sn_repRes(setImg);	// 画像更新（SKYNovelが削除・独自に呼び出す）
+		Array.from(document.getElementsByTagName('img')).forEach(i=> setImg(i));
 	}
 
-	let setImg = undefined;
-	function sn_repRes($setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
-		setImg = $setImg ?? (i=> i.src = i.dataset.src);
-		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
-	}
+	// 画像ロード処理差し替え（関数名変更不可）
+	function sn_repRes(i) {setImg = i;}
+	let setImg = i=> i.src = i.dataset.src;
 
 </script>
 </head>

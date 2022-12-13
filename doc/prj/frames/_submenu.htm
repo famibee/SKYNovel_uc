@@ -14,12 +14,10 @@
 <script defer src="lib/bootstrap.min.js"></script>
 <script>
 	let o = {};
+	const isDev = (location.protocol === 'file:');
 	document.addEventListener('DOMContentLoaded', ()=> {
-		const proc_mode = (location.protocol.slice(0, 4) === 'http')
-			? 'server'
-			: ('val2ctrl' in window.parent) ?'local' :'electron';
-		if (proc_mode === 'local') val2ctrl();	// ローカルデバッグ用
-		if (proc_mode !== 'electron') document.getElementById('game_end').classList.add('disabled');
+		if (isDev) val2ctrl();	// デザイン用
+		else document.getElementById('game_end').classList.add('disabled');
 	}, false);
 
 	var val_dic = null;	// わざとvar

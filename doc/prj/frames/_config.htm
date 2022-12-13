@@ -25,7 +25,13 @@
 <script>
 	const slds = document.getElementsByClassName('sn_sld');
 	const dsps = document.getElementsByClassName('dsp_val');
+	const isDev = (location.protocol === 'file:');
+	const isWebp = false/*WEBP*/;
+	var val_version = '1.00';	// わざとvar
+	var val_sldBackAlpha = 70;	// わざとvar
 	document.addEventListener('DOMContentLoaded', ()=> {
+		if (isDev) val2ctrl();	// デザイン用
+
 		// コンポーネントにイベント処理追加
 		for (let i=0, max=slds.length; i<max; ++i) {
 			const bar = slds[i];
@@ -47,15 +53,8 @@
 			drawSampleView();
 		}, {passive: true});
 
-		if (false/*WEBP*/) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
-
-		sn_repRes();	// 画像更新（SKYNovelが削除・独自に呼び出す）
+		if (isWebp) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
 	});
-
-	function sn_repRes(setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
-		setImg = setImg ?? (i=> i.src = i.dataset.src);
-		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
-	}
 
 	function val2ctrl() {	// 変数→コンポーネント
 		document.getElementById('version').textContent = val_version;
@@ -75,7 +74,14 @@
 			const e = chks[i];
 			e.checked = (globalThis[`val_${e.id}`] == 'true');
 		}
+
+		Array.from(document.getElementsByTagName('img')).forEach(i=> setImg(i));
 	}
+
+	// 画像ロード処理差し替え（関数名変更不可）
+	function sn_repRes(i) {setImg = i;}
+	let setImg = i=> i.src = i.dataset.src;
+
 	function ctrl2val() {	// コンポーネント→変数
 		const slds = document.getElementsByClassName('sn_sld');
 		for (let i=0, max=slds.length; i<max; ++i) {

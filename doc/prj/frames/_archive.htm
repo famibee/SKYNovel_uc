@@ -88,21 +88,20 @@
 		{place: '14', pic: '../bg/yun_2384.jpg', dt: '2020/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
 	];
 	document.ondragstart = ()=> false;
-	const proc_mode = (location.protocol.slice(0, 4) === 'http')
-		? 'server'
-		: ('val2ctrl' in window.parent) ?'local' :'electron';
+	const isDev = (location.protocol === 'file:');
+	const isWebp = false/*WEBP*/;
 	let tgl_del = ()=> {};
 	document.addEventListener('DOMContentLoaded', ()=> {
-		if (proc_mode === 'local') {	// ローカルデバッグ用
+		if (isDev) {	// デザイン用
 			document.getElementById('do_loadsave').addEventListener('click', ()=> console.log(`do_loadsave:${val_place}`), {passive: true});
 			val2ctrl();
 		}
-		else if (false/*WEBP*/) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
+		else if (isWebp) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
 
 		document.getElementById('tgl_del').addEventListener('click', ()=> tgl_del(), {passive: true});
 
 		document.getElementById('do_del').addEventListener('click', ()=> {
-			if (proc_mode === 'local') console.log(`do_delete:${val_place}`);	// ローカルデバッグ用
+			if (isDev) console.log(`do_delete:${val_place}`);	// デザイン用
 
 			// サムネイル削除
 			const card = document.querySelector(`[data-id="${val_place}"]`).parentElement;	// この辺はBootstrapテンプレ毎のくせがあるかも
@@ -139,7 +138,7 @@
 		});
 	});
 
-	// SKYNovelから読み書きする変数なので、触らない
+	// SKYNovelから読み書きする変数なので、触らない。わざとvar
 	var val_s_place = 999;		// 次のセーブ位置
 	var val_dic = null;
 //	var val_caller = 'Title';	// タイトル画面から呼ばれた
@@ -166,7 +165,7 @@
 		lst.textContent = null;
 		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: '　新規にセーブします', place: val_s_place});
 		a.forEach(v=> {
-			if (false/*WEBP*/) v.pic = v.pic.replace(/\.(jpe?g|png)$/, '.webp');
+			if (isWebp && v.pic.slice(0, 10) !== 'userdata:/') v.pic = v.pic.replace(/\.(jpe?g|png)$/, '.webp');
 
 			const modal = (val_mode === 'Load' && val_caller === 'Title')
 						|| (val_mode === 'Save' && v.dt === '');
@@ -232,14 +231,12 @@
 			v.style.display = 'none';
 		});
 
-		sn_repRes(setImg);	// 画像更新（SKYNovelが削除・独自に呼び出す）
+		Array.from(document.getElementsByTagName('img')).forEach(i=> setImg(i));
 	}
 
-	let setImg = undefined;
-	function sn_repRes($setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
-		setImg = $setImg ?? (i=> i.src = i.dataset.src);
-		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
-	}
+	// 画像ロード処理差し替え（関数名変更不可）
+	function sn_repRes(i) {setImg = i;}
+	let setImg = i=> i.src = i.dataset.src;
 
 </script>
 </head>

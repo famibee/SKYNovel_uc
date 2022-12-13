@@ -1,4 +1,9 @@
 {
+	"save_ns": "uc",
+	"window": {
+		"width": 1024,
+		"height": 768
+	},
 	"book": {
 		"title": "桜の樹の下には",
 		"creator": "ふぁみべぇ",
@@ -7,11 +12,6 @@
 		"pub_url": "https://famibee.blog.fc2.com/",
 		"detail": "梶井基次郎「桜の樹の下には」をノベルゲーム化したものです。",
 		"version": "1.0.0"
-	},
-	"save_ns": "uc",
-	"window": {
-		"width": 1024,
-		"height": 768
 	},
 	"log": {
 		"max_len": 1024

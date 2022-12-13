@@ -10,7 +10,7 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.39.11",
+		"@famibee/skynovel": "^1.39.13",
 		"about-window": "^1.15.2",
 		"buffer": "^6.0.3",
 		"crypto-js": "^4.1.1",
@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@types/crypto-js": "^4.1.1",
 		"@types/fs-extra": "^9.0.13",
-		"@types/node": "^18.11.12",
+		"@types/node": "^18.11.14",
 		"css-loader": "^6.7.2",
 		"electron": "^22.0.0",
 		"electron-builder": "^23.6.0",
@@ -44,7 +44,7 @@
 	"build": {
 		"appId": "com.fc2.blog.famibee.skynovel.uc",
 		"productName": "桜の樹の下には",
-		"artifactName": "${productName}-${version}-${arch}.${ext}",
+		"artifactName": "uc-${version}-${arch}.${ext}",
 		"directories": {
 			"output": "build/package/"
 		},

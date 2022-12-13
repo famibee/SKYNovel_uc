@@ -27,11 +27,9 @@
 		{text: '　一体どんな樹の花でも、所謂《いはゆる》真つ盛りといふ状態に達すると、あたりの空気のなかへ一種神秘な雰囲気を撒《ま》き散らすものだ。それは、よく廻つた独楽《こ ま》が完全な静止に澄むやうに、また、音楽の上手な演奏がきまつてなにかの幻覚を伴ふやうに、灼熱《しやくねつ》した生殖の幻覚させる後光のやうなものだ。それは人の心を撲《う》たずにはおかない、不思議な、生き生きとした、美しさだ。'},
 		{text: '　しかし、昨日、一昨日、俺の心をひどく陰気にしたものもそれなのだ。俺にはその美しさがなにか信じられないもののやうな気がした。俺は反対に不安になり、憂欝になり、空虚な気持になつた。しかし、俺はいまやつとわかつた。'},
 	];
+	const isDev = (location.protocol === 'file:');
 	document.addEventListener('DOMContentLoaded', ()=> {
-		const proc_mode = (location.protocol.slice(0, 4) === 'http')
-			? 'server'
-			: ('val2ctrl' in window.parent) ?'local' :'electron';
-		if (proc_mode === 'local') val2ctrl();	// ローカルデバッグ用
+		if (isDev) val2ctrl();	// デザイン用
 	}, false);
 
 	var val_dic = null;	// わざとvar

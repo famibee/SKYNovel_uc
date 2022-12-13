@@ -36,14 +36,16 @@
 		{"type": "bgm", "fn": "free57", "title": "free57(BGM)", "enabled": "true"},
 	];
 	document.ondragstart = ()=> false;
-	const proc_mode = (location.protocol === 'file:') ?'local' :'';
+	const isDev = (location.protocol === 'file:');
+	const isWebp = false/*WEBP*/;
+	const miken = `_album_miken.${ isWebp ?'webp' :'jpg' }`;
 	document.addEventListener('DOMContentLoaded', ()=> {
-		if (proc_mode === 'local') init();	// ローカルデバッグ用
-		else if (false/*WEBP*/) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
+		if (isDev) init();	// デザイン用
+		else if (isWebp) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
 	});
 
-	var val_dic = null;
-	function init() {
+	var val_dic = null;	// わざとvar
+	function init() {	// 初期化（関数名変更不可）
 		if (val_dic) a = JSON.parse(val_dic);
 
 		// 配列 a をもとにサムネイル群を生成
@@ -51,16 +53,14 @@
 		lst.textContent = '';
 		a.forEach(v=> {
 			if (v.enabled === 'false') {
-				let htm = `
+				lst.insertAdjacentHTML('beforeend', `
 <div class="col"><div class="card p-1 mb-1">
 	<div class="bg-image ripple" data-ripple-color="light"
 		aria-label="まだ本編で見ていません" title="まだ本編で見ていません">
-		<img data-src="_album_miken.jpg" class="img-fluid"/>
+		<img data-src="${miken}" class="img-fluid"/>
 	</div>
 	<div class="card-text">？？？</div>
-</div></div>`;
-				if (false/*WEBP*/) htm = htm.replace(/\.(jpe?g|png)"/, '.webp"');
-				lst.insertAdjacentHTML('beforeend', htm);
+</div></div>`);
 				return;
 			}
 
@@ -70,7 +70,7 @@
 				case 'mov':	elm = `${v.fn}_th.jpg`;	break;
 				default:	elm = `${v.fn}`;
 			}
-			if (false/*WEBP*/) elm = elm.replace(/\.(jpe?g|png)$/, '.webp');
+			if (isWebp) elm = elm.replace(/\.(jpe?g|png)$/, '.webp');
 			// ${v.type}でclass名にも追加、SKYNovel側でクリック検知するため
 			lst.insertAdjacentHTML('beforeend', `
 <div class="col"><div class="card p-1 mb-1">
@@ -94,9 +94,9 @@
 			switch (v.dataset.type) {
 				case 'bgm':	break;
 				case 'mov':
-					if (proc_mode !== 'local') break;// SKYNovelではスクリプトで
+					if (! isDev) break;// SKYNovelではスクリプトで
 
-					// 以下すべてローカルデバッグ用
+					// 以下すべてデザイン用
 					mdl_body.innerHTML = `
 <video controls>
 	<source src="${v.dataset.arg}.mp4" autoplay type="video/mp4">
@@ -105,7 +105,7 @@
 					mdl.show();
 					break;
 				default:
-					if (proc_mode !== 'local') break;// SKYNovelではスクリプトで
+					if (! isDev) break;// SKYNovelではスクリプトで
 
 					mdl_body.innerHTML = `
 <img src="${v.dataset.arg}" class="card-img-top"/>`;
@@ -113,14 +113,12 @@
 			}
 		}, {passive: true}));
 
-		sn_repRes(setImg);	// 画像更新（SKYNovelが削除・独自に呼び出す）
+		Array.from(document.getElementsByTagName('img')).forEach(i=> setImg(i));
 	}
 
-	let setImg = undefined;
-	function sn_repRes($setImg) {	// 画像更新（引数でロード処理指定）関数名変更不可
-		setImg = $setImg ?? (i=> i.src = i.dataset.src);
-		Array.from(document.getElementsByTagName('img')).forEach(v=> setImg(v));
-	}
+	// 画像ロード処理差し替え（関数名変更不可）
+	function sn_repRes(i) {setImg = i;}
+	let setImg = i=> i.src = i.dataset.src;
 
 	function val2ctrl() {	// 変数→コンポーネント
 		document.getElementById('fnBgm').textContent = val_fnBgm;
