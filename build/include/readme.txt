@@ -39,8 +39,6 @@ Pキー：　　スクリーンショット（ダウンロードフォルダへ�
 	https://mojikiban.ipa.go.jp/1300.html
 書体：癸羊明朝フォント【内田 明】
 	http://www.asahi-net.or.jp/~sd5a-ucd/freefonts/QuiMi-mincho/
-書体アプリ：サブセットフォントメーカー https://opentype.jp/subsetfontmk.htm
-書体アプリ：WOFFコンバータ https://opentype.jp/woffconv.htm
 
 ＢＧＭ：【SLOS -FREE SOUND WEB ALBUM-】 http://sentive.net/
 効果音： おさびしゆうき【ザ・マッチメイカァズ】 http://osabisi.sakura.ne.jp/m2/
