@@ -17,7 +17,12 @@
 	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
 ;	[update_check url='http://ugainovel.hiho.jp/famibee/sample/hatsune/']
 
-[char2macro char=@ name=l]
+[macro name=lr nowarn_unused=true]
+	[ws buf=VOICE canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
+	[l]
+	;[r]
+[endmacro]
+[char2macro char=@ name=lr]
 [char2macro char=\ name=plc]
 
 	; *** レジューム処理 ***
