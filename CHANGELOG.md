@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.12.24
+- fix: 改変者が利用できるよう拡張機能マクロ追加
+- fix: doc/prj/script/sub.sn：[se][plc]のbuf属性説明を修正
 ## v2.12.23
 - fix: [lr]にボイス再生終了待ちを追加
 - fix: ライブラリ更新(SKYNovel v1.40.3)など

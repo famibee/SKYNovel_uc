@@ -1,0 +1,45 @@
+;*********************************************************
+;@EXT_DESC	for文を使える
+;@VER		2018.6.22.000
+;*********************************************************
+
+;*********************************************************
+; マクロ ループコール
+[macro name=for_call nowarn_unused=true
+	sum='変数の値を増やしながら[call]する\nfor文のように変数を変化させながら[call]を繰り返す'
+
+	%name='ループ変数名||ループインデックスに使用する変数名を指定する。\n%実際の変数名は前に'tmp:for_call_idx.'を付けたもの'
+	%from='整数値||ループ変数の開始値'
+	%to='整数値||ループ変数の終了値'
+	%fn='…||ループ中処理を行なうサブルーチンへのジャンプ先。\n指定方法は[jump]と同様、fnとlabelの少なくともどちらかを指定'
+	%label='…||ループ中処理を行なうサブルーチンへのジャンプ先。\n指定方法は[jump]と同様、fnとlabelの少なくともどちらかを指定'
+	%arg?='String||指定した場合、ジャンプ先で「&const.sn.eventArg」にて値を受け取れる'
+]
+	[let name="&'for_call_idx.'+ mp:name" text=%from]
+	&for_call_break = false
+
+*for_call_continue
+	[jump label=*for_call_break cond="for_call_idx[mp:name] > mp:to"]
+		[call fn=%fn|&mp:const.sn.me_call_scriptFn label=%label|null]
+	[jump label=*for_call_break cond=for_call_break]
+	[let name="&'for_call_idx.'+ mp:name" text="&for_call_idx[mp:name] +1"]
+
+	[jump label=*for_call_continue]
+
+*for_call_break
+	&for_call_break = false
+	; 内側一つだけ脱出
+[endmacro]
+
+;*********************************************************
+; マクロ ループコール脱出
+[macro name=for_call_break nowarn_unused=true
+	sum='ループを中断する\n内側一つだけ脱出する'
+	detail='[for_call]呼び先サブルーチンで使用すると、ループを終了し[for_call]の次に戻る。\n[for_call_break]の直後に[return]が必要。\n引数無し。'
+]
+	&for_call_break = true
+[endmacro]
+
+;*********************************************************
+
+[return]

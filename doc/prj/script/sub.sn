@@ -491,7 +491,7 @@
 	snippet_ext=SOUND
 
 	%fn?='音声ファイル名|音声停止|再生する音声ファイル名'
-	%buf?='サウンドバッファ|音声|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
+	%buf?='サウンドバッファ|VOICE|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
 
 	%loop?='Boolean|false|trueでBGMのようにループ再生する'
 	%volume?='0.0〜1.0（実数）|1.0|再生音量。ただし音量を示すシステム変数（sys:const.an.sound.BGM.volume）は変更しない'
@@ -518,7 +518,7 @@
 	%visible?='Boolean|true|trueで改ページ記号を表示、falseで非表示'
 
 	%time?='ミリ秒|500|効果音フェードアウト時間。変化にかける時間'
-	%buf?='サウンドバッファ|音声|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
+	%buf?='サウンドバッファ|VOICE|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
 ]
 	[ws buf=VOICE canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
 	[p visible=%visible|true]

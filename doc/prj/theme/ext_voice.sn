@@ -1,0 +1,81 @@
+;********************************************************
+;@EXT_DESC	ボイスをより簡単に扱う
+;@VER		2023.02.12.007	バッファ名説明をテンプレに合わせる（音声→VOICE）
+;@VER		2022.11.05.006	vキー押下でボイスを再度再生する機能追加
+;@VER		2017.11.30.005	再生をjoin=trueとし、[se]不使用
+;********************************************************
+
+;*********************************************************
+; マクロ 音声を再生
+&lastVoice = ''	; 初期値・クリア
+[macro name=voice
+	sum='音声を再生'
+	detail='マクロ[se]を再生をjoin=trueとし、最終再生した音声名保存を付けたもの'
+
+	%fn?='音声ファイル名|音声停止|再生する音声ファイル名'
+	%buf?='サウンドバッファ|VOICE|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
+
+	%loop?='Boolean|false|trueでBGMのようにループ再生する'
+	%volume?='0.0〜1.0（実数）|1.0|再生音量。ただし音量を示すシステム変数（sys:const.an.sound.BGM.volume）は変更しない'
+	%speed?='0.0〜1.0（実数）|1.0|再生速度（0:遅い、1.0:元のまま）'
+	%pan?='0.0|-1.0〜1.0（実数）|音を出す左右位置（-1.0=左端、0.0=中央(省略値)、1.0=右端）'
+	%join?='Boolean|true|trueで読み込みを待って次のタグへ進む'
+	%canskip?='Boolean|true|trueでキー押下Skip中なら再生をしない'
+	%start_ms?='ミリ秒|0|再生の開始位置を指定する。0は冒頭'
+	%end_ms?='ミリ秒|末端|再生の終了位置を指定する。省略時は末端。\n正の値は「冒頭から何ms目を終端とするか」\n負の値は「末尾から何ms手前を終端とするか」の指定'
+	%ret_ms?='ミリ秒|0|ループ戻り位置を指定する。0は冒頭。\nループ再生中にend_ms指定位置（省略時は末尾）に到達した場合、この指定位置に戻る。 ループ再生しない（loop=false）際は無視される'
+]
+	[let name=lastVoice text=%fn cond="mp:fn != null"]
+	[stopse * buf=%buf|VOICE cond='mp:fn == null']
+	[playse * buf=%buf|VOICE cond='mp:fn != null']
+[endmacro]
+
+;*********************************************************
+; マクロ あの素晴らしい声をもう一度
+[macro name=repeat_voice nowarn_unused=true sum='あの素晴らしい声をもう一度']
+	[voice fn=&lastVoice cond="lastVoice != ''"]
+[endmacro]
+
+
+;*********************************************************
+; マクロ 連番ファイル名の音声再生
+&save:ssname4voice_ex = ''	; シナリオ名
+[macro name=voice_ex nowarn_unused=true
+	sum='連番ファイル名の音声を再生'
+	detail='連番ファイル名の音声再生を手軽に記述できる。\n括弧マクロ〔〕を使用するとさらに簡略化できる。\n【注意】変数【const.db_v_who】【save:db_v_cnt】をjsonなどで初期化する下準備が必要。\n一本道作品でない場合はスクリプト冒頭で[voice2_set]により内部カウンターを変更しておく。\n音声ファイル名は【人物名_000.???】形式'
+
+	%text='人物名||連番管理している人物ごとの区別名'
+]
+	; この辺に顔アイコン変更とか名前表示とか追加したり
+	&fn = const.db[mp:text].fn	; 音声ファイル名取得
+	[return cond=fn==null]	; 音声無しは無処理
+
+	&c = save:db_v_cnt[mp:text]	; 音声カウンター取得
+	[trace text='【エラー】拡張機能 ext_voice.an 使用時の初期化がされていません。' cond='c==null']
+	[trace text='&"【&save:db_v_cnt."+ mp:text +" = 1】がありません。"' cond='c==null']
+	[trace text='【対処法】詳しくは同ファイル冒頭の説明文をご覧下さい。' cond='c==null']
+	
+	[let_substr name=cnt text="&'000'+ c" pos=-3 len=all cast=str]
+	[voice fn="&save:ssname4voice_ex +'_'+ fn +'_'+ cnt@str"]
+	[let name="&'save:db_v_cnt.'+ mp:text" text=&c+1]
+[endmacro]
+
+;*********************************************************
+[macro name=voice_ex_set nowarn_unused=true
+	sum='[voice2]の内部カウンターを変更する'
+	detail='次に再生すべき音声ファイル名カウンターを変更する'
+
+	%name='人物名||連番管理している人物ごとの区別名'
+	%text?='Number|0|次に再生すべき音声ファイル名カウンター'
+]
+	[let name="&'save:db_v_cnt.'+ mp:name" text=%text|0]
+[endmacro]
+;*********************************************************
+
+	[event global=true call=true key=v label=*repeat_voice]
+[return]
+
+
+*repeat_voice
+	[repeat_voice]
+	[return]
