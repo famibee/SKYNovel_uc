@@ -33,7 +33,7 @@
 	&save:sn.doRecLog = false
 	[page clear=true]
 
-	[txt_lay_fullscreen b_alpha=0 onend=leave no_sysmenu_draw=true]
+	[txt_lay_fullscreen b_alpha=0 visible=true onend=leave no_sysmenu_draw=true]
 	[er]	; ページ両面の文字消去＆改ページ
 		; （改ページしないと履歴がページからあふれる）
 	[set_focus to=null]
