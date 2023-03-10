@@ -164,6 +164,7 @@
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = null;
 		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: '　新規にセーブします', place: val_s_place});
+		const u = new Date().getTime();
 		a.forEach(v=> {
 			if (isWebp && v.pic.slice(0, 10) !== 'userdata:/') v.pic = v.pic.replace(/\.(jpe?g|png)$/, '.webp');
 
@@ -174,7 +175,7 @@
 	<div class="bg-image hover-overlay ripple${
 		modal ?' no_modal' :'" data-bs-toggle="modal" data-bs-target="#modal_sl'
 	}" data-ripple-color="light">
-		<img data-src="${v.pic}" class="img-fluid"/>
+		<img data-src="${v.pic}?u=${u}" class="img-fluid"/>
 		<div class="mask"></div>
 	</div>${(v.dt === '') ?'' :`
 	<div class="card-img-overlay"><p class="card-text">${v.dt}</p></div>
