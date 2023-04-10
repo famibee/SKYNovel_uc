@@ -1,0 +1,384 @@
+;*********************************************************
+;@EXT_DESC	言語リソース
+;@VER		2023/04/03.000
+;*********************************************************
+[let name=lang_co text=&const.sn.navigator.language val2font=true]
+[let_substr name=lang text=&lang_co pos=0 len=2]
+
+[if exp='lang == "en"']	; 英語
+	[let name=save:sn.userFnTail text=&lang val2fontNm='ipamjm']
+
+	[title text='Beneath the Cherry Trees' cond=!const.体験版]
+	[title text='Beneath the Cherry Trees (Trial)' cond=const.体験版]
+
+	; text button
+	&btn.Start = 'New game'
+	&btn.Load = 'Continue'
+	&btn.Album = 'Album'
+	&btn.Config = 'Settings'
+	&btn.Thank = 'Thanks'
+
+	; main.sn
+	&mes.最初の話から始める = 'Start from the beginning of the story'
+	&mes.セーブ箇所から続ける = 'Continue from the save point'
+	&mes.アルバム鑑賞 = 'Album appreciation'
+	&mes.ゲーム設定 = 'Game Settings'
+	&mes.ウインドウモード = 'Window mode'
+	&mes.全画面モード = 'Full screen mode'
+	&mes.スクリーンショットをダウンロードしました = 'downloaded the screenshot'
+
+	; sysmenu
+	&btn.クイックセーブ = 'Qsave'
+	&btn.クイックロード = 'Qload'
+	&btn.タイトルへ = 'Title'
+	&btn.セーブ = ' Save '
+	&btn.ロード = ' Load '
+	&btn.字を隠す = 'Hidden'
+	&btn.履歴を表示 = ' Log '
+	&btn.ゲーム設定 = 'Settings'
+
+	; _submenu.sn
+	&mes.ゲームに戻る = 'Return to game'
+	&mes.ゲーム終了 = 'Game over'
+	&mes.タイトルに戻る = 'Back to the title'
+	&mes.セーブ = 'Save'
+	&mes.ロード = 'Load'
+	&mes.テキスト窓非表示 = 'Text window hidden'
+	&mes.本文履歴を表示 = 'It displays the text history'
+;	&mes.ゲーム設定 = 'Game Settings'
+	&mes.タイトルに戻りますか？ = 'back to the title?'
+	&mes.ゲームを終了しますか？ = 'exit the game?'
+
+	; sub.sn
+	&mes.ここから再開しますか？ = 'restart from here?'
+;	&mes.タイトルに戻りますか？ = 'back to the title?'
+	&mes.クイックセーブ = 'Quick save'
+	&mes.クイックロード = 'Quick load'
+	&mes.自動読み進みOn = 'Auto-read On'
+	&mes.強制スキップOn = 'Force Skip On'
+
+	; _config.sn
+	&mes.バック不透明度 = 'Back opacity '
+	&mes.自動読み進み速度 = 'Auto-read speed '
+	&mes.アプリの更新を確認します = 'Make sure to update the app'
+	&mes.戻る = 'Return'
+	&mes.ゲーム情報を書き出す = 'Write out the game information'
+	&mes.ゲーム情報を読み込む = 'Read the game information'
+	&mes.ゲームを再起動する必要があります = 'There is a need to re-start the game'
+	&mes.ゲームを再起動する必要・終了しますか？ = 'There is a need to re-start the game. Is it good? (Start-up in the manual)'
+	&mes.ゲームを再起動する必要・ブラウザリロード = 'You have to restart the game. Please reload your browser'
+	&mes.プレイデータをエクスポートしました = 'Exported play data'
+
+	; _saveload.sn
+	&mes.しおりを上書き保存しますか？ = 'overwrite save a bookmark?'
+	&mes.しおりを読み込みますか？ = 'read the bookmark?'
+	&mes.前回終了ポイントから再開します = 'resume from the previous end point (Cancel ＝ ESC)'
+	&mes.クイックロードしますか？ = 'want to Quick load?'
+	&mes.クイックセーブしました = 'quick saved'
+	&mes.クイックセーブデータがありません = 'No quicksave data'
+
+
+;*****************************
+[elsif exp='lang_co == "zh-TW"']	; 繁体字中国語（台湾・香港）
+	&lang = 'ct'
+	[let name=save:sn.userFnTail text=&lang val2fontNm='Source Han Sans CN']
+
+	[title text='在櫻花樹下' cond=!const.体験版]
+	[title text='在櫻花樹下 (試用版)' cond=const.体験版]
+
+	; text button
+	&btn.Start = '從頭開始'
+	&btn.Load = ' 讀 取 '
+	&btn.Album = '閱覽相簿'
+	&btn.Config = '遊戲設定'
+	&btn.Thank = ' 致 謝 '
+
+	; main.sn
+	&mes.最初の話から始める = '從故事一開頭開始閱讀'
+	&mes.セーブ箇所から続ける = '從記錄處繼續閱讀'
+	&mes.アルバム鑑賞 = '閱覽相簿'
+	&mes.ゲーム設定 = '遊戲設定'
+	&mes.ウインドウモード = '視窗模式'
+	&mes.全画面モード = '全螢幕模式'
+	&mes.スクリーンショットをダウンロードしました = '我下載了截圖'
+
+	; sysmenu
+	&btn.クイックセーブ = ' 速 紀 '
+	&btn.クイックロード = ' 速 讀 '
+	&btn.タイトルへ = ' 標 題 '
+	&btn.セーブ = ' 紀 錄 '
+	&btn.ロード = ' 讀 取 '
+	&btn.字を隠す = ' 隱 藏 '
+	&btn.履歴を表示 = ' 履 歷 '
+	&btn.ゲーム設定 = ' 設 定 '
+
+	; _submenu.sn
+	&mes.ゲームに戻る = '回到遊戲中'
+	&mes.ゲーム終了 = '遊戲結束'
+	&mes.タイトルに戻る = '回到標題畫面'
+	&mes.セーブ = '紀錄'
+	&mes.ロード = '讀取'
+	&mes.テキスト窓非表示 = '隱藏文字框'
+	&mes.本文履歴を表示 = '顯示文字履歷'
+	&mes.ゲーム設定 = '遊戲設定'
+	&mes.タイトルに戻りますか？= '是否回到標題畫面？'
+	&mes.ゲームを終了しますか？= '是否結束遊戲?'
+
+	; sub.sn
+	&mes.ここから再開しますか？= '是否由此再開？'
+	&mes.タイトルに戻りますか？= '是否回到標題畫面？'
+	&mes.クイックセーブ = '快速紀錄'
+	&mes.クイックロード = '快速讀取'
+	&mes.自動読み進みOn = '自動閱讀On'
+	&mes.強制スキップOn = '強制跳過文字On'
+
+	; _config.sn
+	&mes.バック不透明度 = '背景的不透明度 '
+	&mes.自動読み進み速度 = '自動閱讀速度 '
+	&mes.アプリの更新を確認します = '確認程式是否有更新'
+	&mes.戻る = '返回'
+	&mes.ゲーム情報を書き出す = '將遊戲資訊匯出'
+	&mes.ゲーム情報を読み込む = '匯入遊戲資訊'
+	&mes.ゲームを再起動する必要があります = '有必要重新啟動遊戲'
+	&mes.ゲームを再起動する必要・終了しますか？ = '有必要重新啟動遊戲。 你確定你要退出嗎？ （手動啟動）'
+	&mes.ゲームを再起動する必要・ブラウザリロード = '你必須重新開始遊戲。 請重新加載您的瀏覽器'
+	&mes.プレイデータをエクスポートしました = '導出播放數據'
+
+	; _saveload.sn
+	&mes.しおりを上書き保存しますか？= '是否覆蓋書籤？'
+	&mes.しおりを読み込みますか？= '是否讀取書籤？'
+	&mes.前回終了ポイントから再開します = '從上回結束點重開'
+	&mes.クイックロードしますか？= '是否快速讀取？'
+	&mes.クイックセーブしました = '快速保存'
+	&mes.クイックセーブデータがありません = '沒有快速保存數據'
+
+
+;*****************************
+;[elsif exp='lang_co == "zh-CN"']	; 簡体字中国語（いわゆる中国）
+[elsif exp='lang == "zh"']	; 簡体字中国語（いわゆる中国）
+	&lang = 'cn'
+	[let name=save:sn.userFnTail text=&lang val2fontNm='Source Han Sans CN']
+
+	[title text='在樱花树下' cond=!const.体験版]
+	[title text='在樱花树下 (试用版)' cond=const.体験版]
+
+	; text button
+	&btn.Start = '从最初开始'
+	&btn.Load = '从中途继续'
+	&btn.Album = ' 相 簿 '
+	&btn.Config = ' 设 定 '
+	&btn.Thank = ' 致 谢 '
+
+	; main.sn
+	&mes.最初の話から始める = '從故事一開頭開始閱讀'
+	&mes.セーブ箇所から続ける = '從記錄處繼續閱讀'
+	&mes.アルバム鑑賞 = '閱覽相簿'
+	&mes.ゲーム設定 = '遊戲設定'
+	&mes.ウインドウモード = '視窗模式'
+	&mes.全画面モード = '全螢幕模式'
+	&mes.スクリーンショットをダウンロードしました = '我下载了截图'
+
+	; sysmenu
+	&btn.クイックセーブ = '快速紀錄 '
+	&btn.クイックロード = '快速讀取 '
+	&btn.タイトルへ = '回到標題 '
+	&btn.セーブ = ' 紀 錄 '
+	&btn.ロード = ' 讀 取 '
+	&btn.字を隠す = '隱藏字框 '
+	&btn.履歴を表示 = '文字履歷 '
+	&btn.ゲーム設定 = '遊戲設定 '
+
+	; _submenu.sn
+	&mes.ゲームに戻る = '回到遊戲中'
+	&mes.ゲーム終了 = '遊戲結束'
+	&mes.タイトルに戻る = '回到標題畫面'
+	&mes.セーブ = '紀錄'
+	&mes.ロード = '讀取'
+	&mes.テキスト窓非表示 = '隱藏文字框'
+	&mes.本文履歴を表示 = '顯示文字履歷'
+	&mes.ゲーム設定 = '遊戲設定'
+	&mes.タイトルに戻りますか？= '是否回到標題畫面？'
+	&mes.ゲームを終了しますか？= '是否結束遊戲?'
+
+	; sub.sn
+	&mes.ここから再開しますか？= '是否由此再開？'
+	&mes.タイトルに戻りますか？= '是否回到標題畫面？'
+	&mes.クイックセーブ = '快速紀錄'
+	&mes.クイックロード = '快速讀取'
+	&mes.自動読み進みOn = '自動閱讀On'
+	&mes.強制スキップOn = '強制跳過文字On'
+
+	; _config.sn
+	&mes.バック不透明度 = '背景的不透明度 '
+	&mes.自動読み進み速度 = '自動閱讀速度 '
+	&mes.アプリの更新を確認します = '確認程式是否有更新'
+	&mes.戻る = '返回'
+	&mes.ゲーム情報を書き出す = '將遊戲資訊匯出'
+	&mes.ゲーム情報を読み込む = '匯入遊戲資訊'
+	&mes.ゲームを再起動する必要があります = '有必要重新啟動遊戲'
+	&mes.ゲームを再起動する必要・終了しますか？ = '有必要重新啟動遊戲。 你确定你要退出吗？ （手动启动）'
+	&mes.ゲームを再起動する必要・ブラウザリロード = '你必须重新开始游戏。 请重新加载您的浏览器'
+	&mes.プレイデータをエクスポートしました = '导出播放数据'
+
+	; _saveload.sn
+	&mes.しおりを上書き保存しますか？= '是否覆蓋書籤？'
+	&mes.しおりを読み込みますか？= '是否讀取書籤？'
+	&mes.前回終了ポイントから再開します = '從上回結束點重開'
+	&mes.クイックロードしますか？= '是否快速讀取？'
+	&mes.クイックセーブしました = '快速保存'
+	&mes.クイックセーブデータがありません = '没有快速保存数据'
+
+
+;*****************************
+[elsif exp='lang == "es"']	; スペイン語
+	[let name=save:sn.userFnTail text=&lang val2fontNm='ipamjm']
+
+	[title text='BAJO LOS CEREZOS' cond=!const.体験版]
+	[title text='BAJO LOS CEREZOS (versión de prueba)' cond=const.体験版]
+
+	; text button
+	&btn.Start = 'Empezar'
+	&btn.Load = 'Cargar'
+	&btn.Album = 'Galería'
+	&btn.Config = 'Opciones'
+	&btn.Thank = 'Reconocimientos'
+
+	; main.sn
+	&mes.最初の話から始める = 'Empezar desde el principio de la historia'
+	&mes.セーブ箇所から続ける = 'Continuar desde el punto de guardado'
+	&mes.アルバム鑑賞 = 'Galería'
+	&mes.ゲーム設定 = 'Opciones'
+	&mes.ウインドウモード = 'Modo ventana'
+	&mes.全画面モード = 'Modo pantalla completa'
+	&mes.スクリーンショットをダウンロードしました = 'descargué la captura de pantalla'
+
+	; sysmenu
+	&btn.クイックセーブ = 'Guardado rápido '
+	&btn.クイックロード = 'Carga rápida '
+	&btn.タイトルへ = 'al título '
+	&btn.セーブ = ' Guardar '
+	&btn.ロード = ' Cargar '
+	&btn.字を隠す = 'texto oculto '
+	&btn.履歴を表示 = 'historia '
+	&btn.ゲーム設定 = 'Opciones '
+
+	; _submenu.sn
+	&mes.ゲームに戻る = 'Volver al juego'
+	&mes.ゲーム終了 = 'Game over'
+	&mes.タイトルに戻る = 'Volver al título'
+	&mes.セーブ = 'Guardar'
+	&mes.ロード = 'Cargar'
+	&mes.テキスト窓非表示 = 'Ocultar la caja de texto'
+	&mes.本文履歴を表示 = 'Muestra el registro de la historia'
+;	&mes.ゲーム設定 = 'Opciones'
+	&mes.タイトルに戻りますか？ = '¿Volver al título principal?'
+	&mes.ゲームを終了しますか？ = '¿Salir del juego?'
+
+	; sub.sn
+	&mes.ここから再開しますか？ = '¿Empezar desde aquí?'
+;	&mes.タイトルに戻りますか？ = '¿Quieres volver al título?'
+	&mes.クイックセーブ = 'Guardado rápido'
+	&mes.クイックロード = 'Carga rápida'
+	&mes.自動読み進みOn = 'Modo automático On'
+	&mes.強制スキップOn = 'Omitir On'
+
+	; _config.sn
+	&mes.バック不透明度 = 'Opacidad del fondo '
+	&mes.自動読み進み速度 = 'Velocidad modo automático '
+	&mes.アプリの更新を確認します = 'Asegúrate de tener actualizada la aplicación'
+	&mes.戻る = 'Return'
+	&mes.ゲーム情報を書き出す = 'Guardar información del juego'
+	&mes.ゲーム情報を読み込む = 'Leer la información del juego'
+	&mes.ゲームを再起動する必要があります = 'Se necesita reiniciar el juego.'
+	&mes.ゲームを再起動する必要・終了しますか？ = 'Se necesita reiniciar el juego. ¿Te parece bien hacerlo ahora?'
+	&mes.ゲームを再起動する必要・ブラウザリロード = 'Tienes que reiniciar el juego. Por favor recarga tu navegador'
+	&mes.プレイデータをエクスポートしました = 'Datos de reproducción exportados'
+
+	; _saveload.sn
+	&mes.しおりを上書き保存しますか？ = '¿Guardar como favorito?'
+	&mes.しおりを読み込みますか？ = '¿Cargar datos favoritos?'
+	&mes.前回終了ポイントから再開します = 'continuar desde el anterior punto donde se dejó (Cancelar ＝ ESC)'
+	&mes.クイックロードしますか？ = '¿Quieres hacer una Carga Rápida?'
+	&mes.クイックセーブしました = 'rápido guardado'
+	&mes.クイックセーブデータがありません = 'Sin datos de guardado rápido'
+
+
+;*****************************
+[else]	; 日本語
+	[let name=lang text='ja' val2fontNm='ipamjm']
+	&save:sn.userFnTail = ''
+
+	[title text='桜の樹の下には' cond=!const.体験版]
+	[title text='桜の樹の下には（体験版）' cond=const.体験版]
+
+	; text button
+	&btn.Start = '最初から'
+	&btn.Load = ' ロード '
+	&btn.Album = 'アルバム'
+	&btn.Config = ' 設 定 '
+	&btn.Thank = ' 謝 辞 '
+
+	; main.sn
+	&mes.最初の話から始める = '最初の話から始める'
+	&mes.セーブ箇所から続ける = 'セーブ箇所から続ける'
+	&mes.アルバム鑑賞 = 'アルバム鑑賞'
+	&mes.ゲーム設定 = 'ゲーム設定'
+	&mes.ウインドウモード = 'ウインドウモード'
+	&mes.全画面モード = '全画面モード'
+	&mes.スクリーンショットをダウンロードしました = 'スクリーンショットをダウンロードしました'
+
+	; sysmenu
+	&btn.クイックセーブ = 'クイックセーブ'
+	&btn.クイックロード = 'クイックロード'
+	&btn.タイトルへ = 'タイトルへ'
+	&btn.セーブ = ' セーブ '
+	&btn.ロード = ' ロード '
+	&btn.字を隠す = '字を隠す'
+	&btn.履歴を表示 = ' 履 歴 '
+	&btn.ゲーム設定 = ' 設 定 '
+
+	; _submenu.sn
+	&mes.ゲームに戻る = 'ゲームに戻る'
+	&mes.ゲーム終了 = 'ゲーム終了'
+	&mes.タイトルに戻る = 'タイトルに戻る'
+	&mes.セーブ = 'セーブ'
+	&mes.ロード = 'ロード'
+	&mes.テキスト窓非表示 = 'テキスト窓非表示'
+	&mes.本文履歴を表示 = '本文履歴を表示'
+;	&mes.ゲーム設定 = 'ゲーム設定'
+	&mes.タイトルに戻りますか？ = 'タイトルに戻りますか？'
+	&mes.ゲームを終了しますか？ = 'ゲームを終了しますか？'
+
+	; sub.sn
+	&mes.ここから再開しますか？ = 'ここから再開しますか？'
+;	&mes.タイトルに戻りますか？ = 'タイトルに戻りますか？'
+	&mes.クイックセーブ = 'クイックセーブ'
+	&mes.クイックロード = 'クイックロード'
+	&mes.前回終了ポイントから再開しますか？ = '前回終了ポイントから再開しますか？'
+	&mes.自動読み進みOn = '自動読み進みOn'
+	&mes.強制スキップOn = '強制スキップ On'
+
+	; _config.sn
+	&mes.バック不透明度 = 'バック不透明度 '
+	&mes.自動読み進み速度 = '自動読み進み速度 '
+	&mes.アプリの更新を確認します = 'アプリの更新を確認します'
+	&mes.戻る = '戻る'
+	&mes.ゲーム情報を書き出す = 'ゲーム情報を書き出す'
+	&mes.ゲーム情報を読み込む = 'ゲーム情報を読み込む'
+	&mes.ゲームを再起動する必要があります = 'ゲームを再起動する必要があります'
+	&mes.ゲームを再起動する必要・終了しますか？ = 'ゲームを再起動する必要があります。終了しますか？　（起動は手動で）'
+	&mes.ゲームを再起動する必要・ブラウザリロード = 'ゲームを再起動する必要があります。ブラウザリロードしてください'
+	&mes.プレイデータをエクスポートしました = 'プレイデータをエクスポートしました'
+
+	; _saveload.sn
+	&mes.しおりを上書き保存しますか？ = 'しおりを上書きセーブしますか？'
+	&mes.しおりを読み込みますか？ = 'しおりをロードしますか？'
+	&mes.前回終了ポイントから再開します = '前回終了ポイントから再開します（キャンセル＝ESC）'
+	&mes.クイックロードしますか？ = 'クイックロードしますか？'
+	&mes.クイックセーブしました = 'クイックセーブしました'
+	&mes.クイックセーブデータがありません = 'クイックセーブデータがありません'
+
+
+[endif]
+
+[return]

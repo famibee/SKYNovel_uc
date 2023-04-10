@@ -27,8 +27,67 @@
 	const dsps = document.getElementsByClassName('dsp_val');
 	const isDev = (location.protocol === 'file:');
 	const isWebp = false/*WEBP*/;
-	var val_version = '1.00';	// わざとvar
-	var val_sldBackAlpha = 70;	// わざとvar
+
+	// SKYNovelから読み書きする変数なので、触らない。わざとvar
+	var val_version = '1.00';
+	var val_sldBackAlpha = 70;
+
+	var val_ui_lang = 'ja';
+	var val_ui = {
+		"ja": {
+			"base": {
+				"screen name": "設定",
+				"現在ver": "現在 ver",
+				"non-text": {
+					"close": "閉じる"
+				}
+			},
+			"text": {
+				"text-SubTitle": "テキスト",
+				"バック不透明度": "バック不透明度",
+				"バック不透明度_説明": "文字表示サンプル<br/>テキストウインドウの不透明度を表示します。",
+				"通常文字表示待ち": "通常文字表示待ち",
+				"通常文字-待つ": "待つ",
+				"自動読みクリック待ち": "自動読みクリック待ち",
+				"自動読み改ページ待ち": "自動読み改ページ待ち",
+				"既読文字表示待ち": "既読文字表示待ち",
+				"既読文字-待つ": "待つ",
+				"既読自動クリック待ち": "既読自動クリック待ち",
+				"既読自動改ページ待ち": "既読自動改ページ待ち"
+			},
+			"sound": {
+				"sound-SubTitle": "音量",
+				"全体的": "全体的",
+				"ＢＧＭのみ": "ＢＧＭのみ",
+				"ボイスのみ": "ボイスのみ",
+				"効果音のみ": "効果音のみ",
+				"システム音のみ": "システム音のみ"
+			},
+			"system": {
+				"system-SubTitle": "システム",
+				"screen mode": "画面モード",
+				"screen mode-Sub": "全画面か",
+				"export-Sub": "プレイデータのバックアップ",
+				"import-Sub": "プレイデータのリストア"
+			}
+		}
+	};
+	function ui_redraw() {
+		const o = val_ui[val_ui_lang];
+		for (const k in o) {
+			const o2 = o[k];
+			for (const k2 in o2) {
+				const elm = document.getElementById(k2);
+				if (elm) elm.innerHTML = o2[k2];
+			}
+		}
+		const nt = o['base']['non-text'];
+		for (const k in nt) {
+			const elm = document.getElementById(k);
+			if (elm) elm.title = elm.ariaLabel = nt[k];
+		}
+	}
+
 	document.addEventListener('DOMContentLoaded', ()=> {
 		if (isDev) val2ctrl();	// デザイン用
 
@@ -57,6 +116,9 @@
 	});
 
 	function val2ctrl() {	// 変数→コンポーネント
+		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
+		ui_redraw();
+
 		document.getElementById('version').textContent = val_version;
 		drawSampleView();
 
@@ -106,18 +168,18 @@
 <div class="container-fluid">
 
 	<div class="collapse navbar-collapse mr-auto">
-		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
+		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="x閉じる" title="x閉じる" data-bs-toggle="tooltip">
 			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 		</button>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-center">
-		<span class="navbar-brand">設定画面</span>
+		<span class="navbar-brand" id="screen name">x設定</span>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-end">
 		<span class="navbar-text text-white">
-			現在 ver <span id="version">1.00</span>
+			<span id="現在ver">x現在 ver</span> <span id="version">1.00</span>
 		</span>
 	</div>
 
@@ -126,12 +188,12 @@
 
 
 <div class="container-fluid">
-<h3 class="text-center text-light">テキスト</h3>
+<h3 class="text-center text-light" id="text-SubTitle">xテキスト</h3>
 <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
 
 <div class="col"><div class="card text-white bg-dark border border-light p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">バック不透明度</p>
+		<p class="card-text" id="バック不透明度">xバック不透明度</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldBackAlpha" min="0" max="100" step="5" value="70"/>
 	<div class="card-text text-light text-right">
@@ -145,8 +207,10 @@
 	</div>
 	<div class="card-img-overlay">
 		<p class="card-text" style="background: rgba(255, 255, 255, 0.7);" id="sampleBackAlpha">
-		文字表示サンプル<br/>
-		テキストウインドウの不透明度を表示します。
+		<span id="バック不透明度_説明">
+			x文字表示サンプル<br/>
+			テキストウインドウの不透明度を表示します。
+		</span>
 	</p>
 	</div>
 </div></div>
@@ -156,12 +220,12 @@
 
 <div class="col"><div class="card bg-warning p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">通常文字表示待ち</p>
+		<p class="card-text" id="通常文字表示待ち">x通常文字表示待ち</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldChWaitMsec" min="0" max="500" step="10" value="10"/>
 	<div class="form-check form-switch">
 		<input class="form-check-input sn_chk" type="checkbox" id="chkChDoWait"/>
-		<label class="form-check-label" for="chkChDoWait">待つ</label>
+		<label class="form-check-label" for="chkChDoWait" id="通常文字-待つ">x待つ</label>
 	</div>
 	<div class="card-text text-right">
 		<span class="dsp_val">10</span> msec
@@ -169,7 +233,7 @@
 </div></div>
 <div class="col"><div class="card bg-warning p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">自動読みクリック待ち</p>
+		<p class="card-text" id="自動読みクリック待ち">x自動読みクリック待ち</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldAutoLWaitMsec" min="0" max="3500" step="10" value="3500"/>
 	<div class="card-text text-right">
@@ -178,7 +242,7 @@
 </div></div>
 <div class="col"><div class="card bg-warning p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">自動読み改ページ待ち</p>
+		<p class="card-text" id="自動読み改ページ待ち">x自動読み改ページ待ち</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldAutoPWaitMsec" min="0" max="3500" step="10" value="3500"/>
 	<div class="card-text text-right">
@@ -191,12 +255,12 @@
 
 <div class="col"><div class="card text-white bg-dark border border-warning p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">既読文字表示待ち</p>
+		<p class="card-text" id="既読文字表示待ち">x既読文字表示待ち</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldChWaitMsec_Kidoku" min="0" max="500" step="10" value="10"/>
 	<div class="form-check form-switch">
 		<input class="form-check-input sn_chk" type="checkbox" id="chkChDoWait_Kidoku"/>
-		<label class="form-check-label" for="chkChDoWait_Kidoku">待つ</label>
+		<label class="form-check-label" for="chkChDoWait_Kidoku" id="既読文字-待つ">待つ</label>
 	</div>
 	<div class="card-text text-light text-right">
 		<span class="dsp_val">10</span> msec
@@ -204,7 +268,7 @@
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-warning p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">既読読みクリック待ち</p>
+		<p class="card-text" id="既読自動クリック待ち">x既読自動クリック待ち</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldAutoLWaitMsec_Kidoku" min="0" max="3500" step="10" value="3500"/>
 	<div class="card-text text-light text-right">
@@ -213,7 +277,7 @@
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-warning p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">既読読み改ページ待ち</p>
+		<p class="card-text" id="既読自動改ページ待ち">x既読自動改ページ待ち</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldAutoPWaitMsec_Kidoku" min="0" max="3500" step="10" value="3500"/>
 	<div class="card-text text-light text-right">
@@ -223,12 +287,12 @@
 
 </div>
 
-<h3 class="text-center text-light">音量</h3>
+<h3 class="text-center text-light" id="sound-SubTitle">x音量</h3>
 <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
 
 <div class="col"><div class="card bg-info p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">全体的</p>
+		<p class="card-text" id="全体的">x全体的</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldVolGlobal" min="0" max="100" step="5" value="80"/>
 	<div class="card-text text-right">
@@ -237,7 +301,7 @@
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">ＢＧＭのみ</p>
+		<p class="card-text" id="ＢＧＭのみ">xＢＧＭのみ</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldVolBgm" min="0" max="100" step="5" value="80"/>
 	<div class="card-text text-light text-right">
@@ -246,7 +310,7 @@
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">ボイスのみ</p>
+		<p class="card-text" id="ボイスのみ">xボイスのみ</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldVolVoice" min="0" max="100" step="5" value="80"/>
 	<div class="card-text text-light text-right">
@@ -255,7 +319,7 @@
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">効果音のみ</p>
+		<p class="card-text" id="効果音のみ">x効果音のみ</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldVolSe" min="0" max="100" step="5" value="80"/>
 	<div class="card-text text-light text-right">
@@ -264,7 +328,7 @@
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-info p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">システム音のみ</p>
+		<p class="card-text" id="システム音のみ">xシステム音のみ</p>
 	</div>
 	<input type="range" class="form-range sn_sld" id="sldVolSys" min="0" max="100" step="5" value="80"/>
 	<div class="card-text text-light text-right">
@@ -274,28 +338,28 @@
 
 </div>
 
-<h3 class="text-center text-light">システム</h3>
+<h3 class="text-center text-light" id="system-SubTitle">システム</h3>
 <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6">
 
 <div class="col"><div class="card text-white bg-success p-1 mb-1">
 	<div class="card-body">
-		<p class="card-text">画面モード</p>
+		<p class="card-text" id="screen mode">x画面モード</p>
 		<div class="form-check form-switch">
 			<input class="form-check-input sn_chk" type="checkbox" id="chkScrMode"/>
-			<label class="form-check-label" for="chkScrMode">全画面か</label>
+			<label class="form-check-label" for="chkScrMode" id="screen mode-Sub">x全画面か</label>
 		</div>
 	</div>
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-primary p-1 mb-1">
 	<div class="card-body text-center">
-		<p class="card-text">プレイデータの<br/>バックアップ</p>
-		<button id="export" type="button" class="btn btn-primary">export</button>
+		<p class="card-text" id="export-Sub">xプレイデータのバックアップ</p>
+		<button id="export" type="button" class="btn btn-primary">x export</button>
 	</div>
 </div></div>
 <div class="col"><div class="card text-white bg-dark border border-danger p-1 mb-1">
 	<div class="card-body text-center">
-		<p class="card-text">プレイデータの<br/>リストア</p>
-		<button id="import" type="button" class="btn btn-danger">import</button>
+		<p class="card-text" id="import-Sub">xプレイデータのリストア</p>
+		<button id="import" type="button" class="btn btn-danger">x import</button>
 	</div>
 </div></div>
 

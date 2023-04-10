@@ -8,6 +8,43 @@
 	[event global=true call=true key=upwheel label=*main]
 	[event global=true call=true key=pageup label=*page arg=prev]
 	[event global=true call=true key=pagedown label=*page arg=next]
+
+[let_ml name=dicUI]
+	{
+		"ja": {
+			"screen name": "本文履歴",
+			"non-text": {
+				"close": "閉じる"
+			}
+		},
+		"es": {
+			"screen name": "Historial de texto",
+			"non-text": {
+				"close": "cerca"
+			}
+		},
+		"en": {
+			"screen name": "text history",
+			"non-text": {
+				"close": "close"
+			}
+		},
+		"cn": {
+			"screen name": "文本历史",
+			"non-text": {
+				"close": "关闭"
+			}
+		},
+		"ct": {
+			"screen name": "文本歷史",
+			"non-text": {
+				"close": "關閉"
+			}
+		}
+	}
+[endlet_ml]
+	[set_frame id=log var_name=val_ui text=&dicUI]
+
 [return]
 
 *page
@@ -26,6 +63,7 @@
 
 	; 最新値で更新
 	[set_frame id=log var_name=val_dic text=&const.sn.log.json]
+	[set_frame id=log var_name=val_ui_lang text=&lang]
 	[let_frame id=log var_name=val2ctrl function=true]
 	[set_focus del='dom=log:#log button']
 	[set_focus add='dom=log:#log button']
@@ -41,7 +79,15 @@
 	[event key=backspace label=*exit]
 	[event key=shift label=*exit]
 	[event key=end label=*exit]
+	[event key=sn:chgNavLang label=*chgNavLang call=true]
 [s]
+
+
+*chgNavLang
+	[call label=*exit]
+
+	[call fn=ext_lang]
+	[reload_script]
 
 *null
 [return]

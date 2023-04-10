@@ -4,9 +4,35 @@
 	[event key='dom=yesno:#ok' label=*y global=true]
 	[event key='dom=yesno:#close' label=*cancel global=true]
 
+[let_ml name=dicUI]
+	{
+		"ja": {
+			"ok"	: "了解",
+			"cancel": "キャンセル"
+		},
+		"es": {
+			"ok"	: "entendido",
+			"cancel": "Cancelar"
+		},
+		"en": {
+			"ok"	: "ok",
+			"cancel": "cancel"
+		},
+		"cn": {
+			"ok"	: "收到",
+			"cancel": "取消"
+		},
+		"ct": {
+			"ok"	: "收到",
+			"cancel": "取消"
+		}
+	}
+[endlet_ml]
+	[set_frame id=yesno var_name=val_ui text=&dicUI]
+
 [macro name=ask_ync
 	sum='プレイヤー意志確認\nプレイヤーに「はい」「いいえ」等の二択で確認を行なう'
-	detail='プレイヤーが押下した結果をtmp:_yesnoに「y」か「n」で返す。\n\nボタン素材としてファイル名がMnu_btnOK・Mnu_btnCancelの画像ファイルと、\nダイアログ素材としてファイル名が_yesnoの画像ファイルを使用する'
+	detail='プレイヤーが押下した結果をtmp:_yesnoに「y」か「n」で返す'
 
 	%mes='String||プレイヤーに質問したい文言'
 ]
@@ -17,6 +43,7 @@
 	; 最新値で更新
 	[let name=pic text=%pic|'']
 	[set_frame id=yesno var_name=val_dic text=#&'{"mes":"$mp:mes","pic":"$pic"}'#]
+	[set_frame id=yesno var_name=val_ui_lang text=&lang]
 	[let_frame id=yesno var_name=val2ctrl function=true]
 
 	[frame id=yesno visible=true float=true]
@@ -34,7 +61,16 @@
 	[event key=backspace label=*cancel]
 	[event key=shift label=*cancel]
 	[event key=end label=*cancel]
+	[event key=sn:chgNavLang label=*chgNavLang call=true]
 [s]
+
+*chgNavLang
+	[call label=*exit]
+
+	[call fn=ext_lang]
+	[reload_script cond=isGameState]
+[return]
+
 
 *y	&_yesno = 'y'
 	[se fn=&sysse_ok2 buf=SYS]

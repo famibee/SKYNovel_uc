@@ -1,37 +1,49 @@
 	; *** タイトル開始共通処理 ***
 	[sys_title_start]
 
+*redraw
 	[img fn=title layer=base left=0 top=0 width=&const.sn.config.window.width height=&const.sn.config.window.height]
 	[img layer=0]
 	[img layer=1]
 	[img layer=2]
 
 	[clear_lay layer=mes page=back]
-		[button text='最初から' left=250 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 label=*start hint='最初の話から始める' enterse=&sysse_choice clickse=&sysse_ok2_long b_pic='']
-		[button text=' ロード ' left=350 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*load hint='セーブから続ける' enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
-		[button text='アルバム' left=550 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*album hint='アルバム鑑賞' enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
-		[button text=' 設 定 ' left=650 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*config hint='ゲーム設定' enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
-		[event key=c call=true label=*config]	; 設定画面が開くように（メニュー用）
+		[button text=&btn.Start left=250 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 label=*start hint=&mes.最初の話から始める enterse=&sysse_choice clickse=&sysse_ok2_long b_pic='']
+		[button text=&btn.Load left=350 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*load hint=&mes.セーブ箇所から続ける enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
+		[button text=&btn.Album left=550 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*album hint=&mes.アルバム鑑賞 enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
+		[button text=&btn.Config left=650 top=360 width=90 height=30 rotation=0 pivot_x=0 pivot_y=0 call=true label=*config hint=&mes.ゲーム設定 enterse=&sysse_choice clickse=&sysse_ok1 b_pic='']
+
+	[event key=c call=true label=*config]	; 設定画面が開くように（メニュー用）
+	[event key=sn:chgNavLang label=*chgNavLang]
 
 	[trans layer=&dsp_lays time=0]
 	[wt]
 
 	; *** BGM（ブラウザのClick to play対応の一環で、タイトル画面表示後まで遅らせる） ***
-	[call label=*c2p cond=const.sn.needClick2Play&&!const.sn.lay.mes_c2p]
+	[call label=*c2p cond=const.sn.needClick2Play]
 	[bgm fn=free0509 time=200]
 [s]
 
 
 *c2p
 	[enable_event enabled=false]
-	[add_lay layer=mes_c2p class=txt]
-	[lay layer=mes_c2p b_pic=_c2p b_alpha=1 b_alpha_isfixed=true b_left=0 b_top=0 visible=true]
+	[if exp=!const.sn.lay.mes_c2p]
+		[add_lay layer=mes_c2p class=txt]
+		[lay layer=mes_c2p b_pic=_c2p b_alpha=1 b_alpha_isfixed=true b_left=0 b_top=0 visible=true]
+	[endif]
 
+	[event key=sn:chgNavLang label=*chgNavLang2]
 	[waitclick]
 
 	[lay layer=mes_c2p page=fore visible=false]
 	[enable_event enabled=true]
 [return]
+
+*chgNavLang2
+	[return label=*chgNavLang]
+*chgNavLang
+	[call fn=ext_lang]
+[jump label=*redraw]
 
 
 ;********************************************************
@@ -42,15 +54,18 @@
 *load
 	[enable_event enabled=false]
 	[call fn=_archive]
-	[jump fn=_archive label=*title_load]
+	[call fn=_archive label=*title_load]
+	[return label=*redraw]
 
 *album
 	[enable_event enabled=false]
 	[call fn=_album]
-	[jump fn=_album label=*title_album]
+	[call fn=_album label=*title_album]
+	[return label=*redraw]
 
 *config
 	[enable_event enabled=false]
 	[call fn=_config]
-	[jump fn=_config label=*title_config]
+	[call fn=_config label=*title_config]
+	[return label=*redraw]
 

@@ -32,8 +32,35 @@
 		if (isDev) val2ctrl();	// デザイン用
 	}, false);
 
-	var val_dic = null;	// わざとvar
+	// SKYNovelから読み書きする変数なので、触らない。わざとvar
+	var val_dic = null;
+
+	var val_ui_lang = 'ja';
+	var val_ui = {
+		"ja": {
+			"screen name": "本文履歴",
+			"non-text": {
+				"close": "閉じる"
+			}
+		},
+	};
+	function ui_redraw() {
+		const o = val_ui[val_ui_lang];
+		for (const k in o) {
+			const elm = document.getElementById(k);
+			if (elm) elm.innerHTML = o[k];
+		}
+		const nt = o['non-text'];
+		for (const k in nt) {
+			const elm = document.getElementById(k);
+			if (elm) elm.title = elm.ariaLabel = nt[k];
+		}
+	}
+
 	function val2ctrl() {	// 変数→コンポーネント
+		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
+		ui_redraw();
+
 		if (val_dic) a = JSON.parse(val_dic);
 		const a2 = a.map((v, i)=> {return {i: i, t: v.text,};});
 		const len = a2.length;
@@ -96,13 +123,13 @@
 	<div class="container-fluid">
 	
 		<div class="collapse navbar-collapse mr-auto">
-			<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
+			<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="x閉じる" title="x閉じる" data-bs-toggle="tooltip">
 				<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 			</button>
 		</div>
 
 		<div class="collapse navbar-collapse justify-content-center">
-			<span class="navbar-brand">履歴画面</span>
+			<span class="navbar-brand" id="screen name">x本文履歴</span>
 		</div>
 
 		<div class="collapse navbar-collapse justify-content-end"/>

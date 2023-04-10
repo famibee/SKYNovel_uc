@@ -34,8 +34,7 @@
 ;********************************************************
 *close
 	[enable_event enabled=false]
-	[ask_ync mes='ゲームを終了しますか？']
-		;#FONT	ゲームを終了しますか？
+	[ask_ync mes=&mes.ゲームを終了しますか？]
 	[enable_event enabled=true]
 *close_do
 	[return cond="_yesno=='n'"]
@@ -47,8 +46,8 @@
 ;********************************************************
 *toggle_full_screen
 	[toggle_full_screen]
-	[let name=txt text='ウインドウモード']
-	[let name=txt text='全画面モード' cond=const.sn.displayState]
+	[let name=txt text=&mes.ウインドウモード]
+	[let name=txt text=&mes.全画面モード cond=const.sn.displayState]
 	[notice text=&txt]
 
 	; 設定画面変更
@@ -63,7 +62,7 @@
 
 *snapshot
 	[snapshot]
-	[notice text='スクリーンショットをダウンロードしました']
+	[notice text=&mes.スクリーンショットをダウンロードしました]
 [return]
 
 *reload_script

@@ -44,8 +44,35 @@
 		else if (isWebp) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
 	});
 
-	var val_dic = null;	// わざとvar
+	// SKYNovelから読み書きする変数なので、触らない。わざとvar
+	var val_ui_lang = 'ja';
+	var val_ui = {
+		"ja": {
+			"screen name": "アルバム",
+			"now playing": "now playing",
+			"non-text": {
+				"close": "閉じる"
+			}
+		}
+	};
+	function ui_redraw() {
+		const o = val_ui[val_ui_lang];
+		for (const k in o) {
+			const elm = document.getElementById(k);
+			if (elm) elm.innerHTML = o[k];
+		}
+		const nt = o['non-text'];
+		for (const k in nt) {
+			const elm = document.getElementById(k);
+			if (elm) elm.title = elm.ariaLabel = nt[k];
+		}
+	}
+
+	var val_dic = null;
 	function init() {	// 初期化（関数名変更不可）
+		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
+		ui_redraw();
+
 		if (val_dic) a = JSON.parse(val_dic);
 
 		// 配列 a をもとにサムネイル群を生成
@@ -132,18 +159,18 @@
 <div class="container-fluid">
 
 	<div class="collapse navbar-collapse">
-		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
+		<button id="close" type="button" class="btn btn-outline-light py-0" data-bs-toggle="tooltip" aria-label="x閉じる" title="x閉じる">
 			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 		</button>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-center">
-		<span class="navbar-brand">アルバム画面</span>
+		<span class="navbar-brand" id="screen name">アルバム</span>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-end">
 		<span class="navbar-text text-white">
-			now_playing : <span id="fnBgm"></span>
+			<span id="now playing">now playing</span>: <span id="fnBgm"></span>
 		</span>
 	</div>
 

@@ -5,6 +5,128 @@
 	[event key='dom=archive:#do_del' label=*do_del call=true global=true]
 	[event key='dom=archive:#close' label=*exit global=true]
 	[set_focus add='dom=archive:button']	; モーダルダイアログボタン
+
+[let_ml name=dicUI]
+	{
+		"ja": {
+			"save": {
+				"screen name": "セーブ",
+				"セーブしますか？": "セーブしますか？",
+				"do_loadsave": "セーブする"
+			},
+			"load": {
+				"screen name": "ロード",
+				"セーブしますか？": "ロードしますか？",
+				"do_loadsave": "ロードする"
+			},
+			"non-text": {
+				"close": "閉じる",
+				"tgl_del": "編集する"
+			},
+			"新規にセーブします": "　新規にセーブします",
+			"セーブ警告": "セーブデータを上書きし、元のデータは失われます",
+			"セーブキャンセル": "キャンセル",
+			"確認": "確認",
+			"do_del": "削除する",
+			"削除キャンセル": "キャンセル",
+			"セーブデータ削除": "セーブデータを削除しますか？"
+		},
+		"es": {
+			"save": {
+				"screen name": "Guardar",
+				"セーブしますか？": "¿Quieres marcar?",
+				"do_loadsave": "Marcador"
+			},
+			"load": {
+				"screen name": "Cargar",
+				"セーブしますか？": "¿Quieres continuar desde el marcador?",
+				"do_loadsave": "continuar desde el marcador"
+			},
+			"non-text": {
+				"close": "cerca",
+				"tgl_del": "Para editar"
+			},
+			"新規にセーブします": "　guardar nuevo",
+			"セーブ警告": "Sobrescribir datos guardados, los datos originales se perderán",
+			"セーブキャンセル": "Cancelar",
+			"確認": "confirmación",
+			"do_del": "borrar",
+			"削除キャンセル": "Cancelar",
+			"セーブデータ削除": "¿Eliminar datos guardados?"
+		},
+		"en": {
+			"save": {
+				"screen name": "Insert Bookmark",
+				"セーブしますか？": "Do you want to bookmark?",
+				"do_loadsave": "Bookmark"
+			},
+			"load": {
+				"screen name": "continue from bookmark",
+				"セーブしますか？": "Do you want to continue from the bookmark?",
+				"do_loadsave": "Continue"
+			},
+			"non-text": {
+				"close": "close",
+				"tgl_del": "To edit"
+			},
+			"新規にセーブします": "　save new",
+			"セーブ警告": "Overwrite save data, original data will be lost",
+			"セーブキャンセル": "cancel",
+			"確認": "confirmation",
+			"do_del": "delete",
+			"削除キャンセル": "cancel",
+			"セーブデータ削除": "Delete save data?"
+		},
+		"cn": {
+			"save": {
+				"screen name": "记录",
+				"セーブしますか？": "记录?",
+				"do_loadsave": "记录"
+			},
+			"load": {
+				"screen name": "阅读",
+				"セーブしますか？": "你想读书吗？",
+				"do_loadsave": "读书"
+			},
+			"non-text": {
+				"close": "文本历史",
+				"tgl_del": "编辑"
+			},
+			"新規にセーブします": "　保存新的",
+			"セーブ警告": "覆盖存档，原数据会丢失",
+			"セーブキャンセル": "取消",
+			"確認": "确认",
+			"do_del": "删除",
+			"削除キャンセル": "取消",
+			"セーブデータ削除": "删除保存数据？"
+		},
+		"ct": {
+			"save": {
+				"screen name": "紀錄",
+				"セーブしますか？": "你想收藏嗎？",
+				"do_loadsave": "書籤"
+			},
+			"load": {
+				"screen name": "讀取",
+				"セーブしますか？": "您想從書籤繼續嗎？",
+				"do_loadsave": "從書籤繼續"
+			},
+			"non-text": {
+				"close": "關閉",
+				"tgl_del": "編輯"
+			},
+			"新規にセーブします": "　保存新的",
+			"セーブ警告": "覆蓋存檔，原數據會丟失",
+			"セーブキャンセル": "取消",
+			"確認": "確認",
+			"do_del": "刪除",
+			"削除キャンセル": "取消",
+			"セーブデータ削除": "刪除保存數據？"
+		}
+	}
+[endlet_ml]
+	[set_frame id=archive var_name=val_ui text=&dicUI]
+
 [return]
 
 ;*********************************************************
@@ -43,6 +165,7 @@
 	[set_frame id=archive var_name=val_caller text=&呼び元]
 	[set_frame id=archive var_name=val_s_place text=&sys:const.sn.save.place]
 	[set_frame id=archive var_name=val_dic text=&const.sn.bookmark.json]
+	[set_frame id=archive var_name=val_ui_lang text=&lang]
 	[let_frame id=archive var_name=val2ctrl function=true]
 	[set_focus add='dom=archive:.btn_delete' need_err=false]
 	[set_focus add='dom=archive:.hover-overlay' need_err=false]
@@ -59,6 +182,7 @@
 	[event key=backspace label=*exit]
 	[event key=shift label=*exit]
 	[event key=end label=*exit]
+	[event key=sn:chgNavLang label=*chgNavLang call=true]
 	[set_focus to=null]
 [s]
 
@@ -71,6 +195,17 @@
 *do_del
 	[let_frame id=archive var_name=val_place]
 	[erasebookmark place=&const.sn.frm.archive.val_place]
+[return]
+
+
+*chgNavLang
+	[call label=*no_cancel_exit cond="呼び元=='Text'"]
+
+	[call fn=ext_lang]
+	[reload_script cond="呼び元=='Text'"]
+
+	[set_frame id=archive var_name=val_ui_lang text=&lang]
+	[let_frame id=archive var_name=ui_redraw function=true]
 [return]
 
 
@@ -112,7 +247,7 @@
 	&_save.place = sys:archive.quick_place
 	[call label=*do_save]
 
-	[notice text='クイックセーブしました']
+	[notice text=&mes.クイックセーブしました]
 [return]
 
 ;*********************************************************
@@ -143,15 +278,14 @@
 *quick_load
 	[return cond='! isGameState']
 	[if exp='&sys:archive.quick_place == null']
-		[notice text='クイックセーブデータがありません']
+		[notice text=&mes.クイックセーブデータがありません]
 		[return]
 	[endif]
 	&_load.place = sys:archive.quick_place
 
 	&pic = 'userdata:/'+ _load.place +'/pic.jpg'
 	[let name=pic text='_archive_browser.jpg' cond=!const.sn.isApp]
-	[ask_ync mes='クイックロードしますか？' pic=&pic]
-		;#FONT	クイックロードしますか？
+	[ask_ync mes=&mes.クイックロードしますか？ pic=&pic]
 	[return cond="_yesno=='n'"]
 [jump label=*do_load]
 
@@ -171,5 +305,5 @@
 	[enable_event enabled=true]
 	[enable_event enabled=true layer=mes_sysmenu]
 	[set_focus to=null]
-	[let name='isGameState' text=true cond="呼び元=='Text'"]
+	[let name=isGameState text=true cond="呼び元=='Text'"]
 [return]

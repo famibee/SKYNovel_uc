@@ -40,6 +40,7 @@
 	[fadeoutse buf=SE time=500]
 	[fadeoutse buf=VOICE time=1000]
 
+	[event global=true key=sn:chgNavLang del=true]
 	[sys_menu visible=false]
 	[clear_event]
 [endmacro]
@@ -64,7 +65,8 @@
 	[grp bg=black sys_menu=false b_alpha=0 time=0]
 
 	[record_place layer=&dsp_lays]
-		[sys_resume_save cond="! sys:doResume && ! mp:no_resume_save"]
+	[event global=true call=true key=sn:chgNavLang label=*chgNavLang]
+		[sys_resume_save cond='! sys:doResume && ! mp:no_resume_save']
 		&sys:doResume = true
 
 [jump label=*game_inited cond='const.game.inited']
@@ -86,7 +88,7 @@
 [macro name=sys_resume_load detail='レジューム処理']
 	[return cond=!sys:doResume]
 
-	[ask_ync mes='前回終了ポイントから再開しますか？' cond=!autoResume]
+	[ask_ync mes=&mes.前回終了ポイントから再開しますか？ cond=!autoResume]
 	[return cond="! autoResume && _yesno=='n'"]
 
 	[jump fn=_archive label=*do_load_resume]
@@ -121,18 +123,18 @@
 	&r = 90	; ボタンを縦にしたいなら
 
 	[lay layer=mes_sysmenu page=back]
-	[button layer=mes_sysmenu page=back text='クイックセーブ' rotation=&r left=&sysmenu_left2 top=&t+380 global=true event_at_down=true fn=_archive label=*quick_save call=true hint='クイックセーブ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text='クイックロード' rotation=&r left=&sysmenu_left2 top=&t+500 global=true event_at_down=true fn=_archive label=*quick_load call=true hint='クイックロード' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.クイックセーブ rotation=&r left=&sysmenu_left2 top=&t+380 global=true event_at_down=true fn=_archive label=*quick_save call=true hint=&mes.クイックセーブ hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.クイックロード rotation=&r left=&sysmenu_left2 top=&t+500 global=true event_at_down=true fn=_archive label=*quick_load call=true hint=&mes.クイックロード hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 
-	[button layer=mes_sysmenu page=back text='タイトルへ' rotation=&r left=&sysmenu_left top=&t+0 global=true event_at_down=true fn=sub label=*title_sys call=true hint='タイトルへ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.タイトルへ rotation=&r left=&sysmenu_left top=&t+0 global=true event_at_down=true fn=sub label=*title_sys call=true hint=&mes.タイトルに戻る hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 		; どの本文スクリプトから呼ばれるか不明なので、
 		; 同一スクリプトへのコールだがfn属性を省略してはいけない
 
-	[button layer=mes_sysmenu page=back text=' セーブ ' rotation=&r left=&sysmenu_left top=&t+100 global=true event_at_down=true fn=_archive label=*rclick_save call=true hint='セーブ' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left top=&t+200 global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left top=&t+300 global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left top=&t+400 global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left top=&t+500 global=true event_at_down=true fn=_config label=*main call=true hint='ゲーム設定' hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.セーブ rotation=&r left=&sysmenu_left top=&t+100 global=true event_at_down=true fn=_archive label=*rclick_save call=true hint=&mes.セーブ hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.ロード rotation=&r left=&sysmenu_left top=&t+200 global=true event_at_down=true fn=_archive label=*rclick_load call=true hint=&mes.ロード hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.字を隠す rotation=&r left=&sysmenu_left top=&t+300 global=true event_at_down=true fn=_hidetext label=*main call=true hint=&mes.テキスト窓非表示 hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.履歴を表示 rotation=&r left=&sysmenu_left top=&t+400 global=true event_at_down=true fn=_log label=*main call=true hint=&mes.本文履歴を表示 hint_opt='{"placement": "top"}' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.ゲーム設定 rotation=&r left=&sysmenu_left top=&t+500 global=true event_at_down=true fn=_config label=*main call=true hint=&mes.ゲーム設定 hint_opt='{"placement": "top"}' enterse=&sysse_choice]
 	[trans layer=mes_sysmenu time=0]
 	[wt]	; 裏から表へコピー（save対策）
 [endmacro]
@@ -276,17 +278,17 @@
 	;&r = 90	; ボタンを縦にしたいなら
 
 	[lay layer=mes_sysmenu page=back]
-	[button layer=mes_sysmenu page=back text='タイトルへ' rotation=&r left=&sysmenu_left top=&sysmenu_top global=true event_at_down=true fn=sub label=*title_sys call=true hint='タイトルへ' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.タイトルへ rotation=&r left=&sysmenu_left top=&sysmenu_top global=true event_at_down=true fn=sub label=*title_sys call=true hint=&mes.タイトルに戻る enterse=&sysse_choice]
 		; どの本文スクリプトから呼ばれるか不明なので、
 		; 同一スクリプトへのコールだがfn属性を省略してはいけない
 
-	[button layer=mes_sysmenu page=back text=' セーブ ' rotation=&r left=&sysmenu_left+100 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*rclick_save call=true hint='セーブ' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' ロード ' rotation=&r left=&sysmenu_left+200 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*rclick_load call=true hint='ロード' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text='字を隠す' rotation=&r left=&sysmenu_left+300 top=&sysmenu_top global=true event_at_down=true fn=_hidetext label=*main call=true hint='文字非表示' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 履 歴 ' rotation=&r left=&sysmenu_left+400 top=&sysmenu_top global=true event_at_down=true fn=_log label=*main call=true hint='履歴を表示' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text=' 設 定 ' rotation=&r left=&sysmenu_left+500 top=&sysmenu_top global=true event_at_down=true fn=_config label=*main call=true hint='ゲーム設定' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text='クイックセーブ' rotation=&r left=&sysmenu_left+600 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_save call=true hint='クイックセーブ' enterse=&sysse_choice]
-	[button layer=mes_sysmenu page=back text='クイックロード' rotation=&r left=&sysmenu_left+700 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_load call=true hint='クイックロード' enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.セーブ rotation=&r left=&sysmenu_left+100 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*rclick_save call=true hint=&mes.セーブ enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.ロード rotation=&r left=&sysmenu_left+200 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*rclick_load call=true hint=&mes.ロード enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.字を隠す rotation=&r left=&sysmenu_left+300 top=&sysmenu_top global=true event_at_down=true fn=_hidetext label=*main call=true hint=&mes.テキスト窓非表示 enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.履歴を表示 rotation=&r left=&sysmenu_left+400 top=&sysmenu_top global=true event_at_down=true fn=_log label=*main call=true hint=&mes.本文履歴を表示 enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.ゲーム設定 rotation=&r left=&sysmenu_left+500 top=&sysmenu_top global=true event_at_down=true fn=_config label=*main call=true hint=&mes.ゲーム設定 enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.クイックセーブ rotation=&r left=&sysmenu_left+600 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_save call=true hint=&mes.クイックセーブ enterse=&sysse_choice]
+	[button layer=mes_sysmenu page=back text=&btn.クイックロード rotation=&r left=&sysmenu_left+700 top=&sysmenu_top global=true event_at_down=true fn=_archive label=*quick_load call=true hint=&mes.クイックロード enterse=&sysse_choice]
 
 	[trans layer=mes_sysmenu time=0]
 	[wt]	; 裏から表へコピー（save対策）
@@ -423,10 +425,10 @@
 [endmacro]
 
 ;***********************************************************
-; マクロ テキストレイヤ中横書き央小窓設定
+; マクロ テキストレイヤ横書き中央小窓設定
 ;***********************************************************
 [macro name=txt_lay_window_middle nowarn_unused=true
-	sum='テキストレイヤ中横書き央小窓設定\n画面中央に寄せたテキストレイヤ'
+	sum='テキストレイヤ横書き中央小窓設定\n画面中央に寄せたテキストレイヤ'
 	detail='このマクロで文字レイヤ（page=back）に設定しておき、\n[grp]で場面転換と共に文字レイヤの設定を変えるような使い方をする'
 
 	%layer?='レイヤ名|mes|処理対象の文字レイヤ'
@@ -632,24 +634,28 @@
 [return]
 
 ;********************************************************
+*chgNavLang
+	[call fn=ext_lang]
+	[reload_script]
+
+;********************************************************
 *toggle_auto_read
 	&tmp:sn.auto.enabled = true
 	[set_cancel_skip]
-	[notice text='自動読み進みOn']
+	[notice text=&mes.自動読み進みOn]
 	[return]
 
 *toggle_skip
 	&tmp:sn.skip.enabled = true
 	[set_cancel_skip]
-	[notice text='強制スキップ On']
+	[notice text=&mes.強制スキップOn]
 	[return]
 
 ;********************************************************
 *title_sys
 	[enable_event enabled=false]
 	[enable_event layer=mes_sysmenu enabled=false]
-	[ask_ync mes='タイトルに戻りますか？']
-		;#FONT	タイトルに戻りますか？
+	[ask_ync mes=&mes.タイトルに戻りますか？]
 	[enable_event enabled=true]
 	[enable_event layer=mes_sysmenu enabled=true]
 	[return cond="_yesno=='n'"]

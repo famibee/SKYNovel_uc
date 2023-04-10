@@ -15,21 +15,106 @@
 	[event global=true call=true key=rightclick label=*main]
 	[event global=true call=true key=shift label=*main]
 	[event global=true call=true key=escape label=*main]
+
+[let_ml name=dicUI]
+	{
+		"ja": {
+			"screen name": "右クリックメニュー",
+			"save": "セーブ",
+			"load": "ロード",
+			"log": "履歴",
+			"config": "設定",
+			"hide_text": "字を隠す",
+			"cancel": "ゲームに戻る",
+			"title": "タイトルに戻る",
+			"game_end": "ゲーム終了",
+			"shortcut_htm": "<div class='col-4'>Shift、ESCキー</div><div class='col-8'>右クリックメニューを表示</div><div class='col-4'>W、alt+Enterキー</div><div class='col-8'>全画面・ウインドウモード切り替え</div><div class='col-4'>Aキー</div><div class='col-8'>自動読み進み On(クリックで停止)</div><div class='col-4'>Fキー</div><div class='col-8'>強制スキップ On(クリックで停止)</div><div class='col-4'>Ctrlキー</div><div class='col-8'>押してる間だけメッセージ強制スキップ<br/>（スキップはFキーと同等）</div><div class='col-4'>SPACE、Delキー</div><div class='col-8'>字を隠す(クリックで復帰)</div><div class='col-4'>PAGE DOWNキー、PAGE UPキー、Up(↑)キー</div><div class='col-8'>履歴(本文履歴を表示、クリックで復帰)</div><div class='col-4'>Sキー</div><div class='col-8'>クイックセーブ</div><div class='col-4'>Lキー</div><div class='col-8'>クイックロード</div><div class='col-4'>Tキー</div><div class='col-8'>テキスト窓を薄く</div><div class='col-4'>Yキー</div><div class='col-8'>テキスト窓を濃く</div><div class='col-4'>Pキー</div><div class='col-8'>スクリーンショット(ダウンロードフォルダへ保存)</div><div class='col-4'>Vキー</div><div class='col-8'>声を再度再生</div>",
+			"non-text": {
+				"close": "閉じる"
+			}
+		},
+		"es": {
+			"screen name": "menú",
+			"save": "Guardado",
+			"load": "Continuar",
+			"log": "Registro",
+			"config": "Opciones",
+			"hide_text": "Ocultar texto",
+			"cancel": "Volver",
+			"title": "Volver al título",
+			"game_end": "Cerrar el juego",
+			"shortcut_htm": "<div class='col-4'>Shift、ESC</div><div class='col-8'>Visualizar menú del click derecho.</div><div class='col-4'>W、alt+Enter</div><div class='col-8'>Alternar pantalla completa, modo de ventana.</div><div class='col-4'>A</div><div class='col-8'>Modo automático (Al hacer click se detiene).</div><div class='col-4'>F</div><div class='col-8'>Omitir texto (Al hacer click se detiene).</div><div class='col-4'>Ctrl</div><div class='col-8'>Mensaje forzado omita solo mientras empuja.</div><div class='col-4'>SPACE、Del</div><div class='col-8'>Oculta la caja de texto<br/> (Al hacer click aparece de nuevo).</div><div class='col-4'>PAGE DOWN、PAGE UP、Up(↑)</div><div class='col-8'>Abre el registro (Al hacer click vuelve al juego).</div><div class='col-4'>S</div><div class='col-8'>Pulsa S para un guardado rápido.</div><div class='col-4'>L</div><div class='col-8'>Pulsa L para una carga rápida.</div><div class='col-4'>T</div><div class='col-8'>Disminuir la opacidad de la caja de texto.</div><div class='col-4'>Y</div><div class='col-8'>Aumentar la opacidad de la caja de texto.</div><div class='col-4'>P</div><div class='col-8'>Captura de pantalla.</div><div class='col-4'>V</div><div class='col-8'>reproducir voz de nuevo</div>",
+			"non-text": {
+				"close": "cerca"
+			}
+		},
+		"en": {
+			"screen name": "Right click menu",
+			"save": "Insert Bookmark",
+			"load": "Continue",
+			"log": "Backlog",
+			"config": "Settings",
+			"hide_text": "Hide text",
+			"cancel": "Back",
+			"title": "Return to Title Screen",
+			"game_end": "End Game",
+			"shortcut_htm": "<div class='col-4'>Shift、ESC</div><div class='col-8'>Show/Hide Menu with Left click</div><div class='col-4'>W、alt+Enter</div><div class='col-8'>Swap between full screen and window mode</div><div class='col-4'>A</div><div class='col-8'>Auto text On (Click to cancel)</div><div class='col-4'>F</div><div class='col-8'>Force skip On (Click to cancel)</div><div class='col-4'>Ctrl</div><div class='col-8'>Hold down to manually skip text<br/>(Same speed as F key)</div><div class='col-4'>SPACE、Del</div><div class='col-8'>Hide/Show Text</div><div class='col-4'>PAGE DOWN、PAGE UP、Up(↑)</div><div class='col-8'>Scroll through Backlog</div><div class='col-4'>S</div><div class='col-8'>Quick Save</div><div class='col-4'>L</div><div class='col-8'>Quick Load</div><div class='col-4'>T</div><div class='col-8'>Textbox visibility down</div><div class='col-4'>Y</div><div class='col-8'>Textbox visibility up</div><div class='col-4'>P</div><div class='col-8'>Screenshot(Saves to desktop)</div><div class='col-4'>V</div><div class='col-8'>Replay current voice line</div>",
+			"non-text": {
+				"close": "close"
+			}
+		},
+		"cn": {
+			"screen name": "右键选单的说明文",
+			"save": "纪录",
+			"load": "读取",
+			"log": "显示文字履历",
+			"config": "游戏设定",
+			"hide_text": "隐藏文字框",
+			"cancel": "回到游戏中",
+			"title": "回到标题画面",
+			"game_end": "游戏结束",
+			"shortcut_htm": "<div class='col-4'>Shift、ESC按键</div><div class='col-8'>显示・消除右键点击功能表</div><div class='col-4'>W、alt+Enter按键</div><div class='col-8'>切换全屏・视窗模式</div><div class='col-4'>A按键</div><div class='col-8'>开启自动阅读（鼠标点击则停止）</div><div class='col-4'>F按键</div><div class='col-8'>开启强制跳过（鼠标点击则停止）</div><div class='col-4'>Ctrl按键</div><div class='col-8'>按住的时候强制跳过对话讯息<br/>（跳过功能和F按键同效）</div><div class='col-4'>SPACE、Del按键</div><div class='col-8'>消除・显示对话讯息视窗</div><div class='col-4'>PAGE DOWN按键、PAGE UP按键、Up(↑)按键</div><div class='col-8'>对话讯息回顾功能</div><div class='col-4'>S按键</div><div class='col-8'>快速纪录</div><div class='col-4'>L按键</div><div class='col-8'>快速读取</div><div class='col-4'>T按键</div><div class='col-8'>将文字视窗浓度变薄</div><div class='col-4'>Y按键</div><div class='col-8'>变浓T</div><div class='col-4'>P按键</div><div class='col-8'>截取画面（存档到桌面）</div><div class='col-4'>V按键</div><div class='col-8'>再次播放显示中的台词语音</div>",
+			"non-text": {
+				"close": "关闭"
+			}
+		},
+		"ct": {
+			"screen name": "右鍵點擊功能表",
+			"save": "紀錄",
+			"load": "讀取",
+			"log": "履歴",
+			"config": "設定",
+			"hide_text": "隱藏文字框",
+			"cancel": "返回",
+			"title": "回到標題畫面",
+			"game_end": "結束遊戲",
+			"shortcut_htm": "<div class='col-4'>Shift、ESC按鍵</div><div class='col-8'>顯示・消除右鍵點擊功能表</div><div class='col-4'>W、alt+Enter按鍵</div><div class='col-8'>切換全畫面/視窗模式</div><div class='col-4'>A按鍵</div><div class='col-8'>自動閱讀On（滑鼠點擊則停止）</div><div class='col-4'>F按鍵</div><div class='col-8'>強制跳過On（滑鼠點擊則停止）</div><div class='col-4'>Ctrl按鍵</div><div class='col-8'>壓住的時候強制跳過對話訊息<br/>（跳過是和F按鍵同等）</div><div class='col-4'>SPACE、Del按鍵</div><div class='col-8'>消除・顯示對話訊息視窗</div><div class='col-4'>PAGE DOWN按鍵、PAGE UP按鍵、Up(↑)按鍵</div><div class='col-8'>對話訊息回顧功能</div><div class='col-4'>S按鍵</div><div class='col-8'>快速紀錄</div><div class='col-4'>L按鍵</div><div class='col-8'>快速讀取</div><div class='col-4'>T按鍵</div><div class='col-8'>將文字視窗變薄</div><div class='col-4'>Y按鍵</div><div class='col-8'>變濃T</div><div class='col-4'>P按鍵</div><div class='col-8'>擷取畫面（存檔到桌面）</div><div class='col-4'>V按鍵</div><div class='col-8'>再次播放語音</div>",
+			"non-text": {
+				"close": "關閉"
+			}
+		}
+	}
+[endlet_ml]
+	[set_frame id=submenu var_name=val_ui text=&dicUI]
+
 [return]
 
 ;*********************************************************
 *main
 	[return cond=!isGameState]
-
-		&v = const.sn.lay.mes.fore.visible
-		[lay layer=mes page=fore visible=false]
-
-		[se fn=&sysse_ok1 buf=SYS]
-		[frame id=submenu visible=true]
-		[let name=sysmenu_v text=&const.sn.lay.mes_sysmenu.fore.visible cond=useSysMenu]
-		[sys_menu visible=false]
-
 	[let name=isGameState text=false]
+
+	&v = const.sn.lay.mes.fore.visible
+	[lay layer=mes page=fore visible=false]
+	[let name=sysmenu_v text=&const.sn.lay.mes_sysmenu.fore.visible cond=useSysMenu]
+	[sys_menu visible=false]
+
+	[se fn=&sysse_ok1 buf=SYS]
+
+	[set_frame id=submenu var_name=val_ui_lang text=&lang]
+	[let_frame id=submenu var_name=val2ctrl function=true]
+	[frame id=submenu visible=true]
+
 *retry
 	[enable_event enabled=false]
 	[clear_event]
@@ -37,8 +122,18 @@
 	[event key=rightclick label=*cancel]
 	[event key=shift label=*cancel]
 	[event key=escape label=*cancel]
+	[event key=sn:chgNavLang label=*chgNavLang call=true]
 	[set_focus to=null]
 [s]
+
+
+*chgNavLang
+	[call label=*exit]
+	[let name=isGameState text=true]
+
+	[call fn=ext_lang]
+	[reload_script]
+
 
 ;*********************************************************
 *toggle_skip
@@ -81,8 +176,7 @@
 
 ;*********************************************************
 *title
-	[ask_ync mes="タイトルに戻りますか？"]
-		;#FONT	タイトルに戻りますか？
+	[ask_ync mes=&mes.タイトルに戻りますか？]
 	[jump label=*retry cond="_yesno=='n'"]
 
 	[call label=*exit]
@@ -96,8 +190,7 @@
 
 ;*********************************************************
 *game_end
-	[ask_ync mes="ゲームを終了しますか？"]
-		;#FONT	ゲームを終了しますか？
+	[ask_ync mes=&mes.ゲームを終了しますか？]
 	[jump label=*retry cond="_yesno=='n'"]
 
 	[lay layer=mes page=fore visible=&v]

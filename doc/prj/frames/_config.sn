@@ -39,6 +39,198 @@
 	; 完了イベントを検知
 	[event key='sn:exported' label=*exported global=true call=true]
 	[event key='sn:imported' label=*imported global=true call=true]
+
+[let_ml name=dicUI]
+	{
+		"ja": {
+			"base": {
+				"screen name": "設定",
+				"現在ver": "現在 ver",
+				"non-text": {
+					"close": "閉じる"
+				}
+			},
+			"text": {
+				"text-SubTitle": "テキスト",
+				"バック不透明度": "バック不透明度",
+				"バック不透明度_説明": "文字表示サンプル<br/>テキストウインドウの不透明度を表示します。",
+				"通常文字表示待ち": "通常文字表示待ち",
+				"通常文字-待つ": "待つ",
+				"自動読みクリック待ち": "自動読みクリック待ち",
+				"自動読み改ページ待ち": "自動読み改ページ待ち",
+				"既読文字表示待ち": "既読文字表示待ち",
+				"既読文字-待つ": "待つ",
+				"既読自動クリック待ち": "既読自動クリック待ち",
+				"既読自動改ページ待ち": "既読自動改ページ待ち"
+			},
+			"sound": {
+				"sound-SubTitle": "音量",
+				"全体的": "全体的",
+				"ＢＧＭのみ": "ＢＧＭのみ",
+				"ボイスのみ": "ボイスのみ",
+				"効果音のみ": "効果音のみ",
+				"システム音のみ": "システム音のみ"
+			},
+			"system": {
+				"system-SubTitle": "システム",
+				"screen mode": "画面モード",
+				"screen mode-Sub": "全画面か",
+				"export-Sub": "プレイデータのバックアップ",
+				"import-Sub": "プレイデータのリストア"
+			}
+		},
+		"es": {
+			"base": {
+				"screen name": "Configuración",
+				"現在ver": "version de app",
+				"non-text": {
+					"close": "cerca"
+				}
+			},
+			"text": {
+				"text-SubTitle": "texto",
+				"バック不透明度": "Transparencia de texto",
+				"バック不透明度_説明": "Ejemplo de visualización de caracteres<br/>Muestra la opacidad de la ventana de texto.",
+				"通常文字表示待ち": "Tiempo de espera de los carácteres",
+				"通常文字-待つ": "esperar",
+				"自動読みクリック待ち": "Velocidad Click Automático",
+				"自動読み改ページ待ち": "Velocidad Transición Automático",
+				"既読文字表示待ち": "Tiempo de espera de los carácteres ya vistos",
+				"既読文字-待つ": "esperar",
+				"既読自動クリック待ち": "Tiempo de espera del modo automático",
+				"既読自動改ページ待ち": "Tiempo de espera de transición del modo automático"
+			},
+			"sound": {
+				"sound-SubTitle": "Volumen",
+				"全体的": "Total",
+				"ＢＧＭのみ": "Música de Fondo",
+				"ボイスのみ": "Volumen de voz",
+				"効果音のみ": "Efectos de sonido",
+				"システム音のみ": "Sonidos del sistema"
+			},
+			"system": {
+				"system-SubTitle": "sistema",
+				"screen mode": "Modo de pantalla",
+				"screen mode-Sub": "pantalla completa",
+				"export-Sub": "Copia de seguridad de datos de reproducción",
+				"import-Sub": "Restauración de datos de reproducción"
+			}
+		},
+		"en": {
+			"base": {
+				"screen name": "Settings",
+				"現在ver": "app ver",
+				"non-text": {
+					"close": "close"
+				}
+			},
+			"text": {
+				"text-SubTitle": "Text",
+				"バック不透明度": "Text visibility level",
+				"バック不透明度_説明": "Character display sample<br/>Shows the opacity of the text window.",
+				"通常文字表示待ち": "Text scroll speed",
+				"通常文字-待つ": "wait",
+				"自動読みクリック待ち": "Auto read click wait time",
+				"自動読み改ページ待ち": "Auto read page break wait time",
+				"既読文字表示待ち": "Wait time to display already read text",
+				"既読文字-待つ": "wait",
+				"既読自動クリック待ち": "Auto click wait time for read text",
+				"既読自動改ページ待ち": "Auto page break wait time for read text"
+			},
+			"sound": {
+				"sound-SubTitle": "Volume",
+				"全体的": "All sounds",
+				"ＢＧＭのみ": "BGM",
+				"ボイスのみ": "Voice",
+				"効果音のみ": "SFX",
+				"システム音のみ": "System"
+			},
+			"system": {
+				"system-SubTitle": "System",
+				"screen mode": "Screen mode",
+				"screen mode-Sub": "full screen",
+				"export-Sub": "Play data backup",
+				"import-Sub": "Restoring play data"
+			}
+		},
+		"cn": {
+			"base": {
+				"screen name": "设定",
+				"現在ver": "应用版本",
+				"non-text": {
+					"close": "关闭"
+				}
+			},
+			"text": {
+				"text-SubTitle": "文本",
+				"バック不透明度": "背景的不透明度",
+				"バック不透明度_説明": "字符显示示例<br/>显示文本窗口的不透明度。",
+				"通常文字表示待ち": "通常文字表示待机速度",
+				"通常文字-待つ": "等待",
+				"自動読みクリック待ち": "自动阅读换行等待速度",
+				"自動読み改ページ待ち": "自动阅读换页等待速度",
+				"既読文字表示待ち": "已读文字表示等待时间",
+				"既読文字-待つ": "等待",
+				"既読自動クリック待ち": "已读自动阅读换行等待速度",
+				"既読自動改ページ待ち": "已读自动阅读换页等待速度"
+			},
+			"sound": {
+				"sound-SubTitle": "体积",
+				"全体的": "整体音量",
+				"ＢＧＭのみ": "BGM音量",
+				"ボイスのみ": "VOICE的音量",
+				"効果音のみ": "音效音量",
+				"システム音のみ": "系统音效音量"
+			},
+			"system": {
+				"system-SubTitle": "系统",
+				"screen mode": "全屏・视窗模式",
+				"screen mode-Sub": "全屏",
+				"export-Sub": "播放数据备份",
+				"import-Sub": "恢复播放数据"
+			}
+		},
+		"ct": {
+			"base": {
+				"screen name": "遊戲設定",
+				"現在ver": "應用版本",
+				"non-text": {
+					"close": "關閉"
+				}
+			},
+			"text": {
+				"text-SubTitle": "文本",
+				"バック不透明度": "背景的不透明度",
+				"バック不透明度_説明": "字符顯示示例<br/>顯示文本窗口的不透明度。",
+				"通常文字表示待ち": "通常文字表示待機速度",
+				"通常文字-待つ": "等待",
+				"自動読みクリック待ち": "自動閱讀換行等待速度",
+				"自動読み改ページ待ち": "自動閱讀換頁等待速度",
+				"既読文字表示待ち": "已讀文字表示等待時間",
+				"既読文字-待つ": "等待",
+				"既読自動クリック待ち": "已讀自動閱讀換行等待速度",
+				"既読自動改ページ待ち": "已讀自動閱讀換頁等待速度"
+			},
+			"sound": {
+				"sound-SubTitle": "體積",
+				"全体的": "整體音量",
+				"ＢＧＭのみ": "BGM的音量",
+				"ボイスのみ": "VOICE的音量",
+				"効果音のみ": "音效的音量",
+				"システム音のみ": "系統音效的音量"
+			},
+			"system": {
+				"system-SubTitle": "系統",
+				"screen mode": "全螢幕模式",
+				"screen mode-Sub": "全屏",
+				"export-Sub": "播放數據備份",
+				"import-Sub": "恢復播放數據"
+			}
+		}
+	}
+[endlet_ml]
+	[set_frame id=config var_name=val_ui text=&dicUI]
+
 [return]
 
 
@@ -132,7 +324,7 @@
 	&sys:TextLayer.Back.Alpha = alpha /100
 
 *text_back_alpha
-	[notice text="&'バック不透明度 ' + alpha + '%'"]
+	[notice text="&mes.バック不透明度 + alpha + '%'"]
 	[return]
 
 ;*********************************************************
@@ -148,7 +340,7 @@
 	[let name=wait text=3500 cond="wait > 3500"]
 *text_auto_msecwait
 	&sys:sn.auto.msecLineWait = wait
-	[notice text="&'自動読み進み速度 ' + wait + ' msec'"]
+	[notice text="&mes.自動読み進み速度 + wait + ' msec'"]
 [return]
 
 
@@ -187,8 +379,19 @@
 	[event key=backspace label=*exit]
 	[event key=shift label=*exit]
 	[event key=end label=*exit]
+	[event key=sn:chgNavLang label=*chgNavLang call=true]
 	[set_focus to=null]
 [s]
+
+*chgNavLang
+	[call label=*exit cond="呼び元=='Text'"]
+
+	[call fn=ext_lang]
+	[reload_script cond="呼び元=='Text'"]
+
+	[set_frame id=config var_name=val_ui_lang text=&lang]
+	[let_frame id=config var_name=ui_redraw function=true]
+[return]
 
 ; 最新値で更新
 *val2ctrl
@@ -218,6 +421,7 @@
 
 	[set_frame id=config var_name=val_chkScrMode text=&const.sn.displayState]
 
+	[set_frame id=config var_name=val_ui_lang text=&lang]
 	[let_frame id=config var_name=val2ctrl function=true]
 [return]
 
@@ -239,7 +443,7 @@
 ;*********************************************************
 *export		[se fn=&sysse_ok1 buf=SYS][export][return]
 
-*exported	[notice text='プレイデータをエクスポートしました'][return]
+*exported	[notice text=&mes.プレイデータをエクスポートしました][return]
 
 ;*********************************************************
 *import		[se fn=&sysse_ok1 buf=SYS][import][return]
@@ -249,7 +453,7 @@
 	[enable_event enabled=false]
 	[enable_event enabled=false layer=mes_sysmenu]
 
-	&t = 'ゲームを再起動する必要があります。ブラウザリロードしてください'
-	[let name=t text='ゲームを再起動する必要があります。（起動は手動で）' cond=const.sn.isApp]
+	&t = mes.ゲームを再起動する必要・ブラウザリロード
+	[let name=t text=&mes.ゲームを再起動する必要があります cond=const.sn.isApp]
 	[notice text=&t timeout=0]
 [return]

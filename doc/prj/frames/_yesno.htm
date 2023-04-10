@@ -13,7 +13,7 @@
 </style>
 <script defer src="lib/bootstrap.min.js"></script>
 <script>
-	let o = {mes: '本文', ok: 'ok', close: 'cancel', pic: ''};
+	let o = {mes: '本文', pic: ''};
 	const isDev = (location.protocol === 'file:');
 	const isWebp = false/*WEBP*/;
 	document.addEventListener('DOMContentLoaded', ()=> {
@@ -25,14 +25,31 @@
 		if (isDev) val2ctrl();	// デザイン用
 	}, false);
 
-	var val_dic = null;	// わざとvar
+	// SKYNovelから読み書きする変数なので、触らない。わざとvar
+	var val_dic = null;
+
+	var val_ui_lang = 'ja';
+	var val_ui = {
+		"ja": {
+			"ok"	: "決定",
+			"cancel": "キャンセル"
+		}
+	};
+	function ui_redraw() {
+		const ok = document.getElementById('ok');
+		ok.textContent = ok.title = ok.ariaLabel = val_ui[val_ui_lang]['ok'];
+		const close = document.getElementById('close');
+		close.textContent = close.title = close.ariaLabel = val_ui[val_ui_lang]['cancel'];
+	}
+
 	function val2ctrl() {	// 変数→コンポーネント
-		if (val_dic) o = {...o, ...JSON.parse(val_dic)};
+		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
+		ui_redraw();
+
+		if (val_dic) o = JSON.parse(val_dic);
 		if (isWebp) o.pic = o.pic.replace(/\.(jpe?g|png)$/, '.webp');
 
 		document.getElementById('mes').textContent = o.mes;
-		document.getElementById('ok').textContent = o.ok;
-		document.getElementById('close').textContent = o.close;
 		const img = document.getElementById('img');
 		img.hidden = !o.pic;
 		if (! img.hidden) img.dataset.src = o.pic;

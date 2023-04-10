@@ -80,13 +80,6 @@
 </style>
 <script defer src="lib/bootstrap.min.js"></script>
 <script>
-	let a = [	// セーブデータの内容
-		{place: '10', pic: '_archive_browser.jpg', dt: '2020/12/18 11:44', text: '　ああ、桜の樹の下には屍体が埋まつてゐる！'},
-		{place: '11', pic: '../bg/yun_1317.jpg', dt: '2020/12/18 11:43', text: '　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。'},
-		{place: '12', pic: '../bg/yun_2352.jpg', dt: '2020/12/18 11:42', text: '  This is not justified test message. This is written many words and cut last sentence.'},
-		{place: '13', pic: '../bg/yun_1184.jpg', dt: '2020/12/18 11:41', text: '　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。'},
-		{place: '14', pic: '../bg/yun_2384.jpg', dt: '2020/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
-	];
 	document.ondragstart = ()=> false;
 	const isDev = (location.protocol === 'file:');
 	const isWebp = false/*WEBP*/;
@@ -148,22 +141,77 @@
 	var val_place = 0;
 	var is_delmode = false;
 	var is_modal = false;
+
+	var val_ui_lang = 'ja';
+	var val_ui = {
+		"ja": {
+			"save": {
+				"screen name": "セーブ",
+				"セーブしますか？": "セーブしますか？",
+				"do_loadsave": "セーブする"
+			},
+			"load": {
+				"screen name": "ロード",
+				"セーブしますか？": "ロードしますか？",
+				"do_loadsave": "ロードする"
+			},
+			"non-text": {
+				"close": "閉じる",
+				"tgl_del": "編集する"
+			},
+			"新規にセーブします": "　新規にセーブします",
+			"セーブ警告": "セーブデータを上書きし、元のデータは失われます",
+			"セーブキャンセル": "キャンセル",
+			"確認": "確認",
+			"do_del": "削除する",
+			"削除キャンセル": "キャンセル",
+			"セーブデータ削除": "セーブデータを削除しますか？"
+		}
+	};
+	function ui_redraw() {
+		const o = val_ui[val_ui_lang];
+		for (const k in o) {
+			const elm = document.getElementById(k);
+			if (elm) elm.textContent = o[k];
+		}
+		const nt = o['non-text'];
+		for (const k in nt) {
+			const elm = document.getElementById(k);
+			if (elm) elm.title = elm.ariaLabel = nt[k];
+		}
+		const sl = o[(val_mode === 'Load') ?'load' :'save'];
+		for (const k in sl) {
+			const elm = document.getElementById(k);
+			if (elm) elm.textContent = elm.title = elm.ariaLabel = sl[k];
+		}
+
+		Array.from(document.getElementsByClassName('btn_cancel')).forEach(v=> v.title = v.ariaLabel = val_ui[val_ui_lang]['btn_cancel']);
+		Array.from(document.getElementsByClassName('btn_delete')).forEach(v=> v.title = v.ariaLabel = val_ui[val_ui_lang]['do_del']);
+	}
+
+	let a = [	// セーブデータの内容
+		{place: '10', pic: '_archive_browser.jpg', dt: '2020/12/18 11:44', text: '　ああ、桜の樹の下には屍体が埋まつてゐる！'},
+		{place: '11', pic: '../bg/yun_1317.jpg', dt: '2020/12/18 11:43', text: '　この渓間ではなにも俺をよろこばすものはない。鶯《うぐひす》や四十雀《しじふから》も、白い日光をさ青に煙らせてゐる木の若芽も、ただそれだけでは、もうろうとした心象に過ぎない。俺には惨劇が必要なんだ。その平衡があつて、はじめて俺の心象は明確になつて来る。俺の心は悪鬼のやうに憂欝に渇いてゐる。俺の心に憂欝が完成するときにばかり、俺の心は和《なご》んで来る。'},
+		{place: '12', pic: '../bg/yun_2352.jpg', dt: '2020/12/18 11:42', text: '  This is not justified test message. This is written many words and cut last sentence.'},
+		{place: '13', pic: '../bg/yun_1184.jpg', dt: '2020/12/18 11:41', text: '　それは渓の水が乾いた磧《かはら》へ、小さい水溜を残してゐる、その水のなかだつた。思ひがけない石油を流したやうな光彩が、一面に浮いてゐるのだ。お前はそれを何だつたと思ふ。それは何万匹とも数の知れない、薄羽かげらふの屍体だつたのだ。隙間なく水の面を被つてゐる、彼等のかさなりあつた翅《はね》が、光にちぢれて油のやうな光彩を流してゐるのだ。そこが、産卵を終つた彼等の墓場だつたのだ。'},
+		{place: '14', pic: '../bg/yun_2384.jpg', dt: '2020/12/18 11:40', text: '　dummy data 二三日前、俺は、ここの渓へ下りて、石の上を伝ひ歩きしてゐた。水のしぶきのなかからは、あちらからもこちらからも、薄羽かげらふがアフロデイツトのやうに生れて来て、渓の空をめがけて舞ひ上つてゆくのが見えた。お前も知つてゐるとほり、彼等はそこで美しい結婚をするのだ。暫らく歩いてゐると、俺は変なものに出喰はした。'},
+	];
+
 	function modal_hide() {
 		Array.from(document.querySelectorAll('#modal_sl, #modal_del'))
 		.forEach(elm=> bootstrap.Modal.getInstance(elm)?.hide());
 	}
 	function val2ctrl() {	// 変数→コンポーネント
+		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
+		ui_redraw();
+
 		if (val_dic) a = JSON.parse(val_dic);
-		const str_val_mode = (val_mode === 'Load') ?'ロード' :'セーブ';
-		Array.from(document.getElementsByClassName('mode')).forEach(v=> v.textContent = str_val_mode);
 		const doit = document.getElementById('do_loadsave');
-		doit.title = str_val_mode +'する';
-		doit.ariaLabel = str_val_mode;
 
 		// 配列 a をもとにサムネイル群を生成
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = null;
-		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: '　新規にセーブします', place: val_s_place});
+		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: val_ui[val_ui_lang]['新規にセーブします'], place: val_s_place});
 		const u = new Date().getTime();
 		a.forEach(v=> {
 			if (isWebp && v.pic.slice(0, 10) !== 'userdata:/') v.pic = v.pic.replace(/\.(jpe?g|png)$/, '.webp');
@@ -200,7 +248,7 @@
 				}
 
 				document.getElementById('modal_mes').textContent =
-					(val_mode === 'Save') ?'セーブデータを上書きし、元のデータは失われます' :'';
+					(val_mode === 'Save') ?val_ui['セーブ警告'] :'';
 			}, {passive: true});
 			if (! v.hasAttribute('tabindex')) v.tabIndex = 0;// フォーカスを持つように
 			v.addEventListener('focus', ()=> v.classList.add('z-depth-4'), {passive: true});
@@ -247,17 +295,17 @@
 <div class="container-fluid">
 
 	<div class="collapse navbar-collapse mr-auto">
-		<button id="close" type="button" class="btn btn-outline-light py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
+		<button id="close" type="button" class="btn btn-outline-light py-0" data-bs-toggle="tooltip" aria-label="x閉じる" title="x閉じる">
 			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 		</button>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-center">
-		<span class="navbar-brand"><span class="mode">ロード</span>画面</span>
+		<span class="navbar-brand" id="screen name">xロード</span>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-end">
-		<button id="tgl_del" type="button" class="btn btn-outline-light btn-rounded" aria-label="編集する" data-bs-toggle="tooltip" title="編集する">
+		<button id="tgl_del" type="button" class="btn btn-outline-light btn-rounded" data-bs-toggle="tooltip" aria-label="x編集する" title="x編集する">
 			<svg width="1.9em" height="1.9em" viewbox="0 0 16 16" class="bi bi-trash-fill" style="pointer-events: none;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 				<path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
 			</svg>
@@ -277,7 +325,7 @@
 		<div class="mask"></div>
 	</div>
 	<div class="card-img-overlay"><p class="card-text">2020/12/18 11:40</p></div>
-	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="削除する" aria-label="削除する" data-bs-toggle="modal" data-bs-target="#modal_del">
+	<button type="button" class="btn btn-lg btn-danger btn-floating py-0 btn_delete" title="x削除する" aria-label="x削除する" data-bs-toggle="modal" data-bs-target="#modal_del">
 		<span style="font-size: 2em;">&times</span>
 	</button>
 	<div class="card-text multiline-text">
@@ -296,7 +344,7 @@
 		<svg width="1.0625em" height="1em" viewbox="0 0 17 16" class="bi bi-exclamation-triangle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			<path fill-rule="evenodd" d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
 		</svg>
-		<span class="mode">ロード</span>しますか？
+		<span id="セーブしますか？">xロードしますか？</span>
 	</h5>
 	<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
@@ -306,8 +354,8 @@
 	<p id="modal_mes"></p>
 </div>
 <div class="modal-footer">
-	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" title="やめる" aria-label="Cancel">やめる</button>
-	<button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="do_loadsave" title="ロードする" aria-label="Load"><span class="mode">ロード</span>する</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" id="セーブキャンセル" title="キャンセル" aria-label="キャンセル">xキャンセル</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="do_loadsave" title="ロードする" aria-label="ロードする">xロードする</button>
 </div>
 </div></div>
 </div>
@@ -320,18 +368,18 @@
 		<svg width="1.0625em" height="1em" viewbox="0 0 17 16" class="bi bi-exclamation-triangle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 			<path fill-rule="evenodd" d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
 		</svg>
-		確認
+		<span id="確認">x確認</span>
 	</h5>
 	<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<div class="modal-body">
-	セーブデータを削除しますか？
+<div class="modal-body" id="セーブデータ削除">
+	xセーブデータを削除しますか？
 </div>
 <div class="modal-footer">
-	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" title="やめる" aria-label="Cancel">やめる</button>
-	<button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="do_del" title="削除する" aria-label="Delete">削除する</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark " id="削除キャンセル" title="キャンセル" aria-label="キャンセル">xキャンセル</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="do_del" title="削除する" aria-label="削除する">x削除する</button>
 </div>
 </div></div>
 </div>

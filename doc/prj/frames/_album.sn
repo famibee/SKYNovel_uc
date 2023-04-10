@@ -5,6 +5,31 @@
 
 	[add_lay layer=album class=grp]
 
+[let_ml name=dicUI]
+	{
+		"ja": {
+			"screen name": "アルバム",
+			"now playing": "now playing"
+		},
+		"es": {
+			"screen name": "Galería",
+			"now playing": "Jugando ahora"
+		},
+		"en": {
+			"screen name": "album",
+			"now playing": "now playing"
+		},
+		"cn": {
+			"screen name": "阅览相簿",
+			"now playing": "现在播放"
+		},
+		"ct": {
+			"screen name": "閱覽相簿",
+			"now playing": "現在播放"
+		}
+	}
+[endlet_ml]
+	[set_frame id=album var_name=val_ui text=&dicUI]
 
 [macro name=アルバム解放 nowarn_unused=true
 	sum='アルバム解放\n指定したアルバム要素を解放する'
@@ -14,6 +39,7 @@
 ]
 	[let name="&'sys:album.'+ mp:name" text=true]
 [endmacro]
+
 [return]
 
 ; 最新値で更新
@@ -36,6 +62,7 @@
 	]
 [endlet_ml]
 	[set_frame id=album var_name=val_dic text=&dic]
+	[set_frame id=album var_name=val_ui_lang text=&lang]
 	[let_frame id=album var_name=init function=true]
 
 	[call label=*upd_bgmdsp]
@@ -67,9 +94,17 @@
 	[event key=backspace label=*exit]
 	[event key=shift label=*exit]
 	[event key=end label=*exit]
-;	[gesture_event f2tap=*exit f3tap=*exit]
+	[event key=sn:chgNavLang label=*chgNavLang call=true]
 	[set_focus to=null]
 [s]
+
+
+*chgNavLang
+	[call fn=ext_lang]
+
+	[set_frame id=album var_name=val_ui_lang text=&lang]
+	[let_frame id=album var_name=ui_redraw function=true]
+[return]
 
 *pic	; 画像ビュアー
 	[lay layer=album fn=&sn.event.domdata.arg visible=true float=true left=0 top=0]

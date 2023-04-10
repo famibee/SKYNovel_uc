@@ -4,7 +4,8 @@
 	; *** BG ***
 	[grp bg=white time=2000 sys_menu=false b_alpha=0]
 [r][r][r]
-　桜の樹の下に──は屍体が埋まつてゐる！[plc visible=false]
+　桜の樹の下に──は屍体が埋まつてゐる！
+[plc visible=false]
 
 	; *** BGM ***
 	[bgm fn=free32]
@@ -85,7 +86,7 @@
 	[fadeoutbgm time=4000]
 
 	; *** テキストレイヤ縦書き中設定 ***
-	[txt_lay_v_center b_alpha=0 fcol=0x000000]
+	[txt_lay_v_center b_alpha=0]
 	; *** BG ***
 	[grp bg=white time=4000 sys_menu=false]
 	[アルバム解放 name=nc10889]

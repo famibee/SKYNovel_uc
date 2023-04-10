@@ -20,8 +20,43 @@
 		else document.getElementById('game_end').classList.add('disabled');
 	}, false);
 
-	var val_dic = null;	// わざとvar
+	// SKYNovelから読み書きする変数なので、触らない。わざとvar
+	var val_dic = null;
+
+	var val_ui_lang = 'ja';
+	var val_ui = {
+		"ja": {
+			"screen name": "右クリックメニュー",
+			"save": "セーブ",
+			"load": "ロード",
+			"log": "履歴",
+			"config": "設定",
+			"hide_text": "字を隠す",
+			"cancel": "ゲームに戻る",
+			"title": "タイトルに戻る",
+			"game_end": "ゲーム終了",
+			"shortcut_htm": "<div class='col-4'>Shift、ESCキー</div><div class='col-8'>右クリックメニューを表示</div><div class='col-4'>W、alt+Enterキー</div><div class='col-8'>全画面・ウインドウモード切り替え</div><div class='col-4'>Aキー</div><div class='col-8'>自動読み進み On(クリックで停止)</div><div class='col-4'>Fキー</div><div class='col-8'>強制スキップ On(クリックで停止)</div><div class='col-4'>Ctrlキー</div><div class='col-8'>押してる間だけメッセージ強制スキップ<br/>（スキップはFキーと同等）</div><div class='col-4'>SPACE、Delキー</div><div class='col-8'>字を隠す(クリックで復帰)</div><div class='col-4'>PAGE DOWNキー、PAGE UPキー、Up(↑)キー</div><div class='col-8'>履歴(本文履歴を表示、クリックで復帰)</div><div class='col-4'>Sキー</div><div class='col-8'>クイックセーブ</div><div class='col-4'>Lキー</div><div class='col-8'>クイックロード</div><div class='col-4'>Tキー</div><div class='col-8'>テキスト窓を薄く</div><div class='col-4'>Yキー</div><div class='col-8'>テキスト窓を濃く</div><div class='col-4'>Pキー</div><div class='col-8'>スクリーンショット(ダウンロードフォルダへ保存)</div><div class='col-4'>Vキー</div><div class='col-8'>声を再度再生</div>",
+			"non-text": {
+				"close": "閉じる"
+			}
+		},
+	};
+	function ui_redraw() {
+		const o = val_ui[val_ui_lang];
+		for (const k in o) {
+			const elm = document.getElementById(k);
+			if (elm) elm.innerHTML = o[k];
+		}
+		const nt = o['non-text'];
+		for (const k in nt) {
+			const elm = document.getElementById(k);
+			if (elm) elm.title = elm.ariaLabel = nt[k];
+		}
+	}
+
 	function val2ctrl() {	// 変数→コンポーネント
+		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
+		ui_redraw();
 	}
 </script>
 </head>
@@ -31,13 +66,13 @@
 <div class="container-fluid">
 
 	<div class="collapse navbar-collapse">
-		<button id="close" type="button" class="btn btn-outline-dark py-0" aria-label="閉じる" data-bs-toggle="tooltip" title="閉じる">
+		<button id="close" type="button" class="btn btn-outline-dark py-0" aria-label="x閉じる" title="x閉じる" data-bs-toggle="tooltip">
 			<span style="font-size: 2em; pointer-events: none;" aria-hidden="true">&times;</span>
 		</button>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-center">
-		<span class="navbar-brand text-dark">右クリックメニュー</span>
+		<span class="navbar-brand text-dark" id="screen name">x右クリックメニュー</span>
 	</div>
 
 	<div class="collapse navbar-collapse justify-content-end">
@@ -53,20 +88,20 @@
 	<div class="col-1"></div>
 	<div class="col-4">
 		<div class="container-fluid d-flex align-items-center justify-content-center"><div class="row gap-2">
-			<button id="save" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="セーブ" data-bs-toggle="tooltip" title="セーブ">セーブ</button>
-			<button id="load" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ロード" data-bs-toggle="tooltip" title="ロード">ロード</button>
-			<button id="log" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="履歴" data-bs-toggle="tooltip" title="履歴">履歴</button>
-			<button id="config" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="設定" data-bs-toggle="tooltip" title="設定">設定</button>
-			<button id="hide_text" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="字を隠す" data-bs-toggle="tooltip" title="字を隠す">字を隠す</button>
-			<button id="cancel" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲームに戻る" data-bs-toggle="tooltip" title="ゲームに戻る">ゲームに戻る</button>
-			<button id="title" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="タイトルに戻る" data-bs-toggle="tooltip" title="タイトルに戻る">タイトルに戻る</button>
-			<button id="game_end" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲーム終了" data-bs-toggle="tooltip" title="ゲーム終了">ゲーム終了</button>
+			<button id="save" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="セーブ" data-bs-toggle="tooltip" title="セーブ">xセーブ</button>
+			<button id="load" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ロード" data-bs-toggle="tooltip" title="ロード">xロード</button>
+			<button id="log" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="履歴" data-bs-toggle="tooltip" title="履歴">x履歴</button>
+			<button id="config" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="設定" data-bs-toggle="tooltip" title="設定">x設定</button>
+			<button id="hide_text" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="字を隠す" data-bs-toggle="tooltip" title="字を隠す">x字を隠す</button>
+			<button id="cancel" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲームに戻る" data-bs-toggle="tooltip" title="ゲームに戻る">xゲームに戻る</button>
+			<button id="title" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="タイトルに戻る" data-bs-toggle="tooltip" title="タイトルに戻る">xタイトルに戻る</button>
+			<button id="game_end" type="button" class="btn btn-outline-light btn-lg fs-4 text-start" aria-label="ゲーム終了" data-bs-toggle="tooltip" title="ゲーム終了">xゲーム終了</button>
 
 		</div></div>
 	</div>
-	<div class="col-7 py-5">
-		<div class="container-fluid d-flex align-items-center justify-content-center text-white"><div class="row" style="text-shadow: 0px 3px 3px rgba(0,0,0,0.4);">
-			<div class="col-4">	Shift、ESCキー	</div>
+	<div class="col-7">
+		<div class="container-fluid d-flex align-items-center justify-content-center text-white"><div class="row" style="text-shadow: 0px 3px 3px rgba(0,0,0,0.4);" id="shortcut_htm">
+			<div class="col-4">x	Shift、ESCキー	</div>
 			<div class="col-8">	右クリックメニューを表示	</div>
 			<div class="col-4">	W、alt+enterキー	</div>
 			<div class="col-8">	全画面・ウインドウモード切り替え	</div>
@@ -77,12 +112,10 @@
 			<div class="col-4">	Ctrlキー	</div>
 			<div class="col-8">	押してる間だけメッセージ強制スキップ<br/>
 								（スキップはFキーと同等）	</div>
-			<div class="col-4">		</div>
-			<div class="col-8">		</div>
 			<div class="col-4">	SPACE、Delキー	</div>
 			<div class="col-8">	字を隠す(クリックで復帰)	</div>
 			<div class="col-4">	PAGE DOWNキー、PAGE UPキー、Up(↑)キー	</div>
-			<div class="col-8">	履歴(文字履歴を表示、クリックで復帰)	</div>
+			<div class="col-8">	履歴(本文履歴を表示、クリックで復帰)	</div>
 			<div class="col-4">	Sキー	</div>
 			<div class="col-8">	クイックセーブ	</div>
 			<div class="col-4">	Lキー	</div>
