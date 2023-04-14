@@ -43,6 +43,91 @@
 		if (isDev) init();	// デザイン用
 		else if (isWebp) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
 	});
+	let tid = undefined;
+	window.addEventListener('resize', ()=> {	// SKYNovelでは初期化後一度発生
+		if (tid) return;
+		tid = setTimeout(async ()=> {tid = undefined; await initPager();}, 500);	// clearTimeout()不要と判断
+	}, {passive: true});
+	//window.addEventListener('load', ()=> {});	// どちらでも発生
+
+	// 自動ページ機構
+	let page = 0;
+	async function initPager() {
+		// init
+		const len = a.length;
+		function dispAll() {
+			for (let i=0; i<len; ++i) {
+				const c = document.getElementById(`col${i}`);
+				c.style.display = '';
+			}
+		}
+		dispAll();
+		await new Promise(re=> requestAnimationFrame(re));
+
+		// ページにぴったる収まる縦横数を調べる
+		let cx = 0, cy = 1, beforeLeft = -1;
+		let procPager = i=> {
+			const c = document.getElementById(`col${i}`);
+			const {left} = c.getBoundingClientRect();
+			const lineBreak = beforeLeft < left;
+			beforeLeft = left;
+			if (lineBreak) {++cx; return;}
+
+			procPager = i=> {
+				if (i % cx > 0) return;
+
+				const c = document.getElementById(`col${i}`);
+				const {bottom} = c.getBoundingClientRect();
+				if (window.innerHeight > bottom) {++cy; return;}
+
+				procPager = ()=> {};
+			};
+			procPager(i);
+		};
+		for (let i=0; i<len; ++i) procPager(i);
+
+		// finish
+		const numElmPerPage = cx * cy;
+		const pageMax = Math.trunc((len -1) /numElmPerPage) +1;
+		if (page > pageMax -1) page = pageMax -1;
+
+		function hideOtherPage() {
+			if (pageMax <= 1) return;
+			for (let i=0; i<len; ++i) {
+				if (page *numElmPerPage <= i && i < (page +1) *numElmPerPage) continue;
+
+				const c = document.getElementById(`col${i}`);
+				c.style.display = 'none';
+			}
+		}
+		hideOtherPage();
+
+		const pn = document.getElementById('pagination');
+		if (pageMax === 1) pn.style.display = 'none';
+		else {
+			pn.style.display = '';
+
+			let htm = '';
+			for (let p=0; p<pageMax; ++p) htm += `
+	<input type="radio" class="btn-check" name="page" id="page${p}" value="${p}" autocomplete="off"${p === page ?' checked' :''}>
+	<label class="btn btn-outline-secondary" for="page${p}">${p +1}</label>`;
+			pn.innerHTML = htm;
+
+			// page変更
+			const ps = document.getElementsByName('page');
+			const lenPs = ps.length;
+			ps.forEach(v=> v.addEventListener('change', ()=> {
+				for (let i=0; i<lenPs; ++i) {
+					if (! ps[i].checked) continue;
+
+					page = i;
+					dispAll();
+					hideOtherPage();
+					break;
+				}
+			}));
+		}
+	}
 
 	// SKYNovelから読み書きする変数なので、触らない。わざとvar
 	var val_ui_lang = 'ja';
@@ -78,10 +163,11 @@
 		// 配列 a をもとにサムネイル群を生成
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = '';
-		a.forEach(v=> {
+		// 注意：この画面で .col要素は insertAdjacentHTML('beforeend' 追加なので、id は昇順
+		a.forEach((v, i)=> {
 			if (v.enabled === 'false') {
 				lst.insertAdjacentHTML('beforeend', `
-<div class="col"><div class="card p-1 mb-1">
+<div class="col" id="col${i}"><div class="card p-1 mb-1">
 	<div class="bg-image ripple" data-ripple-color="light"
 		aria-label="まだ本編で見ていません" title="まだ本編で見ていません">
 		<img data-src="${miken}" class="img-fluid"/>
@@ -100,7 +186,7 @@
 			if (isWebp) elm = elm.replace(/\.(jpe?g|png)$/, '.webp');
 			// ${v.type}でclass名にも追加、SKYNovel側でクリック検知するため
 			lst.insertAdjacentHTML('beforeend', `
-<div class="col"><div class="card p-1 mb-1">
+<div class="col" id="col${i}"><div class="card p-1 mb-1">
 	<div class="bg-image hover-overlay ripple ${v.type}"
 		data-ripple-color="light"
 		data-type="${v.type}" data-arg="${v.fn}" tabindex="0"
@@ -110,7 +196,6 @@
 	</div>
 	<div class="card-text">${v.title}</div>
 </div></div>`);
-
 		});
 
 		const mdl = new bootstrap.Modal(document.getElementById('mdlView'));
@@ -141,6 +226,8 @@
 		}, {passive: true}));
 
 		Array.from(document.getElementsByTagName('img')).forEach(i=> setImg(i));
+		// 画像のイベント、一度だけ。SKYNovelでは発生しない
+		window.addEventListener('load', async ()=> await initPager());
 	}
 
 	// 画像ロード処理差し替え（関数名変更不可）
@@ -190,6 +277,24 @@
 </div></div>
 
 </div></div>
+
+
+<nav class="navbar fixed-bottom navbar-dark">
+	<div class="container-fluid justify-content-center">
+
+<div class="btn-group bg-dark" role="group" aria-label="pagination" id="pagination">
+	<input type="radio" class="btn-check" name="page" value="0" autocomplete="off" checked>
+	<label class="btn btn-outline-secondary" for="page1">1</label>
+
+	<input type="radio" class="btn-check" name="page" value="1" autocomplete="off">
+	<label class="btn btn-outline-secondary" for="page2">2</label>
+
+	<input type="radio" class="btn-check" name="page" value="2" autocomplete="off">
+	<label class="btn btn-outline-secondary" for="page3">3</label>
+</div>
+
+	</div>
+</nav>
 
 
 <div id="mdlView" class="modal fade" tabindex="-1">

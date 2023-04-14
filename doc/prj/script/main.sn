@@ -45,9 +45,9 @@
 
 ;********************************************************
 *toggle_full_screen
-	[toggle_full_screen]
 	[let name=txt text=&mes.ウインドウモード]
-	[let name=txt text=&mes.全画面モード cond=const.sn.displayState]
+	[let name=txt text=&mes.全画面モード cond=!const.sn.displayState]
+	[toggle_full_screen]
 	[notice text=&txt]
 
 	; 設定画面変更

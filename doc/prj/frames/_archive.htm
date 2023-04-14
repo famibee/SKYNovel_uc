@@ -99,7 +99,12 @@
 			// サムネイル削除
 			const card = document.querySelector(`[data-id="${val_place}"]`).parentElement;	// この辺はBootstrapテンプレ毎のくせがあるかも
 			card.classList.add('del_anime');
-			setTimeout(()=> card.parentElement.removeChild(card), 500);
+			const idx = a.findIndex(v=> v.place == val_place);
+			if (idx > -1) {
+				a.splice(idx, 1);
+				if (val_mode === 'Save') a = a.slice(0, -1);
+				setTimeout(()=> val2ctrl(), 500);
+			}
 		}, {passive: true});
 
 		Array.from(document.getElementsByClassName('modal'))
@@ -130,6 +135,91 @@
 			});
 		});
 	});
+	let tid = undefined;
+	window.addEventListener('resize', ()=> {	// SKYNovelでは初期化後一度発生
+		if (tid) return;
+		tid = setTimeout(async ()=> {tid = undefined; await initPager();}, 500);	// clearTimeout()不要と判断
+	}, {passive: true});
+	//window.addEventListener('load', ()=> {});	// どちらでも発生
+
+	// 自動ページ機構
+	let page = 0;
+	async function initPager() {
+		// init
+		const len = a.length;
+		function dispAll() {
+			for (let i=0; i<len; ++i) {
+				const c = document.getElementById(`col${i}`);
+				c.style.display = '';
+			}
+		}
+		dispAll();
+		await new Promise(re=> requestAnimationFrame(re));
+
+		// ページにぴったる収まる縦横数を調べる
+		let cx = 0, cy = 1, beforeLeft = -1;
+		let procPager = i=> {
+			const c = document.getElementById(`col${i}`);
+			const {left} = c.getBoundingClientRect();
+			const lineBreak = beforeLeft < left;
+			beforeLeft = left;
+			if (lineBreak) {++cx; return;}
+
+			procPager = i=> {
+				if (i % cx > 0) return;
+
+				const c = document.getElementById(`col${i}`);
+				const {bottom} = c.getBoundingClientRect();
+				if (window.innerHeight > bottom) {++cy; return;}
+
+				procPager = ()=> {};
+			};
+			procPager(i);
+		};
+		for (let i=0; i<len; ++i) procPager(i);
+
+		// finish
+		const numElmPerPage = cx * cy;
+		const pageMax = Math.trunc((len -1) /numElmPerPage) +1;
+		if (page > pageMax -1) page = pageMax -1;
+
+		function hideOtherPage() {
+			if (pageMax <= 1) return;
+			for (let i=0; i<len; ++i) {
+				if (page *numElmPerPage <= i && i < (page +1) *numElmPerPage) continue;
+
+				const c = document.getElementById(`col${i}`);
+				c.style.display = 'none';
+			}
+		}
+		hideOtherPage();
+
+		const pn = document.getElementById('pagination');
+		if (pageMax === 1) pn.style.display = 'none';
+		else {
+			pn.style.display = '';
+
+			let htm = '';
+			for (let p=0; p<pageMax; ++p) htm += `
+	<input type="radio" class="btn-check" name="page" id="page${p}" value="${p}" autocomplete="off"${p === page ?' checked' :''}>
+	<label class="btn btn-outline-secondary" for="page${p}">${p +1}</label>`;
+			pn.innerHTML = htm;
+
+			// page変更
+			const ps = document.getElementsByName('page');
+			const lenPs = ps.length;
+			ps.forEach(v=> v.addEventListener('change', ()=> {
+				for (let i=0; i<lenPs; ++i) {
+					if (! ps[i].checked) continue;
+
+					page = i;
+					dispAll();
+					hideOtherPage();
+					break;
+				}
+			}));
+		}
+	}
 
 	// SKYNovelから読み書きする変数なので、触らない。わざとvar
 	var val_s_place = 999;		// 次のセーブ位置
@@ -213,13 +303,15 @@
 		lst.textContent = null;
 		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: val_ui[val_ui_lang]['新規にセーブします'], place: val_s_place});
 		const u = new Date().getTime();
-		a.forEach(v=> {
+		// 注意：この画面で .col要素は insertAdjacentHTML('afterbegin' 追加なので、降順
+		const len = a.length;
+		a.forEach((v, i)=> {
 			if (isWebp && v.pic.slice(0, 10) !== 'userdata:/') v.pic = v.pic.replace(/\.(jpe?g|png)$/, '.webp');
 
 			const modal = (val_mode === 'Load' && val_caller === 'Title')
 						|| (val_mode === 'Save' && v.dt === '');
 			lst.insertAdjacentHTML('afterbegin', `
-<div class="col"><div class="card p-1 mb-1" data-id="${v.place}">
+<div class="col" id="col${len -i -1}"><div class="card p-1 mb-1" data-id="${v.place}">
 	<div class="bg-image hover-overlay ripple${
 		modal ?' no_modal' :'" data-bs-toggle="modal" data-bs-target="#modal_sl'
 	}" data-ripple-color="light">
@@ -281,6 +373,8 @@
 		});
 
 		Array.from(document.getElementsByTagName('img')).forEach(i=> setImg(i));
+		// 画像のイベント、一度だけ。SKYNovelでは発生しない
+		window.addEventListener('load', async ()=> await initPager());
 	}
 
 	// 画像ロード処理差し替え（関数名変更不可）
@@ -336,6 +430,23 @@
 </div></div>
 
 
+<nav class="navbar fixed-bottom navbar-dark">
+	<div class="container-fluid justify-content-center">
+
+<div class="btn-group bg-dark" role="group" aria-label="pagination" id="pagination">
+	<input type="radio" class="btn-check" name="page" value="0" autocomplete="off" checked>
+	<label class="btn btn-outline-secondary" for="page1">1</label>
+
+	<input type="radio" class="btn-check" name="page" value="1" autocomplete="off">
+	<label class="btn btn-outline-secondary" for="page2">2</label>
+
+	<input type="radio" class="btn-check" name="page" value="2" autocomplete="off">
+	<label class="btn btn-outline-secondary" for="page3">3</label>
+</div>
+
+	</div>
+</nav>
+
 
 <div id="modal_sl" class="modal fade" tabindex="-1" aria-labelledby="modal_sl_lbl" aria-hidden="true">
 <div class="modal-dialog"><div class="modal-content">
@@ -378,7 +489,7 @@
 	xセーブデータを削除しますか？
 </div>
 <div class="modal-footer">
-	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark " id="削除キャンセル" title="キャンセル" aria-label="キャンセル">xキャンセル</button>
+	<button type="button" data-bs-dismiss="modal" class="btn btn-outline-dark" id="削除キャンセル" title="キャンセル" aria-label="キャンセル">xキャンセル</button>
 	<button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="do_del" title="削除する" aria-label="削除する">x削除する</button>
 </div>
 </div></div>
