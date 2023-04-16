@@ -192,6 +192,7 @@
 				c.style.display = 'none';
 			}
 		}
+		repage = ()=> hideOtherPage();
 		hideOtherPage();
 
 		const pn = document.getElementById('pagination');
@@ -220,6 +221,7 @@
 			}));
 		}
 	}
+	let repage = ()=> {};
 
 	// SKYNovelから読み書きする変数なので、触らない。わざとvar
 	var val_s_place = 999;		// 次のセーブ位置
@@ -375,6 +377,8 @@
 		Array.from(document.getElementsByTagName('img')).forEach(i=> setImg(i));
 		// 画像のイベント、一度だけ。SKYNovelでは発生しない
 		window.addEventListener('load', async ()=> await initPager());
+
+		repage();
 	}
 
 	// 画像ロード処理差し替え（関数名変更不可）
