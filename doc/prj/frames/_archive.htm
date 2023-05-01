@@ -144,9 +144,10 @@
 
 	// 自動ページ機構
 	let page = 0;
+	let len = 0;
 	async function initPager() {
 		// init
-		const len = a.length;
+		len = a.length;
 		function dispAll() {
 			for (let i=0; i<len; ++i) {
 				const c = document.getElementById(`col${i}`);
@@ -306,7 +307,7 @@
 		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: val_ui[val_ui_lang]['新規にセーブします'], place: val_s_place});
 		const u = new Date().getTime();
 		// 注意：この画面で .col要素は insertAdjacentHTML('afterbegin' 追加なので、降順
-		const len = a.length;
+		len = a.length;
 		a.forEach((v, i)=> {
 			if (isWebp && v.pic.slice(0, 10) !== 'userdata:/') v.pic = v.pic.replace(/\.(jpe?g|png)$/, '.webp');
 

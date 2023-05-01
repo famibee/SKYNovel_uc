@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.14.3
+- fix: セーブロード画面(htm)：セーブ画面を開いてからロード画面を開くなどでエラーになる件
+- fix: セーブロード画面(sn)：[save]で組み込み変数 const.sn.last_page_text の代わりに const.sn.last_page_plain_text を使用するように
 ## v2.14.2
 - fix: core/font/ipamjm.woff2 が一部しか字形を含んでいなかったので、IPA配布の全字形を含んだ ipamjm.ttf に差し替え
 - fix: 最新拡張機能（v4.14.0）でフォント再生成
