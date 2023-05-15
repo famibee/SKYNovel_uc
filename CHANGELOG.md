@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.14.4
+- fix: ext_fg.sn 更新
 ## v2.14.3
 - fix: セーブロード画面(htm)：セーブ画面を開いてからロード画面を開くなどでエラーになる件
 - fix: セーブロード画面(sn)：[save]で組み込み変数 const.sn.last_page_text の代わりに const.sn.last_page_plain_text を使用するように
