@@ -54,6 +54,7 @@
 ;	&mes.タイトルに戻りますか？ = 'back to the title?'
 	&mes.クイックセーブ = 'Quick save'
 	&mes.クイックロード = 'Quick load'
+	&mes.前回終了ポイントから再開しますか？ = 'Do you want to resume from the last exit point?'
 	&mes.自動読み進みOn = 'Auto-read On'
 	&mes.強制スキップOn = 'Force Skip On'
 
@@ -129,6 +130,7 @@
 	&mes.タイトルに戻りますか？= '是否回到標題畫面？'
 	&mes.クイックセーブ = '快速紀錄'
 	&mes.クイックロード = '快速讀取'
+	&mes.前回終了ポイントから再開しますか？ = '您想從上一個退出點繼續嗎？'
 	&mes.自動読み進みOn = '自動閱讀On'
 	&mes.強制スキップOn = '強制跳過文字On'
 
@@ -205,6 +207,7 @@
 	&mes.タイトルに戻りますか？= '是否回到標題畫面？'
 	&mes.クイックセーブ = '快速紀錄'
 	&mes.クイックロード = '快速讀取'
+	&mes.前回終了ポイントから再開しますか？ = '您想从上一个退出点继续吗？'
 	&mes.自動読み進みOn = '自動閱讀On'
 	&mes.強制スキップOn = '強制跳過文字On'
 
@@ -279,6 +282,7 @@
 ;	&mes.タイトルに戻りますか？ = '¿Quieres volver al título?'
 	&mes.クイックセーブ = 'Guardado rápido'
 	&mes.クイックロード = 'Carga rápida'
+	&mes.前回終了ポイントから再開しますか？ = '¿Quiere reanudar desde el último punto de salida?'
 	&mes.自動読み進みOn = 'Modo automático On'
 	&mes.強制スキップOn = 'Omitir On'
 
