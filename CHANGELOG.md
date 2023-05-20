@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.14.6
+- fix: [txt_lay_〜]系マクロを呼ぶと、それまでで非表示にしていたシステムメニューボタンレイヤ（mes_sysmenu）が表示されてしまう件
+	- [sysmenu_draw_h]や[sysmenu_draw_v]を内部で呼んでいて、その修正
+- fix: 拡張スクリプト更新：doc/prj/theme/ext_voice.sn：2023.05.20.009
 ## v2.14.5
 - fix: 縦書きウインドウのヒントの表示位置を修正
 	- sub.sn：[sysmenu_draw_v]の hint_opt 属性を修正、テキストウインドウ内側に

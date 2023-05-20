@@ -1,8 +1,8 @@
 ;********************************************************
 ;@EXT_DESC	ボイスをより簡単に扱う
+;@VER		2023.05.20.009	〔黒柳〕指定と内部名を分けていなかった仕様を修正
 ;@VER		2023.03.06.008	シナリオ名内部変数に「_」など文字を含む運用に
 ;@VER		2023.02.12.007	バッファ名説明をテンプレに合わせる（音声→VOICE）
-;@VER		2022.11.05.006	vキー押下でボイスを再度再生する機能追加
 ;********************************************************
 
 ;*********************************************************
@@ -42,7 +42,7 @@
 &save:ssname4voice_ex = ''	; シナリオ名
 [macro name=voice_ex nowarn_unused=true
 	sum='連番ファイル名の音声を再生'
-	detail='連番ファイル名の音声再生を手軽に記述できる。\n括弧マクロ〔〕を使用するとさらに簡略化できる。\n【注意】変数【const.db_v_who】【save:db_v_cnt】をjsonなどで初期化する下準備が必要。\n一本道作品でない場合はスクリプト冒頭で[voice2_set]により内部カウンターを変更しておく。\n音声ファイル名は【人物名_000.???】形式'
+	detail='連番ファイル名の音声再生を手軽に記述できる。\n括弧マクロ〔〕を使用するとさらに簡略化できる。\n【注意】変数【const.db】【save:db_v_cnt】をjsonなどで初期化する下準備が必要。\n一本道作品でない場合はスクリプト冒頭で[voice2_set]により内部カウンターを変更しておく。\n音声ファイル名は【人物名_000.???】形式'
 
 	%text='人物名||連番管理している人物ごとの区別名'
 ]
@@ -50,14 +50,14 @@
 	&fn = const.db[mp:text].fn	; 音声ファイル名取得
 	[return cond=fn==null]	; 音声無しは無処理
 
-	&c = save:db_v_cnt[mp:text]	; 音声カウンター取得
+	&c = save:db_v_cnt[fn]	; 音声カウンター取得
 	[trace text='【エラー】拡張機能 ext_voice.an 使用時の初期化がされていません。' cond='c==null']
-	[trace text='&"【&save:db_v_cnt."+ mp:text +" = 1】がありません。"' cond='c==null']
+	[trace text='&"【&save:db_v_cnt."+ fn +" = 1】がありません。"' cond='c==null']
 	[trace text='【対処法】詳しくは同ファイル冒頭の説明文をご覧下さい。' cond='c==null']
 	
 	[let_substr name=cnt text="&'000'+ c" pos=-3 len=all cast=str]
 	[voice fn="&save:ssname4voice_ex + fn +'_'+ cnt@str"]
-	[let name="&'save:db_v_cnt.'+ mp:text" text=&c+1]
+	[let name="&'save:db_v_cnt.'+ fn" text=&c+1]
 [endmacro]
 
 ;*********************************************************

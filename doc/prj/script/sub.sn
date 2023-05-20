@@ -110,6 +110,7 @@
 	%no_sysmenu_draw?='Boolean|なにもしない|trueを指定すると、次の[grp]などでの文字レイヤ[trans]などでシステムメニューを表示しない'
 ]
 	[return cond=!useSysMenu]
+	&v = const.sn.lay.mes_sysmenu.fore.visible
 	[sys_menu visible=false]
 	[clear_lay layer=mes_sysmenu page=both]
 	[return cond="mp:no_sysmenu_draw != null"]
@@ -122,7 +123,7 @@
 	;&r = 0	; ボタンを横にしたいなら
 	&r = 90	; ボタンを縦にしたいなら
 
-	[lay layer=mes_sysmenu page=back]
+	[lay layer=mes_sysmenu page=back visible=&v]
 	&hint_opt = '{"placement":"left","modifiers":[{"name":"offset","options":{"offset":[0,30]}}]}';
 	[button layer=mes_sysmenu page=back text=&btn.クイックセーブ rotation=&r left=&sysmenu_left2 top=&t+380 global=true event_at_down=true fn=_archive label=*quick_save call=true hint=&mes.クイックセーブ hint_opt=&hint_opt enterse=&sysse_choice]
 	[button layer=mes_sysmenu page=back text=&btn.クイックロード rotation=&r left=&sysmenu_left2 top=&t+500 global=true event_at_down=true fn=_archive label=*quick_load call=true hint=&mes.クイックロード hint_opt=&hint_opt enterse=&sysse_choice]
@@ -269,6 +270,7 @@
 	%no_sysmenu_draw?='Boolean|なにもしない|trueを指定すると、次の[grp]などでの文字レイヤ[trans]などでシステムメニューを表示しない'
 ]
 	[return cond=!useSysMenu]
+	&v = const.sn.lay.mes_sysmenu.fore.visible
 	[sys_menu visible=false]
 	[clear_lay layer=mes_sysmenu page=both]
 	[return cond="mp:no_sysmenu_draw != null"]
@@ -279,7 +281,7 @@
 	&r = 0	; ボタンを横にしたいなら
 	;&r = 90	; ボタンを縦にしたいなら
 
-	[lay layer=mes_sysmenu page=back]
+	[lay layer=mes_sysmenu page=back visible=&v]
 	[button layer=mes_sysmenu page=back text=&btn.タイトルへ rotation=&r left=&sysmenu_left top=&sysmenu_top global=true event_at_down=true fn=sub label=*title_sys call=true hint=&mes.タイトルに戻る enterse=&sysse_choice]
 		; どの本文スクリプトから呼ばれるか不明なので、
 		; 同一スクリプトへのコールだがfn属性を省略してはいけない
