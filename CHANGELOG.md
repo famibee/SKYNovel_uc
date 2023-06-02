@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.14.7
+- fix: 設定画面：エクスポート・インポートボタン文言の多言語化忘れ
+- fix: 自動読み進み中のボイス再生待ちで、クリックキャンセル時にボイスを再生停止しないように（対象：マクロ[lr][plc]）
+- fix: [set_cancel_skip]削除
+- fix: _submenu.sn の不要な[wait]削除
 ## v2.14.6
 - fix: [txt_lay_〜]系マクロを呼ぶと、それまでで非表示にしていたシステムメニューボタンレイヤ（mes_sysmenu）が表示されてしまう件
 	- [sysmenu_draw_h]や[sysmenu_draw_v]を内部で呼んでいて、その修正

@@ -209,7 +209,6 @@
 	[frame id=submenu visible=false]
 	[sys_menu visible=&sysmenu_v]
 	[lay layer=mes page=fore visible=&v]
-	[wait time=200]		; パフォーマンス改善
 
 	[enable_event enabled=true]
 	[let name=isGameState text=true]

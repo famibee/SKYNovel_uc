@@ -526,7 +526,7 @@
 	%time?='ミリ秒|500|効果音フェードアウト時間。変化にかける時間'
 	%buf?='サウンドバッファ|VOICE|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
 ]
-	[ws buf=VOICE canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
+	[ws buf=VOICE canskip=true stop=false cond='sn.auto.enabled && !sn.skip.enabled']
 	[p visible=%visible|true]
 	[er]
 	[record_place layer=&dsp_lays]
@@ -645,13 +645,11 @@
 ;********************************************************
 *toggle_auto_read
 	&tmp:sn.auto.enabled = true
-	[set_cancel_skip]
 	[notice text=&mes.自動読み進みOn]
 	[return]
 
 *toggle_skip
 	&tmp:sn.skip.enabled = true
-	[set_cancel_skip]
 	[notice text=&mes.強制スキップOn]
 	[return]
 

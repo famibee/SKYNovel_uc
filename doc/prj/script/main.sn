@@ -18,7 +18,7 @@
 ;	[update_check url='http://ugainovel.hiho.jp/famibee/sample/hatsune/']
 
 [macro name=lr nowarn_unused=true]
-	[ws buf=VOICE canskip=true cond='sn.auto.enabled && !sn.skip.enabled']
+	[ws buf=VOICE canskip=true stop=false cond='sn.auto.enabled && !sn.skip.enabled']
 	[l]
 	;[r]
 [endmacro]

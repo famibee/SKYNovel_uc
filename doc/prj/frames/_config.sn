@@ -76,7 +76,9 @@
 				"screen mode": "画面モード",
 				"screen mode-Sub": "全画面か",
 				"export-Sub": "プレイデータのバックアップ",
-				"import-Sub": "プレイデータのリストア"
+				"import-Sub": "プレイデータのリストア",
+				"export": "エクスポート",
+				"import": "インポート"
 			}
 		},
 		"es": {
@@ -113,7 +115,9 @@
 				"screen mode": "Modo de pantalla",
 				"screen mode-Sub": "pantalla completa",
 				"export-Sub": "Copia de seguridad de datos de reproducción",
-				"import-Sub": "Restauración de datos de reproducción"
+				"import-Sub": "Restauración de datos de reproducción",
+				"export": "exportar",
+				"import": "importar"
 			}
 		},
 		"en": {
@@ -150,7 +154,9 @@
 				"screen mode": "Screen mode",
 				"screen mode-Sub": "full screen",
 				"export-Sub": "Play data backup",
-				"import-Sub": "Restoring play data"
+				"import-Sub": "Restoring play data",
+				"export": "export",
+				"import": "import"
 			}
 		},
 		"cn": {
@@ -187,7 +193,9 @@
 				"screen mode": "全屏・视窗模式",
 				"screen mode-Sub": "全屏",
 				"export-Sub": "播放数据备份",
-				"import-Sub": "恢复播放数据"
+				"import-Sub": "恢复播放数据",
+				"export": "出口",
+				"import": "进口"
 			}
 		},
 		"ct": {
@@ -224,7 +232,9 @@
 				"screen mode": "全螢幕模式",
 				"screen mode-Sub": "全屏",
 				"export-Sub": "播放數據備份",
-				"import-Sub": "恢復播放數據"
+				"import-Sub": "恢復播放數據",
+				"export": "出口",
+				"import": "進口"
 			}
 		}
 	}
