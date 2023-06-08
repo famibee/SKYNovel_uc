@@ -57,6 +57,7 @@
 	&mes.前回終了ポイントから再開しますか？ = 'Do you want to resume from the last exit point?'
 	&mes.自動読み進みOn = 'Auto-read On'
 	&mes.強制スキップOn = 'Force Skip On'
+	&mes.強制スキップOn（未読も） = 'Force Skip On (also unread)'
 
 	; _config.sn
 	&mes.バック不透明度 = 'Back opacity '
@@ -131,8 +132,9 @@
 	&mes.クイックセーブ = '快速紀錄'
 	&mes.クイックロード = '快速讀取'
 	&mes.前回終了ポイントから再開しますか？ = '您想從上一個退出點繼續嗎？'
-	&mes.自動読み進みOn = '自動閱讀On'
-	&mes.強制スキップOn = '強制跳過文字On'
+	&mes.自動読み進みOn = '自動閱讀 On'
+	&mes.強制スキップOn = '強制跳過文字 On'
+	&mes.強制スキップOn（未読も） = '強制跳過 On（也未讀）'
 
 	; _config.sn
 	&mes.バック不透明度 = '背景的不透明度 '
@@ -208,8 +210,9 @@
 	&mes.クイックセーブ = '快速紀錄'
 	&mes.クイックロード = '快速讀取'
 	&mes.前回終了ポイントから再開しますか？ = '您想从上一个退出点继续吗？'
-	&mes.自動読み進みOn = '自動閱讀On'
-	&mes.強制スキップOn = '強制跳過文字On'
+	&mes.自動読み進みOn = '自動閱讀 On'
+	&mes.強制スキップOn = '強制跳過文字 On'
+	&mes.強制スキップOn（未読も） = '強制跳過文字 On（也未读）'
 
 	; _config.sn
 	&mes.バック不透明度 = '背景的不透明度 '
@@ -285,6 +288,7 @@
 	&mes.前回終了ポイントから再開しますか？ = '¿Quiere reanudar desde el último punto de salida?'
 	&mes.自動読み進みOn = 'Modo automático On'
 	&mes.強制スキップOn = 'Omitir On'
+	&mes.強制スキップOn（未読も） = 'Omitir On (también sin leer)'
 
 	; _config.sn
 	&mes.バック不透明度 = 'Opacidad del fondo '
@@ -361,6 +365,7 @@
 	&mes.前回終了ポイントから再開しますか？ = '前回終了ポイントから再開しますか？'
 	&mes.自動読み進みOn = '自動読み進みOn'
 	&mes.強制スキップOn = '強制スキップ On'
+	&mes.強制スキップOn（未読も） = '強制スキップOn（未読も）'
 
 	; _config.sn
 	&mes.バック不透明度 = 'バック不透明度 '
