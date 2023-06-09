@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.14.9
+- fix: cfg.log.max_len: デフォルト値 1024 を 64に
 ## v2.14.8
 - feat: （F で既読スキップだが）Ctrl (Mac では Control) + F で未読スキップするように
 ## v2.14.7

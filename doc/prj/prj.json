@@ -14,7 +14,7 @@
 		"version": "1.0.0"
 	},
 	"log": {
-		"max_len": 1024
+		"max_len": 64
 	},
 	"init": {
 		"bg_color": "#000000",
