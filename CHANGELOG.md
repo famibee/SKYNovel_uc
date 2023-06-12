@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.14.10
+- fix: シナリオ開始時共通処理で [fadeoutse buf=VOICE time=1000] 追加
+- fix: マクロ[bgm]をシンプルな構造に
+- fix: アルバム画面とセーブロード画面 htm、ダミーデータで id 忘れ警告が出ていた件
 ## v2.14.9
 - fix: cfg.log.max_len: デフォルト値 1024 を 64に
 ## v2.14.8

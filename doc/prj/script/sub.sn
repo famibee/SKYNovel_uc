@@ -37,6 +37,7 @@
 	[er]	; ページ両面の文字消去＆改ページ
 		; （改ページしないと履歴がページからあふれる）
 	[set_focus to=null]
+;	[fadeoutbgm time=300]	; この辺は好み
 	[fadeoutse buf=SE time=500]
 	[fadeoutse buf=VOICE time=1000]
 
@@ -58,6 +59,7 @@
 
 	[fadeoutbgm time=300]
 	[fadeoutse buf=SE time=500]
+	[fadeoutse buf=VOICE time=1000]
 
 	; テキストレイヤ全画面設定
 	[txt_lay_fullscreen b_alpha=0 no_sysmenu_draw=true]
@@ -477,15 +479,14 @@
 ]
 	[return cond='save:const.sn.sound.BGM.fn == mp:fn && const.sn.sound.BGM.playing']
 
-	[stopbgm cond='mp:time == null || sn.skip.enabled']
-
-	[stopse buf=BGM_FO]
-	[xchgbuf buf=BGM buf2=BGM_FO]
-
 	[if exp='mp:time == null || sn.skip.enabled']
+		[stopbgm]
 		[playbgm *]
 	[else]
+		[stopse buf=BGM_FO]
+		[xchgbuf buf=BGM buf2=BGM_FO]
 		[fadeoutse buf=BGM_FO time=%time|500]
+
 		[playbgm * volume=0]
 		[fadebgm * volume=%volume|1 time=%time|500]
 	[endif]
