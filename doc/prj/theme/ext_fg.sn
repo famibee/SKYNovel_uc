@@ -1,5 +1,6 @@
 ;********************************************************
 ;@EXT_DESC	レイヤのクロスフェードと画像変更と動きの拡張機能
+;@VER		2023.06.19.006	sn更新で不要になった sn.skip.enabled の扱いを削除
 ;@VER		2023.05.15.005	一部残っていた AIRNovel の scaleX,Y 属性名を修正
 ;@VER		2022.11.02.004	[fg]に snippet_ext 追加
 ;@VER		2022.10.18.003	[fg][img]@face説明追加
@@ -20,9 +21,7 @@
 	%（その他）?='…|…|引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。\n立ち絵なら主にlayer、fn、pos、rule、time属性を使用すれば表現できる'
 ]
 	[img * layer=%layer|0]
-	[let name=t text=%time|500]
-	[let name=t text=0 cond=sn.skip.enabled]	; skip時は瞬時処理
-	[trans * layer=%layer|0 time=&t]
+	[trans * layer=%layer|0 time=%time|500]
 	[wt]
 [endmacro]
 

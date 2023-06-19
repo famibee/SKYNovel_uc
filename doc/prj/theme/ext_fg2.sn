@@ -1,5 +1,6 @@
 ;********************************************************
 ;@EXT_DESC	概要：立ち絵の扱いが簡単な[fg]
+;@VER		2023.06.19.005	sn更新で不要になった sn.skip.enabled の扱いを削除
 ;@VER		2022.11.02.004	[fg2]に snippet_ext 追加
 ;@VER		2022.10.18.003	[fg2]@face説明追加
 ;@VER		2022.01.10.002	出現時[tsy]にrender=true 追加
@@ -94,7 +95,6 @@
 
 	[let name=alpha text=%alpha|1]
 	[let name=time text=%time|500]
-	[let name=time text=0 cond=sn.skip.enabled]	; skip時は処理なし
 	[let name=ease text=%ease|Cubic.Out]
 	[let name=add text=%add|'cr']
 

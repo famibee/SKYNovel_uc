@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.14.11
+- fix: [plc]内部を sn.skip.enabled 中心に整理
+- fix: ext_fg.sn、ext_fg2.sn を微更新
 ## v2.14.10
 - fix: シナリオ開始時共通処理で [fadeoutse buf=VOICE time=1000] 追加
 - fix: マクロ[bgm]をシンプルな構造に

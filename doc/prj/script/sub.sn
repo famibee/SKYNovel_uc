@@ -536,9 +536,13 @@
 	; [sys_resume_save]後に何を書いても、ロード時は無視される。（ここを通らない）
 	; _archive.sn の【ロード後最初にしたい共通処理】*do_load_initに書く。
 	&lastVoice = ''
-	[fadeoutse buf=SE time=%time|500 cond='mp:no_se_stop === null && !sn.skip.enabled']
-	[stopse buf=SE cond='sn.skip.enabled']
-	[stopse buf=%buf|VOICE cond='mp:no_voice_stop === null || sn.skip.enabled']
+	[if exp=sn.skip.enabled]
+		[stopse buf=SE]
+		[stopse buf=%buf|VOICE]
+	[else]
+		[fadeoutse buf=SE time=%time|500 cond='mp:no_se_stop === null']
+		[stopse buf=%buf|VOICE cond='mp:no_voice_stop === null']
+	[endif]
 [endmacro]
 
 ;********************************************************
