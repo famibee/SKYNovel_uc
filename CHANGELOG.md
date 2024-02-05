@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.14.12
+- fix: ライブラリ更新(SKYNovel v1.48.15)など
 ## v2.14.11
 - fix: [plc]内部を sn.skip.enabled 中心に整理
 - fix: ext_fg.sn、ext_fg2.sn を微更新
