@@ -10,25 +10,20 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.48.15",
+		"@famibee/skynovel": "^1.49.1",
 		"about-window": "^1.15.2",
-		"buffer": "^6.0.3",
-		"crypto-js": "^4.2.0",
 		"humane-js": "^3.2.2"
 	},
 	"devDependencies": {
-		"@types/crypto-js": "^4.2.2",
-		"@types/fs-extra": "^11.0.4",
-		"@types/node": "^20.11.16",
 		"css-loader": "^6.10.0",
-		"electron": "^28.2.1",
-		"electron-builder": "^24.12.0",
+		"electron": "^28.2.2",
+		"electron-builder": "^24.13.0",
 		"fs-extra": "^11.2.0",
 		"rimraf": "^5.0.5",
 		"style-loader": "^3.3.4",
 		"webpack": "^5.90.1",
 		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^4.15.1",
+		"webpack-dev-server": "^5.0.0",
 		"webpack-obfuscator": "^3.5.1"
 	},
 	"scripts": {
