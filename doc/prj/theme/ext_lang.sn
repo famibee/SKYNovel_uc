@@ -8,8 +8,8 @@
 [if exp='lang == "en"']	; 英語
 	[let name=save:sn.userFnTail text=&lang val2fontNm='ipamjm']
 
-	[title text='Beneath the Cherry Trees' cond=!const.体験版]
-	[title text='Beneath the Cherry Trees (Trial)' cond=const.体験版]
+;	[title text='At Hatsunekan' cond=!const.体験版]
+;	[title text='At Hatsunekan (Trial)' cond=const.体験版]
 
 	; text button
 	&btn.Start = 'New game'
@@ -85,8 +85,8 @@
 	&lang = 'ct'
 	[let name=save:sn.userFnTail text=&lang val2fontNm='Source Han Sans CN']
 
-	[title text='在櫻花樹下' cond=!const.体験版]
-	[title text='在櫻花樹下 (試用版)' cond=const.体験版]
+;	[title text='在初根館' cond=!const.体験版]
+;	[title text='在初根館 (試用版)' cond=const.体験版]
 
 	; text button
 	&btn.Start = '從頭開始'
@@ -163,8 +163,8 @@
 	&lang = 'cn'
 	[let name=save:sn.userFnTail text=&lang val2fontNm='Source Han Sans CN']
 
-	[title text='在樱花树下' cond=!const.体験版]
-	[title text='在樱花树下 (试用版)' cond=const.体験版]
+;	[title text='在初根馆' cond=!const.体験版]
+;	[title text='在初根馆 (试用版)' cond=const.体験版]
 
 	; text button
 	&btn.Start = '从最初开始'
@@ -239,8 +239,8 @@
 [elsif exp='lang == "es"']	; スペイン語
 	[let name=save:sn.userFnTail text=&lang val2fontNm='ipamjm']
 
-	[title text='BAJO LOS CEREZOS' cond=!const.体験版]
-	[title text='BAJO LOS CEREZOS (versión de prueba)' cond=const.体験版]
+;	[title text='En Hatsunekan' cond=!const.体験版]
+;	[title text='En Hatsunekan (versión de prueba)' cond=const.体験版]
 
 	; text button
 	&btn.Start = 'Empezar'
@@ -316,8 +316,8 @@
 	[let name=lang text='ja' val2fontNm='ipamjm']
 	&save:sn.userFnTail = ''
 
-	[title text='桜の樹の下には' cond=!const.体験版]
-	[title text='桜の樹の下には（体験版）' cond=const.体験版]
+;	[title text='初音館にて' cond=!const.体験版]
+;	[title text='初音館にて（体験版）' cond=const.体験版]
 
 	; text button
 	&btn.Start = '最初から'

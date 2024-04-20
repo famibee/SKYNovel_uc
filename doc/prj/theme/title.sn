@@ -68,4 +68,3 @@
 	[call fn=_config]
 	[call fn=_config label=*title_config]
 	[return label=*redraw]
-
