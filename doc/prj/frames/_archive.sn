@@ -165,6 +165,7 @@
 	[set_frame id=archive var_name=val_caller text=&呼び元]
 	[set_frame id=archive var_name=val_s_place text=&sys:const.sn.save.place]
 	[set_frame id=archive var_name=val_dic text=&const.sn.bookmark.json]
+	[set_frame id=archive var_name=val_fn2ext text=&const.sn.fn2ext.json]
 	[set_frame id=archive var_name=val_ui_lang text=&lang]
 	[let_frame id=archive var_name=val2ctrl function=true]
 	[set_focus add='dom=archive:.btn_delete' need_err=false]

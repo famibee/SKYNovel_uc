@@ -1,5 +1,14 @@
 # Change Log
 
+## v2.14.16
+- fix: フレームもの内部で使用しているファイルの拡張子をエンジンから受け取るように
+	- 変更対象は
+		- doc/prj/frames/_album.htm
+		- doc/prj/frames/_album.sn
+		- doc/prj/frames/_archive.htm
+		- doc/prj/frames/_archive.sn
+	- テンプレ素材の拡張子を変えた場合（png→jpgなど）に、分かりづらい不具合になっていたので
+- fix: ライブラリ更新(SKYNovel v1.50.1)など
 ## v2.14.15
 - docs(拡張機能やマクロなど): 引数説明記述を拡張機能v4.16.0準拠に
 - docs(マクロの引数説明記述): 値域・型の表記ゆれ統一と新規追加

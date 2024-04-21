@@ -38,7 +38,6 @@
 	document.ondragstart = ()=> false;
 	const isDev = (location.protocol === 'file:');
 	const isWebp = false/*WEBP*/;
-	const miken = `_album_miken.${ isWebp ?'webp' :'jpg' }`;
 	document.addEventListener('DOMContentLoaded', ()=> {
 		if (isDev) init();	// デザイン用
 		else if (isWebp) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
@@ -155,17 +154,24 @@
 		}
 	}
 
-	var val_dic = null;
+	var val_dic	= null;
+	var val_fn2ext = null;		// 拡張子補足辞書
 	function init() {	// 初期化（関数名変更不可）
 		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
 		ui_redraw();
 
 		if (val_dic) a = JSON.parse(val_dic);
+		let fn2ext = fn=> fn;
+		if (val_fn2ext) {
+			val_fn2ext = JSON.parse(val_fn2ext);
+			fn2ext = fn=> fn +'.'+ val_fn2ext[fn];
+		}
 
 		// 配列 a をもとにサムネイル群を生成
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = '';
 		// 注意：この画面で .col要素は insertAdjacentHTML('beforeend' 追加なので、id は昇順
+		const miken = fn2ext('_album_miken');
 		a.forEach((v, i)=> {
 			if (v.enabled === 'false') {
 				lst.insertAdjacentHTML('beforeend', `
@@ -181,11 +187,10 @@
 
 			let elm = '';
 			switch (v.type) {
-				case 'bgm':	elm = `_album_thbgm.jpg`;	break;
-				case 'mov':	elm = `${v.fn}_th.jpg`;	break;
+				case 'bgm':	elm = `_album_thbgm`;	break;
+				case 'mov':	elm = `${v.fn}_th`;	break;
 				default:	elm = `${v.fn}`;
 			}
-			if (isWebp) elm = elm.replace(/\.(jpe?g|png)$/, '.webp');
 			// ${v.type}でclass名にも追加、SKYNovel側でクリック検知するため
 			lst.insertAdjacentHTML('beforeend', `
 <div class="col" id="col${i}"><div class="card p-1 mb-1">
@@ -193,7 +198,7 @@
 		data-ripple-color="light"
 		data-type="${v.type}" data-arg="${v.fn}" tabindex="0"
 		aria-label="${v.type} ${v.title}" title="${v.type} ${v.title}">
-		<img data-src="${elm}" class="card-img-top"/>
+		<img data-src="${fn2ext(elm)}" class="card-img-top"/>
 		<div class="mask"></div>
 	</div>
 	<div class="card-text">${v.title}</div>
