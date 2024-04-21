@@ -156,15 +156,16 @@
 
 	var val_dic	= null;
 	var val_fn2ext = null;		// 拡張子補足辞書
+	let fn2ext = fn=> fn;
 	function init() {	// 初期化（関数名変更不可）
 		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
 		ui_redraw();
 
 		if (val_dic) a = JSON.parse(val_dic);
-		let fn2ext = fn=> fn;
 		if (val_fn2ext) {
-			val_fn2ext = JSON.parse(val_fn2ext);
-			fn2ext = fn=> fn +'.'+ val_fn2ext[fn];
+			const hFn2ext = JSON.parse(val_fn2ext);
+			fn2ext = fn=> fn +'.'+ hFn2ext[fn];
+			val_fn2ext = null;
 		}
 
 		// 配列 a をもとにサムネイル群を生成
