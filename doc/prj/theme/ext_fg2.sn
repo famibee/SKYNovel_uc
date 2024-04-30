@@ -1,5 +1,7 @@
 ;********************************************************
 ;@EXT_DESC	概要：立ち絵の扱いが簡単な[fg]
+;@VER		2024.04.30.007	最後に変化した立ち絵を目立たせる機能追加
+;							フィルター機能など[lay]の機能追加に対応
 ;@VER		2024.04.18.006	引数説明記述を拡張機能v4.16.0準拠に
 ;@VER		2023.06.19.005	sn更新で不要になった sn.skip.enabled の扱いを削除
 ;@VER		2022.11.02.004	[fg2]に snippet_ext 追加
@@ -20,6 +22,8 @@
 	&save:sn.fg2.xe = const.sn.config.window.width-1
 	&save:sn.fg2.max_lay = 3	; 最大レイヤ数（以下で自動調査）
 	&save:sn.fg2.lays = ''
+
+;--	&sn.fg2.attention_filter = 'brightness'	; これを本文中に書くと最後に変化した立ち絵を目立たせる（それ以外暗くする）
 [endmacro]
 
 
@@ -64,7 +68,7 @@
 		&&'save:sn.fg2.l2hu.'+ lay = null
 		[let_replace name=save:sn.fg2.lays text=&save:sn.fg2.lays@str val='' reg=&lay cast=str]
 ;[trace text="&'== del lays:'+ save:sn.fg2.lays@str +': lay:'+ lay"]
-		[fg layer=&lay *]
+		[fg * layer=&lay]
 		[return]
 	[endif]
 
@@ -90,7 +94,7 @@
 ;[trace text="&'== chg hu:'+ h +' lay:'+ mylay +' v:'+ const.sn.lay[mylay].fore.visible +' w:'+ const.sn.lay[mylay].fore.width"]
 	[if exp='mylay != null && const.sn.lay[mylay].fore.visible && const.sn.lay[mylay].fore.width > 0']
 		[fg2_attention layer=&mylay]
-		[fg layer=&mylay pos='&save:sn.fg2.hu[mylay].pos' *]
+		[fg * layer=&mylay pos='&save:sn.fg2.hu[mylay].pos']
 		[return]
 	[endif]
 
@@ -116,21 +120,22 @@
 	[let_length name=cnt text=&save:sn.fg2.lays@str]
 	&wh = (save:sn.fg2.xe - save:sn.fg2.xb)/cnt/2
 ;[trace text="&'== mov&fi cnt:'+ cnt +' wh:'+ wh +' lays:'+ save:sn.fg2.lays@str +':'"]
-	[for_call name=l from=0 to=&cnt-1 label=*fg2_dsp lay_fn=%fn lay_face=%face]
+	[for_call * name=l from=0 to=&cnt-1 fn=ext_fg2 label=*fg2_dsp lay_fn=%fn lay_face=%face]
 	[for_call name=l from=0 to=&cnt-1 label=*fg2_dspw]
 [endmacro]
 
 ;****************************
 [macro name=fg2_attention]
+	[return cond=!const.fg2_attention_filter]
 	[let_length name=cnt text=&save:sn.fg2.lays@str]
-	[for_call name=l from=0 to=&cnt-1 label=*fg2_attention]
+	[for_call * name=l from=0 to=&cnt-1 fn=ext_fg2 label=*fg2_attention]
 [endmacro]
-	&f_matrix_4_fg2_attention = '0.5,0,0,0,0,0,0.5,0,0,0,0,0,0.5,0,0,0,0,0,1,0'
 
 ;****************************
 [macro name=clear_fg2_attention nowarn_unused=true]
+	[return cond=!const.fg2_attention_filter]
 	[let_length name=cnt text=&save:sn.fg2.lays@str]
-	[for_call name=l from=0 to=&cnt-1 label=*clear_fg2_attention]
+	[for_call * name=l from=0 to=&cnt-1 fn=ext_fg2 label=*clear_fg2_attention]
 [endmacro]
 
 ;********************************************************
@@ -200,8 +205,7 @@
 	[return cond='i == -1']	; 未使用なら対象外
 
 	&lay = for_call_idx.l
-;	[clear_asfilter layer=&lay page=fore]
-;	[clear_asfilter layer=&lay page=back]
+	[clear_filter layer=&lay page=both]
 [return]
 ;********************************************************
 *fg2_attention
@@ -209,12 +213,9 @@
 	[return cond='i == -1']	; 未使用なら対象外
 
 	&lay = for_call_idx.l
-;	[clear_asfilter layer=&lay page=fore]
-;	[clear_asfilter layer=&lay page=back]
+	[clear_filter layer=&lay page=both]
 	[if exp='lay != mp:layer']
-		; マクロ直下ではないので、%や*や|が使えない
-;		[add_asfilter layer=&lay page=fore filter=color_matrix f_matrix=&f_matrix_4_fg2_attention]
-;		[add_asfilter layer=&lay page=back filter=color_matrix f_matrix=&f_matrix_4_fg2_attention]
+		[add_filter layer=&lay page=both filter=&sn.fg2.attention_filter]
 	[endif]
 [return]
 ;*********************************************************
@@ -267,20 +268,21 @@
 ;[trace text="&'---- lay:'+ lay +' lays:'+ save:sn.fg2.lays@str + ' fn:'+ mp:lay_fn + ': l:'+ l +' v:'+ const.sn.lay[lay].fore.visible +' a:'+ const.sn.lay[lay].fore.alpha +' w:'+ const.sn.lay[lay].fore.width"]
 	&x = save:sn.fg2.xb +wh +wh*2*l = int
 	&&'save:sn.fg2.hu.'+ lay +'.pos' = x
-	[if exp='const.sn.lay[lay].fore.visible && const.sn.lay[lay].fore.alpha > 0  && const.sn.lay[lay].fore.width > 0']
+	[if exp='const.sn.lay[lay].fore.visible && const.sn.lay[lay].fore.alpha > 0 && const.sn.lay[lay].fore.width > 0']
 ;[trace text="&'== v:t lay:'+ lay +' tsy:'"]
-		[tsy layer=&lay time=&time x='&x -const.sn.lay[lay].fore.width/2' ease=&ease]
+		[tsy name=&lay layer=&lay time=&time x='&x -const.sn.lay[lay].fore.width/2' ease=&ease]	; tw_nm = name??layer なので
+			; * 厳禁、移動のみ指定する
 	[else]
 ;[trace text="&'== v:f lay:'+ lay +' fg:'"]
-		[lay layer=&lay pos=&x fn=&mp:lay_fn face=&mp:lay_face alpha=0 visible=true]
-			; マクロ直下ではないので、%や*や|が使えない
-		[tsy layer=&lay time=&time alpha=&alpha render=true]
+		[lay * layer=&lay pos=&x fn=&mp:lay_fn face=&mp:lay_face alpha=0 visible=true]
+		[tsy name=&lay layer=&lay time=&time alpha=&alpha render=true]	; tw_nm = name??layer なので
 	[endif]
 [return]
 ;********************************************************
 *fg2_dspw
 	[let_char_at name=lay text=&save:sn.fg2.lays@str pos=&for_call_idx.l]
 	[wait_tsy layer=&lay]
+;	[wait_tsy layer=&lay chk_exist_tw=true]	;4tst
 [return]
 ;********************************************************
 *fg2_init
