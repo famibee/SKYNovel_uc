@@ -30,14 +30,15 @@
 		{"type": "pic", "fn": "../bg/yun_2384.jpg", "title": "桜２", "enabled": "true"},
 		{"type": "pic", "fn": "../bg/title.jpg", "title": "タイトル画像", "enabled": "true"},
 		{"type": "mov", "fn": "nc10889", "title": "桜動画", "enabled": "true"},
-		{"type": "bgm", "fn": "free10", "title": "free10(BGM)", "enabled": "true"},
-		{"type": "bgm", "fn": "free04", "title": "free04(BGM)", "enabled": "true"},
-		{"type": "bgm", "fn": "free25", "title": "free25(BGM)", "enabled": "true"},
-		{"type": "bgm", "fn": "free57", "title": "free57(BGM)", "enabled": "true"},
+		{"type": "bgm", "fn": "free32", "title": "free32(BGM)", "enabled": "true"},
+		{"type": "bgm", "fn": "free49", "title": "free49(BGM)", "enabled": "true"},
+		{"type": "bgm", "fn": "free61", "title": "free61(BGM)", "enabled": "true"},
+		{"type": "bgm", "fn": "free0509", "title": "free0509(BGM)", "enabled": "true"},
 	];
 	document.ondragstart = ()=> false;
 	const isDev = (location.protocol === 'file:');
 	const isWebp = false/*WEBP*/;
+	const miken = `_album_miken.${ isWebp ?'webp' :'jpg' }`;
 	document.addEventListener('DOMContentLoaded', ()=> {
 		if (isDev) init();	// デザイン用
 		else if (isWebp) Array.from(document.getElementsByTagName('img')).forEach(v=> v.dataset.src = v.dataset.src.replace(/\.(jpe?g|png)$/, '.webp'));	// 本番でsn_repRes()に渡してしまうので
@@ -154,25 +155,17 @@
 		}
 	}
 
-	var val_dic	= null;
-	var val_fn2ext = null;		// 拡張子補足辞書
-	let fn2ext = fn=> fn;
+	var val_dic = null;
 	function init() {	// 初期化（関数名変更不可）
 		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
 		ui_redraw();
 
 		if (val_dic) a = JSON.parse(val_dic);
-		if (val_fn2ext) {
-			const hFn2ext = JSON.parse(val_fn2ext);
-			fn2ext = fn=> fn +'.'+ hFn2ext[fn];
-			val_fn2ext = null;
-		}
 
 		// 配列 a をもとにサムネイル群を生成
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = '';
 		// 注意：この画面で .col要素は insertAdjacentHTML('beforeend' 追加なので、id は昇順
-		const miken = fn2ext('_album_miken');
 		a.forEach((v, i)=> {
 			if (v.enabled === 'false') {
 				lst.insertAdjacentHTML('beforeend', `
@@ -188,10 +181,11 @@
 
 			let elm = '';
 			switch (v.type) {
-				case 'bgm':	elm = `_album_thbgm`;	break;
-				case 'mov':	elm = `${v.fn}_th`;	break;
+				case 'bgm':	elm = `_album_thbgm.jpg`;	break;
+				case 'mov':	elm = `${v.fn}_th.jpg`;	break;
 				default:	elm = `${v.fn}`;
 			}
+			if (isWebp) elm = elm.replace(/\.(jpe?g|png)$/, '.webp');
 			// ${v.type}でclass名にも追加、SKYNovel側でクリック検知するため
 			lst.insertAdjacentHTML('beforeend', `
 <div class="col" id="col${i}"><div class="card p-1 mb-1">
@@ -199,7 +193,7 @@
 		data-ripple-color="light"
 		data-type="${v.type}" data-arg="${v.fn}" tabindex="0"
 		aria-label="${v.type} ${v.title}" title="${v.type} ${v.title}">
-		<img data-src="${fn2ext(elm)}" class="card-img-top"/>
+		<img data-src="${elm}" class="card-img-top"/>
 		<div class="mask"></div>
 	</div>
 	<div class="card-text">${v.title}</div>
@@ -280,7 +274,7 @@
 <!-- 上記 val2ctrl() でクリア・再生成されるが、元は以下の連続 -->
 <div class="col"><div class="card p-1 mb-1">
 	<div class="bg-image hover-overlay ripple" data-ripple-color="light">
-		<img data-src="_album_miken.jpg" class="img-fluid"/>
+		<img data-src="./_album_miken.jpg" class="img-fluid"/>
 		<div class="mask"></div>
 	</div>
 	<div class="card-text">？？？</div>

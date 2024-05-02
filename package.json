@@ -10,13 +10,13 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.52.0",
+		"@famibee/skynovel": "^1.53.0",
 		"about-window": "^1.15.2",
 		"humane-js": "^3.2.2"
 	},
 	"devDependencies": {
 		"css-loader": "^7.1.1",
-		"electron": "^30.0.1",
+		"electron": "^30.0.2",
 		"electron-builder": "^24.13.3",
 		"rimraf": "^5.0.5",
 		"style-loader": "^4.0.0",

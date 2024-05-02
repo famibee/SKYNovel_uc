@@ -227,7 +227,6 @@
 	// SKYNovelから読み書きする変数なので、触らない。わざとvar
 	var val_s_place = 999;		// 次のセーブ位置
 	var val_dic = null;
-	var val_fn2ext = null;		// 拡張子補足辞書
 //	var val_caller = 'Title';	// タイトル画面から呼ばれた
 	var val_caller = 'Text';	// 本文から呼ばれた
 //	var val_mode = 'Load';		// ロード画面
@@ -295,23 +294,17 @@
 		Array.from(document.querySelectorAll('#modal_sl, #modal_del'))
 		.forEach(elm=> bootstrap.Modal.getInstance(elm)?.hide());
 	}
-	let fn2ext = fn=> fn;
 	function val2ctrl() {	// 変数→コンポーネント
 		if (typeof val_ui === 'string') val_ui = JSON.parse(val_ui);
 		ui_redraw();
 
 		if (val_dic) a = JSON.parse(val_dic);
-		if (val_fn2ext) {
-			const hFn2ext = JSON.parse(val_fn2ext);
-			fn2ext = fn=> fn +'.'+ hFn2ext[fn];
-			val_fn2ext = null;
-		}
 		const doit = document.getElementById('do_loadsave');
 
 		// 配列 a をもとにサムネイル群を生成
 		const lst = document.getElementsByClassName('row')[0];
 		lst.textContent = null;
-		if (val_mode === 'Save') a.push({pic: fn2ext('_archiveBtn_nouse'), dt: '', text: val_ui[val_ui_lang]['新規にセーブします'], place: val_s_place});
+		if (val_mode === 'Save') a.push({pic: '_archiveBtn_nouse.png', dt: '', text: val_ui[val_ui_lang]['新規にセーブします'], place: val_s_place});
 		const u = new Date().getTime();
 		// 注意：この画面で .col要素は insertAdjacentHTML('afterbegin' 追加なので、降順
 		len = a.length;
@@ -427,7 +420,7 @@
 <!-- 上記 val2ctrl() でクリア・再生成されるが、元は以下の連続 -->
 <div class="col"><div class="card p-1 mb-1" data-id="1">
 	<div class="bg-image hover-overlay ripple" data-ripple-color="light">
-		<img data-src="_archive_browser.jpg" class="img-fluid"/>
+		<img data-src="./_archive_browser.jpg" class="img-fluid"/>
 		<div class="mask"></div>
 	</div>
 	<div class="card-img-overlay"><p class="card-text">2020/12/18 11:40</p></div>

@@ -62,7 +62,6 @@
 	]
 [endlet_ml]
 	[set_frame id=album var_name=val_dic text=&dic]
-	[set_frame id=album var_name=val_fn2ext text=&const.sn.fn2ext.json]
 	[set_frame id=album var_name=val_ui_lang text=&lang]
 	[let_frame id=album var_name=init function=true]
 

@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.14.18
+- fix: SKYNovel v1.53.0 対応のフレーム処理に
+- fix: ライブラリ更新(SKYNovel v1.53.0)など
 ## v2.14.17
 - fix(ext_fg.sn、ext_fg2.sn): 拡張機能更新
 - fix: ライブラリ更新
