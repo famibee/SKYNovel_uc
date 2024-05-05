@@ -529,6 +529,7 @@
 	%buf?='サウンドバッファ名|VOICE|サウンドバッファを変えれば同時に複数の音を操作することが出来ます'
 ]
 	[ws buf=VOICE canskip=true stop=false cond='sn.auto.enabled && !sn.skip.enabled']
+	[wq]
 	[p visible=%visible|true]
 	[er]
 	[record_place layer=&dsp_lays]

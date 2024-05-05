@@ -19,6 +19,7 @@
 
 [macro name=lr nowarn_unused=true]
 	[ws buf=VOICE canskip=true stop=false cond='sn.auto.enabled && !sn.skip.enabled']
+	[wq]
 	[l]
 	;[r]
 [endmacro]
