@@ -10,17 +10,17 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.53.3",
+		"@famibee/skynovel": "^1.53.12",
 		"about-window": "^1.15.2",
 		"humane-js": "^3.2.2"
 	},
 	"devDependencies": {
-		"css-loader": "^7.1.1",
-		"electron": "^30.0.2",
+		"css-loader": "^7.1.2",
+		"electron": "^31.0.1",
 		"electron-builder": "^24.13.3",
-		"rimraf": "^5.0.5",
+		"rimraf": "^5.0.7",
 		"style-loader": "^4.0.0",
-		"webpack": "^5.91.0",
+		"webpack": "^5.92.0",
 		"webpack-cli": "^5.1.4",
 		"webpack-dev-server": "^5.0.4",
 		"webpack-obfuscator": "^3.5.1"
