@@ -31,14 +31,16 @@
 &sysse_cancel = 'bell05'	; {"lbl":"キャンセル音","type":"fn_snd"}
 &sysse_choice = 'wood04'	; {"lbl":"マウスオーバー・選択音","type":"fn_snd"}
 
-&useSysMenu = true	; メッセージにシステムボタンを配置するか
+&useSysMenu = true	; メッセージにシステムボタンを表示
 
-&tategaki = true	; (HIDE GUI) 本文は縦書きか
+&tategaki = true	; 本文は縦書きか
+&bura_mode = true	; ぶら下げ禁則処理するか
 
-&def_fonts = 'ipamjm, "Source Han Sans CN"'	; デフォルトフォント
+&font_size = 24	; {"lbl":"フォントサイズ","type":"rng","max":90,"min":10,"step":0.1}
+&def_fonts = 'ipamjm, "SourceHanSans-VF"'	; デフォルトフォント
 ;&sn.button.fontFamily = 'ipamjm'
 
-&autoResume = true	; （開発用ブラウザ版で）自動レジュームするか
+&autoResume = true	; （ブラウザ版で）自動レジュームするか
 [let name=autoResume text=false cond=!const.sn.isDebugger]
 
 &const.体験版 = false	; 体験版か

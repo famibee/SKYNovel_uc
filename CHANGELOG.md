@@ -1,5 +1,14 @@
 # Change Log
 
+## v2.15.0
+- feat: フォントサイズを変数 font_size で指定できるように。デフォルト値 33.6（px）
+- feat: [設定画面]-[テンプレ]で指定できる変数を追加
+	- tategaki（本文は縦書きか）
+	- bura_mode（ぶら下げ禁則処理するか）
+	- font_size（フォントサイズ）
+- fix: フォントサイズ不統一を修正
+	- [txt_lay_v_left]で 33.6px
+	- [txt_lay_fullscreen]で 24px だった
 ## v2.14.20
 - fix: ライブラリ更新(SKYNovel v1.53.12)など
 ## v2.14.19

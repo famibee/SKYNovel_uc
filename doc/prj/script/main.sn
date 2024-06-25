@@ -15,7 +15,7 @@
 	[event global=true call=true key=F5 label=*reload_script cond=const.sn.isDebugger]
 	[event global=true call=true key=F7 label=*stats cond=const.sn.isDebugger]
 	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
-;	[update_check url='http://ugainovel.hiho.jp/famibee/sample/hatsune/']
+;	[update_check url='http://ugainovel.hiho.jp/famibee/sample/hatsune/' cond=!const.体験版]
 
 [macro name=lr nowarn_unused=true]
 	[ws buf=VOICE canskip=true stop=false cond='sn.auto.enabled && !sn.skip.enabled']
