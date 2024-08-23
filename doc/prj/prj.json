@@ -24,6 +24,7 @@
 	},
 	"debug": {
 		"devtool": false,
+		"dumpHtm": false,
 		"token": false,
 		"tag": false,
 		"putCh": false,

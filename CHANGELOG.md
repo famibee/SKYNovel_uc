@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.15.1
+- fix(doc/prj/prj.json): debug: {}に【"dumpHtm": false,】追加
+- fix(sub.sn): 変数 pos.vleft_disp_x 設定直後に [fg2]用設定を追加
+	- テンプレで ext_*.sn 後に  sub.sn が呼ばれるのは保証
+- doc(doc/prj/script/sub.sn): 引数説明 txt_time => t_time ミス修正
 ## v2.15.0
 - feat: フォントサイズを変数 font_size で指定できるように。デフォルト値 24（px）
 - feat: [設定画面]-[テンプレ]で指定できる変数を追加
