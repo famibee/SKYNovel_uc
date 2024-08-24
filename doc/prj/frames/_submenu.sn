@@ -190,6 +190,7 @@
 
 ;*********************************************************
 *game_end
+	[jump label=*retry cond=const.sn.isDebugger]
 	[ask_ync mes=&mes.ゲームを終了しますか？]
 	[jump label=*retry cond="_yesno=='n'"]
 

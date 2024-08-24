@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.15.2
+- fix(_submenu.htm): ゲーム終了ボタンが効かなかったのを修正
+- fix(_submenu.sn): 「起動：ブラウザ版」上での実行ならゲーム終了ボタンを無視するように
+- fix(Bootstrap): ライブラリ更新 v5.1.3 -> v5.3.3
 ## v2.15.1
 - fix(doc/prj/prj.json): debug: {}に【"dumpHtm": false,】追加
 - fix(sub.sn): 変数 pos.vleft_disp_x 設定直後に [fg2]用設定を追加
