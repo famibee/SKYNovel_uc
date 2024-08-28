@@ -15,6 +15,7 @@
 	[event global=true call=true key=F5 label=*reload_script cond=const.sn.isDebugger]
 	[event global=true call=true key=F7 label=*stats cond=const.sn.isDebugger]
 	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
+	[event global=true call=true key=Meta+0 label=*reset_size cond=const.sn.isApp]
 ;	[update_check url='http://ugainovel.hiho.jp/famibee/sample/hatsune/' cond=!const.体験版]
 
 [macro name=lr nowarn_unused=true]
@@ -80,4 +81,8 @@
 	[dump_lay]
 ;	[dump_val]
 ;	[dump_stack]
+[return]
+
+*reset_size
+	[window width=&const.sn.config.window.width height=&const.sn.config.window.height]
 [return]

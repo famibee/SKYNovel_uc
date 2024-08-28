@@ -38,7 +38,7 @@ app.on('ready', ()=> {
 			{label: 'このアプリについて', click: ()=> require('about-window').default({
 				icon_path	: path.join(__dirname, 'app/icon.png'),
 				package_json_dir	: __dirname,
-				copyright	: 'Copyright '+ pkg.appCopyright +' 2023',
+				copyright	: 'Copyright '+ pkg.appCopyright +' 2024',
 				homepage	: pkg.homepage,
 				license		: '',
 				use_version_info	: false,
@@ -59,18 +59,7 @@ app.on('ready', ()=> {
 
 	guiWin = require('@famibee/skynovel/appMain').initRenderer(
 		path.join(__dirname, 'app/index.htm'),
-		pkg.version,
-		{
-			id			: 'SKYNovel-'+ app.name,
-			width		: 1024,
-			height		: 768,
-			min_width	: 300,
-			min_height	: 300,
-			acceptFirstMouse		: true,
-			textAreasAreResizable	: false,
-			resizable		: false,
-			fullscreenable	: true,
-		}
+		pkg.version, {},
 	);
 	guiWin.on('closed', ()=> app.quit());
 });

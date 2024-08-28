@@ -10,7 +10,7 @@
 	"author": "ふぁみべぇ",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.55.2",
+		"@famibee/skynovel": "^1.56.0",
 		"about-window": "^1.15.2",
 		"humane-js": "^3.2.2"
 	},
