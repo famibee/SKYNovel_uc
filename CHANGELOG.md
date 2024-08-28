@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.16.1
+- fix(main.sn): AIRNovel時代の変数名のまま残っていたミス修正
+	- 旧：const.flash.display.Stage.displayState=='normal'
+	- 新：! const.sn.displayState
 ## v2.16.0
 - feat(main.sn): key=Meta+0 で変更したウインドウサイズを初期状態に戻せる
 - fix(app.js): 初期値項目廃止につき記述削除

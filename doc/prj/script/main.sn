@@ -5,9 +5,8 @@
 
 	[toggle_full_screen key=w]
 	[event global=true call=true key=alt+enter label=*toggle_full_screen]
-		&w = const.flash.display.Stage.displayState=='normal'
 		&s = const.sn.config.window.height > const.sn.screenResolutionY || const.sn.config.window.width > const.sn.screenResolutionX
-		[toggle_full_screen cond='w && s']
+		[toggle_full_screen cond='! const.sn.displayState && s']
 		; プレイ環境より画面サイズが大きい場合は全画面モードに
 	[event global=true call=true key=ArrowLeft label=*set_focus arg=prev]
 	[event global=true call=true key=ArrowRight label=*set_focus arg=next]
