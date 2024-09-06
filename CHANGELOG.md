@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.16.2
+- fix(app.js): メニューに【ウインドウサイズを初期に戻す】追加
+- fix: ライブラリ更新(SKYNovel v1.57.0)など
+- fix(s_000@@@〜): 多言語版スクリプトを基本の日本語版の改行に合わせる修正
 ## v2.16.1
 - fix(main.sn): AIRNovel時代の変数名のまま残っていたミス修正
 	- 旧：const.flash.display.Stage.displayState=='normal'
