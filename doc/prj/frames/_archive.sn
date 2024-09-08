@@ -139,7 +139,7 @@
 ;*********************************************************
 ;	右クリック -> Load
 *rclick_load
-	[return cond='! isGameState']
+	[return cond=!isGameState]
 
 	&しおりモード = 'Load'
 	&呼び元 = 'Text'
@@ -148,7 +148,7 @@
 ;*********************************************************
 ;	右クリック -> Save
 *rclick_save
-	[return cond='! isGameState']
+	[return cond=!isGameState]
 
 	&しおりモード = 'Save'
 	&呼び元 = 'Text'
@@ -237,7 +237,7 @@
 
 ;*****************************
 *quick_save
-	[return cond='! isGameState']
+	[return cond=!isGameState]
 
 	[if exp='sys:archive.quick_place == null']
 		&sys:archive.quick_place = 1000
@@ -276,7 +276,7 @@
 
 ;*****************************
 *quick_load
-	[return cond='! isGameState']
+	[return cond=!isGameState]
 	[if exp='&sys:archive.quick_place == null']
 		[notice text=&mes.クイックセーブデータがありません]
 		[return]

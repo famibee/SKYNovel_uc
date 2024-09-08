@@ -12,9 +12,12 @@
 	[event key='dom=submenu:#title' label=*title global=true]
 	[event key='dom=submenu:#game_end' label=*game_end global=true]
 
-	[event global=true call=true key=rightclick label=*main]
-	[event global=true call=true key=shift label=*main]
-	[event global=true call=true key=escape label=*main]
+	[event global=true call=true key=rightclick label=*escape arg=load]
+	[event global=true call=true key=shift label=*escape arg=load]
+	[event global=true call=true key=escape label=*escape arg=exit]
+
+	[event global=true call=true key=pageup label=*page arg=prev]
+	[event global=true call=true key=pagedown label=*page arg=next]
 
 [let_ml name=dicUI]
 	{
@@ -98,6 +101,16 @@
 	[set_frame id=submenu var_name=val_ui text=&dicUI]
 
 [return]
+
+
+*page	[page to=&sn.eventArg cond=isGameState][return]
+
+*escape
+	[if exp=const.sn.isPaging]
+		[page to=&sn.eventArg]
+		[return]
+	[endif]
+
 
 ;*********************************************************
 *main
