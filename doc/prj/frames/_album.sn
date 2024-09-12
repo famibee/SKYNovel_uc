@@ -94,6 +94,7 @@
 	[event key=backspace label=*exit]
 	[event key=shift label=*exit]
 	[event key=end label=*exit]
+	[event key=escape label=*exit]
 	[event key=sn:chgNavLang label=*chgNavLang call=true]
 	[set_focus to=null]
 [s]
@@ -116,6 +117,7 @@
 	[event key=backspace label=**after]
 	[event key=shift label=**after]
 	[event key=end label=**after]
+	[event key=escape label=**after]
 	[waitclick]		; 右クリックイベントを一時無効化したい
 **
 	[frame id=album visible=true]

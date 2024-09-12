@@ -36,8 +36,13 @@
 
 	%mes='String||プレイヤーに質問したい文言'
 ]
+	&tmpGameState = isGameState
+
 	[enable_event enabled=false]
 	[enable_event enabled=false layer=mes_sysmenu]
+	&isGameState = false
+	&save:sn.doRecLog = false
+
 	[clear_event]
 
 	; 最新値で更新
@@ -61,6 +66,7 @@
 	[event key=backspace label=*cancel]
 	[event key=shift label=*cancel]
 	[event key=end label=*cancel]
+	[event key=escape label=*cancel]
 	[event key=sn:chgNavLang label=*chgNavLang call=true]
 [s]
 
@@ -82,6 +88,8 @@
 
 	[enable_event enabled=true]
 	[enable_event enabled=true layer=mes_sysmenu]
+	&isGameState = tmpGameState
+	&save:sn.doRecLog = tmpGameState
 	[set_focus to=null]
 [endmacro]
 

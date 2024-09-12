@@ -34,7 +34,7 @@
 			"cancel": "ゲームに戻る",
 			"title": "タイトルに戻る",
 			"game_end": "ゲーム終了",
-			"shortcut_htm": "<div class='col-4'>Shift、ESCキー</div><div class='col-8'>右クリックメニューを表示</div><div class='col-4'>W、alt+Enterキー</div><div class='col-8'>全画面・ウインドウモード切り替え</div><div class='col-4'>Aキー</div><div class='col-8'>自動読み進み On(クリックで停止)</div><div class='col-4'>Fキー</div><div class='col-8'>強制スキップ On(クリックで停止)</div><div class='col-4'>Ctrlキー</div><div class='col-8'>押してる間だけメッセージ強制スキップ<br/>（スキップはFキーと同等）</div><div class='col-4'>SPACE、Delキー</div><div class='col-8'>字を隠す(クリックで復帰)</div><div class='col-4'>PAGE DOWNキー、PAGE UPキー、Up(↑)キー</div><div class='col-8'>履歴(本文履歴を表示、クリックで復帰)</div><div class='col-4'>Sキー</div><div class='col-8'>クイックセーブ</div><div class='col-4'>Lキー</div><div class='col-8'>クイックロード</div><div class='col-4'>Tキー</div><div class='col-8'>テキスト窓を薄く</div><div class='col-4'>Yキー</div><div class='col-8'>テキスト窓を濃く</div><div class='col-4'>Pキー</div><div class='col-8'>スクリーンショット(ダウンロードフォルダへ保存)</div><div class='col-4'>Vキー</div><div class='col-8'>声を再度再生</div>",
+			"shortcut_htm": "<div class='col-4'>Shift、ESCキー</div><div class='col-8'>右クリックメニューを表示</div><div class='col-4'>その他……</div><div class='col-8'></div>",
 			"non-text": {
 				"close": "閉じる"
 			}
@@ -100,31 +100,41 @@
 	</div>
 	<div class="col-7">
 		<div class="container-fluid d-flex align-items-center justify-content-center text-white"><div class="row" style="text-shadow: 0px 3px 3px rgba(0,0,0,0.4);" id="shortcut_htm">
-			<div class="col-4">x	Shift、ESCキー	</div>
-			<div class="col-8">	右クリックメニューを表示	</div>
-			<div class="col-4">	W、alt+enterキー	</div>
-			<div class="col-8">	全画面・ウインドウモード切り替え	</div>
-			<div class="col-4">	Aキー	</div>
-			<div class="col-8">	自動読み進み On(クリックで停止)	</div>
-			<div class="col-4">	Fキー	</div>
-			<div class="col-8">	強制スキップ On(クリックで停止)	</div>
-			<div class="col-4">	Ctrlキー	</div>
-			<div class="col-8">	押してる間だけメッセージ強制スキップ<br/>
-								（スキップはFキーと同等）	</div>
-			<div class="col-4">	SPACE、Delキー	</div>
-			<div class="col-8">	字を隠す(クリックで復帰)	</div>
-			<div class="col-4">	PAGE DOWNキー、PAGE UPキー、Up(↑)キー	</div>
-			<div class="col-8">	履歴(本文履歴を表示、クリックで復帰)	</div>
-			<div class="col-4">	Sキー	</div>
-			<div class="col-8">	クイックセーブ	</div>
-			<div class="col-4">	Lキー	</div>
-			<div class="col-8">	クイックロード	</div>
-			<div class="col-4">	Tキー	</div>
-			<div class="col-8">	テキスト窓を薄く	</div>
-			<div class="col-4">	Yキー	</div>
-			<div class="col-8">	テキスト窓を濃く	</div>
-			<div class="col-4">	Pキー	</div>
-			<div class="col-8">	スクリーンショット(ダウンロードフォルダへ保存)	</div>
+			<div class='col-4'>x	Shift、ESCキー</div>
+			<div class='col-8'>右クリックメニューを表示</div>
+
+			<div class='col-4'>Down（↓）キー</div>
+			<div class='col-8'>メッセージ読み進め。押しっぱなしでメッセージ強制スキップ</div>
+
+			<div class='col-4'>W、alt+Enterキー</div>
+			<div class='col-8'>全画面・ウインドウモード切り替え</div>
+			<div class='col-4'>Aキー</div>
+			<div class='col-8'>自動読み進み On(クリックで停止)</div>
+			<div class='col-4'>Fキー</div>
+			<div class='col-8'>強制スキップ On(クリックで停止)</div>
+
+			<div class='col-4'>SPACE、Delキー</div>
+			<div class='col-8'>字を隠す(クリックで復帰)</div>
+
+			<div class='col-4'>R、Up(↑)キー、ホイール下回転</div>
+			<div class='col-8'>履歴(本文履歴を表示、右クリックで復帰)</div>
+
+			<div class='col-4'>Cキー</div>
+			<div class='col-8'>設定(設定画面を表示、右クリックで復帰)</div>
+
+			<div class='col-4'>PAGE UPキー</div>
+			<div class='col-8'>ページ遷移状態に入る。ESCAPEで復帰</div>
+			<div class='col-4'>PAGE DOWN、PAGE UPキー</div>
+			<div class='col-8'>(ページ遷移状態で)ページを前後する</div>
+			<div class='col-4'>SHIFTキー、右クリック</div>
+			<div class='col-8'>(ページ遷移状態で)表示中ページからロード</div>
+
+			<div class='col-4'>Sキー／Lキー</div>
+			<div class='col-8'>クイックセーブ／クイックロード</div>
+			<div class='col-4'>Pキー</div>
+			<div class='col-8'>スクリーンショット(ダウンロードフォルダへ保存)</div>
+			<div class='col-4'>Vキー</div>
+			<div class='col-8'>ボイスを再度再生</div>
 
 		</div></div>
 

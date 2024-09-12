@@ -1,5 +1,12 @@
 # Change Log
 
+## v2.17.0
+- fix(_submenu.sn): ページ遷移状態から [page to=load] する際にダイアログで確認するように
+	- fix だが前回あげ忘れにつきマイナーver上げ
+- fix(_submenu.htm, _submenu.sn): 右クリックメニュー表記を最新に
+- fix(_yesno.sn): ダイアログ表示中にショートカットが利かないように
+- fix(_album.sn, _archive.sn, _config.sn, _log.sn, _log.sn, _submenu.sn, _yesno.sn, _hidetext.sn): escape キーでも画面を抜けられるように
+- fix: ライブラリ更新(SKYNovel v1.60.2)など
 ## v2.16.3
 - feat(_submenu.sn): ページ遷移状態から抜けるキーショートカット追加
 	- ページ遷移状態でなければ右クリックメニューを表示するキーショートカット（ESC, Shift）

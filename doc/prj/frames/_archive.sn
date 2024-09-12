@@ -182,6 +182,7 @@
 	[event key=backspace label=*exit]
 	[event key=shift label=*exit]
 	[event key=end label=*exit]
+	[event key=escape label=*exit]
 	[event key=sn:chgNavLang label=*chgNavLang call=true]
 	[set_focus to=null]
 [s]

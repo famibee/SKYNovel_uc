@@ -31,7 +31,7 @@
 			"cancel": "ゲームに戻る",
 			"title": "タイトルに戻る",
 			"game_end": "ゲーム終了",
-			"shortcut_htm": "<div class='col-4'>Shift、ESCキー</div><div class='col-8'>右クリックメニューを表示</div><div class='col-4'>W、alt+Enterキー</div><div class='col-8'>全画面・ウインドウモード切り替え</div><div class='col-4'>Aキー</div><div class='col-8'>自動読み進み On(クリックで停止)</div><div class='col-4'>Fキー</div><div class='col-8'>強制スキップ On(クリックで停止)</div><div class='col-4'>Ctrlキー</div><div class='col-8'>押してる間だけメッセージ強制スキップ<br/>（スキップはFキーと同等）</div><div class='col-4'>SPACE、Delキー</div><div class='col-8'>字を隠す(クリックで復帰)</div><div class='col-4'>PAGE DOWNキー、PAGE UPキー、Up(↑)キー</div><div class='col-8'>履歴(本文履歴を表示、クリックで復帰)</div><div class='col-4'>Sキー</div><div class='col-8'>クイックセーブ</div><div class='col-4'>Lキー</div><div class='col-8'>クイックロード</div><div class='col-4'>Tキー</div><div class='col-8'>テキスト窓を薄く</div><div class='col-4'>Yキー</div><div class='col-8'>テキスト窓を濃く</div><div class='col-4'>Pキー</div><div class='col-8'>スクリーンショット(ダウンロードフォルダへ保存)</div><div class='col-4'>Vキー</div><div class='col-8'>声を再度再生</div>",
+			"shortcut_htm": "<div class='col-4'>Shift、ESCキー</div><div class='col-8'>右クリックメニューを表示</div><div class='col-4'>Down（↓）キー</div><div class='col-8'>メッセージ読み進め。押しっぱなしでメッセージ強制スキップ</div><div class='col-4'>W、alt+Enterキー</div><div class='col-8'>全画面・ウインドウモード切り替え</div><div class='col-4'>Aキー</div><div class='col-8'>自動読み進み On(クリックで停止)</div><div class='col-4'>Fキー</div><div class='col-8'>強制スキップ On(クリックで停止)</div><div class='col-4'>SPACE、Delキー</div><div class='col-8'>字を隠す(クリックで復帰)</div><div class='col-4'>R、Up(↑)キー、ホイール下回転</div><div class='col-8'>履歴(本文履歴を表示、右クリックで復帰)</div><div class='col-4'>Cキー</div><div class='col-8'>設定(設定画面を表示、右クリックで復帰)</div><div class='col-4'>PAGE UPキー</div><div class='col-8'>ページ遷移状態に入る。ESCAPEで復帰</div><div class='col-4'>PAGE DOWN、PAGE UPキー</div><div class='col-8'>(ページ遷移状態で)ページを前後する</div><div class='col-4'>SHIFTキー、右クリック</div><div class='col-8'>(ページ遷移状態で)表示中ページからロード</div><div class='col-4'>Sキー／Lキー</div><div class='col-8'>クイックセーブ／クイックロード</div><div class='col-4'>Pキー</div><div class='col-8'>スクリーンショット(ダウンロードフォルダへ保存)</div><div class='col-4'>Vキー</div><div class='col-8'>ボイスを再度再生</div>",
 			"non-text": {
 				"close": "閉じる"
 			}
@@ -46,7 +46,7 @@
 			"cancel": "Volver",
 			"title": "Volver al título",
 			"game_end": "Cerrar el juego",
-			"shortcut_htm": "<div class='col-4'>Shift、ESC</div><div class='col-8'>Visualizar menú del click derecho.</div><div class='col-4'>W、alt+Enter</div><div class='col-8'>Alternar pantalla completa, modo de ventana.</div><div class='col-4'>A</div><div class='col-8'>Modo automático (Al hacer click se detiene).</div><div class='col-4'>F</div><div class='col-8'>Omitir texto (Al hacer click se detiene).</div><div class='col-4'>Ctrl</div><div class='col-8'>Mensaje forzado omita solo mientras empuja.</div><div class='col-4'>SPACE、Del</div><div class='col-8'>Oculta la caja de texto<br/> (Al hacer click aparece de nuevo).</div><div class='col-4'>PAGE DOWN、PAGE UP、Up(↑)</div><div class='col-8'>Abre el registro (Al hacer click vuelve al juego).</div><div class='col-4'>S</div><div class='col-8'>Pulsa S para un guardado rápido.</div><div class='col-4'>L</div><div class='col-8'>Pulsa L para una carga rápida.</div><div class='col-4'>T</div><div class='col-8'>Disminuir la opacidad de la caja de texto.</div><div class='col-4'>Y</div><div class='col-8'>Aumentar la opacidad de la caja de texto.</div><div class='col-4'>P</div><div class='col-8'>Captura de pantalla.</div><div class='col-4'>V</div><div class='col-8'>reproducir voz de nuevo</div>",
+			"shortcut_htm": "<div class='col-4'>Shift, ESC</div><div class='col-8'>Visualizar menú del click derecho.</div><div class='col-4'>abajo (↓)</div><div class='col-8'>Continúe leyendo el mensaje. Mantenga presionado para forzar el salto de mensajes.</div><div class='col-4'>W, alt+Enter</div><div class='col-8'>Alternar pantalla completa, modo de ventana.</div><div class='col-4'>A</div><div class='col-8'>Modo automático (Al hacer click se detiene).</div><div class='col-4'>F</div><div class='col-8'>Omitir texto (Al hacer click se detiene).</div><div class='col-4'>SPACE, Del</div><div class='col-8'>Oculta la caja de texto<br/> (Al hacer click aparece de nuevo).</div><div class='col-4'>R, arriba (↑), rotación de la rueda hacia abajo</div><div class='col-8'>Historial (muestra el historial de texto, haz clic derecho para regresar)</div><div class='col-4'>C</div><div class='col-8'>Configuración (Muestre la pantalla de configuración, haga clic derecho para regresar)</div><div class='col-4'>RE PÁG</div><div class='col-8'>Ingrese al estado de transición de la página. Regresar con ESCAPE</div><div class='col-4'>AV PÁG, ARRIBA PÁG</div><div class='col-8'>Ir y venir entre páginas (en estado de transición de página)</div><div class='col-4'>MAYÚS, clic derecho</div><div class='col-8'>Cargar desde la página mostrada actualmente (en estado de transición de página)</div><div class='col-4'>S</div><div class='col-8'>Pulsa S para un guardado rápido.</div><div class='col-4'>L</div><div class='col-8'>Pulsa L para una carga rápida.</div><div class='col-4'>P</div><div class='col-8'>Captura de pantalla.</div><div class='col-4'>V</div><div class='col-8'>reproducir voz de nuevo</div>",
 			"non-text": {
 				"close": "cerca"
 			}
@@ -61,7 +61,7 @@
 			"cancel": "Back",
 			"title": "Return to Title Screen",
 			"game_end": "End Game",
-			"shortcut_htm": "<div class='col-4'>Shift、ESC</div><div class='col-8'>Show/Hide Menu with Left click</div><div class='col-4'>W、alt+Enter</div><div class='col-8'>Swap between full screen and window mode</div><div class='col-4'>A</div><div class='col-8'>Auto text On (Click to cancel)</div><div class='col-4'>F</div><div class='col-8'>Force skip On (Click to cancel)</div><div class='col-4'>Ctrl</div><div class='col-8'>Hold down to manually skip text<br/>(Same speed as F key)</div><div class='col-4'>SPACE、Del</div><div class='col-8'>Hide/Show Text</div><div class='col-4'>PAGE DOWN、PAGE UP、Up(↑)</div><div class='col-8'>Scroll through Backlog</div><div class='col-4'>S</div><div class='col-8'>Quick Save</div><div class='col-4'>L</div><div class='col-8'>Quick Load</div><div class='col-4'>T</div><div class='col-8'>Textbox visibility down</div><div class='col-4'>Y</div><div class='col-8'>Textbox visibility up</div><div class='col-4'>P</div><div class='col-8'>Screenshot(Saves to desktop)</div><div class='col-4'>V</div><div class='col-8'>Replay current voice line</div>",
+			"shortcut_htm": "<div class='col-4'>Shift, ESC</div><div class='col-8'>Show/Hide Menu with Left click</div><div class='col-4'>Down (↓)</div><div class='col-8'>Read through messages. Hold down to skip messages</div><div class='col-4'>W, alt+Enter</div><div class='col-8'>Swap between full screen and window mode</div><div class='col-4'>A</div><div class='col-8'>Auto text On (Click to cancel)</div><div class='col-4'>F</div><div class='col-8'>Force skip On (Click to cancel)</div><div class='col-4'>SPACE, Del</div><div class='col-8'>Hide/Show Text</div><div class='col-4'>R, Up (↑), wheel down</div><div class='col-8'>History (displays text history, right-click to restore)</div><div class='col-4'>C</div><div class='col-8'>Settings (displays the setting screen, right-click to return)</div><div class='col-4'>PAGE UP</div><div class='col-8'>Enter page transition state. Press ESCAPE to return</div><div class='col-4'>PAGE DOWN, PAGE UP</div><div class='col-8'>(In page transition state) Move forward or backward</div><div class='col-4'>SHIFT, right click</div><div class='col-8'>(In page transition state) Load from the currently displayed page</div><div class='col-4'>S／L</div><div class='col-8'>Quick Save／Quick Load</div><div class='col-4'>P</div><div class='col-8'>Screenshot(Saves to desktop)</div><div class='col-4'>V</div><div class='col-8'>Replay current voice line</div>",
 			"non-text": {
 				"close": "close"
 			}
@@ -76,7 +76,7 @@
 			"cancel": "回到游戏中",
 			"title": "回到标题画面",
 			"game_end": "游戏结束",
-			"shortcut_htm": "<div class='col-4'>Shift、ESC按键</div><div class='col-8'>显示・消除右键点击功能表</div><div class='col-4'>W、alt+Enter按键</div><div class='col-8'>切换全屏・视窗模式</div><div class='col-4'>A按键</div><div class='col-8'>开启自动阅读（鼠标点击则停止）</div><div class='col-4'>F按键</div><div class='col-8'>开启强制跳过（鼠标点击则停止）</div><div class='col-4'>Ctrl按键</div><div class='col-8'>按住的时候强制跳过对话讯息<br/>（跳过功能和F按键同效）</div><div class='col-4'>SPACE、Del按键</div><div class='col-8'>消除・显示对话讯息视窗</div><div class='col-4'>PAGE DOWN按键、PAGE UP按键、Up(↑)按键</div><div class='col-8'>对话讯息回顾功能</div><div class='col-4'>S按键</div><div class='col-8'>快速纪录</div><div class='col-4'>L按键</div><div class='col-8'>快速读取</div><div class='col-4'>T按键</div><div class='col-8'>将文字视窗浓度变薄</div><div class='col-4'>Y按键</div><div class='col-8'>变浓T</div><div class='col-4'>P按键</div><div class='col-8'>截取画面（存档到桌面）</div><div class='col-4'>V按键</div><div class='col-8'>再次播放显示中的台词语音</div>",
+			"shortcut_htm": "<div class='col-4'>Shift，ESC</div><div class='col-8'>显示・消除右键点击功能表</div><div class='col-4'>向下 (↓) 键</div><div class='col-8'>继续阅读消息。按住可强制跳过消息</div><div class='col-4'>W，alt+Enter</div><div class='col-8'>切换全屏・视窗模式</div><div class='col-4'>A</div><div class='col-8'>开启自动阅读（鼠标点击则停止）</div><div class='col-4'>F</div><div class='col-8'>开启强制跳过（鼠标点击则停止）</div><div class='col-4'>SPACE，Del</div><div class='col-8'>消除・显示对话讯息视窗</div><div class='col-4'>R，上(↑)键，滚轮向下旋转</div><div class='col-8'>历史记录（显示文字历史记录，右键返回）</div><div class='col-4'>C</div><div class='col-8'>设置（显示设置屏幕，右键返回）</div><div class='col-4'>向上，翻页</div><div class='col-8'>进入页面转换状态。使用 ESCAPE 返回</div><div class='col-4'>向下翻页，向上翻页</div><div class='col-8'>在页面之间来回（页面过渡状态）</div><div class='col-4'>SHIFT，右单击</div><div class='col-8'>从当前显示的页面加载（页面过渡状态）</div><div class='col-4'>S／L</div><div class='col-8'>快速纪录／快速读取</div><div class='col-4'>P</div><div class='col-8'>截取画面（存档到桌面）</div><div class='col-4'>V</div><div class='col-8'>再次播放显示中的台词语音</div>",
 			"non-text": {
 				"close": "关闭"
 			}
@@ -91,7 +91,7 @@
 			"cancel": "返回",
 			"title": "回到標題畫面",
 			"game_end": "結束遊戲",
-			"shortcut_htm": "<div class='col-4'>Shift、ESC按鍵</div><div class='col-8'>顯示・消除右鍵點擊功能表</div><div class='col-4'>W、alt+Enter按鍵</div><div class='col-8'>切換全畫面/視窗模式</div><div class='col-4'>A按鍵</div><div class='col-8'>自動閱讀On（滑鼠點擊則停止）</div><div class='col-4'>F按鍵</div><div class='col-8'>強制跳過On（滑鼠點擊則停止）</div><div class='col-4'>Ctrl按鍵</div><div class='col-8'>壓住的時候強制跳過對話訊息<br/>（跳過是和F按鍵同等）</div><div class='col-4'>SPACE、Del按鍵</div><div class='col-8'>消除・顯示對話訊息視窗</div><div class='col-4'>PAGE DOWN按鍵、PAGE UP按鍵、Up(↑)按鍵</div><div class='col-8'>對話訊息回顧功能</div><div class='col-4'>S按鍵</div><div class='col-8'>快速紀錄</div><div class='col-4'>L按鍵</div><div class='col-8'>快速讀取</div><div class='col-4'>T按鍵</div><div class='col-8'>將文字視窗變薄</div><div class='col-4'>Y按鍵</div><div class='col-8'>變濃T</div><div class='col-4'>P按鍵</div><div class='col-8'>擷取畫面（存檔到桌面）</div><div class='col-4'>V按鍵</div><div class='col-8'>再次播放語音</div>",
+			"shortcut_htm": "<div class='col-4'>Shift，ESC</div><div class='col-8'>顯示・消除右鍵點擊功能表</div><div class='col-4'>向下 (↓) 鍵</div><div class='col-8'>繼續閱讀訊息。按住可強制跳過訊息</div><div class='col-4'>W，alt+Enter</div><div class='col-8'>切換全畫面/視窗模式</div><div class='col-4'>A</div><div class='col-8'>自動閱讀On（滑鼠點擊則停止）</div><div class='col-4'>F</div><div class='col-8'>強制跳過On（滑鼠點擊則停止）</div><div class='col-4'>SPACE，Del</div><div class='col-8'>消除・顯示對話訊息視窗</div><div class='col-4'>R，上(↑)鍵，滾輪向下旋轉</div><div class='col-8'>歷史記錄（顯示文字歷史記錄，右鍵返回）</div><div class='col-4'>C</div><div class='col-8'>設定（顯示設定畫面，右鍵返回）</div><div class='col-4'>向上，翻頁</div><div class='col-8'>進入頁面轉換狀態。使用 ESCAPE 返回</div><div class='col-4'>向下翻頁，向上翻頁</div><div class='col-8'>在頁面之間來回（頁面過渡狀態）</div><div class='col-4'>SHIFT，右單擊</div><div class='col-8'>從目前顯示的頁面載入（頁面過渡狀態）</div><div class='col-4'>S／L</div><div class='col-8'>快速紀錄／快速讀取</div><div class='col-4'>P</div><div class='col-8'>擷取畫面（存檔到桌面）</div><div class='col-4'>V</div><div class='col-8'>再次播放語音</div>",
 			"non-text": {
 				"close": "關閉"
 			}
@@ -103,12 +103,17 @@
 [return]
 
 
-*page	[page to=&sn.eventArg cond=isGameState][return]
+*page	[page to=&sn.eventArg key='pageup,pagedown,rightclick,shift,escape' cond=isGameState][return]
 
 *escape
 	[if exp=const.sn.isPaging]
-		[page to=&sn.eventArg]
-		[return]
+		&arg = sn.eventArg
+		[if exp="sn.eventArg=='load'"]
+			[ask_ync mes=&mes.ここから再開しますか？]
+			[return cond="_yesno=='n'"]
+		[endif]
+
+		[page to=&arg]
 	[endif]
 
 
