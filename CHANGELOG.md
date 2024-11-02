@@ -1,5 +1,12 @@
 # Change Log
 
+## v2.18.0
+- feat(_config.sn,htm): ボイス（VOICEバッファの音声）再生中のBGM音量への乗数を設定できるように
+- feat(setting.sn): 同上の初期値設定と、設定画面へのスライダー追加
+- fix(core/webpack.config.js): 【Module not found: Error: Can't resolve 'url'〜】対策
+	- angular14 - Module not found: Error: Can't resolve 'url' in webpack 5/Angular 14 - Stack Overflow https://stackoverflow.com/questions/72720744/module-not-found-error-cant-resolve-url-in-webpack-5-angular-14
+
+
 ## v2.17.0
 - fix(_submenu.sn): ページ遷移状態から [page to=load] する際にダイアログで確認するように
 	- fix だが前回あげ忘れにつきマイナーver上げ

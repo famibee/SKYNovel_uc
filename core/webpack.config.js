@@ -2,7 +2,11 @@
 const WebpackObfuscator = require('webpack-obfuscator');
 
 const isPrd = process.env.NODE_ENV === 'production';
-let cfg = {};
+let cfg = {
+	resolve: {
+		fallback: {'url': require.resolve('url/'),}
+	},
+};
 if (isPrd) cfg = {...cfg, module: {rules: [
 	{
 		enforce: 'post',

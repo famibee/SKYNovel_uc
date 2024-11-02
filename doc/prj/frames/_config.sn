@@ -29,6 +29,7 @@
 	[event key='dom=config:#sldVolVoice' label=*sldVolVoice global=true call=true]
 	[event key='dom=config:#sldVolSe' label=*sldVolSe global=true call=true]
 	[event key='dom=config:#sldVolSys' label=*sldVolSys global=true call=true]
+	[event key='dom=config:#sldVolMulTalking' label=*sldVolMulTalking global=true call=true]
 
 	; 画面モード
 	[event key='dom=config:#chkScrMode' label=*chkScrMode global=true call=true]
@@ -69,7 +70,8 @@
 				"ＢＧＭのみ": "ＢＧＭのみ",
 				"ボイスのみ": "ボイスのみ",
 				"効果音のみ": "効果音のみ",
-				"システム音のみ": "システム音のみ"
+				"システム音のみ": "システム音のみ",
+				"ボイス再生中のBGM音量乗数": "ボイス再生中のBGM音量乗数"
 			},
 			"system": {
 				"system-SubTitle": "システム",
@@ -309,6 +311,9 @@
 *sldVolSys
 	[let_frame id=config var_name=val_sldVolSys]
 	[volume buf=SYS volume=&const.sn.frm.config.val_sldVolSys/100]
+*sldVolMulTalking
+	[let_frame id=config var_name=val_sldVolMulTalking]
+	&sys:sn.sound.BGM.vol_mul_talking = const.sn.frm.config.val_sldVolMulTalking
 [return]
 
 
@@ -429,6 +434,7 @@
 	[set_frame id=config var_name=val_sldVolVoice text=&sys:const.sn.sound.VOICE.volume*100]
 	[set_frame id=config var_name=val_sldVolSe text=&sys:const.sn.sound.SE.volume*100]
 	[set_frame id=config var_name=val_sldVolSys text=&sys:const.sn.sound.SYS.volume*100]
+	[set_frame id=config var_name=val_sldVolMulTalking text=&sys:sn.sound.BGM.vol_mul_talking|1]
 
 	[set_frame id=config var_name=val_chkScrMode text=&const.sn.displayState]
 
