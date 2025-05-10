@@ -67,7 +67,7 @@ A. 事前に連絡して許可を取ってください。
 
 
 ----------------------------------------------------
-Copyright (C) 2023 "電子演劇部" All Rights Reserved.
+Copyright (C) 2025 "電子演劇部" All Rights Reserved.
 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -148,4 +148,4 @@ Copyright (C) 2023 "電子演劇部" All Rights Reserved.
 	2023/1/1	1.0.0	公開
 
 
-Copyright (C) 2023 "電子演劇部" All Rights Reserved.
+Copyright (C) 2025 "電子演劇部" All Rights Reserved.

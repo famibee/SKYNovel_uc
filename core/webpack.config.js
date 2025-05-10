@@ -46,6 +46,11 @@ module.exports = [{
 	output: {
 		path: process.cwd() +'/doc/app',
 		filename: 'index.js',
+		chunkFilename: p=> {
+			const nm = p.chunk.id
+			.replaceAll(/(^skynovel_dist_app_|_js$)/g, '');
+			return `app.${nm}.js`;
+		},
 	},
 },{
 	...cfg,
@@ -54,6 +59,10 @@ module.exports = [{
 	output: {
 		path: process.cwd() +'/doc',
 		filename: 'web.js',
-		chunkFilename: 'web.[name].js'
+		chunkFilename: p=> {
+			const nm = p.chunk.id
+			.replaceAll(/(^skynovel_dist_|_js$)/g, '');
+			return `web.${nm}.js`;
+		},
 	},
 }];

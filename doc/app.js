@@ -38,7 +38,7 @@ app.on('ready', ()=> {
 			{label: 'このアプリについて', click: ()=> require('about-window').default({
 				icon_path	: path.join(__dirname, 'app/icon.png'),
 				package_json_dir	: __dirname,
-				copyright	: 'Copyright '+ pkg.appCopyright +' 2024',
+				copyright	: 'Copyright '+ pkg.appCopyright +' 2025',
 				homepage	: pkg.homepage,
 				license		: '',
 				use_version_info	: false,

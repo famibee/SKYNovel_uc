@@ -3,8 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // 変更後は「npm run webpack:dev」
 
 const hPlg = {};
-import h from './plugin.js';
+import h from './plugin.json';
 for (const nm in h) hPlg[nm] = require(`./plugin/${nm}`);
 
 import {SysApp} from '@famibee/skynovel/app';
-new SysApp(hPlg);
+globalThis.addEventListener('DOMContentLoaded', async ()=> {
+	new SysApp(hPlg);	// 拡張機能で【(hPlg);】置換するので触らない
+
+}, {once: true, passive: true});
