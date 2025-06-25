@@ -40,7 +40,7 @@
 &bura_mode = true	; ぶら下げ禁則処理するか
 
 &font_size = 24	; {"lbl":"フォントサイズ","type":"rng","max":90,"min":10,"step":0.1}
-&def_fonts = 'ipamjm, "SourceHanSans-VF"'	; デフォルトフォント
+&def_fonts = 'ipamjm, "Source Han Sans CN"'	; デフォルトフォント
 ;&sn.button.fontFamily = 'ipamjm'
 
 &autoResume = true	; （ブラウザ版で）自動レジュームするか
