@@ -849,14 +849,14 @@ eval("module.exports = \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADIC
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_ReadState_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_ReadState.js";
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_PropParser_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_PropParser.js";
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_Variable_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_Variable.js";
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_SoundMng_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_SoundMng.js";
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_ScriptIterator_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_ScriptIterator.js";
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_LayerMng_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_LayerMng.js";
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_EventMng_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_EventMng.js";
-/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_gamepad_js") return "app.vendors-node_modules_famibee_skynovel_dist_app_gamepad.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_ReadState_js") return "app.ReadState.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_PropParser_js") return "app.PropParser.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_Variable_js") return "app.Variable.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_SoundMng_js") return "app.SoundMng.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_ScriptIterator_js") return "app.ScriptIterator.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_LayerMng_js") return "app.LayerMng.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_EventMng_js") return "app.EventMng.js";
+/******/ 			if (chunkId === "vendors-node_modules_famibee_skynovel_dist_app_gamepad_js") return "app.gamepad.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

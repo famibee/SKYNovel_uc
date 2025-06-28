@@ -48,7 +48,7 @@ module.exports = [{
 		filename: 'index.js',
 		chunkFilename: p=> {
 			const nm = p.chunk.id
-			.replaceAll(/(^skynovel_dist_app_|_js$)/g, '');
+			.replace(/^.+_dist_app_(.+)_js$/, '$1');
 			return `app.${nm}.js`;
 		},
 	},
@@ -61,7 +61,7 @@ module.exports = [{
 		filename: 'web.js',
 		chunkFilename: p=> {
 			const nm = p.chunk.id
-			.replaceAll(/(^skynovel_dist_|_js$)/g, '');
+			.replace(/^.+_dist_(.+)_js$/, '$1');
 			return `web.${nm}.js`;
 		},
 	},
