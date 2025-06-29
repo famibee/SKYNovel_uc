@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.18.3
+- fix: package.json の npm-scripts に【"postinstall": "npm run webpack:dev"】タスクを追加
+- fix: rebuild タスクから前述処理を削除。実行結果は同じ
 ## v2.18.2
 - fix: 生成ファイルのファイル名を短縮
 ## v2.18.1

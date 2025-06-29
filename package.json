@@ -35,7 +35,8 @@
 		"watch:wdsdbg": "webpack-cli serve --config ./core/wds.config.js --open web.htm?dip=%7B%22dbg%22:true%2C%22port%22:3776%7D",
 		"webpack:pro": "rimraf doc/web.*.js && webpack --mode production --config ./core/webpack.config.js",
 		"npm_check_updates": "ncu -u --target minor && npm update && npm run webpack:dev && ncu -g",
-		"rebuild": "rimraf package-lock.json && rimraf node_modules && npm cache clear --force && npm i && npm run webpack:dev"
+		"rebuild": "rimraf package-lock.json && rimraf node_modules && npm cache clear --force && npm i",
+		"postinstall": "npm run webpack:dev"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.skynovel.uc",

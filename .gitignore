@@ -13,9 +13,9 @@
 pass.json
 
 # アプリ版メインjs
-/doc/app/index.js
+/doc/app/*.js
 /doc/crypto_prj
-/doc/web.js
+/doc/web*.js
 
 # Node.js Tools
 /node_modules/
